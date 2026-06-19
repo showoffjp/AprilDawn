@@ -14,6 +14,7 @@ import { BeforeAfterSlider } from "@/components/effects/BeforeAfterSlider";
 import { Aurora } from "@/components/effects/Aurora";
 import { HeroCollage } from "@/components/home/HeroCollage";
 import { MemoryMarquee } from "@/components/home/MemoryMarquee";
+import { Benefits } from "@/components/home/Benefits";
 import { featuredServices } from "@/lib/services";
 import { bestsellers } from "@/lib/products";
 import { heroBundle } from "@/lib/occasions";
@@ -404,6 +405,16 @@ export default function Home() {
           </Button>
         </div>
       </Section>
+
+      {/* -------------------------------------------------------- Our promise */}
+      <div className="bg-cream-deep">
+        <Section>
+          <SectionHeading center eyebrow="Our promise" title="The AprilDawn guarantee" />
+          <div className="mt-10">
+            <Benefits />
+          </div>
+        </Section>
+      </div>
 
       {/* ----------------------------------------------------------- Final CTA */}
       <Section>
