@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { services, getService } from "@/lib/services";
 import { StyleGallery } from "@/components/art/StyleGallery";
+import { BeforeAfterSlider } from "@/components/effects/BeforeAfterSlider";
 import { fromPrice } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -93,6 +94,20 @@ export default async function ServiceDetailPage({
                 </div>
               ))}
             </div>
+
+            {service.slug === "restore" ? (
+              <div className="mt-12">
+                <h2 className="font-display text-2xl font-semibold">
+                  Drag to see the difference
+                </h2>
+                <div className="mt-6">
+                  <BeforeAfterSlider />
+                </div>
+                <p className="mt-2 text-center text-xs text-ink-soft">
+                  ← drag to compare →
+                </p>
+              </div>
+            ) : null}
 
             {service.styles && service.styles.length > 0 ? (
               <div className="mt-12">

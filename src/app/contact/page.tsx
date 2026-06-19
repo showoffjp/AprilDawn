@@ -16,8 +16,8 @@ export default function ContactPage() {
         <div>
           <SectionHeading
             eyebrow="Contact"
-            title="Talk to a memory specialist"
-            intro="Tell us what you've got — a single photo or a lifetime of boxes — and we'll map out the perfect plan with free proofs."
+            title="Talk to a real person"
+            intro="Tell us what you've got — a single photo or a lifetime of boxes — and we'll map out the perfect plan with free proofs. Want us to design or restore it for you? Just ask and we'll pair you with a specialist."
           />
           <dl className="mt-8 space-y-5 text-sm">
             <div>

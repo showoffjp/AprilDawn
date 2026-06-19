@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { StatsBand } from "@/components/effects/StatsBand";
 import { trustStats } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -44,17 +45,8 @@ export default function AboutPage() {
       </section>
 
       <Section>
-        <div className="grid grid-cols-2 gap-6 rounded-3xl bg-cream-deep p-8 ring-1 ring-ink/10 sm:grid-cols-4">
-          {trustStats.map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="font-display text-3xl font-semibold text-ink">
-                {s.value}
-              </div>
-              <div className="mt-1 text-xs font-medium uppercase tracking-wide text-ink-soft">
-                {s.label}
-              </div>
-            </div>
-          ))}
+        <div className="rounded-3xl bg-cream-deep p-8 ring-1 ring-ink/10">
+          <StatsBand stats={trustStats} />
         </div>
       </Section>
 
