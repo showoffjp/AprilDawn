@@ -28,7 +28,7 @@ export function ProductCard({ product }: { product: Product }) {
   );
 
   const cardClass =
-    "group flex flex-col rounded-2xl bg-white p-5 ring-1 ring-ink/10 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-dawn-500/10";
+    "group flex flex-col rounded-2xl bg-white p-5 shadow-soft ring-1 ring-ink/10 transition hover:-translate-y-0.5 hover:shadow-soft-lg";
 
   if (product.affiliate) {
     return (

@@ -3,7 +3,8 @@ import { Container } from "./Container";
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
-    <span className="inline-block text-xs font-semibold uppercase tracking-[0.18em] text-dawn-600">
+    <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.18em] text-dawn-600">
+      <span className="h-px w-6 bg-dawn-400/70" aria-hidden="true" />
       {children}
     </span>
   );
