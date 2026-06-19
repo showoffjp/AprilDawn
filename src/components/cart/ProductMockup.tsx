@@ -1,5 +1,5 @@
 import type { CSSProperties } from "react";
-import { SampleArt } from "@/components/art/SampleArt";
+import { MemoryScene } from "@/components/art/MemoryScene";
 import { type MockupKind } from "@/lib/designer";
 
 export type PhotoStyle = {
@@ -30,7 +30,7 @@ function PhotoLayer({
           style={{ filter, transform }}
         />
       ) : (
-        <SampleArt uid="preview" style={{ filter, transform }} />
+        <MemoryScene variant="birthday" uid="preview" style={{ filter, transform }} />
       )}
       {overlay ? (
         <div

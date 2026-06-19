@@ -5,6 +5,7 @@ import { site } from "@/lib/site";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { TopBar } from "@/components/site/TopBar";
+import { Splash } from "@/components/site/Splash";
 import { CartProvider } from "@/components/cart/CartProvider";
 import { ScrollProgress } from "@/components/effects/ScrollProgress";
 
@@ -68,6 +69,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <Splash />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{

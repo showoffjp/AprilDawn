@@ -11,7 +11,12 @@ export type ServiceCategory =
   | "art"
   | "wall"
   | "mail"
-  | "occasions";
+  | "occasions"
+  | "voice"
+  | "heritage"
+  | "tribute"
+  | "pets"
+  | "events";
 
 export type Service = {
   slug: string;
@@ -350,6 +355,146 @@ export const services: Service[] = [
     ],
     startingPrice: 0,
     turnaround: "Reminders are free · gifts ship per product",
+  },
+  {
+    slug: "voice-keeper",
+    name: "Voice & Story Keeper",
+    emoji: "🎙️",
+    category: "voice",
+    tagline: "Save the voices and the stories behind the photos.",
+    summary:
+      "Record and preserve the people who made the memories — guided elder interviews, old voicemails and answering-machine tapes rescued, and warm narration that turns a photo into a story you can hear forever.",
+    gradient: "from-sky-200 via-cyan-200 to-emerald-200",
+    heroPoints: [
+      "Guided interview prompts to capture a loved one's life story",
+      "Rescue voicemails, cassettes, and answering-machine tapes",
+      "Human-reviewed transcripts you can keep, search, and print",
+      "Optional narrated photo stories — a voice over the pictures",
+    ],
+    details: [
+      { title: "Interviews, gently guided", body: "We send thoughtful prompts and a simple recorder so anyone can capture Grandpa's stories in his own voice — no studio, no stress, fully remote." },
+      { title: "Rescue fragile audio", body: "Old voicemails, micro-cassettes, and answering-machine tapes are digitized, cleaned, and preserved before they're lost for good." },
+      { title: "Stories you can hear", body: "Pair the audio with photos to create narrated 'memory stories,' and keep searchable transcripts to read and print." },
+    ],
+    startingPrice: 29,
+    turnaround: "Transcripts in 3–5 days",
+    examples: [
+      "A grandmother's life story, recorded and bound into a book",
+      "Twenty years of saved voicemails, preserved on a keepsake chip",
+      "Dad narrating the family slideshow in his own words",
+    ],
+  },
+  {
+    slug: "heritage",
+    name: "Family Tree & Heritage",
+    emoji: "🌳",
+    category: "heritage",
+    tagline: "See your whole family, all the way back.",
+    summary:
+      "We organize a lifetime of photos by person and generation, build a beautiful visual family tree, and bind it all into a heritage book — so the whole story lives in one place, ready to pass down.",
+    gradient: "from-amber-200 via-lime-200 to-emerald-200",
+    heroPoints: [
+      "Face-grouping to sort decades of photos by person",
+      "A designed visual family tree, ready to frame or print",
+      "Heritage books that gather the whole story in one place",
+      "Shareable with relatives near and far",
+    ],
+    details: [
+      { title: "From chaos to a clear story", body: "Send us the boxes and the digital mess. We group faces, date the photos, and lay out who's who across the generations." },
+      { title: "A tree worth framing", body: "Your family tree is custom-designed with photos at every branch — a centerpiece, not a spreadsheet." },
+      { title: "Bound to last", body: "Everything gathers into an archival heritage book, with extra copies for the relatives who'll treasure it." },
+    ],
+    startingPrice: 149,
+    turnaround: "2–4 weeks",
+    examples: [
+      "A four-generation photo tree over the stairwell",
+      "A heritage book made for a family reunion",
+      "Cousins across the country, finally sharing one album",
+    ],
+  },
+  {
+    slug: "tribute",
+    name: "Tribute & Memorial",
+    emoji: "🕊️",
+    category: "tribute",
+    tagline: "Honor a life, beautifully and gently.",
+    summary:
+      "Heartfelt memorial slideshows and tribute films, celebration-of-life photo boards, and keepsakes for the family — handled with care, entirely remotely, on a timeline that respects yours.",
+    gradient: "from-violet-200 via-indigo-200 to-sky-200",
+    heroPoints: [
+      "Memorial slideshows & tribute films with music",
+      "Celebration-of-life photo boards and programs",
+      "Restored portraits for the service",
+      "Keepsake copies for every family member",
+    ],
+    details: [
+      { title: "Told with care", body: "Share photos and a few words; our team crafts a moving tribute film or slideshow, with gentle music and a respectful pace." },
+      { title: "Ready for the day", body: "Photo boards, framed portraits, and printed programs — designed, produced, and shipped in time, fully remote." },
+      { title: "Something to keep", body: "Family members receive keepsake copies and a private digital album to revisit whenever they need to." },
+    ],
+    startingPrice: 99,
+    turnaround: "Rush available · we work to your date",
+    examples: [
+      "A celebration-of-life slideshow set to her favorite song",
+      "A restored portrait and program for the service",
+      "A private album shared with the whole family",
+    ],
+  },
+  {
+    slug: "pet-memories",
+    name: "Pet Memories",
+    emoji: "🐾",
+    category: "pets",
+    tagline: "Because the dog (and cat) is family too.",
+    summary:
+      "Portraits, keepsakes, and memorials for the four-legged members of the family — painterly pet portraits in any style, custom gifts, and gentle memorial pieces.",
+    gradient: "from-orange-200 via-amber-200 to-rose-200",
+    heroPoints: [
+      "Painterly pet portraits in any artist's style",
+      "Print your pet on anything — mugs, blankets, bandanas",
+      "Paw-print and memorial keepsakes",
+      "Restore faded photos of pets long gone",
+    ],
+    details: [
+      { title: "A portrait worthy of them", body: "Turn your pet into a Renaissance noble, a Van Gogh, or a pop-art icon — on gallery canvas or anything in the shop." },
+      { title: "Gifts for pet people", body: "Their face on a hoodie, a blanket, a phone case, a bandana for the pup. Maximum joy." },
+      { title: "Gentle memorials", body: "Restore a cherished photo, frame a paw print, and create a keepsake that honors a very good boy or girl." },
+    ],
+    startingPrice: 24,
+    turnaround: "Digital in 3–5 days",
+    examples: [
+      "The golden retriever as a Van Gogh, on a mug and a hoodie",
+      "A memorial canvas with a framed paw print",
+      "Restored photos of a childhood cat",
+    ],
+  },
+  {
+    slug: "events",
+    name: "Event & Wedding Memories",
+    emoji: "💍",
+    category: "events",
+    tagline: "Gather every guest's photos into one perfect album.",
+    summary:
+      "For weddings, reunions, and big celebrations: collect everyone's phone photos with a simple QR code, then we curate, restore, and turn them into a highlight film, a guest photobook, and prints — no app downloads, fully remote.",
+    gradient: "from-rose-200 via-fuchsia-200 to-purple-200",
+    heroPoints: [
+      "Collect guest photos via a simple QR — no app needed",
+      "Curated highlight film and lay-flat photobook",
+      "Matching prints, signs, and favors",
+      "A shared private gallery for everyone who came",
+    ],
+    details: [
+      { title: "Every angle, one album", body: "Guests scan a QR and drop their photos in. We gather hundreds of perspectives you'd never have seen otherwise." },
+      { title: "Curated, not dumped", body: "Our team selects, restores, and arranges the best into a highlight film and a beautiful lay-flat book." },
+      { title: "Shared with everyone", body: "A private gallery lets every guest relive the day — and order their own prints and keepsakes." },
+    ],
+    startingPrice: 79,
+    turnaround: "1–2 weeks after your event",
+    examples: [
+      "A wedding guest-photo book with 600 candid shots",
+      "A reunion highlight film set to music",
+      "A shared gallery for the whole graduating class",
+    ],
   },
 ];
 

@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useRef, useState } from "react";
-import { SampleArt } from "@/components/art/SampleArt";
+import { MemoryScene } from "@/components/art/MemoryScene";
 import { cn } from "@/lib/utils";
 
 /** Drag to compare a "damaged" original with the restored version. */
@@ -45,7 +45,8 @@ export function BeforeAfterSlider({ className }: { className?: string }) {
     >
       {/* After (restored) */}
       <div className="absolute inset-0">
-        <SampleArt
+        <MemoryScene
+          variant="picnic"
           uid="after"
           style={{ filter: "saturate(1.2) contrast(1.06) brightness(1.03)" }}
         />
@@ -56,9 +57,10 @@ export function BeforeAfterSlider({ className }: { className?: string }) {
         className="absolute inset-0"
         style={{ clipPath: `polygon(0 0, ${pos}% 0, ${pos}% 100%, 0 100%)` }}
       >
-        <SampleArt
+        <MemoryScene
+          variant="picnic"
           uid="before"
-          style={{ filter: "sepia(0.65) saturate(0.45) contrast(0.82) brightness(0.92)" }}
+          style={{ filter: "sepia(0.7) saturate(0.4) contrast(0.82) brightness(0.9)" }}
         />
         <div
           className="pointer-events-none absolute inset-0"
