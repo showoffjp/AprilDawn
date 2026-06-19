@@ -5,6 +5,7 @@ import Link from "next/link";
 import { mainNav } from "@/lib/site";
 import { Button } from "@/components/ui/Button";
 import { Container } from "@/components/ui/Container";
+import { CartIndicator } from "@/components/cart/CartIndicator";
 import { Logo } from "./Logo";
 
 export function Header() {
@@ -34,20 +35,24 @@ export function Header() {
           >
             Sign in
           </Link>
+          <CartIndicator />
           <Button href="/upload" size="sm">
             Start a project
           </Button>
         </div>
 
-        <button
-          type="button"
-          onClick={() => setOpen((v) => !v)}
-          className="inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-inset ring-ink/15 lg:hidden"
-          aria-label="Toggle menu"
-          aria-expanded={open}
-        >
-          <span className="text-lg">{open ? "✕" : "☰"}</span>
-        </button>
+        <div className="flex items-center gap-2 lg:hidden">
+          <CartIndicator />
+          <button
+            type="button"
+            onClick={() => setOpen((v) => !v)}
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-inset ring-ink/15"
+            aria-label="Toggle menu"
+            aria-expanded={open}
+          >
+            <span className="text-lg">{open ? "✕" : "☰"}</span>
+          </button>
+        </div>
       </Container>
 
       {open ? (

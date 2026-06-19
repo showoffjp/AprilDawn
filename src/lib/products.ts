@@ -73,12 +73,24 @@ export const products: Product[] = [
   { slug: "gardenflag", name: "Garden Flag", emoji: "🚩", category: "Everything Else", blurb: "Weatherproof yard memories.", priceFrom: 17, affiliate: true },
   { slug: "petbandana", name: "Pet Bandana", emoji: "🐾", category: "Everything Else", blurb: "Because the dog is family too.", priceFrom: 15, affiliate: true },
   { slug: "wrappingpaper", name: "Photo Wrapping Paper", emoji: "🎁", category: "Everything Else", blurb: "Wrap the gift in their own face.", priceFrom: 13, affiliate: true },
+  { slug: "metalengraving", name: "Metal Photo Engraving", emoji: "🔩", category: "Everything Else", blurb: "Portraits laser-engraved into steel, brass, or aluminum.", priceFrom: 34, bestseller: true },
+  { slug: "leatherstamp", name: "Stamped Leather Goods", emoji: "🪪", category: "Everything Else", blurb: "Embossed photos & monograms on wallets, journals, and keychains.", priceFrom: 29 },
+  { slug: "woodengraving", name: "Engraved Wood & Slate", emoji: "🪵", category: "Everything Else", blurb: "Laser-etched photos on walnut, maple, or slate.", priceFrom: 26 },
 ];
 
 export const bestsellers = products.filter((p) => p.bestseller);
 
 export function productsByCategory(category: ProductCategory): Product[] {
   return products.filter((p) => p.category === category);
+}
+
+export function getProduct(slug: string): Product | undefined {
+  return products.find((p) => p.slug === slug);
+}
+
+/** Apparel products are offered in sizes; everything else is one-size. */
+export function productHasSizes(product: Product): boolean {
+  return product.category === "Apparel";
 }
 
 /**

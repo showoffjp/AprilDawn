@@ -30,6 +30,8 @@ export type Service = {
   examples?: string[];
   faqs?: { q: string; a: string }[];
   featured?: boolean;
+  /** Optional gallery of art styles (e.g. famous artists / genres). */
+  styles?: { name: string; emoji: string; blurb: string }[];
 };
 
 export const services: Service[] = [
@@ -147,6 +149,7 @@ export const services: Service[] = [
       "Apparel: tees, hoodies, sweatshirts, socks, pajamas, aprons",
       "Wall art: canvas, framed prints, metal, acrylic, wood, tapestries",
       "Home & life: mugs, blankets, pillows, puzzles, ornaments, phone cases",
+      "Engraved & stamped: laser-etched metal & wood, embossed leather",
       "The unexpected: edible cake prints, custom vinyl, skateboards, magnets",
     ],
     details: [
@@ -156,7 +159,7 @@ export const services: Service[] = [
       },
       {
         title: "Literally everything",
-        body: "Our maker network lets us print on thousands of items — and if it's not in the catalog, request it. Edible cake toppers, etched vinyl, custom puzzles, garden flags, pet bandanas… if it exists, we'll find a way.",
+        body: "Our maker network goes far beyond printing — laser-engraved metal and wood, embossed and stamped leather, edible cake toppers, etched vinyl, custom puzzles, garden flags, pet bandanas, and more. If it's not in the catalog, request it; if it exists, we'll find a way to put your memory on it.",
       },
       {
         title: "Bundles & multi-product runs",
@@ -177,39 +180,73 @@ export const services: Service[] = [
   },
   {
     slug: "masterpieces",
-    name: "Hand-Painted Masterpieces",
+    name: "Masterpiece Portraits",
     emoji: "🎨",
     category: "art",
-    tagline: "A wall-sized family portrait that looks hand-painted.",
+    tagline: "Your family, painted by the greatest artists who ever lived.",
     summary:
-      "Turn any photo into a giant, gallery-worthy painting — oil, watercolor, charcoal, or Renaissance — rendered by our painterly studio and, if you like, finished by a real human artist on real canvas.",
+      "Want to see your family as a Van Gogh? A Renaissance royal court? A pop-art icon? Turn any photo into a portrait in the style of any famous artist or genre — rendered by our machine-learned painterly studio, optionally finished by a real human artist, and delivered digitally or printed on canvas, metal, acrylic, wood… or literally anything.",
     gradient: "from-emerald-200 via-teal-200 to-sky-200",
+    featured: true,
     heroPoints: [
-      "Choose a style: oil, watercolor, pencil, pop-art, Renaissance, more",
-      "Up to wall-sized (100\"+) on gallery canvas or fine-art paper",
-      "Optional hand-finishing by a commissioned human artist",
-      "Combine multiple people from different photos into one portrait",
+      "Any artist, any era: Van Gogh, Monet, Da Vinci, Klimt, Warhol & more",
+      "ML-painted portraits, optionally hand-finished by a commissioned artist",
+      "Get it digital (hi-res download) AND printed on any medium",
+      "Up to wall-sized (100\"+) murals; merge people across photos & eras",
+    ],
+    styles: [
+      { name: "Van Gogh", emoji: "🌌", blurb: "Swirling, starry post-impressionism." },
+      { name: "Monet", emoji: "🌷", blurb: "Soft, dreamy impressionist light." },
+      { name: "Da Vinci", emoji: "🖼️", blurb: "Renaissance master, sfumato glow." },
+      { name: "Rembrandt", emoji: "🕯️", blurb: "Dramatic Baroque chiaroscuro." },
+      { name: "Klimt", emoji: "✨", blurb: "Gold-leaf Art Nouveau opulence." },
+      { name: "Frida Kahlo", emoji: "🌺", blurb: "Bold, symbolic, full of color." },
+      { name: "Picasso", emoji: "🟦", blurb: "Cubist, daring, unmistakable." },
+      { name: "Warhol", emoji: "🥫", blurb: "Pop-art, neon, repeat-print fun." },
+      { name: "Hokusai", emoji: "🌊", blurb: "Japanese woodblock waves & line." },
+      { name: "Rockwell", emoji: "🇺🇸", blurb: "Warm, story-telling Americana." },
+      { name: "Comic / Pop", emoji: "💥", blurb: "Superhero ink & halftone dots." },
+      { name: "Art Deco", emoji: "🏛️", blurb: "Gatsby-era geometry & gold." },
     ],
     details: [
       {
-        title: "From snapshot to heirloom",
-        body: "Upload a favorite photo (or a few) and we compose a single, cohesive portrait in the style you choose — ideal for over-the-mantel statement pieces.",
+        title: "Any artist. Any genre. Any era.",
+        body: "Pick from the legends — Van Gogh, Monet, Da Vinci, Rembrandt, Klimt, Frida Kahlo, Picasso, Warhol, Hokusai, Rockwell — or a genre like Renaissance royalty, Art Deco, comic-book, watercolor, charcoal, or stained glass. Our studio learns each style and composes your family into it, faithfully and beautifully.",
       },
       {
-        title: "Digital, hybrid, or fully hand-painted",
-        body: "Pick a museum-quality printed render, a giclée hand-embellished with real brushwork, or commission a human artist to paint it entirely by hand. Every tier ships framed and ready to hang.",
+        title: "Machine-learned painting, human heart",
+        body: "Portraits are generated by painterly models trained on each style, then — if you choose — hand-finished by a commissioned human artist with real brushwork on real canvas. Three tiers: museum-quality digital render, hand-embellished giclée, or fully hand-painted original.",
       },
       {
-        title: "Merge the whole family",
-        body: "Have Grandpa in one photo and the newest grandbaby in another? We can lovingly combine people across photos and eras into one timeless painting.",
+        title: "Digital and printed — get both",
+        body: "Download a high-resolution digital file to share and treasure, and print the same masterpiece on gallery canvas, framed fine-art paper, metal, acrylic, or wood. Want it on a mug, a hoodie, or a 100-inch mural too? See Print on Anything — your masterpiece goes everywhere.",
+      },
+      {
+        title: "Merge the whole family across time",
+        body: "Have Grandpa in one photo and the newest grandbaby in another? We can lovingly combine people from different photos and eras into one timeless portrait — a whole lineage, painted as a single court of royalty.",
       },
     ],
-    startingPrice: 89,
-    turnaround: "1–3 weeks depending on tier and size",
+    startingPrice: 49,
+    turnaround: "Digital in 3–5 days · hand-painted 1–3 weeks",
     examples: [
-      "A 60\"×40\" oil-style portrait of three generations",
-      "A watercolor of the family home for a housewarming",
-      "A Renaissance 'royal portrait' gag for the office",
+      "Three generations as a Renaissance royal court, 60\"×40\" on canvas",
+      "The family dog, immortalized as a Van Gogh, on a mug and a hoodie",
+      "Grandparents' wedding photo reimagined as a Klimt gold portrait",
+      "A pop-art Warhol set of the kids for the playroom wall",
+    ],
+    faqs: [
+      {
+        q: "Which artists and styles can I choose?",
+        a: "Effectively any famous artist or art genre — from Van Gogh and Monet to Warhol and comic-book pop. If you can name the look, we can compose your portrait in it. Ask for a custom style and we'll create it.",
+      },
+      {
+        q: "Is it AI, or a real painting?",
+        a: "Your choice. The base render is created by our machine-learned painterly studio; you can keep it digital, add real hand-embellishment, or commission a fully hand-painted original by a human artist.",
+      },
+      {
+        q: "Can I get the same artwork on other products?",
+        a: "Yes! Once your masterpiece is approved, print it on canvas, metal, apparel, mugs, blankets, a Living Wall — anything in the shop.",
+      },
     ],
   },
   {

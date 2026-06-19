@@ -1,20 +1,12 @@
+import Link from "next/link";
 import { type Product } from "@/lib/products";
 import { amazonAffiliateUrl } from "@/lib/products";
 import { fromPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
 
 export function ProductCard({ product }: { product: Product }) {
-  const href = product.affiliate
-    ? amazonAffiliateUrl(`custom photo ${product.name}`)
-    : "/upload";
-
-  return (
-    <a
-      href={href}
-      target={product.affiliate ? "_blank" : undefined}
-      rel={product.affiliate ? "noopener noreferrer sponsored" : undefined}
-      className="group flex flex-col rounded-2xl bg-white p-5 ring-1 ring-ink/10 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-dawn-500/10"
-    >
+  const inner = (
+    <>
       <div className="flex items-start justify-between">
         <span className="text-4xl" aria-hidden="true">
           {product.emoji}
@@ -32,6 +24,28 @@ export function ProductCard({ product }: { product: Product }) {
           {product.affiliate ? "Shop →" : "Customize →"}
         </span>
       </div>
-    </a>
+    </>
+  );
+
+  const cardClass =
+    "group flex flex-col rounded-2xl bg-white p-5 ring-1 ring-ink/10 transition hover:-translate-y-0.5 hover:shadow-lg hover:shadow-dawn-500/10";
+
+  if (product.affiliate) {
+    return (
+      <a
+        href={amazonAffiliateUrl(`custom photo ${product.name}`)}
+        target="_blank"
+        rel="noopener noreferrer sponsored"
+        className={cardClass}
+      >
+        {inner}
+      </a>
+    );
+  }
+
+  return (
+    <Link href={`/shop/${product.slug}`} className={cardClass}>
+      {inner}
+    </Link>
   );
 }

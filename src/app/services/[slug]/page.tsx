@@ -93,6 +93,32 @@ export default async function ServiceDetailPage({
               ))}
             </div>
 
+            {service.styles && service.styles.length > 0 ? (
+              <div className="mt-12">
+                <h2 className="font-display text-2xl font-semibold">
+                  Choose your master
+                </h2>
+                <p className="mt-2 text-ink-soft">
+                  A dozen favorites below — or simply name any artist or genre
+                  you love and we&apos;ll paint your family in it.
+                </p>
+                <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
+                  {service.styles.map((st) => (
+                    <div
+                      key={st.name}
+                      className="rounded-2xl bg-cream-deep p-4 ring-1 ring-ink/10 transition hover:ring-dawn-300"
+                    >
+                      <div className="text-2xl" aria-hidden="true">
+                        {st.emoji}
+                      </div>
+                      <div className="mt-1 font-medium text-ink">{st.name}</div>
+                      <div className="text-xs text-ink-soft">{st.blurb}</div>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            ) : null}
+
             {service.faqs && service.faqs.length > 0 ? (
               <div className="mt-12">
                 <h2 className="font-display text-2xl font-semibold">
