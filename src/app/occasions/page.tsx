@@ -4,6 +4,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ReminderForm } from "@/components/occasions/ReminderForm";
+import { BundleBuilder } from "@/components/occasions/BundleBuilder";
 import { integrations, giftBundles } from "@/lib/occasions";
 import { fromPrice } from "@/lib/utils";
 
@@ -124,6 +125,18 @@ export default function OccasionsPage() {
           </div>
         </Section>
       </div>
+
+      {/* Build-your-own bundle */}
+      <Section>
+        <SectionHeading
+          eyebrow="Build your own"
+          title="Assemble a custom gift bundle"
+          intro="Pick the pieces, add a name, and we'll proof every item before it ships. (Yes, you can put Grandma on every single one.)"
+        />
+        <div className="mt-10">
+          <BundleBuilder />
+        </div>
+      </Section>
 
       {/* Auto-scheduling + gift-box partners */}
       <Section>
