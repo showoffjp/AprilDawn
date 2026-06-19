@@ -3,6 +3,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { QuoteCalculator } from "@/components/quote/QuoteCalculator";
+import { Aurora } from "@/components/effects/Aurora";
 import { services } from "@/lib/services";
 import { fromPrice } from "@/lib/utils";
 
@@ -59,15 +60,18 @@ const plans = [
 export default function PricingPage() {
   return (
     <>
-      <section className="bg-sunrise">
-        <Section>
-          <SectionHeading
-            center
-            eyebrow="Pricing"
-            title="Honest pricing. Free proofs. No surprises."
-            intro="Pay per project, or join the Family Vault for discounts and auto-gifting. You never pay until you approve a proof."
-          />
-        </Section>
+      <section className="bg-sunrise bg-grain relative overflow-hidden">
+        <Aurora />
+        <div className="relative">
+          <Section>
+            <SectionHeading
+              center
+              eyebrow="Pricing"
+              title="Honest pricing. Free proofs. No surprises."
+              intro="Pay per project, or join the Family Vault for discounts and auto-gifting. You never pay until you approve a proof."
+            />
+          </Section>
+        </div>
       </section>
 
       <Section>
