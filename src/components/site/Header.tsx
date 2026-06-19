@@ -29,6 +29,17 @@ export function Header() {
         </nav>
 
         <div className="hidden items-center gap-3 lg:flex">
+          <button
+            type="button"
+            onClick={() => window.dispatchEvent(new Event("open-command"))}
+            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm text-ink-soft ring-1 ring-inset ring-ink/15 transition hover:text-ink"
+            aria-label="Search"
+          >
+            🔍 <span>Search</span>
+            <kbd className="rounded bg-ink/5 px-1.5 py-0.5 text-[10px] font-medium">
+              ⌘K
+            </kbd>
+          </button>
           <Link
             href="/vault"
             className="text-sm font-medium text-ink-soft hover:text-ink"
