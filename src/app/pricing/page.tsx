@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { QuoteCalculator } from "@/components/quote/QuoteCalculator";
 import { services } from "@/lib/services";
 import { fromPrice } from "@/lib/utils";
 
@@ -68,6 +69,17 @@ export default function PricingPage() {
           />
         </Section>
       </section>
+
+      <Section>
+        <SectionHeading
+          eyebrow="Instant estimate"
+          title="What will your shoebox cost?"
+          intro="Add up what you've got and watch the estimate update live. A 10% volume discount kicks in automatically over $200."
+        />
+        <div className="mt-10">
+          <QuoteCalculator />
+        </div>
+      </Section>
 
       <Section className="pt-0">
         <div className="grid gap-6 lg:grid-cols-3">
