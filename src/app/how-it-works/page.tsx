@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { Aurora } from "@/components/effects/Aurora";
 
 export const metadata: Metadata = {
   title: "How it works",
@@ -38,15 +39,18 @@ const steps = [
 export default function HowItWorksPage() {
   return (
     <>
-      <section className="bg-sunrise">
-        <Section>
-          <SectionHeading
-            center
-            eyebrow="How it works"
-            title="From a dusty drawer to a lifetime of keepsakes"
-            intro="Four simple steps, free proofs at every turn, and your originals always come home."
-          />
-        </Section>
+      <section className="bg-sunrise bg-grain relative overflow-hidden">
+        <Aurora />
+        <div className="relative">
+          <Section>
+            <SectionHeading
+              center
+              eyebrow="How it works"
+              title="From a dusty drawer to a lifetime of keepsakes"
+              intro="Four simple steps, free proofs at every turn, and your originals always come home."
+            />
+          </Section>
+        </div>
       </section>
 
       <Section>

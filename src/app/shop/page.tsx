@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { ProductCard } from "@/components/cards/ProductCard";
+import { Aurora } from "@/components/effects/Aurora";
 import { productCategories, productsByCategory } from "@/lib/products";
 
 export const metadata: Metadata = {
@@ -13,20 +14,23 @@ export const metadata: Metadata = {
 export default function ShopPage() {
   return (
     <>
-      <section className="bg-gradient-to-br from-rose-200 via-orange-200 to-amber-200">
-        <Section>
-          <SectionHeading
-            center
-            eyebrow="The AprilDawn Shop"
-            title="Your memory belongs on everything"
-            intro="T-shirts are just the beginning. Pick a product, drop in a photo, preview it instantly, and we make it real."
-          />
-          <div className="mt-8 flex justify-center">
-            <Button href="/upload" size="lg">
-              Upload a photo to start
-            </Button>
-          </div>
-        </Section>
+      <section className="relative overflow-hidden bg-gradient-to-br from-rose-200 via-orange-200 to-amber-200">
+        <Aurora />
+        <div className="relative">
+          <Section>
+            <SectionHeading
+              center
+              eyebrow="The AprilDawn Shop"
+              title="Your memory belongs on everything"
+              intro="T-shirts are just the beginning. Pick a product, drop in a photo, preview it instantly, and we make it real."
+            />
+            <div className="mt-8 flex justify-center">
+              <Button href="/upload" size="lg">
+                Upload a photo to start
+              </Button>
+            </div>
+          </Section>
+        </div>
       </section>
 
       {productCategories.map((category) => (

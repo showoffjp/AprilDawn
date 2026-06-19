@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Container } from "@/components/ui/Container";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { Aurora } from "@/components/effects/Aurora";
 import { StatsBand } from "@/components/effects/StatsBand";
 import { trustStats } from "@/lib/site";
 
@@ -21,8 +22,9 @@ const values = [
 export default function AboutPage() {
   return (
     <>
-      <section className="bg-sunrise">
-        <Container className="py-20 text-center sm:py-28">
+      <section className="bg-sunrise bg-grain relative overflow-hidden">
+        <Aurora />
+        <Container className="relative py-20 text-center sm:py-28">
           <h1 className="mx-auto max-w-3xl font-display text-4xl font-semibold leading-[1.08] tracking-tight text-balance sm:text-5xl">
             So that no memory is ever lost again.
           </h1>

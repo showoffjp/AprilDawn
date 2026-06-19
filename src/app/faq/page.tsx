@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { Aurora } from "@/components/effects/Aurora";
 
 export const metadata: Metadata = {
   title: "FAQ",
@@ -54,15 +55,18 @@ const faqs: { q: string; a: string }[] = [
 export default function FaqPage() {
   return (
     <>
-      <section className="bg-sunrise">
-        <Section>
-          <SectionHeading
-            center
-            eyebrow="FAQ"
-            title="Questions, answered"
-            intro="Still curious? Reach a real memory specialist any time."
-          />
-        </Section>
+      <section className="bg-sunrise bg-grain relative overflow-hidden">
+        <Aurora />
+        <div className="relative">
+          <Section>
+            <SectionHeading
+              center
+              eyebrow="FAQ"
+              title="Questions, answered"
+              intro="Still curious? Reach a real person any time — no bots, no runaround."
+            />
+          </Section>
+        </div>
       </section>
 
       <Section className="pt-0">
