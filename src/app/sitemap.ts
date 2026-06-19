@@ -19,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/gift-finder",
     "/shop",
     "/upload",
+    "/vault",
     "/about",
     "/faq",
     "/contact",
