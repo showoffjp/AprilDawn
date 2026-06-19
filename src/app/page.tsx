@@ -6,7 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { ServiceCard } from "@/components/cards/ServiceCard";
 import { StoryCard } from "@/components/cards/StoryCard";
 import { stories } from "@/lib/stories";
-import { aggregate } from "@/lib/reviews";
+import { reviews, aggregate } from "@/lib/reviews";
 import { Reveal } from "@/components/ui/Reveal";
 import { PartnerMarquee } from "@/components/site/PartnerMarquee";
 import { StatsBand } from "@/components/effects/StatsBand";
@@ -115,7 +115,7 @@ export default function Home() {
             ].map((step) => (
               <div
                 key={step.n}
-                className="rounded-3xl bg-white p-8 ring-1 ring-ink/10"
+                className="rounded-3xl bg-white p-8 shadow-soft ring-1 ring-ink/10"
               >
                 <div className="font-display text-4xl font-semibold text-dawn-300">
                   {step.n}
@@ -286,37 +286,49 @@ export default function Home() {
       {/* -------------------------------------------------------- Testimonials */}
       <div className="bg-cream-deep">
         <Section>
-          <SectionHeading center title="Memories, rescued and reborn" />
+          <SectionHeading
+            center
+            eyebrow="Loved by families"
+            title="Memories, rescued and reborn"
+            intro={`Rated ${aggregate.rating}/5 by ${aggregate.count.toLocaleString()}+ families across all 50 states.`}
+          />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                q: "They restored my parents' torn 1952 wedding photo and put it on canvas. My mom cried. I cried. The mail carrier probably cried.",
-                a: "Renata G.",
-              },
-              {
-                q: "We mailed in 9 boxes of slides from the attic. Got back a searchable album and a Living Wall that my whole family adds to. Worth every penny.",
-                a: "The Okafor family",
-              },
-              {
-                q: "Grandma's 90th had her face on 30 hoodies, a cake, and a vinyl record. She 'hated' it and has worn the hoodie every day since.",
-                a: "Marcus T.",
-              },
-            ].map((t) => (
+            {reviews.slice(0, 3).map((r) => (
               <figure
-                key={t.a}
-                className="flex flex-col rounded-3xl bg-white p-7 ring-1 ring-ink/10"
+                key={r.name}
+                className="flex flex-col rounded-3xl bg-white p-7 shadow-soft ring-1 ring-ink/10"
               >
                 <div className="text-dawn-400" aria-hidden="true">
-                  ★★★★★
+                  {"★".repeat(r.rating)}
                 </div>
                 <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-ink">
-                  “{t.q}”
+                  “{r.quote}”
                 </blockquote>
-                <figcaption className="mt-5 text-sm font-semibold text-ink-soft">
-                  — {t.a}
+                <figcaption className="mt-5 flex items-center gap-3">
+                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-dawn-300 to-dusk-400 text-sm font-semibold text-white">
+                    {r.name
+                      .split(" ")
+                      .filter((w) => w[0] === w[0]?.toUpperCase())
+                      .slice(0, 2)
+                      .map((w) => w[0])
+                      .join("")}
+                  </span>
+                  <span>
+                    <span className="block text-sm font-semibold text-ink">
+                      {r.name}
+                    </span>
+                    <span className="block text-xs text-ink-soft">
+                      {r.location}
+                    </span>
+                  </span>
                 </figcaption>
               </figure>
             ))}
+          </div>
+          <div className="mt-8 text-center">
+            <Button href="/reviews" variant="ghost">
+              Read all reviews →
+            </Button>
           </div>
         </Section>
       </div>
@@ -338,6 +350,26 @@ export default function Home() {
               <StoryCard story={s} />
             </Reveal>
           ))}
+        </div>
+      </Section>
+
+      {/* --------------------------------------------------------- Consultation */}
+      <Section>
+        <div className="bg-dusk relative overflow-hidden rounded-[2rem] px-8 py-14 text-center text-white sm:px-16">
+          <Eyebrow>
+            <span className="text-dawn-200">Fully remote, always</span>
+          </Eyebrow>
+          <h2 className="mx-auto mt-3 max-w-2xl font-display text-3xl font-semibold text-balance sm:text-4xl">
+            Want a human in your corner?
+          </h2>
+          <p className="mx-auto mt-4 max-w-xl text-white/80">
+            Everything is done remotely — upload or mail it in, and it ships back
+            to your door. But if you&apos;d like a hand, book a free 15-minute
+            consultation and we&apos;ll plan your project together.
+          </p>
+          <Button href="/contact" size="lg" variant="light" className="mt-7">
+            Book a free consultation
+          </Button>
         </div>
       </Section>
 

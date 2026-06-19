@@ -86,7 +86,7 @@ export default function PricingPage() {
           {plans.map((p) => (
             <div
               key={p.name}
-              className={`flex flex-col rounded-3xl bg-white p-8 ring-1 ${
+              className={`flex flex-col rounded-3xl bg-white p-8 shadow-soft ring-1 ${
                 p.featured ? "ring-2 ring-dawn-400" : "ring-ink/10"
               }`}
             >
