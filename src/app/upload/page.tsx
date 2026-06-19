@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Uploader } from "@/components/upload/Uploader";
+import { Aurora } from "@/components/effects/Aurora";
 
 export const metadata: Metadata = {
   title: "Start a project",
@@ -10,15 +11,23 @@ export const metadata: Metadata = {
 
 export default function UploadPage() {
   return (
-    <Section>
-      <SectionHeading
-        center
-        eyebrow="Start a project"
-        title="Upload a memory — we&apos;ll take it from here"
-        intro="Drop in a single photo or your whole camera roll. Prefer to mail in originals? Order a prepaid MemoryBox below."
-      />
+    <>
+      <section className="bg-sunrise bg-grain relative overflow-hidden">
+        <Aurora />
+        <div className="relative">
+          <Section>
+            <SectionHeading
+              center
+              eyebrow="Start a project"
+              title="Upload a memory — we&apos;ll take it from here"
+              intro="Drop in a single photo or your whole camera roll. Prefer to mail in originals? Order a prepaid MemoryBox below."
+            />
+          </Section>
+        </div>
+      </section>
 
-      <div className="mx-auto mt-12 max-w-3xl">
+      <Section className="pt-0">
+        <div className="mx-auto max-w-3xl">
         <Uploader />
 
         <div className="mt-10 grid gap-4 sm:grid-cols-3">
@@ -49,6 +58,7 @@ export default function UploadPage() {
           </p>
         </div>
       </div>
-    </Section>
+      </Section>
+    </>
   );
 }
