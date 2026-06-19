@@ -15,6 +15,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/pricing",
     "/partners",
     "/stories",
+    "/reviews",
     "/gift-finder",
     "/shop",
     "/upload",
