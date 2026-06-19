@@ -24,12 +24,17 @@ export function Logo({
               <stop offset="100%" stopColor="#7e54c0" />
             </linearGradient>
           </defs>
-          <circle cx="16" cy="18" r="8" fill="url(#adsun)" />
-          <g stroke="url(#adsun)" strokeWidth="2" strokeLinecap="round">
-            <line x1="16" y1="3" x2="16" y2="6.5" />
-            <line x1="4.5" y1="8" x2="7" y2="10.5" />
-            <line x1="27.5" y1="8" x2="25" y2="10.5" />
+          {/* Rays fanning evenly above the sun (a sunburst, not horns). */}
+          <g stroke="url(#adsun)" strokeWidth="1.8" strokeLinecap="round">
+            <line x1="16" y1="2.5" x2="16" y2="6" />
+            <line x1="9.5" y1="4.2" x2="11.3" y2="7" />
+            <line x1="22.5" y1="4.2" x2="20.7" y2="7" />
+            <line x1="4.6" y1="9" x2="7.2" y2="10.8" />
+            <line x1="27.4" y1="9" x2="24.8" y2="10.8" />
           </g>
+          {/* Half-sun cresting the horizon. */}
+          <path d="M7 21 a9 9 0 0 1 18 0 Z" fill="url(#adsun)" />
+          <line x1="3.5" y1="21" x2="28.5" y2="21" stroke="url(#adsun)" strokeWidth="2" strokeLinecap="round" />
         </svg>
       </span>
       <span

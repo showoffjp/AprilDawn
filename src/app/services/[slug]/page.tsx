@@ -6,6 +6,7 @@ import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { services, getService } from "@/lib/services";
+import { StyleGallery } from "@/components/art/StyleGallery";
 import { fromPrice } from "@/lib/utils";
 
 export function generateStaticParams() {
@@ -99,22 +100,12 @@ export default async function ServiceDetailPage({
                   Choose your master
                 </h2>
                 <p className="mt-2 text-ink-soft">
-                  A dozen favorites below — or simply name any artist or genre
-                  you love and we&apos;ll paint your family in it.
+                  Here&apos;s one sample portrait, reimagined in each style — or
+                  simply name any artist or genre you love and we&apos;ll paint
+                  your family in it.
                 </p>
-                <div className="mt-6 grid grid-cols-2 gap-3 sm:grid-cols-3">
-                  {service.styles.map((st) => (
-                    <div
-                      key={st.name}
-                      className="rounded-2xl bg-cream-deep p-4 ring-1 ring-ink/10 transition hover:ring-dawn-300"
-                    >
-                      <div className="text-2xl" aria-hidden="true">
-                        {st.emoji}
-                      </div>
-                      <div className="mt-1 font-medium text-ink">{st.name}</div>
-                      <div className="text-xs text-ink-soft">{st.blurb}</div>
-                    </div>
-                  ))}
+                <div className="mt-6">
+                  <StyleGallery styles={service.styles} />
                 </div>
               </div>
             ) : null}
