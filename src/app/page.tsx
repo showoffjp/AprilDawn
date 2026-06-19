@@ -6,6 +6,8 @@ import { Badge } from "@/components/ui/Badge";
 import { ServiceCard } from "@/components/cards/ServiceCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { PartnerMarquee } from "@/components/site/PartnerMarquee";
+import { StatsBand } from "@/components/effects/StatsBand";
+import { BeforeAfterSlider } from "@/components/effects/BeforeAfterSlider";
 import { featuredServices } from "@/lib/services";
 import { bestsellers } from "@/lib/products";
 import { heroBundle } from "@/lib/occasions";
@@ -56,17 +58,8 @@ export default function Home() {
 
       {/* --------------------------------------------------------- Trust stats */}
       <div className="border-y border-ink/10 bg-cream-deep">
-        <Container className="grid grid-cols-2 gap-6 py-8 sm:grid-cols-4">
-          {trustStats.map((s) => (
-            <div key={s.label} className="text-center">
-              <div className="font-display text-3xl font-semibold text-ink">
-                {s.value}
-              </div>
-              <div className="mt-1 text-xs font-medium uppercase tracking-wide text-ink-soft">
-                {s.label}
-              </div>
-            </div>
-          ))}
+        <Container className="py-8">
+          <StatsBand stats={trustStats} />
         </Container>
       </div>
 
@@ -135,6 +128,36 @@ export default function Home() {
           </div>
         </Section>
       </div>
+
+      {/* ------------------------------------------------------- Before/After */}
+      <Section>
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <Reveal>
+            <Eyebrow>See the magic</Eyebrow>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+              Watch a faded memory come back to life.
+            </h2>
+            <p className="mt-4 leading-relaxed text-ink-soft">
+              Drag the slider to reveal what our restoration studio does —
+              repairing damage, lifting color, and sharpening detail until it
+              looks like the day it was taken. Every restoration ships with a
+              free proof first.
+            </p>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Button href="/services/restore">Restore a photo</Button>
+              <Button href="/upload" variant="ghost">
+                Upload to try
+              </Button>
+            </div>
+          </Reveal>
+          <Reveal delay={120}>
+            <BeforeAfterSlider />
+            <p className="mt-3 text-center text-xs text-ink-soft">
+              ← drag to compare →
+            </p>
+          </Reveal>
+        </div>
+      </Section>
 
       {/* --------------------------------------------------- Living Wall hero */}
       <Section>
@@ -322,7 +345,7 @@ export default function Home() {
               Start a project
             </Button>
             <Button href="/contact" size="lg" variant="ghost">
-              Talk to a memory specialist
+              Prefer we handle it? Talk to us
             </Button>
           </div>
           <p className="mt-6 text-sm text-ink-soft">

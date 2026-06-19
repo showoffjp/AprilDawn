@@ -57,8 +57,8 @@ export function Uploader() {
           {items.length} {items.length === 1 ? "memory" : "memories"} received!
         </h2>
         <p className="mx-auto mt-3 max-w-md text-ink-soft">
-          A memory specialist will review your upload and send free proofs and a
-          quote to your email. No charge until you approve. (This is a demo —
+          We&apos;ll review your upload and send free proofs and a quote to your
+          email. No charge until you approve. (This is a demo —
           wire <code className="rounded bg-cream-deep px-1">/api/upload</code> to
           your storage to go live.)
         </p>

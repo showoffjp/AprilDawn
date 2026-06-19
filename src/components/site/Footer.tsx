@@ -2,6 +2,7 @@ import Link from "next/link";
 import { footerNav, site } from "@/lib/site";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "./Logo";
+import { NewsletterForm } from "./NewsletterForm";
 
 export function Footer() {
   return (
@@ -19,6 +20,14 @@ export function Footer() {
               <a className="text-ink-soft hover:text-ink" href={site.social.tiktok}>TikTok</a>
               <a className="text-ink-soft hover:text-ink" href={site.social.youtube}>YouTube</a>
               <a className="text-ink-soft hover:text-ink" href={site.social.pinterest}>Pinterest</a>
+            </div>
+            <div className="mt-6">
+              <p className="text-sm font-semibold text-ink">
+                A little sunrise in your inbox
+              </p>
+              <div className="mt-3">
+                <NewsletterForm />
+              </div>
             </div>
           </div>
 

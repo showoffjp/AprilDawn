@@ -4,7 +4,9 @@ import "./globals.css";
 import { site } from "@/lib/site";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
+import { TopBar } from "@/components/site/TopBar";
 import { CartProvider } from "@/components/cart/CartProvider";
+import { ScrollProgress } from "@/components/effects/ScrollProgress";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -67,6 +69,8 @@ export default function RootLayout({
     >
       <body className="flex min-h-full flex-col">
         <CartProvider>
+          <ScrollProgress />
+          <TopBar />
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />

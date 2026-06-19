@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Section, SectionHeading, Eyebrow } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { LivingWallDesigner } from "@/components/livingwall/LivingWallDesigner";
 
 export const metadata: Metadata = {
   title: "The Living Wall",
@@ -80,6 +81,17 @@ export default function LivingWallPage() {
           </p>
         </Container>
       </section>
+
+      <Section id="design">
+        <SectionHeading
+          eyebrow="Design it yourself"
+          title="Build your wall, tile by tile"
+          intro="Set the size, drop in your photos, and arrange them however you like — tap a tile, click-drag to fill a whole region, or drag a photo right where you want it. Every tile snaps to the grid, so it always comes together."
+        />
+        <div className="mt-10">
+          <LivingWallDesigner />
+        </div>
+      </Section>
 
       <Section id="how">
         <SectionHeading
