@@ -30,7 +30,7 @@ export function Header() {
 
         <div className="hidden items-center gap-3 lg:flex">
           <Link
-            href="/contact"
+            href="/vault"
             className="text-sm font-medium text-ink-soft hover:text-ink"
           >
             Sign in
