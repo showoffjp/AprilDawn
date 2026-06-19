@@ -52,6 +52,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
       { label: "Memory Mail", href: "/memory-mail" },
       { label: "Occasions & auto-gifting", href: "/occasions" },
       { label: "The AprilDawn Shop", href: "/shop" },
+      { label: "Gift Finder", href: "/gift-finder" },
     ],
   },
   {
@@ -60,6 +61,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
       { label: "How it works", href: "/how-it-works" },
       { label: "Pricing", href: "/pricing" },
       { label: "Partners", href: "/partners" },
+      { label: "Stories", href: "/stories" },
       { label: "About", href: "/about" },
       { label: "FAQ", href: "/faq" },
       { label: "Contact", href: "/contact" },

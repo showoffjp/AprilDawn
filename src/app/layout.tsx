@@ -68,6 +68,26 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "Organization",
+              name: site.name,
+              url: site.url,
+              description: site.description,
+              email: site.email,
+              sameAs: [
+                site.social.instagram,
+                site.social.facebook,
+                site.social.tiktok,
+                site.social.youtube,
+                site.social.pinterest,
+              ],
+            }),
+          }}
+        />
         <CartProvider>
           <ScrollProgress />
           <TopBar />

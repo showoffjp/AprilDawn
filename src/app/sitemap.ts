@@ -2,6 +2,7 @@ import type { MetadataRoute } from "next";
 import { site } from "@/lib/site";
 import { services } from "@/lib/services";
 import { products } from "@/lib/products";
+import { stories } from "@/lib/stories";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -13,6 +14,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/how-it-works",
     "/pricing",
     "/partners",
+    "/stories",
+    "/gift-finder",
     "/shop",
     "/upload",
     "/about",
@@ -20,6 +23,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/contact",
   ].map((path) => ({
     url: `${site.url}${path}`,
+    lastModified: new Date(),
+  }));
+
+  const storyRoutes = stories.map((s) => ({
+    url: `${site.url}/stories/${s.slug}`,
     lastModified: new Date(),
   }));
 
@@ -35,5 +43,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  return [...routes, ...serviceRoutes, ...productRoutes];
+  return [...routes, ...serviceRoutes, ...productRoutes, ...storyRoutes];
 }
