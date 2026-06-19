@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { services, getService } from "@/lib/services";
 import { StyleGallery } from "@/components/art/StyleGallery";
+import { MemoryScene, sceneVariants } from "@/components/art/MemoryScene";
 import { BeforeAfterSlider } from "@/components/effects/BeforeAfterSlider";
 import { fromPrice } from "@/lib/utils";
 
@@ -38,6 +39,12 @@ export default async function ServiceDetailPage({
   const service = getService(slug);
   if (!service) notFound();
 
+  const variant =
+    sceneVariants[
+      service.slug.split("").reduce((a, c) => a + c.charCodeAt(0), 0) %
+        sceneVariants.length
+    ];
+
   return (
     <>
       <section className={`bg-gradient-to-br ${service.gradient}`}>
@@ -48,23 +55,25 @@ export default async function ServiceDetailPage({
           >
             ← All services
           </Link>
-          <div className="mt-6 flex items-start gap-4">
-            <span className="text-6xl" aria-hidden="true">
-              {service.emoji}
-            </span>
+          <div className="mt-6 grid items-center gap-10 lg:grid-cols-2">
             <div>
-              <h1 className="font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-                {service.name}
-              </h1>
-              <p className="mt-2 text-lg font-medium text-ink/80">
-                {service.tagline}
+              <div className="flex items-start gap-4">
+                <span className="text-6xl" aria-hidden="true">
+                  {service.emoji}
+                </span>
+                <div>
+                  <h1 className="font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+                    {service.name}
+                  </h1>
+                  <p className="mt-2 text-lg font-medium text-ink/80">
+                    {service.tagline}
+                  </p>
+                </div>
+              </div>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-ink/80">
+                {service.summary}
               </p>
-            </div>
-          </div>
-          <p className="mt-6 max-w-2xl text-lg leading-relaxed text-ink/80">
-            {service.summary}
-          </p>
-          <div className="mt-7 flex flex-wrap items-center gap-3">
+              <div className="mt-7 flex flex-wrap items-center gap-3">
             <Button href="/upload">Start this project</Button>
             <Button href="/pricing" variant="ghost">
               See pricing
@@ -76,6 +85,15 @@ export default async function ServiceDetailPage({
             service.startingPrice > 0 ? (
               <Badge>💎 {fromPrice(service.startingPrice)}</Badge>
             ) : null}
+          </div>
+            </div>
+            <div className="hidden lg:block">
+              <div className="overflow-hidden rounded-3xl shadow-soft-lg ring-1 ring-white/40">
+                <div className="aspect-[4/3]">
+                  <MemoryScene variant={variant} uid={service.slug} />
+                </div>
+              </div>
+            </div>
           </div>
         </Container>
       </section>
