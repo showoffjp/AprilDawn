@@ -119,6 +119,9 @@
   .animate-float,
   .animate-gradient,
   .animate-marquee,
+  .animate-blob1,
+  .animate-blob2,
+  .animate-blob3,
   .reveal-in {
     animation: none !important;
   }
@@ -126,4 +129,41 @@
     opacity: 1;
     transform: none;
   }
+}
+
+/* Drifting aurora blobs for animated backgrounds. */
+@layer utilities {
+  .animate-blob1 {
+    animation: ad-blob1 22s ease-in-out infinite;
+  }
+  .animate-blob2 {
+    animation: ad-blob2 26s ease-in-out infinite;
+  }
+  .animate-blob3 {
+    animation: ad-blob3 30s ease-in-out infinite;
+  }
+  /* Subtle film grain (apply with `relative overflow-hidden`). */
+  .bg-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.045;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  }
+}
+
+@keyframes ad-blob1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(8%, 6%) scale(1.12); }
+  66% { transform: translate(-6%, 4%) scale(0.95); }
+}
+@keyframes ad-blob2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-7%, 5%) scale(1.08); }
+  66% { transform: translate(5%, -4%) scale(0.96); }
+}
+@keyframes ad-blob3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(6%, -6%) scale(1.1); }
 }

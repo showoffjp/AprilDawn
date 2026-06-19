@@ -4,10 +4,13 @@ import { Section, SectionHeading, Eyebrow } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ServiceCard } from "@/components/cards/ServiceCard";
+import { StoryCard } from "@/components/cards/StoryCard";
+import { stories } from "@/lib/stories";
 import { Reveal } from "@/components/ui/Reveal";
 import { PartnerMarquee } from "@/components/site/PartnerMarquee";
 import { StatsBand } from "@/components/effects/StatsBand";
 import { BeforeAfterSlider } from "@/components/effects/BeforeAfterSlider";
+import { Aurora } from "@/components/effects/Aurora";
 import { featuredServices } from "@/lib/services";
 import { bestsellers } from "@/lib/products";
 import { heroBundle } from "@/lib/occasions";
@@ -18,16 +21,8 @@ export default function Home() {
   return (
     <>
       {/* ---------------------------------------------------------------- Hero */}
-      <section className="bg-sunrise animate-gradient relative overflow-hidden">
-        <div
-          aria-hidden="true"
-          className="animate-float pointer-events-none absolute -left-20 top-8 h-56 w-56 rounded-full bg-dawn-300/30 blur-3xl"
-        />
-        <div
-          aria-hidden="true"
-          className="animate-float pointer-events-none absolute -right-16 top-28 h-64 w-64 rounded-full bg-amber-300/30 blur-3xl"
-          style={{ animationDelay: "1.6s" }}
-        />
+      <section className="bg-sunrise bg-grain relative overflow-hidden">
+        <Aurora />
         <Container className="relative py-20 sm:py-28">
           <div className="mx-auto max-w-3xl text-center">
             <Badge>✨ The everything store for memories</Badge>
@@ -312,6 +307,26 @@ export default function Home() {
           </div>
         </Section>
       </div>
+
+      {/* ------------------------------------------------------------- Stories */}
+      <Section>
+        <div className="flex items-end justify-between gap-4">
+          <SectionHeading eyebrow="From the journal" title="Stories worth keeping" />
+          <Link
+            href="/stories"
+            className="hidden shrink-0 text-sm font-semibold text-dawn-600 hover:underline sm:block"
+          >
+            All stories →
+          </Link>
+        </div>
+        <div className="mt-10 grid gap-6 sm:grid-cols-3">
+          {stories.slice(0, 3).map((s, i) => (
+            <Reveal key={s.slug} delay={i * 60} className="h-full">
+              <StoryCard story={s} />
+            </Reveal>
+          ))}
+        </div>
+      </Section>
 
       {/* ------------------------------------------------------------ Partners */}
       <Section>
