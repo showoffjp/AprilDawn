@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { ServiceCard } from "@/components/cards/ServiceCard";
 import { StoryCard } from "@/components/cards/StoryCard";
 import { stories } from "@/lib/stories";
+import { aggregate } from "@/lib/reviews";
 import { Reveal } from "@/components/ui/Reveal";
 import { PartnerMarquee } from "@/components/site/PartnerMarquee";
 import { StatsBand } from "@/components/effects/StatsBand";
@@ -47,6 +48,16 @@ export default function Home() {
             <p className="mt-5 text-sm text-ink-soft">
               No account needed to start · Free proofs · 100% happiness guarantee
             </p>
+            <Link
+              href="/reviews"
+              className="mt-5 inline-flex items-center gap-2 text-sm text-ink-soft transition hover:text-ink"
+            >
+              <span className="text-dawn-400">★★★★★</span>
+              <span>
+                <strong className="text-ink">{aggregate.rating}/5</strong> · loved
+                by {aggregate.count.toLocaleString()}+ families
+              </span>
+            </Link>
           </div>
         </Container>
       </section>
