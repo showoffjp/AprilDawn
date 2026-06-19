@@ -27,7 +27,7 @@ const tiers = [
   },
   {
     name: "Heirloom",
-    size: '9ft+ · 200+ photos · white-glove install',
+    size: '9ft+ · 200+ photos · multi-panel',
     price: "Custom",
     blurb: "Floor-to-ceiling. Multi-panel. A family legacy on the wall.",
   },
@@ -105,8 +105,8 @@ export default function LivingWallPage() {
               d: "Send us your photos (or your whole vault). Our layout studio arranges hundreds of them into a balanced, rhythmic composition sized to the millimeter for your wall.",
             },
             {
-              t: "2 · We build & install",
-              d: "Museum-grade printing on rigid panels, with a frameless LED display embedded seamlessly into the collage. White-glove installation available, or a simple DIY mount kit.",
+              t: "2 · We build & ship",
+              d: "Museum-grade printing on rigid panels, with a frameless LED display embedded seamlessly into the collage. It ships flat to your door with a simple DIY mount kit and a free video walkthrough — fully remote, anywhere in the country.",
             },
             {
               t: "3 · It keeps living",

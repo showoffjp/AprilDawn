@@ -11,6 +11,13 @@ type Cell = { r: number; c: number };
 const MAX = 12;
 const MIN = 1;
 
+const PRESETS = [
+  { label: "4×4", r: 4, c: 4 },
+  { label: "5×7", r: 5, c: 7 },
+  { label: "6×9", r: 6, c: 9 },
+  { label: "8×12", r: 8, c: 12 },
+];
+
 function keyOf(r: number, c: number) {
   return `${r}-${c}`;
 }
@@ -209,7 +216,27 @@ export function LivingWallDesigner() {
       <div className="rounded-3xl bg-white p-6 ring-1 ring-ink/10">
         {/* Dimensions */}
         <p className="text-sm font-semibold text-ink">Wall size</p>
-        <div className="mt-2 flex items-center gap-6">
+        <div className="mt-2 flex flex-wrap gap-2">
+          {PRESETS.map((p) => (
+            <button
+              key={p.label}
+              type="button"
+              onClick={() => {
+                setRows(p.r);
+                setCols(p.c);
+              }}
+              className={cn(
+                "h-8 rounded-full px-3 text-xs font-medium ring-1 transition",
+                rows === p.r && cols === p.c
+                  ? "bg-ink text-cream ring-ink"
+                  : "bg-white text-ink ring-ink/15 hover:ring-dawn-300",
+              )}
+            >
+              {p.label}
+            </button>
+          ))}
+        </div>
+        <div className="mt-3 flex items-center gap-6">
           <Stepper label="Rows" value={rows} set={setRows} />
           <Stepper label="Columns" value={cols} set={setCols} />
         </div>

@@ -281,7 +281,7 @@ export const services: Service[] = [
       },
     ],
     startingPrice: 1499,
-    turnaround: "3–5 weeks · white-glove install available",
+    turnaround: "Ships flat in 3–5 weeks · easy DIY mount + free video setup",
   },
   {
     slug: "memory-mail",

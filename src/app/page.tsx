@@ -12,6 +12,7 @@ import { PartnerMarquee } from "@/components/site/PartnerMarquee";
 import { StatsBand } from "@/components/effects/StatsBand";
 import { BeforeAfterSlider } from "@/components/effects/BeforeAfterSlider";
 import { Aurora } from "@/components/effects/Aurora";
+import { HeroCollage } from "@/components/home/HeroCollage";
 import { featuredServices } from "@/lib/services";
 import { bestsellers } from "@/lib/products";
 import { heroBundle } from "@/lib/occasions";
@@ -24,20 +25,20 @@ export default function Home() {
       {/* ---------------------------------------------------------------- Hero */}
       <section className="bg-sunrise bg-grain relative overflow-hidden">
         <Aurora />
-        <Container className="relative py-20 sm:py-28">
-          <div className="mx-auto max-w-3xl text-center">
+        <Container className="relative grid items-center gap-12 py-20 sm:py-24 lg:grid-cols-2 lg:py-28">
+          <div className="text-center lg:text-left">
             <Badge>✨ The everything store for memories</Badge>
-            <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl">
-              Why lose your reveries forever when you can keep them{" "}
-              <span className="text-gradient">permanently?</span>
+            <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.03] tracking-tight text-balance sm:text-6xl lg:text-7xl">
+              Keep your reveries{" "}
+              <span className="text-gradient">forever.</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
+            <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-soft lg:mx-0">
               Upload a photo — or mail us the whole shoebox. AprilDawn digitizes,
               restores, and reimagines your photos, film, and video, then prints
               them on <em>literally anything</em>: t-shirts, gallery walls,
               cakes, vinyl, and the living LED memory wall in your hallway.
             </p>
-            <div className="mt-9 flex flex-col items-center justify-center gap-3 sm:flex-row">
+            <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
               <Button href="/upload" size="lg">
                 Upload a photo
               </Button>
@@ -46,7 +47,7 @@ export default function Home() {
               </Button>
             </div>
             <p className="mt-5 text-sm text-ink-soft">
-              No account needed to start · Free proofs · 100% happiness guarantee
+              100% remote · mail it in or upload · free proofs · happiness guarantee
             </p>
             <Link
               href="/reviews"
@@ -59,6 +60,7 @@ export default function Home() {
               </span>
             </Link>
           </div>
+          <HeroCollage />
         </Container>
       </section>
 

@@ -7,7 +7,7 @@ export function ServiceCard({ service }: { service: Service }) {
   return (
     <Link
       href={serviceHref(service)}
-      className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white ring-1 ring-ink/10 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-dawn-500/10"
+      className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-ink/10 transition hover:-translate-y-1 hover:shadow-soft-lg"
     >
       <div
         className={cn(
