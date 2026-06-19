@@ -1,14 +1,26 @@
 import Link from "next/link";
-import { type Product } from "@/lib/products";
+import { type Product, type ProductCategory } from "@/lib/products";
 import { amazonAffiliateUrl } from "@/lib/products";
 import { fromPrice } from "@/lib/utils";
 import { Badge } from "@/components/ui/Badge";
+
+const categoryTint: Record<ProductCategory, string> = {
+  Apparel: "from-rose-100 to-amber-100",
+  "Wall Art": "from-sky-100 to-violet-100",
+  Home: "from-emerald-100 to-teal-100",
+  Drinkware: "from-amber-100 to-orange-100",
+  Accessories: "from-fuchsia-100 to-pink-100",
+  "Everything Else": "from-lime-100 to-emerald-100",
+};
 
 export function ProductCard({ product }: { product: Product }) {
   const inner = (
     <>
       <div className="flex items-start justify-between">
-        <span className="text-4xl" aria-hidden="true">
+        <span
+          className={`flex h-12 w-12 items-center justify-center rounded-xl bg-gradient-to-br text-2xl ${categoryTint[product.category]}`}
+          aria-hidden="true"
+        >
           {product.emoji}
         </span>
         {product.bestseller ? <Badge tone="amber">Bestseller</Badge> : null}
