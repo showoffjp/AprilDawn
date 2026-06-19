@@ -1,0 +1,72 @@
+@import "tailwindcss";
+
+/* ----------------------------------------------------------------------------
+   AprilDawn brand theme — a soft sunrise over the horizon of memory.
+---------------------------------------------------------------------------- */
+@theme {
+  --color-cream: #fff8f1;
+  --color-cream-deep: #fdeede;
+  --color-ink: #271c2c;
+  --color-ink-soft: #5b4f5f;
+
+  --color-dawn-50: #fff1f4;
+  --color-dawn-100: #ffe1e9;
+  --color-dawn-200: #ffc6d6;
+  --color-dawn-300: #ff9bb8;
+  --color-dawn-400: #f96492;
+  --color-dawn-500: #ec3c72;
+  --color-dawn-600: #d62461;
+  --color-dawn-700: #b41650;
+  --color-dawn-800: #971648;
+  --color-dawn-900: #811642;
+
+  --color-dusk-400: #9f7bd6;
+  --color-dusk-500: #7e54c0;
+  --color-dusk-600: #6a3fad;
+  --color-dusk-700: #58348f;
+
+  --font-display: var(--font-display), Georgia, "Times New Roman", serif;
+  --font-sans: var(--font-geist-sans), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-geist-mono), ui-monospace, monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    background-color: var(--color-cream);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+  }
+  ::selection {
+    background-color: var(--color-dawn-200);
+    color: var(--color-ink);
+  }
+}
+
+@layer utilities {
+  /* Warm sunrise wash used behind heroes and feature sections. */
+  .bg-sunrise {
+    background-image:
+      radial-gradient(60% 60% at 12% 0%, rgba(249, 100, 146, 0.22), transparent 70%),
+      radial-gradient(55% 55% at 92% 8%, rgba(244, 162, 76, 0.22), transparent 70%),
+      radial-gradient(70% 70% at 50% 100%, rgba(159, 123, 214, 0.16), transparent 72%);
+  }
+  .bg-dusk {
+    background-image:
+      radial-gradient(70% 90% at 0% 0%, rgba(126, 84, 192, 0.5), transparent 60%),
+      radial-gradient(80% 90% at 100% 0%, rgba(236, 60, 114, 0.45), transparent 60%),
+      linear-gradient(160deg, #2b1840, #3a1c43 55%, #5a1f48);
+  }
+  .text-gradient {
+    background-image: linear-gradient(100deg, #ec3c72, #f4853c 55%, #7e54c0);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .text-balance {
+    text-wrap: balance;
+  }
+}
