@@ -13,6 +13,7 @@ import { StatsBand } from "@/components/effects/StatsBand";
 import { BeforeAfterSlider } from "@/components/effects/BeforeAfterSlider";
 import { Aurora } from "@/components/effects/Aurora";
 import { HeroCollage } from "@/components/home/HeroCollage";
+import { MemoryMarquee } from "@/components/home/MemoryMarquee";
 import { featuredServices } from "@/lib/services";
 import { bestsellers } from "@/lib/products";
 import { heroBundle } from "@/lib/occasions";
@@ -80,11 +81,24 @@ export default function Home() {
           intro="Start with a single photo and turn it into anything — or send us a lifetime of media to rescue all at once."
         />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredServices.map((service, i) => (
+          {featuredServices.slice(0, 6).map((service, i) => (
             <Reveal key={service.slug} delay={i * 60} className="h-full">
               <ServiceCard service={service} />
             </Reveal>
           ))}
+        </div>
+      </Section>
+
+      {/* ------------------------------------------------- Wall of memories */}
+      <Section className="pt-0">
+        <SectionHeading
+          center
+          eyebrow="A lifetime of moments"
+          title="Every memory, brought back to color"
+          intro="Birthdays, beaches, weddings, snow days — whatever you send us comes home vivid, restored, and ready to live on everything."
+        />
+        <div className="mt-10">
+          <MemoryMarquee />
         </div>
       </Section>
 

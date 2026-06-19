@@ -1,4 +1,4 @@
-import { SampleArt } from "./SampleArt";
+import { MemoryScene } from "./MemoryScene";
 import { presetFor } from "@/lib/artStyles";
 
 type StyleEntry = { name: string; emoji: string; blurb: string };
@@ -15,7 +15,8 @@ export function StyleGallery({ styles }: { styles: StyleEntry[] }) {
             className="group overflow-hidden rounded-2xl bg-white ring-1 ring-ink/10 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-dawn-500/15"
           >
             <div className="relative aspect-[4/5] overflow-hidden">
-              <SampleArt
+              <MemoryScene
+                variant="picnic"
                 uid={s.name}
                 className="transition-transform duration-500 group-hover:scale-105"
                 style={{ filter: p.filter }}

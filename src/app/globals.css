@@ -180,3 +180,96 @@
       0 24px 56px -20px rgba(39, 28, 44, 0.32);
   }
 }
+
+/* ---------------------------------------------------------------- Intro splash */
+.ad-splash {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 60% at 50% 82%, rgba(236, 60, 114, 0.38), transparent 70%),
+    radial-gradient(50% 50% at 18% 20%, rgba(244, 133, 60, 0.32), transparent 70%),
+    linear-gradient(160deg, #241433, #3a1c43 55%, #5a1f48);
+  animation: ad-splash-out 2.9s ease forwards;
+}
+.ad-splash-stage {
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+.ad-splash-blob {
+  position: absolute;
+  border-radius: 9999px;
+  filter: blur(60px);
+}
+.ad-splash-sun {
+  margin: 0 auto;
+  height: 96px;
+  width: 96px;
+  filter: drop-shadow(0 0 28px rgba(236, 60, 114, 0.6));
+  animation: ad-sun-rise 1.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+.ad-splash-horizon {
+  margin: 14px auto 0;
+  height: 2px;
+  width: 220px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, transparent, #f4853c, #ec3c72, #7e54c0, transparent);
+  transform: scaleX(0);
+  animation: ad-horizon 1s ease 0.5s forwards;
+}
+.ad-splash-word {
+  margin-top: 26px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: clamp(2.5rem, 9vw, 5rem);
+  letter-spacing: 0.18em;
+  opacity: 0;
+  background: linear-gradient(100deg, #ffd0a6, #ec3c72 45%, #b07aff);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation:
+    ad-word-in 1s ease 0.85s both,
+    ad-word-sheen 1.6s ease 1.7s both;
+}
+.ad-splash-tag {
+  margin-top: 14px;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.9rem;
+  letter-spacing: 0.05em;
+  opacity: 0;
+  animation: ad-fade-up 0.9s ease 1.4s both;
+}
+
+@keyframes ad-splash-out {
+  0%, 68% { opacity: 1; }
+  100% { opacity: 0; visibility: hidden; pointer-events: none; }
+}
+@keyframes ad-sun-rise {
+  0% { transform: translateY(150px) scale(0.5); opacity: 0; }
+  60% { opacity: 1; }
+  100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+@keyframes ad-horizon {
+  to { transform: scaleX(1); }
+}
+@keyframes ad-word-in {
+  from { opacity: 0; transform: translateY(16px); letter-spacing: 0.34em; }
+  to { opacity: 1; transform: none; letter-spacing: 0.18em; }
+}
+@keyframes ad-word-sheen {
+  from { background-position: 220% 0; }
+  to { background-position: 0% 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ad-splash {
+    display: none;
+  }
+}

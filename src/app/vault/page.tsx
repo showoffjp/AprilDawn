@@ -3,7 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
-import { SampleArt } from "@/components/art/SampleArt";
+import { MemoryScene, sceneVariants } from "@/components/art/MemoryScene";
 
 export const metadata: Metadata = {
   title: "Your Memory Vault",
@@ -11,13 +11,18 @@ export const metadata: Metadata = {
     "A preview of the AprilDawn member experience — your lifetime vault of albums, restorations, and a Living Wall that syncs from everyone's phones.",
 };
 
-const albums = [
-  { title: "Grandma's 90th", count: 312, gradient: "from-orange-200 to-amber-200", badge: "Shared" },
-  { title: "Summer '24", count: 540, gradient: "from-sky-200 to-violet-200" },
-  { title: "The Wedding", count: 1280, gradient: "from-rose-200 to-pink-200", badge: "Restored" },
-  { title: "Baby's First Year", count: 866, gradient: "from-amber-200 to-rose-200" },
-  { title: "Attic Slides", count: 2100, gradient: "from-emerald-200 to-teal-200", badge: "Digitized" },
-  { title: "Holidays", count: 430, gradient: "from-fuchsia-200 to-indigo-200" },
+const albums: {
+  title: string;
+  count: number;
+  variant: (typeof sceneVariants)[number];
+  badge?: string;
+}[] = [
+  { title: "Grandma's 90th", count: 312, variant: "birthday", badge: "Shared" },
+  { title: "Summer '24", count: 540, variant: "beach" },
+  { title: "The Wedding", count: 1280, variant: "sunset", badge: "Restored" },
+  { title: "Baby's First Year", count: 866, variant: "garden" },
+  { title: "Attic Slides", count: 2100, variant: "sunrise", badge: "Digitized" },
+  { title: "Holidays", count: 430, variant: "winter" },
 ];
 
 const actions = [
@@ -74,9 +79,8 @@ export default function VaultPage() {
               key={a.title}
               className="group overflow-hidden rounded-3xl bg-white ring-1 ring-ink/10 transition hover:-translate-y-1 hover:shadow-xl hover:shadow-dawn-500/10"
             >
-              <div
-                className={`relative h-36 bg-gradient-to-br ${a.gradient}`}
-              >
+              <div className="relative h-36 overflow-hidden">
+                <MemoryScene variant={a.variant} uid={a.title} />
                 {a.badge ? (
                   <span className="absolute right-3 top-3 rounded-full bg-white/85 px-2.5 py-1 text-xs font-semibold text-ink">
                     {a.badge}
@@ -103,12 +107,12 @@ export default function VaultPage() {
         <Section>
           <h2 className="font-display text-2xl font-semibold">Recently added</h2>
           <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-6">
-            {Array.from({ length: 6 }).map((_, i) => (
+            {sceneVariants.slice(0, 6).map((v, i) => (
               <div
-                key={i}
+                key={v}
                 className="aspect-square overflow-hidden rounded-2xl ring-1 ring-ink/10"
               >
-                <SampleArt uid={`vault${i}`} />
+                <MemoryScene variant={v} uid={`vault${i}`} />
               </div>
             ))}
           </div>

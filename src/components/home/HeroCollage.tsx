@@ -1,10 +1,13 @@
-import { SampleArt } from "@/components/art/SampleArt";
+import { MemoryScene } from "@/components/art/MemoryScene";
 import { presetFor } from "@/lib/artStyles";
 import { cn } from "@/lib/utils";
 import type { CSSProperties } from "react";
 
+type Variant = Parameters<typeof MemoryScene>[0]["variant"];
+
 function Tile({
   label,
+  variant,
   className,
   filter,
   overlay,
@@ -13,8 +16,9 @@ function Tile({
   delay,
 }: {
   label: string;
+  variant: Variant;
   className: string;
-  filter: string;
+  filter?: string;
   overlay?: string;
   blend?: CSSProperties["mixBlendMode"];
   opacity?: number;
@@ -29,7 +33,7 @@ function Tile({
       style={{ animationDelay: delay }}
     >
       <div className="relative aspect-[4/5] overflow-hidden rounded-xl">
-        <SampleArt uid={label} style={{ filter }} />
+        <MemoryScene variant={variant} uid={label} style={{ filter }} />
         {overlay ? (
           <div
             className="absolute inset-0"
@@ -44,19 +48,20 @@ function Tile({
   );
 }
 
-/** Floating cluster of "memory" tiles shown beside the hero copy (desktop). */
+/** Floating cluster of colorful "memory" tiles shown beside the hero copy. */
 export function HeroCollage() {
   const vg = presetFor("Van Gogh");
   return (
     <div className="relative hidden h-[30rem] lg:block" aria-hidden="true">
       <Tile
         label="Gallery canvas"
+        variant="beach"
         className="left-2 top-10 w-48 -rotate-6"
-        filter="saturate(1.12) contrast(1.05)"
         delay="0s"
       />
       <Tile
         label="As a Van Gogh"
+        variant="garden"
         className="right-4 top-0 w-44 rotate-6"
         filter={vg.filter}
         overlay={vg.overlay}
@@ -66,14 +71,15 @@ export function HeroCollage() {
       />
       <Tile
         label="Restored 1952"
+        variant="sunset"
         className="bottom-4 left-16 w-44 -rotate-3"
-        filter="sepia(0.18) saturate(1.1)"
+        filter="sepia(0.2) saturate(1.1)"
         delay="0.6s"
       />
       <Tile
         label="On a mug"
+        variant="birthday"
         className="bottom-16 right-0 w-40 rotate-3"
-        filter="saturate(1.05) brightness(1.03)"
         delay="1.8s"
       />
     </div>
