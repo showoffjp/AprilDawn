@@ -1,18 +1,27 @@
 import Link from "next/link";
 import { type Story } from "@/lib/stories";
+import { MemoryScene, sceneVariants } from "@/components/art/MemoryScene";
 
 export function StoryCard({ story }: { story: Story }) {
+  const variant =
+    sceneVariants[
+      story.slug.split("").reduce((a, c) => a + c.charCodeAt(0), 0) %
+        sceneVariants.length
+    ];
+
   return (
     <Link
       href={`/stories/${story.slug}`}
       className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-ink/10 transition hover:-translate-y-1 hover:shadow-soft-lg"
     >
-      <div
-        className={`relative flex h-40 items-center justify-center bg-gradient-to-br text-5xl ${story.gradient}`}
-      >
-        <span aria-hidden="true">{story.emoji}</span>
-        <span className="absolute left-3 top-3 rounded-full bg-white/80 px-2.5 py-1 text-xs font-semibold text-ink backdrop-blur-sm">
-          {story.category}
+      <div className="relative h-40 overflow-hidden">
+        <MemoryScene
+          variant={variant}
+          uid={story.slug}
+          className="transition-transform duration-500 group-hover:scale-105"
+        />
+        <span className="absolute left-3 top-3 rounded-full bg-white/85 px-2.5 py-1 text-xs font-semibold text-ink backdrop-blur-sm">
+          {story.emoji} {story.category}
         </span>
       </div>
       <div className="flex flex-1 flex-col p-6">
