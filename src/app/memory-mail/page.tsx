@@ -3,6 +3,7 @@ import { Container } from "@/components/ui/Container";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
+import { HandwritingUpload } from "@/components/memory/HandwritingUpload";
 
 export const metadata: Metadata = {
   title: "Memory Mail",
@@ -110,6 +111,17 @@ export default function MemoryMailPage() {
           </div>
         </Section>
       </div>
+
+      <Section>
+        <SectionHeading
+          eyebrow="A personal touch"
+          title="Your own handwriting, immortalized"
+          intro="Upload a photo of your handwriting or signature and we'll press it into your cards, emblems, and mementos — so it's unmistakably from you, forever."
+        />
+        <div className="mt-10">
+          <HandwritingUpload />
+        </div>
+      </Section>
 
       <Section>
         <div className="bg-dusk rounded-[2rem] px-8 py-14 text-center text-white">

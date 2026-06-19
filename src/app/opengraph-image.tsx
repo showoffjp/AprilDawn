@@ -25,14 +25,32 @@ export default function OpengraphImage() {
       >
         <div
           style={{
-            width: 132,
-            height: 132,
-            borderRadius: 9999,
-            background:
-              "linear-gradient(135deg, #f4853c, #ec3c72 55%, #7e54c0)",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
             marginBottom: 40,
           }}
-        />
+        >
+          <div
+            style={{
+              width: 150,
+              height: 75,
+              background:
+                "linear-gradient(135deg, #f4853c, #ec3c72 55%, #7e54c0)",
+              borderRadius: "9999px 9999px 0 0",
+            }}
+          />
+          <div
+            style={{
+              width: 184,
+              height: 9,
+              marginTop: 7,
+              borderRadius: 5,
+              background:
+                "linear-gradient(90deg, #f4853c, #ec3c72 55%, #7e54c0)",
+            }}
+          />
+        </div>
         <div style={{ fontSize: 104, fontWeight: 700, color: "#271c2c" }}>
           AprilDawn
         </div>

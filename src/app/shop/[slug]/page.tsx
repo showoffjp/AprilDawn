@@ -6,7 +6,7 @@ import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ProductCard } from "@/components/cards/ProductCard";
-import { AddToCartForm } from "@/components/cart/AddToCartForm";
+import { ProductDesigner } from "@/components/cart/ProductDesigner";
 import {
   products,
   getProduct,
@@ -52,54 +52,47 @@ export default async function ProductPage({
         <Link href="/shop" className="text-sm font-medium text-ink-soft hover:text-ink">
           ← Back to the shop
         </Link>
+
+        <div className="mt-6 max-w-2xl">
+          <div className="flex flex-wrap gap-2">
+            {product.bestseller ? <Badge tone="amber">Bestseller</Badge> : null}
+            <Badge tone="ink">{product.category}</Badge>
+            <Badge>🆓 Free proofs</Badge>
+          </div>
+          <h1 className="mt-4 font-display text-3xl font-semibold tracking-tight sm:text-4xl">
+            {product.name}
+          </h1>
+          <p className="mt-2 font-display text-2xl font-semibold text-ink">
+            {fromPrice(product.priceFrom)}
+          </p>
+          <p className="mt-3 leading-relaxed text-ink-soft">{product.blurb}</p>
+        </div>
       </Container>
 
-      <Container className="pb-8">
-        <div className="grid gap-10 lg:grid-cols-2">
-          {/* Visual */}
-          <div>
+      <Container className="pb-12">
+        {product.affiliate ? (
+          <div className="grid gap-8 lg:grid-cols-2">
             <div className="flex aspect-square items-center justify-center rounded-3xl bg-gradient-to-br from-dawn-100 via-cream-deep to-amber-100 text-[8rem] ring-1 ring-ink/10">
               <span aria-hidden="true">{product.emoji}</span>
             </div>
-            <div className="mt-3 flex flex-wrap gap-2">
-              {product.bestseller ? <Badge tone="amber">Bestseller</Badge> : null}
-              <Badge tone="ink">{product.category}</Badge>
-              <Badge>🆓 Free proofs</Badge>
+            <div className="rounded-3xl bg-white p-6 ring-1 ring-ink/10">
+              <p className="text-sm text-ink-soft">
+                This item is fulfilled through our partner network. Shop it on
+                Amazon — and as an Amazon Associate, AprilDawn earns from
+                qualifying purchases at no extra cost to you.
+              </p>
+              <Button
+                href={amazonAffiliateUrl(`custom photo ${product.name}`)}
+                className="mt-4 w-full"
+                size="lg"
+              >
+                Shop on Amazon 🛒
+              </Button>
             </div>
           </div>
-
-          {/* Detail + purchase */}
-          <div>
-            <h1 className="font-display text-3xl font-semibold tracking-tight sm:text-4xl">
-              {product.name}
-            </h1>
-            <p className="mt-2 font-display text-2xl font-semibold text-ink">
-              {fromPrice(product.priceFrom)}
-            </p>
-            <p className="mt-3 leading-relaxed text-ink-soft">{product.blurb}</p>
-
-            <div className="mt-6">
-              {product.affiliate ? (
-                <div className="rounded-3xl bg-white p-6 ring-1 ring-ink/10">
-                  <p className="text-sm text-ink-soft">
-                    This item is fulfilled through our partner network. Shop it on
-                    Amazon — and as an Amazon Associate, AprilDawn earns from
-                    qualifying purchases at no extra cost to you.
-                  </p>
-                  <Button
-                    href={amazonAffiliateUrl(`custom photo ${product.name}`)}
-                    className="mt-4 w-full"
-                    size="lg"
-                  >
-                    Shop on Amazon 🛒
-                  </Button>
-                </div>
-              ) : (
-                <AddToCartForm product={product} />
-              )}
-            </div>
-          </div>
-        </div>
+        ) : (
+          <ProductDesigner product={product} />
+        )}
       </Container>
 
       {related.length > 0 ? (

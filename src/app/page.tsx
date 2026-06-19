@@ -4,6 +4,8 @@ import { Section, SectionHeading, Eyebrow } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ServiceCard } from "@/components/cards/ServiceCard";
+import { Reveal } from "@/components/ui/Reveal";
+import { PartnerMarquee } from "@/components/site/PartnerMarquee";
 import { featuredServices } from "@/lib/services";
 import { bestsellers } from "@/lib/products";
 import { heroBundle } from "@/lib/occasions";
@@ -14,7 +16,16 @@ export default function Home() {
   return (
     <>
       {/* ---------------------------------------------------------------- Hero */}
-      <section className="bg-sunrise relative overflow-hidden">
+      <section className="bg-sunrise animate-gradient relative overflow-hidden">
+        <div
+          aria-hidden="true"
+          className="animate-float pointer-events-none absolute -left-20 top-8 h-56 w-56 rounded-full bg-dawn-300/30 blur-3xl"
+        />
+        <div
+          aria-hidden="true"
+          className="animate-float pointer-events-none absolute -right-16 top-28 h-64 w-64 rounded-full bg-amber-300/30 blur-3xl"
+          style={{ animationDelay: "1.6s" }}
+        />
         <Container className="relative py-20 sm:py-28">
           <div className="mx-auto max-w-3xl text-center">
             <Badge>✨ The everything store for memories</Badge>
@@ -68,8 +79,10 @@ export default function Home() {
           intro="Start with a single photo and turn it into anything — or send us a lifetime of media to rescue all at once."
         />
         <div className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {featuredServices.map((service) => (
-            <ServiceCard key={service.slug} service={service} />
+          {featuredServices.map((service, i) => (
+            <Reveal key={service.slug} delay={i * 60} className="h-full">
+              <ServiceCard service={service} />
+            </Reveal>
           ))}
         </div>
       </Section>
@@ -276,6 +289,24 @@ export default function Home() {
           </div>
         </Section>
       </div>
+
+      {/* ------------------------------------------------------------ Partners */}
+      <Section>
+        <div className="text-center">
+          <Eyebrow>Powered by a world of partners</Eyebrow>
+          <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+            The best printers, makers &amp; platforms — under one dawn
+          </h2>
+        </div>
+        <div className="mt-8">
+          <PartnerMarquee />
+        </div>
+        <div className="mt-6 text-center">
+          <Button href="/partners" variant="ghost">
+            Meet the network →
+          </Button>
+        </div>
+      </Section>
 
       {/* ----------------------------------------------------------- Final CTA */}
       <Section>

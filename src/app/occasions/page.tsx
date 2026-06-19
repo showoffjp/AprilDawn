@@ -124,6 +124,66 @@ export default function OccasionsPage() {
           </div>
         </Section>
       </div>
+
+      {/* Auto-scheduling + gift-box partners */}
+      <Section>
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <SectionHeading
+              eyebrow="Set it and forget it"
+              title="Gifts that arrive right on time — automatically"
+              intro="Schedule a card or gift once and AprilDawn handles the rest: we build it from your photos, print it, box it, and ship it to land on the big day. You'll get a heads-up to approve before anything sends."
+            />
+            <ul className="mt-6 space-y-2.5 text-sm text-ink-soft">
+              {[
+                "Pick a date — birthday, anniversary, holiday, or a custom day",
+                "We schedule production with lead time to ship on time",
+                "Approve the proof in one tap (or let it auto-send)",
+                "Premium gift boxes and a handwritten note, optional",
+              ].map((t) => (
+                <li key={t} className="flex items-start gap-2">
+                  <span className="mt-0.5 text-dawn-500">✓</span>
+                  {t}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7">
+              <Button href="#connect">Turn on auto-gifting</Button>
+            </div>
+          </div>
+
+          <div className="rounded-3xl bg-cream-deep p-7 ring-1 ring-ink/10">
+            <p className="text-sm font-semibold text-ink">
+              📦 Delivered with our gifting partners
+            </p>
+            <div className="mt-4 grid grid-cols-2 gap-3">
+              {[
+                { e: "📦", n: "BoxFox", d: "Curated gift boxes" },
+                { e: "🎀", n: "Knack", d: "Build-a-gift kits" },
+                { e: "🚚", n: "USPS · UPS · FedEx", d: "Tracked, on-time shipping" },
+                { e: "🎁", n: "AprilDawn Box", d: "Our signature keepsake box" },
+              ].map((p) => (
+                <div
+                  key={p.n}
+                  className="rounded-2xl bg-white p-4 ring-1 ring-ink/10"
+                >
+                  <div className="text-2xl" aria-hidden="true">
+                    {p.e}
+                  </div>
+                  <div className="mt-1 text-sm font-medium text-ink">{p.n}</div>
+                  <div className="text-xs text-ink-soft">{p.d}</div>
+                </div>
+              ))}
+            </div>
+            <p className="mt-4 text-xs text-ink-soft">
+              See the whole{" "}
+              <a href="/partners" className="font-medium text-dawn-600">
+                partner network →
+              </a>
+            </p>
+          </div>
+        </div>
+      </Section>
     </>
   );
 }
