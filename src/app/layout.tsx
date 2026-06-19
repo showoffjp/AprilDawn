@@ -7,6 +7,7 @@ import { Footer } from "@/components/site/Footer";
 import { TopBar } from "@/components/site/TopBar";
 import { Splash } from "@/components/site/Splash";
 import { CommandPalette } from "@/components/site/CommandPalette";
+import { FloatingHelp } from "@/components/site/FloatingHelp";
 import { CartProvider } from "@/components/cart/CartProvider";
 import { ScrollProgress } from "@/components/effects/ScrollProgress";
 
@@ -98,6 +99,7 @@ export default function RootLayout({
           <Header />
           <main className="flex-1">{children}</main>
           <Footer />
+          <FloatingHelp />
         </CartProvider>
       </body>
     </html>
