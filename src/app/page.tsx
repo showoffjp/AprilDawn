@@ -15,6 +15,7 @@ import { Aurora } from "@/components/effects/Aurora";
 import { HeroCollage } from "@/components/home/HeroCollage";
 import { MemoryMarquee } from "@/components/home/MemoryMarquee";
 import { Benefits } from "@/components/home/Benefits";
+import { BentoFlagships } from "@/components/home/BentoFlagships";
 import { featuredServices } from "@/lib/services";
 import { bestsellers } from "@/lib/products";
 import { heroBundle } from "@/lib/occasions";
@@ -87,6 +88,19 @@ export default function Home() {
               <ServiceCard service={service} />
             </Reveal>
           ))}
+        </div>
+      </Section>
+
+      {/* ------------------------------------------------ Flagship experiences */}
+      <Section className="pt-0">
+        <SectionHeading
+          center
+          eyebrow="Flagship experiences"
+          title="The things only AprilDawn makes"
+          intro="Beyond prints and scans — the experiences that turn a pile of photos into something alive."
+        />
+        <div className="mt-10">
+          <BentoFlagships />
         </div>
       </Section>
 
