@@ -14,9 +14,10 @@ const PALETTES = {
 export type BackdropVariant = keyof typeof PALETTES;
 
 /**
- * A genuinely-animated, complex section backdrop: a vivid gradient that pans
- * back and forth, layered with a slowly rotating conic gradient for depth.
- * Cheap (background-position + transform only) and reduced-motion friendly.
+ * A translucent, always-moving tint that leans each section toward its own
+ * "mood" color while letting the site-wide living gradient flow through behind
+ * it. Two soft panning layers drift in opposite directions, so the section is
+ * never still — it ebbs and flows as part of one continuous gradient.
  * Place inside a `relative overflow-hidden` parent (Section does this for you).
  */
 export function AnimatedBackdrop({
@@ -31,38 +32,28 @@ export function AnimatedBackdrop({
     <div
       aria-hidden="true"
       className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)}
+      style={{ mixBlendMode: "soft-light" }}
     >
-      {/* vivid panning gradient */}
+      {/* Panning mood wash — leans the section toward its hue, always sliding. */}
       <div
         className="anim-pan absolute inset-0"
         style={{
-          backgroundImage: `linear-gradient(125deg, ${a}, ${b} 45%, ${c} 75%, ${a})`,
-          backgroundSize: "220% 220%",
-          opacity: 0.62,
+          backgroundImage: `linear-gradient(120deg, ${a}, ${b} 45%, ${c} 78%, ${a})`,
+          backgroundSize: "260% 260%",
+          opacity: 0.5,
         }}
       />
-      {/* rotating conic adds complexity + constant motion */}
-      <div className="absolute left-1/2 top-1/2 h-[170%] w-[170%] -translate-x-1/2 -translate-y-1/2">
-        <div
-          className="anim-spin-slow h-full w-full"
-          style={{
-            backgroundImage: `conic-gradient(from 0deg, ${a}, ${b}, ${c}, ${b}, ${a})`,
-            opacity: 0.4,
-            mixBlendMode: "soft-light",
-          }}
-        />
-      </div>
-      {/* a second, counter-rotating glow for richness */}
-      <div className="absolute left-1/2 top-1/2 h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2">
-        <div
-          className="anim-spin-rev h-full w-full"
-          style={{
-            backgroundImage: `radial-gradient(40% 40% at 30% 30%, ${c}, transparent 70%), radial-gradient(40% 40% at 70% 70%, ${a}, transparent 70%)`,
-            opacity: 0.45,
-            mixBlendMode: "overlay",
-          }}
-        />
-      </div>
+      {/* Counter-panning glow adds depth and a second rhythm of motion. */}
+      <div
+        className="anim-pan absolute inset-0"
+        style={{
+          backgroundImage: `radial-gradient(55% 70% at 25% 30%, ${c}, transparent 70%), radial-gradient(55% 70% at 78% 75%, ${a}, transparent 72%)`,
+          backgroundSize: "200% 200%",
+          opacity: 0.4,
+          animationDirection: "reverse",
+          animationDuration: "13s",
+        }}
+      />
     </div>
   );
 }

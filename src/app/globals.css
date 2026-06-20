@@ -117,12 +117,6 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .animate-float,
-  .animate-gradient,
-  .animate-marquee,
-  .animate-blob1,
-  .animate-blob2,
-  .animate-blob3,
   .reveal-in {
     animation: none !important;
   }
@@ -135,13 +129,13 @@
 /* Drifting aurora blobs for animated backgrounds. */
 @layer utilities {
   .animate-blob1 {
-    animation: ad-blob1 22s ease-in-out infinite;
+    animation: ad-blob1 19s ease-in-out infinite;
   }
   .animate-blob2 {
-    animation: ad-blob2 26s ease-in-out infinite;
+    animation: ad-blob2 23s ease-in-out infinite;
   }
   .animate-blob3 {
-    animation: ad-blob3 30s ease-in-out infinite;
+    animation: ad-blob3 27s ease-in-out infinite;
   }
   /* Subtle film grain (apply with `relative overflow-hidden`). */
   .bg-grain::after {
@@ -156,17 +150,20 @@
 
 @keyframes ad-blob1 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(8%, 6%) scale(1.12); }
-  66% { transform: translate(-6%, 4%) scale(0.95); }
+  25% { transform: translate(16%, 12%) scale(1.22); }
+  50% { transform: translate(-10%, 18%) scale(0.9); }
+  75% { transform: translate(12%, -12%) scale(1.1); }
 }
 @keyframes ad-blob2 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  33% { transform: translate(-7%, 5%) scale(1.08); }
-  66% { transform: translate(5%, -4%) scale(0.96); }
+  25% { transform: translate(-16%, 10%) scale(1.14); }
+  50% { transform: translate(12%, -14%) scale(0.92); }
+  75% { transform: translate(-12%, -8%) scale(1.12); }
 }
 @keyframes ad-blob3 {
   0%, 100% { transform: translate(0, 0) scale(1); }
-  50% { transform: translate(6%, -6%) scale(1.1); }
+  33% { transform: translate(14%, -16%) scale(1.18); }
+  66% { transform: translate(-14%, 12%) scale(0.88); }
 }
 
 @layer utilities {
@@ -269,12 +266,6 @@
   to { background-position: 0% 0; }
 }
 
-@media (prefers-reduced-motion: reduce) {
-  .ad-splash {
-    display: none;
-  }
-}
-
 /* ---- Animated section backdrops ---- */
 @layer utilities {
   .anim-pan {
@@ -293,11 +284,4 @@
 }
 @keyframes ad-spin {
   to { transform: rotate(360deg); }
-}
-@media (prefers-reduced-motion: reduce) {
-  .anim-pan,
-  .anim-spin-slow,
-  .anim-spin-rev {
-    animation: none !important;
-  }
 }

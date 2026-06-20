@@ -1,9 +1,6 @@
 import { cn } from "@/lib/utils";
 import { Container } from "./Container";
-import {
-  AnimatedBackdrop,
-  type BackdropVariant,
-} from "@/components/effects/AnimatedBackdrop";
+import { type BackdropVariant } from "@/components/effects/AnimatedBackdrop";
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -18,20 +15,20 @@ export function Section({
   id,
   className,
   children,
-  backdrop,
 }: {
   id?: string;
   className?: string;
   children: React.ReactNode;
+  /**
+   * Legacy per-section tint. Intentionally ignored: the whole site now sits on
+   * one continuous, always-moving gradient field (see `SiteBackground`) so
+   * sections are transparent windows onto it rather than separate color blocks.
+   */
   backdrop?: BackdropVariant;
 }) {
   return (
-    <section
-      id={id}
-      className={cn("py-16 sm:py-24", backdrop && "relative overflow-hidden", className)}
-    >
-      {backdrop ? <AnimatedBackdrop variant={backdrop} /> : null}
-      <Container className={cn(backdrop && "relative")}>{children}</Container>
+    <section id={id} className={cn("py-16 sm:py-24", className)}>
+      <Container>{children}</Container>
     </section>
   );
 }
