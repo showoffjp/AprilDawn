@@ -1,5 +1,9 @@
 import { cn } from "@/lib/utils";
 import { Container } from "./Container";
+import {
+  AnimatedBackdrop,
+  type BackdropVariant,
+} from "@/components/effects/AnimatedBackdrop";
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -14,14 +18,20 @@ export function Section({
   id,
   className,
   children,
+  backdrop,
 }: {
   id?: string;
   className?: string;
   children: React.ReactNode;
+  backdrop?: BackdropVariant;
 }) {
   return (
-    <section id={id} className={cn("py-16 sm:py-24", className)}>
-      <Container>{children}</Container>
+    <section
+      id={id}
+      className={cn("py-16 sm:py-24", backdrop && "relative overflow-hidden", className)}
+    >
+      {backdrop ? <AnimatedBackdrop variant={backdrop} /> : null}
+      <Container className={cn(backdrop && "relative")}>{children}</Container>
     </section>
   );
 }
