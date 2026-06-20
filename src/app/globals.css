@@ -33,9 +33,10 @@
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: var(--color-cream);
   }
   body {
-    background-color: var(--color-cream);
+    background-color: transparent;
     color: var(--color-ink);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
