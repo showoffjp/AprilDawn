@@ -21,7 +21,6 @@ const CSS = `
 @keyframes adsplashfade{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
 @keyframes adblobA{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(8%,6%) scale(1.12)}}
 @keyframes adblobB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-6%,5%) scale(1.08)}}
-@media (prefers-reduced-motion:reduce){.ad-splash{display:none}}
 `;
 
 export function Splash() {
