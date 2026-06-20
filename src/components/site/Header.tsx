@@ -12,7 +12,7 @@ export function Header() {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className="sticky top-0 z-50 border-b border-ink/10 bg-cream/80 backdrop-blur-md">
+    <header className="sticky top-0 z-50 border-b border-ink/10 bg-cream/95 backdrop-blur-md">
       <Container className="flex h-16 items-center justify-between gap-4">
         <Logo />
 
@@ -28,25 +28,22 @@ export function Header() {
           ))}
         </nav>
 
-        <div className="hidden items-center gap-3 lg:flex">
+        <div className="hidden items-center gap-2.5 lg:flex">
           <button
             type="button"
             onClick={() => window.dispatchEvent(new Event("open-command"))}
-            className="inline-flex items-center gap-1.5 rounded-full px-3 py-1.5 text-sm text-ink-soft ring-1 ring-inset ring-ink/15 transition hover:text-ink"
-            aria-label="Search"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-lg ring-1 ring-inset ring-ink/15 transition hover:bg-ink/5"
+            aria-label="Search (⌘K)"
           >
-            🔍 <span>Search</span>
-            <kbd className="rounded bg-ink/5 px-1.5 py-0.5 text-[10px] font-medium">
-              ⌘K
-            </kbd>
+            🔍
           </button>
+          <CartIndicator />
           <Link
             href="/vault"
-            className="text-sm font-medium text-ink-soft hover:text-ink"
+            className="px-2 text-sm font-medium text-ink-soft transition hover:text-ink"
           >
             Sign in
           </Link>
-          <CartIndicator />
           <Button href="/upload" size="sm">
             Start a project
           </Button>

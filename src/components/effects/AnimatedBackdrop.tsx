@@ -1,22 +1,22 @@
 import { cn } from "@/lib/utils";
 
-/** Distinct, always-moving gradient palettes (one per section "mood"). */
+/** Vivid, always-moving gradient palettes (one per section "mood"). */
 const PALETTES = {
-  rose: ["#ffc2d6", "#ffd9a8", "#ffb3c1"],
-  ocean: ["#a7d8f5", "#bfe9ff", "#b8e6d0"],
-  sunset: ["#ffd0a6", "#ff9aae", "#c9a7e8"],
-  meadow: ["#d6ec9a", "#a7e0c0", "#bfe89a"],
-  dusk: ["#c4b0f0", "#b39ddb", "#efaecb"],
-  candy: ["#ffd6f0", "#ffe79a", "#a7e3ff"],
-  amber: ["#ffe0a8", "#ffc78f", "#ffd9c0"],
+  rose: ["#ff8fb1", "#ffc46b", "#ff6f91"],
+  ocean: ["#5ec8e0", "#74e0c0", "#7ec8ff"],
+  sunset: ["#ffb36b", "#ff7a9c", "#b07aff"],
+  meadow: ["#9ed85a", "#5fd0a0", "#7ee081"],
+  dusk: ["#a784f0", "#c77dff", "#ff8fc8"],
+  candy: ["#ff9ae0", "#ffd24a", "#79c8ff"],
+  amber: ["#ffc46b", "#ff9a6c", "#ff7e8a"],
 } as const;
 
 export type BackdropVariant = keyof typeof PALETTES;
 
 /**
- * A continuously-animated gradient backdrop for a section: two soft multi-stop
- * gradients panning in opposite directions, in a distinct palette. Cheap
- * (background-position only) so it can run in every section without jank.
+ * A genuinely-animated, complex section backdrop: a vivid gradient that pans
+ * back and forth, layered with a slowly rotating conic gradient for depth.
+ * Cheap (background-position + transform only) and reduced-motion friendly.
  * Place inside a `relative overflow-hidden` parent (Section does this for you).
  */
 export function AnimatedBackdrop({
@@ -32,24 +32,37 @@ export function AnimatedBackdrop({
       aria-hidden="true"
       className={cn("pointer-events-none absolute inset-0 overflow-hidden", className)}
     >
+      {/* vivid panning gradient */}
       <div
-        className="animate-gradient absolute inset-0"
+        className="anim-pan absolute inset-0"
         style={{
-          backgroundImage: `linear-gradient(120deg, ${a}, ${b} 45%, ${c} 72%, ${a})`,
-          backgroundSize: "300% 300%",
-          opacity: 0.6,
-        }}
-      />
-      <div
-        className="animate-gradient absolute inset-0"
-        style={{
-          backgroundImage: `radial-gradient(110% 120% at 18% 12%, ${c}, transparent 55%), radial-gradient(120% 120% at 85% 88%, ${a}, transparent 55%)`,
+          backgroundImage: `linear-gradient(125deg, ${a}, ${b} 45%, ${c} 75%, ${a})`,
           backgroundSize: "220% 220%",
-          opacity: 0.5,
-          animationDirection: "reverse",
-          animationDuration: "22s",
+          opacity: 0.62,
         }}
       />
+      {/* rotating conic adds complexity + constant motion */}
+      <div className="absolute left-1/2 top-1/2 h-[170%] w-[170%] -translate-x-1/2 -translate-y-1/2">
+        <div
+          className="anim-spin-slow h-full w-full"
+          style={{
+            backgroundImage: `conic-gradient(from 0deg, ${a}, ${b}, ${c}, ${b}, ${a})`,
+            opacity: 0.4,
+            mixBlendMode: "soft-light",
+          }}
+        />
+      </div>
+      {/* a second, counter-rotating glow for richness */}
+      <div className="absolute left-1/2 top-1/2 h-[150%] w-[150%] -translate-x-1/2 -translate-y-1/2">
+        <div
+          className="anim-spin-rev h-full w-full"
+          style={{
+            backgroundImage: `radial-gradient(40% 40% at 30% 30%, ${c}, transparent 70%), radial-gradient(40% 40% at 70% 70%, ${a}, transparent 70%)`,
+            opacity: 0.45,
+            mixBlendMode: "overlay",
+          }}
+        />
+      </div>
     </div>
   );
 }
