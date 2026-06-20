@@ -151,6 +151,15 @@ T-shirts and sweaters are just the **start**. See the [full catalog](#️-print-
 - 👆 **One-tap gifting** from your AprilDawn vault of photos
 - 👵 The legendary **"Troll Grandma" bundle**: her face on every shirt, mug, cake, vinyl, pillow, and pair of socks at the party — _maximum love, maximum chaos_
 
+### ➕ More ways to remember
+| Service | What it does |
+| :-- | :-- |
+| 🎙️ **Voice & Story Keeper** | Guided elder interviews, rescued voicemails/cassettes, human-reviewed transcripts, and narrated photo stories |
+| 🌳 **Family Tree & Heritage** | Face-grouping, a designed visual family tree, and bound heritage books |
+| 🕊️ **Tribute & Memorial** | Memorial slideshows/tribute films, celebration-of-life boards, restored portraits, keepsake copies |
+| 🐾 **Pet Memories** | Painterly pet portraits in any style, custom gifts, paw-print & memorial keepsakes |
+| 💍 **Event & Wedding Memories** | Collect every guest's photos via QR, then a curated highlight film, photobook, and shared gallery |
+
 ---
 
 ## 🛍️ Print-on-anything catalog
@@ -368,23 +377,28 @@ npm run start   # serves the optimized production build
 
 > ✅ shipped in this scaffold · 🟡 next up · 🔭 later
 
-### ✅ Now (in this repo)
-- ✅ Full marketing site: home, 7 services, 3 flagship experiences, shop, pricing, how-it-works, about, FAQ, contact
-- ✅ Working **drag-and-drop uploader** with live previews
-- ✅ **Reminder** and **contact** forms wired to API routes
-- ✅ Amazon **affiliate link builder** + site-wide disclosure
-- ✅ SEO: metadata, OpenGraph, `sitemap.xml`, `robots.txt`
-- ✅ Legal templates: privacy, terms, content & rights
-- ✅ "April Dawn" design system, fully responsive
+### ✅ Now (in this repo) — a deep, working MVP (80+ pages)
+- ✅ Cinematic **intro splash** animation · **⌘K command palette** search · floating help widget
+- ✅ Full site: home, **12 services**, flagship pages (Living Wall, Memory Mail, Occasions), shop, pricing, how-it-works, about, FAQ, contact, partners, **stories** (6 articles), **reviews**, **gift finder**, **member vault** preview, legal
+- ✅ **Interactive builders** (all client-side, no backend required):
+  - 🧱 **Living Wall designer** — resizable grid up to 12×12, multi-photo upload, tap/drag-to-place, drag-and-drop, size presets, live pricing
+  - 🖼️ **Product designer** — live on-product mockups (apparel/frame/mug), photo controls (zoom · brightness · contrast · saturation · warmth · B&W), one-tap famous-artist filters, sizes + premium add-ons, live pricing
+  - 🎁 **Gift Finder** quiz · 🧮 **Quote calculator** · 🎀 **Gift-bundle builder** · 🛒 **Cart + checkout**
+- ✅ **Masterpiece style gallery** — a sample portrait reimagined as Van Gogh, Monet, Klimt, Warhol & more
+- ✅ Drag-and-drop **uploader**, **handwriting/signature** upload, reminder + contact + newsletter forms → API routes
+- ✅ Amazon **affiliate link builder** + disclosure; **Printful** chosen as primary fulfillment (Printify fallback)
+- ✅ **Color & motion**: animated aurora backgrounds, film grain, 7-variant illustrated memory scenes, before/after restoration slider, count-up stats, scroll progress, marquees, soft shadows
+- ✅ SEO: metadata, OpenGraph, dynamic OG image, **Organization / Article / AggregateRating JSON-LD**, `sitemap.xml`, `robots.txt`, branded favicon
+- ✅ Legal templates (privacy, terms, content & rights) · **fully remote-first** + free-consultation flow
+- ✅ "April Dawn" design system — responsive, reduced-motion friendly, clean `lint` + `typecheck` + `build`
 
-### 🟡 Next (v1 — make it real)
-- 🟡 **Accounts & the Memory Vault** (auth, encrypted storage, albums)
-- 🟡 **Real uploads** to S3/R2 via pre-signed URLs + resumable large-file handling
-- 🟡 **Stripe checkout**, cart, and the Family Vault subscription
-- 🟡 **Print fulfillment** wiring (Printful/Printify) with live product mockups
-- 🟡 **Product designer/preview** — drop a photo, see it on the product, smart-crop
+### 🟡 Next (v1 — wire up the live services)
+- 🟡 **Accounts & auth** + real encrypted **Memory Vault** storage
+- 🟡 **Real uploads** to S3/R2 via pre-signed URLs + resumable large files
+- 🟡 **Stripe** payments for the cart, checkout, and Family Vault subscription
+- 🟡 **Print fulfillment** API wiring (Printful primary · Printify fallback) with live partner mockups
 - 🟡 **AI restoration pipeline** (de-scratch, colorize, up-res) with proof approval
-- 🟡 **Occasion integrations** (Google/Outlook/Apple/Facebook OAuth) + reminder scheduler
+- 🟡 **Occasion integrations** (Google/Outlook/Apple/Facebook OAuth) + reminder scheduler + auto-gifting
 - 🟡 **MemoryBox** mail-in kits with shipping labels & lab tracking
 
 ### 🔭 Later (v2 — the magic)
