@@ -75,7 +75,7 @@ export default function Home() {
       </div>
 
       {/* ------------------------------------------------------ Featured grid */}
-      <Section>
+      <Section backdrop="rose">
         <SectionHeading
           center
           eyebrow="Everything, under one dawn"
@@ -92,7 +92,7 @@ export default function Home() {
       </Section>
 
       {/* ------------------------------------------------ Flagship experiences */}
-      <Section className="pt-0">
+      <Section className="pt-0" backdrop="dusk">
         <SectionHeading
           center
           eyebrow="Flagship experiences"
@@ -105,7 +105,7 @@ export default function Home() {
       </Section>
 
       {/* ------------------------------------------------- Wall of memories */}
-      <Section className="pt-0">
+      <Section className="pt-0" backdrop="candy">
         <SectionHeading
           center
           eyebrow="A lifetime of moments"
@@ -118,8 +118,7 @@ export default function Home() {
       </Section>
 
       {/* -------------------------------------------------------- How it works */}
-      <div className="bg-cream-deep">
-        <Section>
+      <Section backdrop="ocean">
           <SectionHeading
             eyebrow="How it works"
             title="From shoebox to masterpiece in three steps"
@@ -164,10 +163,9 @@ export default function Home() {
             </Button>
           </div>
         </Section>
-      </div>
 
       {/* ------------------------------------------------------- Before/After */}
-      <Section>
+      <Section backdrop="sunset">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <Reveal>
             <Eyebrow>See the magic</Eyebrow>
@@ -197,7 +195,7 @@ export default function Home() {
       </Section>
 
       {/* --------------------------------------------------- Living Wall hero */}
-      <Section>
+      <Section backdrop="meadow">
         <div className="bg-dusk overflow-hidden rounded-[2rem] text-white">
           <div className="grid items-center gap-10 p-10 sm:p-14 lg:grid-cols-2">
             <div>
@@ -244,8 +242,7 @@ export default function Home() {
       </Section>
 
       {/* --------------------------------------------------- Print on anything */}
-      <div className="bg-cream-deep">
-        <Section>
+      <Section backdrop="amber">
           <SectionHeading
             eyebrow="Print on anything"
             title="T-shirts are just the beginning"
@@ -267,10 +264,9 @@ export default function Home() {
             <Button href="/shop">Browse the full shop →</Button>
           </div>
         </Section>
-      </div>
 
       {/* ------------------------------------------------------- Troll Grandma */}
-      <Section>
+      <Section backdrop="rose">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="order-2 lg:order-1">
             <div className="rounded-[2rem] bg-gradient-to-br from-amber-200 via-dawn-200 to-dusk-400/40 p-10 text-center">
@@ -313,8 +309,7 @@ export default function Home() {
       </Section>
 
       {/* -------------------------------------------------------- Testimonials */}
-      <div className="bg-cream-deep">
-        <Section>
+      <Section backdrop="dusk">
           <SectionHeading
             center
             eyebrow="Loved by families"
@@ -360,10 +355,9 @@ export default function Home() {
             </Button>
           </div>
         </Section>
-      </div>
 
       {/* ------------------------------------------------------------- Stories */}
-      <Section>
+      <Section backdrop="ocean">
         <div className="flex items-end justify-between gap-4">
           <SectionHeading eyebrow="From the journal" title="Stories worth keeping" />
           <Link
@@ -383,7 +377,7 @@ export default function Home() {
       </Section>
 
       {/* --------------------------------------------------------- Consultation */}
-      <Section>
+      <Section backdrop="sunset">
         <div className="bg-dusk relative overflow-hidden rounded-[2rem] px-8 py-14 text-center text-white sm:px-16">
           <Eyebrow>
             <span className="text-dawn-200">Fully remote, always</span>
@@ -403,7 +397,7 @@ export default function Home() {
       </Section>
 
       {/* ------------------------------------------------------------ Partners */}
-      <Section>
+      <Section backdrop="meadow">
         <div className="text-center">
           <Eyebrow>Powered by a world of partners</Eyebrow>
           <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
@@ -421,17 +415,15 @@ export default function Home() {
       </Section>
 
       {/* -------------------------------------------------------- Our promise */}
-      <div className="bg-cream-deep">
-        <Section>
+      <Section backdrop="candy">
           <SectionHeading center eyebrow="Our promise" title="The AprilDawn guarantee" />
           <div className="mt-10">
             <Benefits />
           </div>
         </Section>
-      </div>
 
       {/* ----------------------------------------------------------- Final CTA */}
-      <Section>
+      <Section backdrop="amber">
         <div className="bg-sunrise rounded-[2rem] px-8 py-16 text-center ring-1 ring-ink/10 sm:px-16">
           <h2 className="mx-auto max-w-2xl font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
             Your memories deserve more than a dusty drawer.
