@@ -274,3 +274,30 @@
     display: none;
   }
 }
+
+/* ---- Animated section backdrops ---- */
+@layer utilities {
+  .anim-pan {
+    animation: ad-pan 9s ease-in-out infinite;
+  }
+  .anim-spin-slow {
+    animation: ad-spin 26s linear infinite;
+  }
+  .anim-spin-rev {
+    animation: ad-spin 34s linear infinite reverse;
+  }
+}
+@keyframes ad-pan {
+  0%, 100% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+}
+@keyframes ad-spin {
+  to { transform: rotate(360deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .anim-pan,
+  .anim-spin-slow,
+  .anim-spin-rev {
+    animation: none !important;
+  }
+}
