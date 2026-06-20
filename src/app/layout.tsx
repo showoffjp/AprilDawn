@@ -6,6 +6,7 @@ import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/site/Footer";
 import { TopBar } from "@/components/site/TopBar";
 import { Splash } from "@/components/site/Splash";
+import { SiteBackground } from "@/components/site/SiteBackground";
 import { CommandPalette } from "@/components/site/CommandPalette";
 import { FloatingHelp } from "@/components/site/FloatingHelp";
 import { CartProvider } from "@/components/cart/CartProvider";
@@ -71,6 +72,7 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} ${fraunces.variable} h-full antialiased`}
     >
       <body className="flex min-h-full flex-col">
+        <SiteBackground />
         <Splash />
         <script
           type="application/ld+json"
