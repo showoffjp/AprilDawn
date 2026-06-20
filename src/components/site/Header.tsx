@@ -79,6 +79,23 @@ export function Header() {
                 {item.label}
               </Link>
             ))}
+            <Link
+              href="/vault"
+              onClick={() => setOpen(false)}
+              className="rounded-xl px-3 py-2.5 text-base font-medium text-ink hover:bg-ink/5"
+            >
+              Sign in
+            </Link>
+            <button
+              type="button"
+              onClick={() => {
+                setOpen(false);
+                window.dispatchEvent(new Event("open-command"));
+              }}
+              className="rounded-xl px-3 py-2.5 text-left text-base font-medium text-ink hover:bg-ink/5"
+            >
+              🔍 Search
+            </button>
             <Button href="/upload" className="mt-3" onClick={() => setOpen(false)}>
               Start a project
             </Button>
