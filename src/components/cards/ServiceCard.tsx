@@ -2,19 +2,27 @@ import Link from "next/link";
 import { type Service, serviceHref } from "@/lib/services";
 import { fromPrice } from "@/lib/utils";
 import { cn } from "@/lib/utils";
+import { Tilt } from "@/components/effects/Tilt";
 
 export function ServiceCard({ service }: { service: Service }) {
   return (
-    <Link
-      href={serviceHref(service)}
-      className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-ink/10 transition hover:-translate-y-1 hover:shadow-soft-lg"
+    <Tilt
+      containerClassName="h-full"
+      className="h-full shadow-soft ring-1 ring-ink/10 transition-shadow duration-300 hover:shadow-soft-lg"
+      radiusClass="rounded-3xl"
+      max={5}
+      glare={false}
     >
-      <div
-        className={cn(
-          "relative flex h-36 items-center justify-center bg-gradient-to-br text-5xl",
-          service.gradient,
-        )}
+      <Link
+        href={serviceHref(service)}
+        className="group flex h-full flex-col bg-white"
       >
+        <div
+          className={cn(
+            "relative flex h-36 items-center justify-center bg-gradient-to-br text-5xl",
+            service.gradient,
+          )}
+        >
         <span aria-hidden="true" className="drop-shadow-sm">
           {service.emoji}
         </span>
@@ -43,7 +51,8 @@ export function ServiceCard({ service }: { service: Service }) {
             Explore →
           </span>
         </div>
-      </div>
-    </Link>
+        </div>
+      </Link>
+    </Tilt>
   );
 }
