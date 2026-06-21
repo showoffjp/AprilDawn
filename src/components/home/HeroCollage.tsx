@@ -4,6 +4,7 @@ import { useRef } from "react";
 import { MemoryScene } from "@/components/art/MemoryScene";
 import { presetFor } from "@/lib/artStyles";
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 import type { CSSProperties } from "react";
 
 type Variant = Parameters<typeof MemoryScene>[0]["variant"];
@@ -61,6 +62,7 @@ function Tile({
 export function HeroCollage() {
   const vg = presetFor("Van Gogh");
   const stage = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
 
   function onMove(e: React.MouseEvent<HTMLDivElement>) {
     const el = stage.current;
@@ -80,15 +82,18 @@ export function HeroCollage() {
 
   return (
     <div
-      className="relative hidden h-[30rem] [perspective:1200px] lg:block"
+      className={cn("relative hidden h-[30rem] lg:block", !reduced && "[perspective:1200px]")}
       aria-hidden="true"
-      onMouseMove={onMove}
-      onMouseLeave={reset}
+      onMouseMove={reduced ? undefined : onMove}
+      onMouseLeave={reduced ? undefined : reset}
     >
       <div
         ref={stage}
-        className="relative h-full w-full transition-transform duration-300 ease-out [transform-style:preserve-3d]"
-        style={{ transform: "rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))" }}
+        className={cn(
+          "relative h-full w-full",
+          !reduced && "transition-transform duration-300 ease-out [transform-style:preserve-3d]",
+        )}
+        style={reduced ? undefined : { transform: "rotateX(var(--rx,0deg)) rotateY(var(--ry,0deg))" }}
       >
         <Tile
           label="Gallery canvas"

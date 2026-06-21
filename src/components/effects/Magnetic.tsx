@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 
 /**
  * Magnetic hover: the wrapped element drifts toward the cursor while hovered,
@@ -17,6 +18,11 @@ export function Magnetic({
   strength?: number;
 }) {
   const ref = useRef<HTMLSpanElement>(null);
+  const reduced = useReducedMotion();
+
+  if (reduced) {
+    return <span className={cn("inline-flex", className)}>{children}</span>;
+  }
 
   function onMove(e: React.MouseEvent<HTMLSpanElement>) {
     const el = ref.current;

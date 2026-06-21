@@ -124,6 +124,13 @@
     opacity: 1;
     transform: none;
   }
+  /* Still the decorative positional motion. The signature SiteBackground is
+     intentionally exempt — it only shifts color, never position. */
+  .animate-float,
+  .animate-gradient,
+  .animate-marquee {
+    animation: none !important;
+  }
 }
 
 /* Drifting aurora blobs for animated backgrounds. */

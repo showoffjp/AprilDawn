@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { mainNav } from "@/lib/site";
 import { Button } from "@/components/ui/Button";
+import { Magnetic } from "@/components/effects/Magnetic";
 import { Container } from "@/components/ui/Container";
 import { CartIndicator } from "@/components/cart/CartIndicator";
 import { Logo } from "./Logo";
@@ -44,9 +45,11 @@ export function Header() {
           >
             Sign in
           </Link>
-          <Button href="/upload" size="sm">
-            Start a project
-          </Button>
+          <Magnetic>
+            <Button href="/upload" size="sm">
+              Start a project
+            </Button>
+          </Magnetic>
         </div>
 
         <div className="flex items-center gap-2 lg:hidden">
