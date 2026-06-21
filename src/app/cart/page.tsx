@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { MemoryScene } from "@/components/art/MemoryScene";
 import { useCart } from "@/components/cart/CartProvider";
 import { shippingFor } from "@/lib/cart";
 import { usd } from "@/lib/utils";
@@ -19,19 +20,41 @@ export default function CartPage() {
       </h1>
 
       {items.length === 0 ? (
-        <div className="mt-10 rounded-3xl bg-white p-12 text-center ring-1 ring-ink/10">
-          <div className="text-6xl">🛍️</div>
-          <p className="mt-4 font-display text-xl font-semibold">
-            Your cart is empty
-          </p>
-          <p className="mt-2 text-ink-soft">
-            Turn a memory into something you can hold.
-          </p>
-          <div className="mt-6 flex justify-center gap-3">
-            <Button href="/shop">Browse the shop</Button>
-            <Button href="/upload" variant="ghost">
-              Upload a photo
-            </Button>
+        <div className="mt-10 overflow-hidden rounded-3xl bg-white ring-1 ring-ink/10 shadow-soft">
+          <div className="relative h-40 sm:h-52">
+            <MemoryScene variant="sunrise" uid="cart-empty" />
+            <div className="absolute inset-0 bg-gradient-to-t from-white via-white/40 to-transparent" />
+          </div>
+          <div className="px-8 pb-10 pt-2 text-center">
+            <p className="font-display text-2xl font-semibold">
+              Your cart is empty
+            </p>
+            <p className="mx-auto mt-2 max-w-md text-ink-soft">
+              Turn a memory into something you can hold — a print, a mug, a
+              blanket, or a Living Wall that never stops updating.
+            </p>
+            <div className="mt-6 flex flex-wrap justify-center gap-3">
+              <Button href="/shop">Browse the shop</Button>
+              <Button href="/upload" variant="ghost">
+                Upload a photo
+              </Button>
+            </div>
+            <div className="mt-7 flex flex-wrap justify-center gap-2 text-sm">
+              {[
+                { h: "/living-wall", l: "Living Wall" },
+                { h: "/memory-mail", l: "Memory Mail" },
+                { h: "/occasions", l: "Occasions" },
+                { h: "/services/masterpieces", l: "Masterpiece Portraits" },
+              ].map((x) => (
+                <Link
+                  key={x.h}
+                  href={x.h}
+                  className="rounded-full bg-cream-deep px-3 py-1.5 font-medium text-ink-soft ring-1 ring-ink/10 transition hover:text-ink"
+                >
+                  {x.l}
+                </Link>
+              ))}
+            </div>
           </div>
         </div>
       ) : (

@@ -120,6 +120,11 @@ export default function CheckoutPage() {
               Something went wrong — please try again.
             </p>
           ) : null}
+          <p className="mt-4 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-center text-xs text-ink-soft">
+            <span>🔒 Secure checkout</span>
+            <span>🆓 Free proofs first</span>
+            <span>↩️ Happiness guarantee</span>
+          </p>
         </form>
 
         {/* Summary */}
