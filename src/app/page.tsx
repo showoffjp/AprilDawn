@@ -18,6 +18,10 @@ import { Benefits } from "@/components/home/Benefits";
 import { BentoFlagships } from "@/components/home/BentoFlagships";
 import { PrintShowcase } from "@/components/home/PrintShowcase";
 import { ArtStyleTeaser } from "@/components/home/ArtStyleTeaser";
+import { CreateGrid } from "@/components/home/CreateGrid";
+import { HeroSearch } from "@/components/home/HeroSearch";
+import { StudioBento } from "@/components/home/StudioBento";
+import { MagicLayers } from "@/components/home/MagicLayers";
 import { ProductMockup } from "@/components/cart/ProductMockup";
 import { featuredServices } from "@/lib/services";
 import { heroBundle } from "@/lib/occasions";
@@ -51,6 +55,7 @@ export default function Home() {
                 Explore everything we make
               </Button>
             </div>
+            <HeroSearch />
             <p className="mt-5 text-sm text-ink-soft">
               100% remote · mail it in or upload · free proofs · happiness guarantee
             </p>
@@ -69,12 +74,37 @@ export default function Home() {
         </Container>
       </section>
 
+      {/* ------------------------------------------------ Start anywhere tiles */}
+      <Section>
+        <SectionHeading
+          center
+          eyebrow="Start anywhere"
+          title="What would you like to make?"
+          intro="Pick a starting point — or upload a photo and we'll guide you the rest of the way."
+        />
+        <div className="mt-10">
+          <CreateGrid />
+        </div>
+      </Section>
+
       {/* --------------------------------------------------------- Trust stats */}
       <div className="border-y border-ink/10 bg-cream-deep">
         <Container className="py-8">
           <StatsBand stats={trustStats} />
         </Container>
       </div>
+
+      {/* ----------------------------------------------- Everything, one place */}
+      <Section>
+        <SectionHeading
+          center
+          title="Everything to keep a memory — in one place"
+          intro="From a single photo to a lifetime of media, every tool lives under one warm roof."
+        />
+        <div className="mt-10">
+          <StudioBento />
+        </div>
+      </Section>
 
       {/* ------------------------------------------------------ Featured grid */}
       <Section backdrop="rose">
@@ -116,6 +146,19 @@ export default function Home() {
         />
         <div className="mt-10">
           <MemoryMarquee />
+        </div>
+      </Section>
+
+      {/* ----------------------------------------------------- Magic showcase */}
+      <Section>
+        <SectionHeading
+          center
+          eyebrow="The AprilDawn magic"
+          title="Watch a flat photo come alive"
+          intro="Hover over it: we lift your memory into layers, restore the color, and make it pop right off the page."
+        />
+        <div className="mt-14 pb-6">
+          <MagicLayers />
         </div>
       </Section>
 
