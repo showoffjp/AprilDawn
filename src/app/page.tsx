@@ -2,6 +2,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section, SectionHeading, Eyebrow } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
+import { Magnetic } from "@/components/effects/Magnetic";
 import { Badge } from "@/components/ui/Badge";
 import { ServiceCard } from "@/components/cards/ServiceCard";
 import { StoryCard } from "@/components/cards/StoryCard";
@@ -48,12 +49,16 @@ export default function Home() {
               cakes, vinyl, and the living LED memory wall in your hallway.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
-              <Button href="/upload" size="lg">
-                Upload a photo
-              </Button>
-              <Button href="/services" size="lg" variant="ghost">
-                Explore everything we make
-              </Button>
+              <Magnetic>
+                <Button href="/upload" size="lg">
+                  Upload a photo
+                </Button>
+              </Magnetic>
+              <Magnetic>
+                <Button href="/services" size="lg" variant="ghost">
+                  Explore everything we make
+                </Button>
+              </Magnetic>
             </div>
             <HeroSearch />
             <p className="mt-5 text-sm text-ink-soft">
