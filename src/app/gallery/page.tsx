@@ -53,9 +53,9 @@ export default function GalleryPage() {
           title="In the style of the masters"
           intro="Pick a painter or a genre; we hand-finish the render until it looks like it hung in a museum."
         />
-        <div className="mt-10">
+        <Reveal className="mt-10">
           <StyleGallery styles={artStyles} />
-        </div>
+        </Reveal>
         <div className="mt-10">
           <Button href="/services/masterpieces">Turn your photo into art →</Button>
         </div>
@@ -68,9 +68,9 @@ export default function GalleryPage() {
           title="On everything you own"
           intro="If it has a surface, your memory belongs on it — from gallery canvas to an edible cake print."
         />
-        <div className="mt-10">
+        <Reveal className="mt-10">
           <PrintShowcase />
-        </div>
+        </Reveal>
         <div className="mt-10">
           <Button href="/shop">Browse the full shop →</Button>
         </div>

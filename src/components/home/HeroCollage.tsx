@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import { MemoryScene } from "@/components/art/MemoryScene";
 import { presetFor } from "@/lib/artStyles";
 import { cn } from "@/lib/utils";
@@ -62,7 +62,29 @@ function Tile({
 export function HeroCollage() {
   const vg = presetFor("Van Gogh");
   const stage = useRef<HTMLDivElement>(null);
+  const outer = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
+
+  // Scroll-linked drift: the whole cluster lags behind the page as you scroll.
+  useEffect(() => {
+    if (reduced) return;
+    let raf = 0;
+    const onScroll = () => {
+      if (raf) return;
+      raf = requestAnimationFrame(() => {
+        raf = 0;
+        const el = outer.current;
+        if (!el) return;
+        el.style.transform = `translateY(${(Math.min(window.scrollY, 700) * 0.12).toFixed(1)}px)`;
+      });
+    };
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      cancelAnimationFrame(raf);
+    };
+  }, [reduced]);
 
   function onMove(e: React.MouseEvent<HTMLDivElement>) {
     const el = stage.current;
@@ -82,7 +104,11 @@ export function HeroCollage() {
 
   return (
     <div
-      className={cn("relative hidden h-[30rem] lg:block", !reduced && "[perspective:1200px]")}
+      ref={outer}
+      className={cn(
+        "relative hidden h-[30rem] will-change-transform lg:block",
+        !reduced && "[perspective:1200px]",
+      )}
       aria-hidden="true"
       onMouseMove={reduced ? undefined : onMove}
       onMouseLeave={reduced ? undefined : reset}
