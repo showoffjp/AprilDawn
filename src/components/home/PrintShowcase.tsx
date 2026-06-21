@@ -1,4 +1,5 @@
 import { ProductMockup } from "@/components/cart/ProductMockup";
+import { Tilt } from "@/components/effects/Tilt";
 import { type MockupKind } from "@/lib/designer";
 import { type SceneVariant } from "@/components/art/MemoryScene";
 import { fromPrice } from "@/lib/utils";
@@ -25,9 +26,9 @@ export function PrintShowcase() {
     <div className="grid grid-cols-2 gap-4 sm:grid-cols-3 lg:gap-6">
       {TILES.map((t, i) => (
         <figure key={i} className="group">
-          <div className="transition duration-300 group-hover:-translate-y-1.5">
+          <Tilt max={11} radiusClass="rounded-3xl" className="shadow-soft">
             <ProductMockup kind={t.kind} photo={{ scene: t.scene }} />
-          </div>
+          </Tilt>
           <figcaption className="mt-3 flex items-center justify-between px-1 text-sm">
             <span className="font-medium text-ink">{t.name}</span>
             <span className="text-ink-soft">from {fromPrice(t.price)}</span>

@@ -82,9 +82,9 @@ export default function Home() {
           title="What would you like to make?"
           intro="Pick a starting point — or upload a photo and we'll guide you the rest of the way."
         />
-        <div className="mt-10">
+        <Reveal className="mt-10">
           <CreateGrid />
-        </div>
+        </Reveal>
       </Section>
 
       {/* --------------------------------------------------------- Trust stats */}
@@ -101,9 +101,9 @@ export default function Home() {
           title="Everything to keep a memory — in one place"
           intro="From a single photo to a lifetime of media, every tool lives under one warm roof."
         />
-        <div className="mt-10">
+        <Reveal className="mt-10">
           <StudioBento />
-        </div>
+        </Reveal>
       </Section>
 
       {/* ------------------------------------------------------ Featured grid */}
