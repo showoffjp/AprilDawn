@@ -17,6 +17,7 @@ import { MemoryMarquee } from "@/components/home/MemoryMarquee";
 import { Benefits } from "@/components/home/Benefits";
 import { BentoFlagships } from "@/components/home/BentoFlagships";
 import { PrintShowcase } from "@/components/home/PrintShowcase";
+import { ArtStyleTeaser } from "@/components/home/ArtStyleTeaser";
 import { ProductMockup } from "@/components/cart/ProductMockup";
 import { featuredServices } from "@/lib/services";
 import { heroBundle } from "@/lib/occasions";
@@ -115,6 +116,22 @@ export default function Home() {
         />
         <div className="mt-10">
           <MemoryMarquee />
+        </div>
+      </Section>
+
+      {/* ----------------------------------------------- Masterpiece portraits */}
+      <Section className="pt-0">
+        <SectionHeading
+          center
+          eyebrow="Masterpiece portraits"
+          title="See your family in the style of the masters"
+          intro="Van Gogh, Monet, Warhol, and more — we reimagine your favorite photo as a hand-finished painting, then print it on anything you like."
+        />
+        <div className="mt-12">
+          <ArtStyleTeaser />
+        </div>
+        <div className="mt-10 text-center">
+          <Button href="/services/masterpieces">Turn a photo into art →</Button>
         </div>
       </Section>
 
