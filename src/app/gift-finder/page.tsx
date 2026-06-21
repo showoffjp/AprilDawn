@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Aurora } from "@/components/effects/Aurora";
@@ -25,6 +26,16 @@ export default function GiftFinderPage() {
           <div className="mt-12">
             <GiftFinder />
           </div>
+          <p className="mt-8 text-center text-sm text-ink-soft">
+            In a hurry? The{" "}
+            <Link
+              href="/occasions"
+              className="font-semibold text-dawn-600 hover:underline"
+            >
+              Troll Grandma bundle
+            </Link>{" "}
+            is our most-gifted pick — her face on everything at the party.
+          </p>
         </Section>
       </Container>
     </section>
