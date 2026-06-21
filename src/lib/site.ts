@@ -52,6 +52,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
       { label: "Memory Mail", href: "/memory-mail" },
       { label: "Occasions & auto-gifting", href: "/occasions" },
       { label: "The AprilDawn Shop", href: "/shop" },
+      { label: "Gallery", href: "/gallery" },
       { label: "Gift Finder", href: "/gift-finder" },
     ],
   },

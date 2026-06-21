@@ -130,8 +130,11 @@ export default function Home() {
         <div className="mt-12">
           <ArtStyleTeaser />
         </div>
-        <div className="mt-10 text-center">
+        <div className="mt-10 flex flex-wrap justify-center gap-3 text-center">
           <Button href="/services/masterpieces">Turn a photo into art →</Button>
+          <Button href="/gallery" variant="ghost">
+            See the full gallery
+          </Button>
         </div>
       </Section>
 
