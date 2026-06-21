@@ -67,6 +67,10 @@
     background-clip: text;
     color: transparent;
   }
+  .text-gradient-animated {
+    background-size: 200% auto;
+    animation: ad-text-shimmer 7s ease-in-out infinite;
+  }
   .text-balance {
     text-wrap: balance;
   }
@@ -115,6 +119,10 @@
   from { transform: translateX(0); }
   to { transform: translateX(-50%); }
 }
+@keyframes ad-text-shimmer {
+  0%, 100% { background-position: 0% center; }
+  50% { background-position: 100% center; }
+}
 
 @media (prefers-reduced-motion: reduce) {
   .reveal-in {
@@ -128,7 +136,8 @@
      intentionally exempt — it only shifts color, never position. */
   .animate-float,
   .animate-gradient,
-  .animate-marquee {
+  .animate-marquee,
+  .text-gradient-animated {
     animation: none !important;
   }
 }
