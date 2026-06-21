@@ -114,3 +114,5 @@ export const sceneVariants: Variant[] = [
   "sunset",
   "garden",
 ];
+
+export type SceneVariant = Variant;

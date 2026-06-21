@@ -1,6 +1,5 @@
 import { cn } from "@/lib/utils";
 import { Container } from "./Container";
-import { type BackdropVariant } from "@/components/effects/AnimatedBackdrop";
 
 export function Eyebrow({ children }: { children: React.ReactNode }) {
   return (
@@ -24,7 +23,7 @@ export function Section({
    * one continuous, always-moving gradient field (see `SiteBackground`) so
    * sections are transparent windows onto it rather than separate color blocks.
    */
-  backdrop?: BackdropVariant;
+  backdrop?: string;
 }) {
   return (
     <section id={id} className={cn("py-16 sm:py-24", className)}>

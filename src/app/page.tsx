@@ -16,8 +16,9 @@ import { HeroCollage } from "@/components/home/HeroCollage";
 import { MemoryMarquee } from "@/components/home/MemoryMarquee";
 import { Benefits } from "@/components/home/Benefits";
 import { BentoFlagships } from "@/components/home/BentoFlagships";
+import { PrintShowcase } from "@/components/home/PrintShowcase";
+import { ProductMockup } from "@/components/cart/ProductMockup";
 import { featuredServices } from "@/lib/services";
-import { bestsellers } from "@/lib/products";
 import { heroBundle } from "@/lib/occasions";
 import { trustStats, site } from "@/lib/site";
 import { fromPrice } from "@/lib/utils";
@@ -248,19 +249,10 @@ export default function Home() {
             title="T-shirts are just the beginning"
             intro="If it has a surface, your memory belongs on it. Browse a few favorites — there are thousands more in the shop."
           />
-          <div className="mt-10 flex flex-wrap gap-3">
-            {bestsellers.map((p) => (
-              <span
-                key={p.slug}
-                className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-ink ring-1 ring-ink/10"
-              >
-                <span aria-hidden="true">{p.emoji}</span>
-                {p.name}
-                <span className="text-ink-soft">{fromPrice(p.priceFrom)}</span>
-              </span>
-            ))}
+          <div className="mt-12">
+            <PrintShowcase />
           </div>
-          <div className="mt-8">
+          <div className="mt-10">
             <Button href="/shop">Browse the full shop →</Button>
           </div>
         </Section>
@@ -269,15 +261,18 @@ export default function Home() {
       <Section backdrop="rose">
         <div className="grid items-center gap-10 lg:grid-cols-2">
           <div className="order-2 lg:order-1">
-            <div className="rounded-[2rem] bg-gradient-to-br from-amber-200 via-dawn-200 to-dusk-400/40 p-10 text-center">
-              <div className="text-7xl">👵🎂</div>
-              <p className="mt-4 font-display text-2xl font-semibold text-ink">
-                {heroBundle.tagline}
-              </p>
-              <p className="mt-2 text-sm text-ink-soft">
-                {fromPrice(heroBundle.priceFrom)} · ships in time for the party
-              </p>
+            <div className="grid grid-cols-2 gap-3 sm:gap-4">
+              <ProductMockup kind="apparel" photo={{ scene: "birthday" }} />
+              <ProductMockup kind="mug" photo={{ scene: "birthday" }} />
+              <ProductMockup kind="frame" photo={{ scene: "birthday" }} />
+              <ProductMockup kind="default" photo={{ scene: "birthday" }} />
             </div>
+            <p className="mt-5 text-center font-display text-xl font-semibold text-ink">
+              {heroBundle.tagline}
+            </p>
+            <p className="mt-1 text-center text-sm text-ink-soft">
+              {fromPrice(heroBundle.priceFrom)} · ships in time for the party
+            </p>
           </div>
           <div className="order-1 lg:order-2">
             <Eyebrow>Occasions &amp; auto-gifting</Eyebrow>
