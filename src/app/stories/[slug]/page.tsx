@@ -5,7 +5,14 @@ import { Container } from "@/components/ui/Container";
 import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { StoryCard } from "@/components/cards/StoryCard";
+import { MemoryScene, sceneVariants } from "@/components/art/MemoryScene";
 import { stories, getStory } from "@/lib/stories";
+
+function sceneFor(slug: string) {
+  return sceneVariants[
+    slug.split("").reduce((a, c) => a + c.charCodeAt(0), 0) % sceneVariants.length
+  ];
+}
 
 export function generateStaticParams() {
   return stories.map((s) => ({ slug: s.slug }));
@@ -53,20 +60,33 @@ export default async function StoryPage({
           >
             ← All stories
           </Link>
-          <p className="mt-6 text-sm font-semibold text-ink/70">
-            {story.category} · {story.readMins} min read
-          </p>
-          <h1 className="mt-2 max-w-3xl font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
-            {story.title}
-          </h1>
-          <p className="mt-4 text-sm text-ink/70">
-            By {story.author} ·{" "}
-            {new Date(story.date).toLocaleDateString("en-US", {
-              month: "long",
-              day: "numeric",
-              year: "numeric",
-            })}
-          </p>
+          <div className="mt-6 grid items-center gap-10 lg:grid-cols-[1.1fr_0.9fr]">
+            <div>
+              <p className="text-sm font-semibold text-ink/70">
+                {story.category} · {story.readMins} min read
+              </p>
+              <h1 className="mt-2 max-w-3xl font-display text-4xl font-semibold tracking-tight text-balance sm:text-5xl">
+                {story.title}
+              </h1>
+              <p className="mt-4 max-w-xl text-lg leading-relaxed text-ink/80">
+                {story.excerpt}
+              </p>
+              <p className="mt-6 text-sm text-ink/70">
+                By {story.author} ·{" "}
+                {new Date(story.date).toLocaleDateString("en-US", {
+                  month: "long",
+                  day: "numeric",
+                  year: "numeric",
+                })}
+              </p>
+            </div>
+            <div className="relative aspect-[4/3] overflow-hidden rounded-3xl shadow-soft-lg ring-1 ring-ink/10">
+              <MemoryScene variant={sceneFor(story.slug)} uid={story.slug} />
+              <span className="absolute left-4 top-4 rounded-full bg-white/85 px-3 py-1 text-xs font-semibold text-ink backdrop-blur-sm">
+                {story.emoji} {story.category}
+              </span>
+            </div>
+          </div>
         </Container>
       </section>
 

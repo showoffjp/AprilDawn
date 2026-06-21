@@ -1,9 +1,11 @@
 import type { CSSProperties } from "react";
-import { MemoryScene } from "@/components/art/MemoryScene";
+import { MemoryScene, type SceneVariant } from "@/components/art/MemoryScene";
 import { type MockupKind } from "@/lib/designer";
 
 export type PhotoStyle = {
   imageSrc?: string;
+  /** Placeholder scene shown when no uploaded photo is supplied. */
+  scene?: SceneVariant;
   filter?: string;
   transform?: string;
   overlay?: string;
@@ -13,6 +15,7 @@ export type PhotoStyle = {
 
 function PhotoLayer({
   imageSrc,
+  scene = "birthday",
   filter,
   transform,
   overlay,
@@ -30,7 +33,7 @@ function PhotoLayer({
           style={{ filter, transform }}
         />
       ) : (
-        <MemoryScene variant="birthday" uid="preview" style={{ filter, transform }} />
+        <MemoryScene variant={scene} uid={scene} style={{ filter, transform }} />
       )}
       {overlay ? (
         <div
