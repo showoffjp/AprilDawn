@@ -40,7 +40,7 @@ export default function Home() {
             <Badge>✨ The everything store for memories</Badge>
             <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.03] tracking-tight text-balance sm:text-6xl lg:text-7xl">
               Keep your reveries{" "}
-              <span className="text-gradient">forever.</span>
+              <span className="text-gradient text-gradient-animated">forever.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-soft lg:mx-0">
               Upload a photo — or mail us the whole shoebox. AprilDawn digitizes,
