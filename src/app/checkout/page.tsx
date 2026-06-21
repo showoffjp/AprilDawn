@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { useCart } from "@/components/cart/CartProvider";
+import { FreeShipProgress } from "@/components/cart/FreeShipProgress";
 import { shippingFor } from "@/lib/cart";
 import { usd } from "@/lib/utils";
 
@@ -130,6 +131,9 @@ export default function CheckoutPage() {
         {/* Summary */}
         <aside className="h-fit rounded-3xl bg-white p-6 ring-1 ring-ink/10">
           <h2 className="font-display text-xl font-semibold">Your order</h2>
+          <div className="mt-5">
+            <FreeShipProgress subtotal={subtotal} />
+          </div>
           <ul className="mt-5 space-y-3">
             {items.map((item) => (
               <li key={item.id} className="flex items-center gap-3 text-sm">

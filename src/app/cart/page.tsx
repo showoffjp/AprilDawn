@@ -5,6 +5,7 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MemoryScene } from "@/components/art/MemoryScene";
 import { useCart } from "@/components/cart/CartProvider";
+import { FreeShipProgress } from "@/components/cart/FreeShipProgress";
 import { shippingFor } from "@/lib/cart";
 import { usd } from "@/lib/utils";
 
@@ -136,6 +137,9 @@ export default function CartPage() {
           {/* Summary */}
           <aside className="h-fit rounded-3xl bg-white p-6 ring-1 ring-ink/10">
             <h2 className="font-display text-xl font-semibold">Order summary</h2>
+            <div className="mt-5">
+              <FreeShipProgress subtotal={subtotal} />
+            </div>
             <dl className="mt-5 space-y-3 text-sm">
               <div className="flex justify-between">
                 <dt className="text-ink-soft">Subtotal</dt>
@@ -147,11 +151,6 @@ export default function CartPage() {
                   {shipping === 0 ? "Free" : usd(shipping)}
                 </dd>
               </div>
-              {shipping > 0 ? (
-                <p className="text-xs text-ink-soft">
-                  Free shipping on orders over {usd(75)}.
-                </p>
-              ) : null}
               <div className="flex justify-between border-t border-ink/10 pt-3 text-base">
                 <dt className="font-semibold text-ink">Total</dt>
                 <dd className="font-semibold text-ink">{usd(total)}</dd>

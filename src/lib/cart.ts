@@ -24,9 +24,12 @@ export function cartSubtotal(items: CartItem[]): number {
 }
 
 /** Flat-rate demo shipping: free over $75, else $6.95. */
+export const FREE_SHIP_THRESHOLD = 75;
+export const FLAT_SHIP_RATE = 6.95;
+
 export function shippingFor(subtotal: number): number {
   if (subtotal === 0) return 0;
-  return subtotal >= 75 ? 0 : 6.95;
+  return subtotal >= FREE_SHIP_THRESHOLD ? 0 : FLAT_SHIP_RATE;
 }
 
 export function cartTotal(items: CartItem[]): number {
