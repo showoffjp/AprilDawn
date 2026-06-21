@@ -2,6 +2,7 @@
 
 import { useRef } from "react";
 import { cn } from "@/lib/utils";
+import { useReducedMotion } from "@/lib/useReducedMotion";
 
 /**
  * Reusable interactive 3D tilt. Wrap any card/image and it leans toward the
@@ -26,6 +27,17 @@ export function Tilt({
   clip?: boolean;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  const reduced = useReducedMotion();
+
+  if (reduced) {
+    return (
+      <div className={containerClassName}>
+        <div className={cn("relative", clip && cn("overflow-hidden", radiusClass), className)}>
+          {children}
+        </div>
+      </div>
+    );
+  }
 
   function onMove(e: React.MouseEvent<HTMLDivElement>) {
     const el = ref.current;
