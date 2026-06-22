@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
-import { ProductCard } from "@/components/cards/ProductCard";
+import { ShopBrowser } from "@/components/shop/ShopBrowser";
 import { Aurora } from "@/components/effects/Aurora";
-import { productCategories, productsByCategory } from "@/lib/products";
+import { products, productCategories } from "@/lib/products";
 
 export const metadata: Metadata = {
   title: "The Shop — Print on anything",
@@ -33,21 +33,9 @@ export default function ShopPage() {
         </div>
       </section>
 
-      {productCategories.map((category) => (
-        <Section key={category} className="py-12">
-          <div className="flex items-end justify-between">
-            <h2 className="font-display text-2xl font-semibold">{category}</h2>
-            <span className="text-sm text-ink-soft">
-              {productsByCategory(category).length} items
-            </span>
-          </div>
-          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
-            {productsByCategory(category).map((p) => (
-              <ProductCard key={p.slug} product={p} />
-            ))}
-          </div>
-        </Section>
-      ))}
+      <Section className="py-12">
+        <ShopBrowser products={products} categories={productCategories} />
+      </Section>
 
       <div className="bg-cream-deep">
         <Section>
