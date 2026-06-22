@@ -131,8 +131,13 @@ export default function CheckoutPage() {
             ))}
           </ol>
 
-          <div className="mt-7 flex justify-center gap-3">
-            <Button href="/shop">Keep shopping</Button>
+          <div className="mt-7 flex flex-wrap justify-center gap-3">
+            <Button href={`/track?order=${placed.orderId}`}>
+              Track your order
+            </Button>
+            <Button href="/shop" variant="ghost">
+              Keep shopping
+            </Button>
             <Button href="/" variant="ghost">
               Back home
             </Button>
