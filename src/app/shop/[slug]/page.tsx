@@ -7,6 +7,8 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ProductCard } from "@/components/cards/ProductCard";
 import { ProductDesigner } from "@/components/cart/ProductDesigner";
+import { ProductReviews } from "@/components/reviews/ProductReviews";
+import { ProductJsonLd } from "@/components/seo/ProductJsonLd";
 import { RatingInline } from "@/components/social/SocialProof";
 import {
   products,
@@ -51,6 +53,8 @@ export default async function ProductPage({
 
   return (
     <>
+      <ProductJsonLd product={product} />
+
       <Container className="py-10">
         <Link href="/shop" className="text-sm font-medium text-ink-soft hover:text-ink">
           ← Back to the shop
@@ -98,6 +102,10 @@ export default async function ProductPage({
           <ProductDesigner product={product} />
         )}
       </Container>
+
+      <Section className="pt-0">
+        <ProductReviews seed={product.slug} />
+      </Section>
 
       {pairs.length > 0 ? (
         <Section className="pt-0">
