@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { clean, isBot, isEmail, readJson } from "@/lib/validation";
 
 /**
  * Lead capture endpoint (demo stub).
@@ -6,26 +7,35 @@ import { NextResponse } from "next/server";
  * (e.g. via the Gmail API or a transactional email provider).
  */
 export async function POST(request: Request) {
-  let body: Record<string, unknown>;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
+  const body = await readJson(request);
+  if (!body) {
+    return NextResponse.json({ ok: false, error: "Invalid request." }, { status: 400 });
   }
 
-  const name = String(body.name ?? "").trim();
-  const email = String(body.email ?? "").trim();
-  const message = String(body.message ?? "").trim();
+  // Honeypot tripped — pretend success so bots don't retry.
+  if (isBot(body)) {
+    return NextResponse.json({ ok: true, received: true });
+  }
 
-  if (!name || !email || !message) {
+  const name = clean(body.name, 120);
+  const email = clean(body.email, 320);
+  const message = clean(body.message, 5000);
+
+  if (!name || !message) {
     return NextResponse.json(
-      { ok: false, error: "Missing required fields" },
+      { ok: false, error: "Please add your name and a short message." },
+      { status: 422 },
+    );
+  }
+  if (!isEmail(email)) {
+    return NextResponse.json(
+      { ok: false, error: "Please enter a valid email address." },
       { status: 422 },
     );
   }
 
   // TODO: persist + notify. For now we just log on the server.
-  console.log("[contact] new inquiry", { name, email, topic: body.topic });
+  console.log("[contact] new inquiry", { name, email, topic: clean(body.topic, 80) });
 
   return NextResponse.json({ ok: true, received: true });
 }

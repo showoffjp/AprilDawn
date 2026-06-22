@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { Field, Honeypot, TextareaField } from "@/components/ui/Field";
+import { postJson } from "@/lib/postJson";
 
 type Status = "idle" | "submitting" | "done" | "error";
 
@@ -19,6 +21,7 @@ export function EventInquiryForm({
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [ticket, setTicket] = useState("");
+  const [error, setError] = useState("");
   const noun =
     eventType === "Weddings"
       ? "wedding"
@@ -29,25 +32,28 @@ export function EventInquiryForm({
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("submitting");
+    setError("");
     const data = Object.fromEntries(new FormData(e.currentTarget).entries());
-    try {
-      const res = await fetch("/api/inquiry", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, eventType, region }),
-      });
-      if (!res.ok) throw new Error();
-      const json = (await res.json()) as { ticketId: string };
-      setTicket(json.ticketId);
+    const result = await postJson<{ ticketId: string }>("/api/inquiry", {
+      ...data,
+      eventType,
+      region,
+    });
+    if (result.ok) {
+      setTicket(result.data.ticketId);
       setStatus("done");
-    } catch {
+    } else {
+      setError(result.error);
       setStatus("error");
     }
   }
 
   if (status === "done") {
     return (
-      <div className="rounded-3xl bg-white p-8 text-center ring-1 ring-ink/10">
+      <div
+        role="status"
+        className="rounded-3xl bg-white p-8 text-center ring-1 ring-ink/10"
+      >
         <div className="text-5xl">🎉</div>
         <h3 className="mt-3 font-display text-xl font-semibold">
           Request received!
@@ -71,9 +77,9 @@ export function EventInquiryForm({
       className="rounded-3xl bg-white p-6 ring-1 ring-ink/10 sm:p-8"
     >
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Your name" name="name" />
-        <Field label="Email" name="email" type="email" />
-        <Field label="Phone" name="phone" type="tel" required={false} />
+        <Field label="Your name" name="name" autoComplete="name" />
+        <Field label="Email" name="email" type="email" autoComplete="email" />
+        <Field label="Phone" name="phone" type="tel" autoComplete="tel" required={false} />
         <Field label="Event date (or season)" name="date" required={false} />
         <Field
           label="Where in SC?"
@@ -85,63 +91,31 @@ export function EventInquiryForm({
           label={eventType === "Weddings" ? "Guest count" : "Approx. headcount"}
           name="guests"
           type="number"
+          inputMode="numeric"
+          min={1}
           required={false}
         />
       </div>
       <div className="mt-4">
-        <label htmlFor="message" className="text-sm font-medium text-ink">
-          Tell us about your {noun}{" "}
-          <span className="font-normal text-ink-soft">(optional)</span>
-        </label>
-        <textarea
-          id="message"
+        <TextareaField
+          label={`Tell us about your ${noun}`}
           name="message"
           rows={3}
-          className="mt-1.5 w-full rounded-xl border border-ink/15 bg-cream px-3 py-2 text-sm focus:border-dawn-400 focus:outline-none"
           placeholder="Venue, vibe, must-have shots, family photos you'd love restored…"
         />
       </div>
+      <Honeypot />
       <Button className="mt-5 w-full" size="lg" type="submit" disabled={status === "submitting"}>
         {status === "submitting" ? "Sending…" : "Request availability & pricing"}
       </Button>
       {status === "error" ? (
-        <p className="mt-3 text-sm text-dawn-600">
-          Something went wrong — please try again.
+        <p role="alert" className="mt-3 text-sm text-dawn-600">
+          {error || "Something went wrong — please try again."}
         </p>
       ) : null}
       <p className="mt-4 text-center text-xs text-ink-soft">
         🔒 No spam, ever · we reply within one business day
       </p>
     </form>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  required = true,
-  placeholder,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  required?: boolean;
-  placeholder?: string;
-}) {
-  return (
-    <div>
-      <label htmlFor={name} className="text-sm font-medium text-ink">
-        {label}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        required={required}
-        placeholder={placeholder}
-        className="mt-1.5 h-11 w-full rounded-xl border border-ink/15 bg-cream px-3 text-sm focus:border-dawn-400 focus:outline-none"
-      />
-    </div>
   );
 }

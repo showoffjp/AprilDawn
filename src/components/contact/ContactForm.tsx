@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { Field, Honeypot, SelectField, TextareaField } from "@/components/ui/Field";
+import { postJson } from "@/lib/postJson";
 
 type Status = "idle" | "submitting" | "done" | "error";
 
@@ -17,29 +19,30 @@ const topics = [
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>("idle");
+  const [error, setError] = useState("");
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
     setStatus("submitting");
+    setError("");
     const form = e.currentTarget;
     const data = Object.fromEntries(new FormData(form).entries());
-    try {
-      const res = await fetch("/api/contact", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
-      });
-      if (!res.ok) throw new Error();
+    const result = await postJson("/api/contact", data);
+    if (result.ok) {
       setStatus("done");
       form.reset();
-    } catch {
+    } else {
+      setError(result.error);
       setStatus("error");
     }
   }
 
   if (status === "done") {
     return (
-      <div className="rounded-3xl bg-white p-8 text-center ring-1 ring-ink/10">
+      <div
+        role="status"
+        className="rounded-3xl bg-white p-8 text-center ring-1 ring-ink/10"
+      >
         <div className="text-5xl">💌</div>
         <h3 className="mt-4 font-display text-xl font-semibold">Message sent!</h3>
         <p className="mt-2 text-sm text-ink-soft">
@@ -55,72 +58,34 @@ export function ContactForm() {
   return (
     <form onSubmit={onSubmit} className="rounded-3xl bg-white p-8 ring-1 ring-ink/10">
       <div className="grid gap-4 sm:grid-cols-2">
-        <Field label="Your name" name="name" placeholder="Jamie Rivera" />
-        <Field label="Email" name="email" type="email" placeholder="you@email.com" />
+        <Field label="Your name" name="name" autoComplete="name" placeholder="Jamie Rivera" />
+        <Field label="Email" name="email" type="email" autoComplete="email" placeholder="you@email.com" />
       </div>
       <div className="mt-4">
-        <label htmlFor="topic" className="text-sm font-medium text-ink">
-          What can we help with?
-        </label>
-        <select
-          id="topic"
-          name="topic"
-          className="mt-1.5 h-11 w-full rounded-xl border border-ink/15 bg-cream px-3 text-sm focus:border-dawn-400 focus:outline-none"
-        >
+        <SelectField label="What can we help with?" name="topic">
           {topics.map((t) => (
             <option key={t}>{t}</option>
           ))}
-        </select>
+        </SelectField>
       </div>
       <div className="mt-4">
-        <label htmlFor="message" className="text-sm font-medium text-ink">
-          Tell us about your memories
-        </label>
-        <textarea
-          id="message"
+        <TextareaField
+          label="Tell us about your memories"
           name="message"
-          rows={5}
           required
+          rows={5}
           placeholder="I have 6 boxes of slides and a torn wedding photo from 1961…"
-          className="mt-1.5 w-full rounded-xl border border-ink/15 bg-cream px-3 py-2.5 text-sm focus:border-dawn-400 focus:outline-none"
         />
       </div>
+      <Honeypot />
       <Button className="mt-6 w-full" type="submit" disabled={status === "submitting"}>
         {status === "submitting" ? "Sending…" : "Send message"}
       </Button>
       {status === "error" ? (
-        <p className="mt-3 text-sm text-dawn-600">
-          Something went wrong — please email us directly.
+        <p role="alert" className="mt-3 text-sm text-dawn-600">
+          {error || "Something went wrong — please email us directly."}
         </p>
       ) : null}
     </form>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  placeholder,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  placeholder?: string;
-}) {
-  return (
-    <div>
-      <label htmlFor={name} className="text-sm font-medium text-ink">
-        {label}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        required
-        placeholder={placeholder}
-        className="mt-1.5 h-11 w-full rounded-xl border border-ink/15 bg-cream px-3 text-sm focus:border-dawn-400 focus:outline-none"
-      />
-    </div>
   );
 }

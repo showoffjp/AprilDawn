@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { clean, isBot, isEmail, readJson } from "@/lib/validation";
 
 /**
  * Occasion reminder signup (demo stub).
@@ -6,32 +7,36 @@ import { NextResponse } from "next/server";
  * (if the user connected an account) sync from Google/Outlook/Apple/Facebook.
  */
 export async function POST(request: Request) {
-  let body: Record<string, unknown>;
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
+  const body = await readJson(request);
+  if (!body) {
+    return NextResponse.json({ ok: false, error: "Invalid request." }, { status: 400 });
   }
 
-  const person = String(body.person ?? "").trim();
-  const date = String(body.date ?? "").trim();
-  const contact = String(body.contact ?? "").trim();
+  const occasion = clean(body.occasion, 80) || "birthday";
 
-  if (!person || !date || !contact) {
+  // Honeypot tripped — pretend success so bots don't retry.
+  if (isBot(body)) {
+    return NextResponse.json({ ok: true, reminder: { person: "", occasion, date: "" } });
+  }
+
+  const person = clean(body.person, 120);
+  const date = clean(body.date, 40);
+  const contact = clean(body.contact, 320);
+
+  if (!person || !date) {
     return NextResponse.json(
-      { ok: false, error: "Missing required fields" },
+      { ok: false, error: "Please add who it's for and the date." },
+      { status: 422 },
+    );
+  }
+  if (!isEmail(contact)) {
+    return NextResponse.json(
+      { ok: false, error: "Please enter a valid email address." },
       { status: 422 },
     );
   }
 
-  console.log("[reminders] new reminder", {
-    person,
-    occasion: body.occasion,
-    date,
-  });
+  console.log("[reminders] new reminder", { person, occasion, date });
 
-  return NextResponse.json({
-    ok: true,
-    reminder: { person, occasion: body.occasion ?? "birthday", date },
-  });
+  return NextResponse.json({ ok: true, reminder: { person, occasion, date } });
 }
