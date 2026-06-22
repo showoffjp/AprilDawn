@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { footerNav, site } from "@/lib/site";
+import { footerNav, site, studio, studioMapsUrl } from "@/lib/site";
 import { Container } from "@/components/ui/Container";
 import { Logo } from "./Logo";
 import { NewsletterForm } from "./NewsletterForm";
@@ -21,6 +21,32 @@ export function Footer() {
               <a className="text-ink-soft hover:text-ink" href={site.social.youtube}>YouTube</a>
               <a className="text-ink-soft hover:text-ink" href={site.social.pinterest}>Pinterest</a>
             </div>
+            <div className="mt-6 text-sm text-ink-soft">
+              <p className="font-semibold text-ink">
+                📍 {studio.name} · {studio.city}, {studio.state}
+              </p>
+              <p className="mt-1">
+                {studio.street}, {studio.city}, {studio.state} {studio.zip}
+              </p>
+              <p className="mt-1">
+                <a href={studio.phoneHref} className="hover:text-ink">
+                  {studio.phone}
+                </a>{" "}
+                ·{" "}
+                <a href={`mailto:${studio.email}`} className="hover:text-ink">
+                  {studio.email}
+                </a>
+              </p>
+              <a
+                href={studioMapsUrl()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-1 inline-block font-medium text-dawn-600 hover:underline"
+              >
+                Get directions →
+              </a>
+            </div>
+
             <div className="mt-6">
               <p className="text-sm font-semibold text-ink">
                 A little sunrise in your inbox

@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { MemoryScene } from "@/components/art/MemoryScene";
 import { RatingInline, SocialProofCard } from "@/components/social/SocialProof";
 import { EventInquiryForm } from "@/components/events/EventInquiryForm";
+import { EventsJsonLd } from "@/components/events/EventsJsonLd";
 import type {
   EventOffering,
   PackageTier,
@@ -17,6 +18,12 @@ import { fromPrice } from "@/lib/utils";
 export function EventOfferingPage({ offering }: { offering: EventOffering }) {
   return (
     <>
+      <EventsJsonLd
+        path={`/${offering.slug}`}
+        name={`AprilDawn Events — ${offering.label} (Aiken, SC)`}
+        description={offering.hero.intro}
+      />
+
       {/* Hero */}
       <section className={`bg-gradient-to-br ${offering.hero.gradient}`}>
         <Container className="py-16 sm:py-20">
@@ -167,6 +174,34 @@ export function EventOfferingPage({ offering }: { offering: EventOffering }) {
               📍 {area}
             </span>
           ))}
+        </div>
+
+        <div className="mt-10">
+          <h3 className="font-display text-lg font-semibold text-ink">
+            Carolina venues we love
+          </h3>
+          <p className="mt-1 text-sm text-ink-soft">
+            A few favorites near our Aiken home base — and we&rsquo;re happy at
+            yours, wherever it is.
+          </p>
+          <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            {offering.venues.map((v) => (
+              <div
+                key={v.name}
+                className="flex items-center gap-3 rounded-2xl bg-white p-4 ring-1 ring-ink/10"
+              >
+                <span className="text-xl" aria-hidden="true">
+                  🏛️
+                </span>
+                <span>
+                  <span className="block text-sm font-medium text-ink">
+                    {v.name}
+                  </span>
+                  <span className="block text-xs text-ink-soft">{v.area}</span>
+                </span>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 

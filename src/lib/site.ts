@@ -24,6 +24,30 @@ export const site = {
   },
 } as const;
 
+/** Physical home base for AprilDawn Events (weddings & family reunions). */
+export const studio = {
+  name: "AprilDawn Events",
+  street: "148 Laurens St SW",
+  city: "Aiken",
+  state: "SC",
+  zip: "29801",
+  region: "Aiken & the CSRA · greater South Carolina",
+  phone: "(803) 555-0419",
+  phoneHref: "tel:+18035550419",
+  email: "events@aprildawn.com",
+  geo: { lat: 33.5604, lng: -81.7196 },
+  hours: [
+    { days: "Mon–Fri", time: "9am – 6pm" },
+    { days: "Saturday", time: "By appointment" },
+    { days: "Sunday", time: "Closed" },
+  ],
+} as const;
+
+export function studioMapsUrl(): string {
+  const q = `${studio.name}, ${studio.street}, ${studio.city}, ${studio.state} ${studio.zip}`;
+  return `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+}
+
 export type NavItem = { label: string; href: string };
 
 export const mainNav: NavItem[] = [

@@ -64,6 +64,7 @@ export type EventOffering = {
   enhance: { title: string; intro: string; points: string[] };
   coverageIntro: string;
   coverageAreas: string[];
+  venues: { name: string; area: string }[];
   inquiry: { title: string; intro: string };
   faqs: EventFaq[];
   crossLink: { label: string; href: string; blurb: string; emoji: string };
@@ -251,6 +252,14 @@ const weddings: EventOffering = {
     "Greenville & the Upstate",
     "Lake Keowee & the foothills",
   ],
+  venues: [
+    { name: "The Willcox", area: "Aiken" },
+    { name: "Rose Hill Estate", area: "Aiken" },
+    { name: "Green Boundary Club", area: "Aiken" },
+    { name: "The Carriage House at Hopelands", area: "Aiken" },
+    { name: "Magnolia Plantation", area: "Charleston" },
+    { name: "Lowndes Grove", area: "Charleston" },
+  ],
   inquiry: {
     title: "Check your date",
     intro:
@@ -431,6 +440,14 @@ const reunions: EventOffering = {
     "Lake Hartwell & the Upstate",
     "Greenville & Falls Park",
     "Statewide SC parks & lake houses",
+  ],
+  venues: [
+    { name: "Hopelands Gardens", area: "Aiken" },
+    { name: "Hitchcock Woods", area: "Aiken" },
+    { name: "Aiken State Park", area: "Windsor" },
+    { name: "Langley Pond Park", area: "Aiken County" },
+    { name: "Clarks Hill / Lake Thurmond", area: "McCormick" },
+    { name: "Saluda Shoals Park", area: "Columbia" },
   ],
   inquiry: {
     title: "Plan our reunion",

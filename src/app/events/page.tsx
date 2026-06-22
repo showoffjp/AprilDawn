@@ -7,6 +7,7 @@ import { Badge } from "@/components/ui/Badge";
 import { MemoryScene } from "@/components/art/MemoryScene";
 import { RatingInline } from "@/components/social/SocialProof";
 import { EventInquiryForm } from "@/components/events/EventInquiryForm";
+import { EventsJsonLd } from "@/components/events/EventsJsonLd";
 import { eventOfferings } from "@/lib/events";
 
 export const metadata: Metadata = {
@@ -20,6 +21,12 @@ const offerings = [eventOfferings.weddings, eventOfferings.reunions];
 export default function EventsPage() {
   return (
     <>
+      <EventsJsonLd
+        path="/events"
+        name="AprilDawn Events (Aiken, SC)"
+        description="Full-service event planning and photography based in Aiken, SC, serving the greater South Carolina area — weddings and family reunions, with every photo hand-enhanced and printed on anything."
+      />
+
       {/* Hero */}
       <section className="bg-gradient-to-br from-dawn-100 via-cream-deep to-amber-100">
         <Container className="py-16 sm:py-20">
