@@ -19,6 +19,12 @@ export function EventInquiryForm({
 }) {
   const [status, setStatus] = useState<Status>("idle");
   const [ticket, setTicket] = useState("");
+  const noun =
+    eventType === "Weddings"
+      ? "wedding"
+      : eventType === "Family Reunions"
+        ? "reunion"
+        : "event";
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -84,7 +90,7 @@ export function EventInquiryForm({
       </div>
       <div className="mt-4">
         <label htmlFor="message" className="text-sm font-medium text-ink">
-          Tell us about your {eventType === "Weddings" ? "wedding" : "reunion"}{" "}
+          Tell us about your {noun}{" "}
           <span className="font-normal text-ink-soft">(optional)</span>
         </label>
         <textarea

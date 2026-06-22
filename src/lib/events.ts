@@ -14,6 +14,7 @@ export type PackageTier = {
   slug: string;
   name: string;
   emoji: string;
+  scene: SceneVariant;
   tagline: string;
   priceFrom: number;
   coverage: string;
@@ -43,6 +44,7 @@ export type EventOffering = {
   slug: string;
   label: string;
   emoji: string;
+  homeBase: string;
   region: string;
   hero: {
     badge: string;
@@ -72,12 +74,13 @@ const weddings: EventOffering = {
   slug: "weddings",
   label: "Weddings",
   emoji: "💍",
+  homeBase: "Aiken, SC",
   region: "the greater South Carolina area",
   hero: {
-    badge: "💍 Carolina weddings & planning",
+    badge: "💍 Aiken, SC weddings & planning",
     title: "Carolina weddings, kept forever.",
     intro:
-      "Full-service wedding planning and photography across the greater South Carolina area — from Lowcountry oaks to Blue Ridge overlooks. Then AprilDawn does what no other studio can: hand-enhance every frame and print your story on literally anything.",
+      "Full-service wedding planning and photography, run out of Aiken, SC and serving the greater South Carolina area — from Lowcountry oaks to Blue Ridge overlooks. Then AprilDawn does what no other studio can: hand-enhance every frame and print your story on literally anything.",
     gradient: "from-rose-200 via-dawn-100 to-amber-100",
     scene: "garden",
     ctaPrimary: "Check your date",
@@ -99,6 +102,7 @@ const weddings: EventOffering = {
       slug: "elopement",
       name: "The Elopement",
       emoji: "🌊",
+      scene: "beach",
       tagline: "Just the two of you.",
       priceFrom: 1800,
       coverage: "4 hours",
@@ -117,6 +121,7 @@ const weddings: EventOffering = {
       slug: "essential",
       name: "The Essential",
       emoji: "🤍",
+      scene: "garden",
       tagline: "The day, beautifully covered.",
       priceFrom: 3200,
       coverage: "6 hours",
@@ -135,6 +140,7 @@ const weddings: EventOffering = {
       slug: "signature",
       name: "The Signature",
       emoji: "✨",
+      scene: "sunset",
       tagline: "The classic full-day Carolina wedding.",
       priceFrom: 4900,
       coverage: "8 hours",
@@ -155,6 +161,7 @@ const weddings: EventOffering = {
       slug: "heirloom",
       name: "The Heirloom",
       emoji: "🎞️",
+      scene: "sunrise",
       tagline: "The works — photo and film.",
       priceFrom: 7500,
       coverage: "10 hours",
@@ -174,6 +181,7 @@ const weddings: EventOffering = {
       slug: "luxe",
       name: "The All-Day Luxe Weekend",
       emoji: "🥂",
+      scene: "birthday",
       tagline: "Rehearsal to send-off brunch.",
       priceFrom: 12000,
       coverage: "Up to 3 days",
@@ -232,16 +240,16 @@ const weddings: EventOffering = {
     ],
   },
   coverageIntro:
-    "Travel anywhere in the greater South Carolina area is included with every collection. Destination weddings across the Carolinas and Savannah are welcome.",
+    "We're based in Aiken, SC, and travel anywhere in the greater South Carolina area is included with every collection. Destination weddings across the Carolinas, Augusta, and Savannah are welcome.",
   coverageAreas: [
+    "Aiken & the CSRA — home base",
+    "Augusta & the Savannah River",
+    "Columbia & the Midlands",
     "Charleston & the Lowcountry",
     "Hilton Head & Bluffton",
-    "Beaufort & the Sea Islands",
     "Myrtle Beach & the Grand Strand",
-    "Columbia & the Midlands",
     "Greenville & the Upstate",
     "Lake Keowee & the foothills",
-    "Aiken & Spartanburg",
   ],
   inquiry: {
     title: "Check your date",
@@ -269,12 +277,13 @@ const reunions: EventOffering = {
   slug: "family-reunions",
   label: "Family Reunions",
   emoji: "🎪",
+  homeBase: "Aiken, SC",
   region: "the greater South Carolina area",
   hero: {
-    badge: "🎪 Family reunions & photography",
+    badge: "🎪 Aiken, SC reunions & photography",
     title: "Get the whole family in the frame.",
     intro:
-      "Reunion planning and photography across the greater South Carolina area — parks, beaches, and lake houses. Then AprilDawn preserves the whole legacy: digitize every relative's shoebox, enhance the oldest photos, and print your family on literally anything.",
+      "Reunion planning and photography, run out of Aiken, SC and serving the greater South Carolina area — parks, beaches, and lake houses. Then AprilDawn preserves the whole legacy: digitize every relative's shoebox, enhance the oldest photos, and print your family on literally anything.",
     gradient: "from-amber-200 via-dawn-100 to-emerald-100",
     scene: "picnic",
     ctaPrimary: "Plan our reunion",
@@ -296,6 +305,7 @@ const reunions: EventOffering = {
       slug: "gathering",
       name: "The Gathering",
       emoji: "🧺",
+      scene: "picnic",
       tagline: "An afternoon, captured.",
       priceFrom: 650,
       coverage: "2 hours",
@@ -314,6 +324,7 @@ const reunions: EventOffering = {
       slug: "homecoming",
       name: "The Homecoming",
       emoji: "🏡",
+      scene: "garden",
       tagline: "The classic all-day reunion.",
       priceFrom: 1400,
       coverage: "Half day · 4 hours",
@@ -334,6 +345,7 @@ const reunions: EventOffering = {
       slug: "legacy",
       name: "The Legacy Weekend",
       emoji: "🎉",
+      scene: "beach",
       tagline: "A whole weekend together.",
       priceFrom: 2800,
       coverage: "Up to 8 hours / weekend",
@@ -353,6 +365,7 @@ const reunions: EventOffering = {
       slug: "dynasty",
       name: "The Dynasty Archive",
       emoji: "🌳",
+      scene: "sunset",
       tagline: "Preserve the whole legacy.",
       priceFrom: 4500,
       coverage: "Multi-day",
@@ -408,15 +421,15 @@ const reunions: EventOffering = {
     ],
   },
   coverageIntro:
-    "Travel anywhere in the greater South Carolina area is included. Lake houses, state parks, and beach rentals are our happy place.",
+    "We're based in Aiken, SC, and travel anywhere in the greater South Carolina area is included. Lake houses, state parks, and beach rentals are our happy place.",
   coverageAreas: [
+    "Aiken & the CSRA — home base",
+    "Augusta & the Savannah River",
+    "Lake Murray & Columbia",
     "Charleston parks & beaches",
     "Myrtle Beach & the Grand Strand",
-    "Hilton Head & Beaufort",
-    "Lake Murray & Columbia",
     "Lake Hartwell & the Upstate",
     "Greenville & Falls Park",
-    "Table Rock & the foothills",
     "Statewide SC parks & lake houses",
   ],
   inquiry: {

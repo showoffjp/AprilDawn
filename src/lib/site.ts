@@ -48,6 +48,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
   {
     title: "Flagship experiences",
     items: [
+      { label: "Events — Aiken, SC", href: "/events" },
       { label: "SC Weddings", href: "/weddings" },
       { label: "SC Family Reunions", href: "/family-reunions" },
       { label: "The Living Wall", href: "/living-wall" },

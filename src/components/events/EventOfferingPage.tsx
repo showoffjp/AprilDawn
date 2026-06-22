@@ -40,7 +40,7 @@ export function EventOfferingPage({ offering }: { offering: EventOffering }) {
               <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-2">
                 <RatingInline />
                 <span className="text-sm font-medium text-ink/70">
-                  📍 Serving {offering.region}
+                  📍 Based in {offering.homeBase} · serving {offering.region}
                 </span>
               </div>
             </div>
@@ -61,7 +61,7 @@ export function EventOfferingPage({ offering }: { offering: EventOffering }) {
         />
         <div className="mt-10 grid gap-6 lg:grid-cols-3">
           {offering.packages.map((p) => (
-            <PackageCard key={p.slug} pkg={p} />
+            <PackageCard key={p.slug} pkg={p} offeringSlug={offering.slug} />
           ))}
         </div>
         <p className="mt-6 text-center text-sm text-ink-soft">
@@ -225,47 +225,66 @@ export function EventOfferingPage({ offering }: { offering: EventOffering }) {
   );
 }
 
-function PackageCard({ pkg }: { pkg: PackageTier }) {
+function PackageCard({
+  pkg,
+  offeringSlug,
+}: {
+  pkg: PackageTier;
+  offeringSlug: string;
+}) {
   return (
     <div
-      className={`flex flex-col rounded-3xl bg-white p-8 ring-1 ${
+      className={`flex flex-col overflow-hidden rounded-3xl bg-white ring-1 ${
         pkg.highlight ? "ring-2 ring-dawn-400 shadow-soft-lg" : "ring-ink/10"
       }`}
     >
-      <div className="flex items-center justify-between">
-        <span className="text-4xl" aria-hidden="true">
+      <div className="relative h-32 overflow-hidden">
+        <MemoryScene
+          variant={pkg.scene}
+          uid={`pkg-${offeringSlug}-${pkg.slug}`}
+        />
+        <div className="absolute inset-0 bg-gradient-to-t from-ink/65 via-ink/10 to-transparent" />
+        <span className="absolute left-4 top-4 text-3xl drop-shadow" aria-hidden="true">
           {pkg.emoji}
         </span>
-        {pkg.highlight ? <Badge tone="amber">Most booked</Badge> : null}
+        {pkg.highlight ? (
+          <span className="absolute right-3 top-3">
+            <Badge tone="amber">Most booked</Badge>
+          </span>
+        ) : null}
+        <h3 className="absolute inset-x-4 bottom-3 font-display text-xl font-semibold text-white drop-shadow">
+          {pkg.name}
+        </h3>
       </div>
-      <h3 className="mt-4 font-display text-xl font-semibold">{pkg.name}</h3>
-      <p className="mt-1 text-sm font-medium text-dawn-600">{pkg.tagline}</p>
-      <p className="mt-4 font-display text-2xl font-semibold text-ink">
-        {fromPrice(pkg.priceFrom)}
-      </p>
-      <div className="mt-4 flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink-soft">
-        <span>🕒 {pkg.coverage}</span>
-        <span>📷 {pkg.team}</span>
+      <div className="flex flex-1 flex-col p-7">
+        <p className="text-sm font-medium text-dawn-600">{pkg.tagline}</p>
+        <p className="mt-3 font-display text-2xl font-semibold text-ink">
+          {fromPrice(pkg.priceFrom)}
+        </p>
+        <div className="mt-3 flex flex-wrap gap-x-4 gap-y-1 text-xs text-ink-soft">
+          <span>🕒 {pkg.coverage}</span>
+          <span>📷 {pkg.team}</span>
+        </div>
+        <p className="mt-3 text-xs font-medium text-ink-soft">
+          Best for: {pkg.bestFor}
+        </p>
+        <ul className="mt-5 flex-1 space-y-2 text-sm text-ink-soft">
+          {pkg.includes.map((item) => (
+            <li key={item} className="flex items-start gap-2">
+              <span className="mt-0.5 text-dawn-500">✓</span>
+              {item}
+            </li>
+          ))}
+        </ul>
+        <Button
+          href="#inquire"
+          size="sm"
+          variant={pkg.highlight ? "primary" : "ghost"}
+          className="mt-6"
+        >
+          Check availability
+        </Button>
       </div>
-      <p className="mt-3 text-xs font-medium text-ink-soft">
-        Best for: {pkg.bestFor}
-      </p>
-      <ul className="mt-5 flex-1 space-y-2 text-sm text-ink-soft">
-        {pkg.includes.map((item) => (
-          <li key={item} className="flex items-start gap-2">
-            <span className="mt-0.5 text-dawn-500">✓</span>
-            {item}
-          </li>
-        ))}
-      </ul>
-      <Button
-        href="#inquire"
-        size="sm"
-        variant={pkg.highlight ? "primary" : "ghost"}
-        className="mt-6"
-      >
-        Check availability
-      </Button>
     </div>
   );
 }
