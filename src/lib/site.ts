@@ -28,10 +28,10 @@ export type NavItem = { label: string; href: string };
 
 export const mainNav: NavItem[] = [
   { label: "Services", href: "/services" },
+  { label: "Weddings", href: "/weddings" },
+  { label: "Reunions", href: "/family-reunions" },
   { label: "The Living Wall", href: "/living-wall" },
-  { label: "Memory Mail", href: "/memory-mail" },
   { label: "Occasions", href: "/occasions" },
-  { label: "How it works", href: "/how-it-works" },
   { label: "Pricing", href: "/pricing" },
 ];
 
@@ -48,6 +48,8 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
   {
     title: "Flagship experiences",
     items: [
+      { label: "SC Weddings", href: "/weddings" },
+      { label: "SC Family Reunions", href: "/family-reunions" },
       { label: "The Living Wall", href: "/living-wall" },
       { label: "Memory Mail", href: "/memory-mail" },
       { label: "Occasions & auto-gifting", href: "/occasions" },
