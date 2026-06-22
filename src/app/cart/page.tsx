@@ -6,7 +6,9 @@ import { Button } from "@/components/ui/Button";
 import { MemoryScene } from "@/components/art/MemoryScene";
 import { useCart } from "@/components/cart/CartProvider";
 import { FreeShipProgress } from "@/components/cart/FreeShipProgress";
+import { CartUpsell } from "@/components/cart/CartUpsell";
 import { shippingFor } from "@/lib/cart";
+import { isAddon } from "@/lib/addons";
 import { usd } from "@/lib/utils";
 
 export default function CartPage() {
@@ -73,16 +75,24 @@ export default function CartPage() {
                 <div className="min-w-0 flex-1">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <Link
-                        href={`/shop/${item.slug}`}
-                        className="font-medium text-ink hover:text-dawn-600"
-                      >
-                        {item.name}
-                      </Link>
-                      <p className="mt-0.5 text-xs text-ink-soft">
-                        {item.size ? `Size ${item.size} · ` : ""}
-                        {item.photoName ? `📷 ${item.photoName}` : "Photo added later"}
-                      </p>
+                      {isAddon(item.slug) ? (
+                        <span className="font-medium text-ink">{item.name}</span>
+                      ) : (
+                        <Link
+                          href={`/shop/${item.slug}`}
+                          className="font-medium text-ink hover:text-dawn-600"
+                        >
+                          {item.name}
+                        </Link>
+                      )}
+                      {!isAddon(item.slug) ? (
+                        <p className="mt-0.5 text-xs text-ink-soft">
+                          {item.size ? `Size ${item.size} · ` : ""}
+                          {item.photoName
+                            ? `📷 ${item.photoName}`
+                            : "Photo added later"}
+                        </p>
+                      ) : null}
                       {item.notes ? (
                         <p className="mt-1 text-xs italic text-ink-soft">
                           “{item.notes}”
@@ -163,6 +173,10 @@ export default function CartPage() {
               🆓 Free proofs · no charge until you approve
             </p>
           </aside>
+
+          <div className="lg:col-span-2">
+            <CartUpsell />
+          </div>
         </div>
       )}
     </Container>
