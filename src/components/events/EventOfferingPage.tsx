@@ -4,9 +4,14 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { MemoryScene } from "@/components/art/MemoryScene";
-import { RatingInline, SocialProofCard } from "@/components/social/SocialProof";
+import {
+  RatingStars,
+  RatingInline,
+  SocialProofCard,
+} from "@/components/social/SocialProof";
 import { EventInquiryForm } from "@/components/events/EventInquiryForm";
 import { EventsJsonLd } from "@/components/events/EventsJsonLd";
+import { FaqJsonLd } from "@/components/seo/FaqJsonLd";
 import type {
   EventOffering,
   PackageTier,
@@ -14,6 +19,14 @@ import type {
   AddOn,
 } from "@/lib/events";
 import { fromPrice } from "@/lib/utils";
+
+const PROCESS = [
+  { t: "Tell us your date", d: "A quick inquiry; we send availability and a full pricing guide." },
+  { t: "Plan it together", d: "Lock your date, build your collection, and map the timeline." },
+  { t: "We capture the day", d: "On-site anywhere in the greater South Carolina area." },
+  { t: "Hand-enhanced gallery", d: "Every image finished by our studio in your private gallery." },
+  { t: "Print it on anything", d: "Albums, canvas, a Living Wall, shirts, vinyl — your story, everywhere." },
+];
 
 export function EventOfferingPage({ offering }: { offering: EventOffering }) {
   return (
@@ -23,6 +36,7 @@ export function EventOfferingPage({ offering }: { offering: EventOffering }) {
         name={`AprilDawn Events — ${offering.label} (Aiken, SC)`}
         description={offering.hero.intro}
       />
+      <FaqJsonLd faqs={offering.faqs} />
 
       {/* Hero */}
       <section className={`bg-gradient-to-br ${offering.hero.gradient}`}>
@@ -106,6 +120,32 @@ export function EventOfferingPage({ offering }: { offering: EventOffering }) {
           ))}
         </div>
       </Section>
+
+      {/* How we work */}
+      <div className="bg-cream-deep">
+        <Section>
+          <SectionHeading
+            center
+            eyebrow="How we work"
+            title="From hello to heirloom"
+            intro="A simple path from first message to a story you can hold."
+          />
+          <ol className="mt-10 grid gap-5 sm:grid-cols-2 lg:grid-cols-5">
+            {PROCESS.map((step, i) => (
+              <li
+                key={step.t}
+                className="rounded-3xl bg-white p-6 ring-1 ring-ink/10"
+              >
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-dawn-500 text-sm font-bold text-white">
+                  {i + 1}
+                </span>
+                <h3 className="mt-3 font-semibold text-ink">{step.t}</h3>
+                <p className="mt-1 text-sm text-ink-soft">{step.d}</p>
+              </li>
+            ))}
+          </ol>
+        </Section>
+      </div>
 
       {/* The AprilDawn difference: enhance + print on anything */}
       <Section>
@@ -202,6 +242,32 @@ export function EventOfferingPage({ offering }: { offering: EventOffering }) {
               </div>
             ))}
           </div>
+        </div>
+      </Section>
+
+      {/* Testimonials */}
+      <Section>
+        <SectionHeading
+          center
+          eyebrow="Carolina families"
+          title="Loved across the Palmetto State"
+        />
+        <div className="mt-10 grid gap-5 lg:grid-cols-3">
+          {offering.testimonials.map((t) => (
+            <figure
+              key={t.name}
+              className="flex flex-col rounded-3xl bg-white p-6 ring-1 ring-ink/10"
+            >
+              <RatingStars rating={5} />
+              <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-ink-soft">
+                &ldquo;{t.quote}&rdquo;
+              </blockquote>
+              <figcaption className="mt-4 text-sm font-semibold text-ink">
+                {t.name}{" "}
+                <span className="font-normal text-ink-soft">· {t.location}</span>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </Section>
 

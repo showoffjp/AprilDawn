@@ -66,6 +66,7 @@ export type EventOffering = {
   coverageAreas: string[];
   venues: { name: string; area: string }[];
   inquiry: { title: string; intro: string };
+  testimonials: { quote: string; name: string; location: string }[];
   faqs: EventFaq[];
   crossLink: { label: string; href: string; blurb: string; emoji: string };
 };
@@ -273,6 +274,11 @@ const weddings: EventOffering = {
     { q: "What's required to book?", a: "A signed agreement and a 30% retainer reserve your date; the balance is due two weeks before the wedding. Payment plans are available." },
     { q: "Can you print on things besides prints and albums?", a: "That's the whole point of AprilDawn — we'll put your photos on canvas, metal, blankets, mugs, a Living Wall, vinyl records, and 4,000+ other things." },
   ],
+  testimonials: [
+    { quote: "They planned our Aiken wedding at Rose Hill, shot it, and then restored my grandmother's 1961 wedding photo for the welcome table. Not a dry eye in the house.", name: "Bailey & Wes", location: "Aiken, SC" },
+    { quote: "The hand-enhanced gallery looked like a magazine — we put our favorite on a canvas the size of a door. Worth every single penny.", name: "Priya & Sam", location: "Columbia, SC" },
+    { quote: "Day-of coordination so smooth I actually got to enjoy my own wedding. Then they pressed a vinyl of our first dance. Unreal.", name: "The Harpers", location: "Greenville, SC" },
+  ],
   crossLink: {
     label: "Planning a family reunion instead?",
     href: "/family-reunions",
@@ -461,6 +467,11 @@ const reunions: EventOffering = {
     { q: "Can everyone get matching shirts?", a: "Absolutely. We design and print custom reunion apparel and keepsakes — shirts, hoodies, mugs, totes, and 4,000+ other things — with your family photos or a custom reunion logo." },
     { q: "How do we share the photos with the whole family?", a: "Every package includes a private shared gallery with a print release, so every household can view, download, and order prints." },
     { q: "What does it take to book?", a: "A date, an approximate headcount, and a 25% deposit. We'll help with the rest, including venue and lodging if you need it." },
+  ],
+  testimonials: [
+    { quote: "We mailed in everyone's shoeboxes; by the reunion the whole family archive was a slideshow on a Living Wall. Four generations cried.", name: "The Okafor family", location: "Aiken, SC" },
+    { quote: "Drone group photo, matching shirts for 60 cousins, and a photo book for every household. AprilDawn ran the entire weekend.", name: "The Romano family", location: "Lake Murray, SC" },
+    { quote: "They restored our oldest family photo — torn and water-stained — for the heritage table. It looked brand new. Everyone fought over copies.", name: "Aisha R.", location: "Charleston, SC" },
   ],
   crossLink: {
     label: "Planning a wedding instead?",
