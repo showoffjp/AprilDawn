@@ -13,6 +13,8 @@ export async function POST(request: Request) {
     email?: string;
     items?: unknown[];
     total?: number;
+    isGift?: string;
+    giftMessage?: string;
   };
   try {
     body = await request.json();
@@ -34,6 +36,8 @@ export async function POST(request: Request) {
     email: body.email,
     lineCount: body.items.length,
     total: body.total,
+    isGift: body.isGift === "on",
+    giftMessage: body.giftMessage || undefined,
   });
 
   return NextResponse.json({ ok: true, orderId });

@@ -15,6 +15,7 @@ export default function CheckoutPage() {
   const { items, subtotal, clear } = useCart();
   const [status, setStatus] = useState<Status>("idle");
   const [orderId, setOrderId] = useState<string>("");
+  const [gift, setGift] = useState(false);
   const shipping = shippingFor(subtotal);
   const total = subtotal + shipping;
 
@@ -51,6 +52,12 @@ export default function CheckoutPage() {
             A memory specialist will send free proofs to your email before
             anything is produced — no charge until you approve.
           </p>
+          {gift ? (
+            <p className="mt-3 text-sm text-dawn-600">
+              🎁 We&rsquo;ll tuck your gift card inside and keep prices off the
+              packing slip.
+            </p>
+          ) : null}
           <p className="mt-4 rounded-2xl bg-cream-deep p-3 text-xs text-ink-soft">
             Demo checkout — wire <code>/api/checkout</code> to Stripe to take real
             payments.
@@ -98,6 +105,44 @@ export default function CheckoutPage() {
             <Field label="State / Region" name="region" />
             <Field label="ZIP / Postal code" name="postal" />
             <Field label="Country" name="country" defaultValue="United States" />
+          </div>
+
+          <div className="mt-8 rounded-2xl bg-cream p-5 ring-1 ring-ink/10">
+            <label className="flex cursor-pointer items-center gap-3">
+              <input
+                type="checkbox"
+                name="isGift"
+                checked={gift}
+                onChange={(e) => setGift(e.target.checked)}
+                className="h-5 w-5 rounded border-ink/25 text-dawn-500 focus:ring-dawn-400"
+              />
+              <span className="font-display text-lg font-semibold">
+                🎁 This is a gift
+              </span>
+            </label>
+            {gift ? (
+              <div className="mt-4">
+                <label
+                  htmlFor="giftMessage"
+                  className="text-sm font-medium text-ink"
+                >
+                  Gift message{" "}
+                  <span className="font-normal text-ink-soft">(optional)</span>
+                </label>
+                <textarea
+                  id="giftMessage"
+                  name="giftMessage"
+                  rows={3}
+                  maxLength={250}
+                  placeholder="Happy birthday, Mom — we finally found the old beach photos. ❤️"
+                  className="mt-1.5 w-full rounded-xl border border-ink/15 bg-white px-3 py-2 text-sm focus:border-dawn-400 focus:outline-none"
+                />
+                <p className="mt-1.5 text-xs text-ink-soft">
+                  We&rsquo;ll hand-letter this on a card tucked inside — and leave
+                  all prices off the packing slip.
+                </p>
+              </div>
+            ) : null}
           </div>
 
           <h2 className="mt-8 font-display text-xl font-semibold">Payment</h2>
