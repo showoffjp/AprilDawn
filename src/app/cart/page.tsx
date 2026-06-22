@@ -7,6 +7,7 @@ import { MemoryScene } from "@/components/art/MemoryScene";
 import { useCart } from "@/components/cart/CartProvider";
 import { FreeShipProgress } from "@/components/cart/FreeShipProgress";
 import { CartUpsell } from "@/components/cart/CartUpsell";
+import { RatingInline } from "@/components/social/SocialProof";
 import { shippingFor } from "@/lib/cart";
 import { isAddon } from "@/lib/addons";
 import { usd } from "@/lib/utils";
@@ -172,6 +173,9 @@ export default function CartPage() {
             <p className="mt-3 text-center text-xs text-ink-soft">
               🆓 Free proofs · no charge until you approve
             </p>
+            <div className="mt-4 flex justify-center border-t border-ink/10 pt-4">
+              <RatingInline />
+            </div>
           </aside>
 
           <div className="lg:col-span-2">

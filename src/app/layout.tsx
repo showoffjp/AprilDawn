@@ -10,6 +10,7 @@ import { SiteBackground } from "@/components/site/SiteBackground";
 import { CommandPalette } from "@/components/site/CommandPalette";
 import { FloatingHelp } from "@/components/site/FloatingHelp";
 import { CartProvider } from "@/components/cart/CartProvider";
+import { CartSaveBanner } from "@/components/cart/CartSaveBanner";
 import { ScrollProgress } from "@/components/effects/ScrollProgress";
 
 const geistSans = Geist({
@@ -102,6 +103,7 @@ export default function RootLayout({
           <main className="flex-1">{children}</main>
           <Footer />
           <FloatingHelp />
+          <CartSaveBanner />
         </CartProvider>
       </body>
     </html>
