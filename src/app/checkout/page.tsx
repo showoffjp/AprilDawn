@@ -44,7 +44,7 @@ export default function CheckoutPage() {
         orderId: json.orderId,
         items,
         total,
-        isGift: data.isGift === "on",
+        isGift: gift,
         giftMessage:
           typeof data.giftMessage === "string" ? data.giftMessage : "",
       });

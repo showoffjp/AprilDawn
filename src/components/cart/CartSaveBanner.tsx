@@ -49,7 +49,9 @@ export function CartSaveBanner() {
     }
   }, [count]);
 
-  // Keep the timestamp fresh while the shopper is active.
+  // Record "last seen" only when the shopper leaves (tab hidden or unload), so
+  // the timestamp reflects when they actually left — never overwritten on the
+  // return visit before the gap is evaluated.
   useEffect(() => {
     const touch = () => {
       try {
@@ -58,10 +60,13 @@ export function CartSaveBanner() {
         // ignore storage errors
       }
     };
-    document.addEventListener("visibilitychange", touch);
+    const onVisibility = () => {
+      if (document.visibilityState === "hidden") touch();
+    };
+    document.addEventListener("visibilitychange", onVisibility);
     window.addEventListener("beforeunload", touch);
     return () => {
-      document.removeEventListener("visibilitychange", touch);
+      document.removeEventListener("visibilitychange", onVisibility);
       window.removeEventListener("beforeunload", touch);
     };
   }, []);
