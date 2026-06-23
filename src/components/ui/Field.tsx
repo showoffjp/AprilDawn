@@ -20,6 +20,8 @@ type CommonProps = {
   required?: boolean;
   /** Muted helper text shown next to the label. */
   hint?: ReactNode;
+  /** Extra classes for the wrapping element (e.g. column spans). */
+  className?: string;
 };
 
 type FieldProps = CommonProps & {
@@ -42,9 +44,10 @@ export function Field({
   inputMode,
   min,
   hint,
+  className,
 }: FieldProps) {
   return (
-    <div>
+    <div className={className}>
       <label htmlFor={name} className={labelClass}>
         {label}
         {!required && !hint ? <Hint>(optional)</Hint> : null}

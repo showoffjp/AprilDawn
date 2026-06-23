@@ -4,6 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
+import { Field } from "@/components/ui/Field";
 import { useCart } from "@/components/cart/CartProvider";
 import { FreeShipProgress } from "@/components/cart/FreeShipProgress";
 import { SocialProofCard } from "@/components/social/SocialProof";
@@ -177,13 +178,23 @@ export default function CheckoutPage() {
         <form onSubmit={onSubmit} className="rounded-3xl bg-white p-6 ring-1 ring-ink/10 sm:p-8">
           <h2 className="font-display text-xl font-semibold">Shipping details</h2>
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
-            <Field label="Full name" name="name" />
-            <Field label="Email" name="email" type="email" />
-            <Field label="Address" name="address" className="sm:col-span-2" />
-            <Field label="City" name="city" />
-            <Field label="State / Region" name="region" />
-            <Field label="ZIP / Postal code" name="postal" />
-            <Field label="Country" name="country" defaultValue="United States" />
+            <Field label="Full name" name="name" autoComplete="name" />
+            <Field label="Email" name="email" type="email" autoComplete="email" />
+            <Field
+              label="Address"
+              name="address"
+              autoComplete="street-address"
+              className="sm:col-span-2"
+            />
+            <Field label="City" name="city" autoComplete="address-level2" />
+            <Field label="State / Region" name="region" autoComplete="address-level1" />
+            <Field label="ZIP / Postal code" name="postal" autoComplete="postal-code" />
+            <Field
+              label="Country"
+              name="country"
+              autoComplete="country-name"
+              defaultValue="United States"
+            />
           </div>
 
           <div className="mt-8 rounded-2xl bg-cream p-5 ring-1 ring-ink/10">
@@ -304,35 +315,5 @@ export default function CheckoutPage() {
         </aside>
       </div>
     </Container>
-  );
-}
-
-function Field({
-  label,
-  name,
-  type = "text",
-  className,
-  defaultValue,
-}: {
-  label: string;
-  name: string;
-  type?: string;
-  className?: string;
-  defaultValue?: string;
-}) {
-  return (
-    <div className={className}>
-      <label htmlFor={name} className="text-sm font-medium text-ink">
-        {label}
-      </label>
-      <input
-        id={name}
-        name={name}
-        type={type}
-        required
-        defaultValue={defaultValue}
-        className="mt-1.5 h-11 w-full rounded-xl border border-ink/15 bg-cream px-3 text-sm focus:border-dawn-400 focus:outline-none"
-      />
-    </div>
   );
 }
