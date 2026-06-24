@@ -3,6 +3,7 @@ import { site } from "@/lib/site";
 import { services } from "@/lib/services";
 import { products } from "@/lib/products";
 import { stories } from "@/lib/stories";
+import { collections } from "@/lib/collections";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -21,6 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/reviews",
     "/gallery",
     "/gift-finder",
+    "/collections",
     "/shop",
     "/upload",
     "/vault",
@@ -49,5 +51,16 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
-  return [...routes, ...serviceRoutes, ...productRoutes, ...storyRoutes];
+  const collectionRoutes = collections.map((c) => ({
+    url: `${site.url}/collections/${c.slug}`,
+    lastModified: new Date(),
+  }));
+
+  return [
+    ...routes,
+    ...serviceRoutes,
+    ...productRoutes,
+    ...collectionRoutes,
+    ...storyRoutes,
+  ];
 }

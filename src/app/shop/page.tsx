@@ -2,8 +2,10 @@ import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { ShopBrowser } from "@/components/shop/ShopBrowser";
+import { CollectionCard } from "@/components/collections/CollectionCard";
 import { Aurora } from "@/components/effects/Aurora";
 import { products, productCategories } from "@/lib/products";
+import { collections } from "@/lib/collections";
 
 export const metadata: Metadata = {
   title: "The Shop — Print on anything",
@@ -35,6 +37,24 @@ export default function ShopPage() {
 
       <Section className="py-12">
         <ShopBrowser products={products} categories={productCategories} />
+      </Section>
+
+      <Section className="pt-0">
+        <SectionHeading
+          eyebrow="Shop by collection"
+          title="Gift guides for everyone on your list"
+          intro="Hand-picked edits for grandparents, pet lovers, reunions, memorials, and more."
+        />
+        <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {collections.slice(0, 3).map((collection) => (
+            <CollectionCard key={collection.slug} collection={collection} />
+          ))}
+        </div>
+        <div className="mt-8">
+          <Button href="/collections" variant="ghost">
+            See all gift collections →
+          </Button>
+        </div>
       </Section>
 
       <div className="bg-cream-deep">
