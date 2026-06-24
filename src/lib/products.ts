@@ -93,6 +93,33 @@ export function productHasSizes(product: Product): boolean {
   return product.category === "Apparel";
 }
 
+/** Complementary categories used to power the "Pairs well with" cross-sell. */
+const PAIRINGS: Record<ProductCategory, ProductCategory[]> = {
+  Apparel: ["Drinkware", "Home"],
+  "Wall Art": ["Home", "Everything Else"],
+  Home: ["Wall Art", "Drinkware"],
+  Drinkware: ["Apparel", "Accessories"],
+  Accessories: ["Apparel", "Drinkware"],
+  "Everything Else": ["Wall Art", "Apparel"],
+};
+
+/**
+ * Cross-category cross-sell: complementary in-house products that pair well
+ * with the given one. Bestsellers first, then most approachable by price.
+ */
+export function pairsWith(product: Product, n = 4): Product[] {
+  const cats = PAIRINGS[product.category] ?? [];
+  const pool = cats
+    .flatMap((c) => productsByCategory(c))
+    .filter((p) => p.slug !== product.slug && !p.affiliate);
+  const sorted = pool.sort(
+    (a, b) =>
+      Number(Boolean(b.bestseller)) - Number(Boolean(a.bestseller)) ||
+      a.priceFrom - b.priceFrom,
+  );
+  return sorted.slice(0, n);
+}
+
 /**
  * Build an Amazon Associates link with our tracking tag. The tag comes from
  * NEXT_PUBLIC_AMAZON_ASSOCIATES_TAG so it is never hard-coded.

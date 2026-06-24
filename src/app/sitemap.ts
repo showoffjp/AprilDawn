@@ -8,6 +8,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
     "",
     "/services",
+    "/events",
+    "/weddings",
+    "/family-reunions",
     "/living-wall",
     "/memory-mail",
     "/occasions",
@@ -16,6 +19,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/partners",
     "/stories",
     "/reviews",
+    "/gallery",
     "/gift-finder",
     "/shop",
     "/upload",

@@ -125,6 +125,10 @@ export function Uploader() {
           <div className="flex items-center justify-between">
             <h3 className="font-semibold text-ink">
               {items.length} {items.length === 1 ? "file" : "files"} ready
+              <span className="font-normal text-ink-soft">
+                {" "}
+                · {prettySize(items.reduce((sum, i) => sum + i.size, 0))}
+              </span>
             </h3>
             <button
               type="button"

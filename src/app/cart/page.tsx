@@ -5,7 +5,11 @@ import { Container } from "@/components/ui/Container";
 import { Button } from "@/components/ui/Button";
 import { MemoryScene } from "@/components/art/MemoryScene";
 import { useCart } from "@/components/cart/CartProvider";
+import { FreeShipProgress } from "@/components/cart/FreeShipProgress";
+import { CartUpsell } from "@/components/cart/CartUpsell";
+import { RatingInline } from "@/components/social/SocialProof";
 import { shippingFor } from "@/lib/cart";
+import { isAddon } from "@/lib/addons";
 import { usd } from "@/lib/utils";
 
 export default function CartPage() {
@@ -72,16 +76,24 @@ export default function CartPage() {
                 <div className="min-w-0 flex-1">
                   <div className="flex items-start justify-between gap-3">
                     <div>
-                      <Link
-                        href={`/shop/${item.slug}`}
-                        className="font-medium text-ink hover:text-dawn-600"
-                      >
-                        {item.name}
-                      </Link>
-                      <p className="mt-0.5 text-xs text-ink-soft">
-                        {item.size ? `Size ${item.size} · ` : ""}
-                        {item.photoName ? `📷 ${item.photoName}` : "Photo added later"}
-                      </p>
+                      {isAddon(item.slug) ? (
+                        <span className="font-medium text-ink">{item.name}</span>
+                      ) : (
+                        <Link
+                          href={`/shop/${item.slug}`}
+                          className="font-medium text-ink hover:text-dawn-600"
+                        >
+                          {item.name}
+                        </Link>
+                      )}
+                      {!isAddon(item.slug) ? (
+                        <p className="mt-0.5 text-xs text-ink-soft">
+                          {item.size ? `Size ${item.size} · ` : ""}
+                          {item.photoName
+                            ? `📷 ${item.photoName}`
+                            : "Photo added later"}
+                        </p>
+                      ) : null}
                       {item.notes ? (
                         <p className="mt-1 text-xs italic text-ink-soft">
                           “{item.notes}”
@@ -136,6 +148,9 @@ export default function CartPage() {
           {/* Summary */}
           <aside className="h-fit rounded-3xl bg-white p-6 ring-1 ring-ink/10">
             <h2 className="font-display text-xl font-semibold">Order summary</h2>
+            <div className="mt-5">
+              <FreeShipProgress subtotal={subtotal} />
+            </div>
             <dl className="mt-5 space-y-3 text-sm">
               <div className="flex justify-between">
                 <dt className="text-ink-soft">Subtotal</dt>
@@ -147,11 +162,6 @@ export default function CartPage() {
                   {shipping === 0 ? "Free" : usd(shipping)}
                 </dd>
               </div>
-              {shipping > 0 ? (
-                <p className="text-xs text-ink-soft">
-                  Free shipping on orders over {usd(75)}.
-                </p>
-              ) : null}
               <div className="flex justify-between border-t border-ink/10 pt-3 text-base">
                 <dt className="font-semibold text-ink">Total</dt>
                 <dd className="font-semibold text-ink">{usd(total)}</dd>
@@ -163,7 +173,14 @@ export default function CartPage() {
             <p className="mt-3 text-center text-xs text-ink-soft">
               🆓 Free proofs · no charge until you approve
             </p>
+            <div className="mt-4 flex justify-center border-t border-ink/10 pt-4">
+              <RatingInline />
+            </div>
           </aside>
+
+          <div className="lg:col-span-2">
+            <CartUpsell />
+          </div>
         </div>
       )}
     </Container>

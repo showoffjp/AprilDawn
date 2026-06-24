@@ -1,5 +1,6 @@
 import { NextResponse } from "next/server";
 import { getService } from "@/lib/services";
+import { readJson } from "@/lib/validation";
 
 /**
  * Instant quote estimate (demo stub).
@@ -7,14 +8,13 @@ import { getService } from "@/lib/services";
  * Production: factor size, finishing, rush, shipping, and live partner pricing.
  */
 export async function POST(request: Request) {
-  let body: { service?: string; quantity?: number };
-  try {
-    body = await request.json();
-  } catch {
-    return NextResponse.json({ ok: false, error: "Invalid JSON" }, { status: 400 });
+  const body = await readJson(request);
+  if (!body) {
+    return NextResponse.json({ ok: false, error: "Invalid request." }, { status: 400 });
   }
 
-  const service = body.service ? getService(body.service) : undefined;
+  const service =
+    typeof body.service === "string" ? getService(body.service) : undefined;
   if (!service) {
     return NextResponse.json(
       { ok: false, error: "Unknown service" },
@@ -22,7 +22,7 @@ export async function POST(request: Request) {
     );
   }
 
-  const quantity = Math.max(1, Number(body.quantity ?? 1));
+  const quantity = Math.min(100000, Math.max(1, Math.floor(Number(body.quantity) || 1)));
   const unit = service.startingPrice ?? 0;
   const estimate = Math.round(unit * quantity * 100) / 100;
 

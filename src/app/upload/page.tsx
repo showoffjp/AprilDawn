@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/ui/Section";
+import { Button } from "@/components/ui/Button";
 import { Uploader } from "@/components/upload/Uploader";
 import { Aurora } from "@/components/effects/Aurora";
 
@@ -47,15 +48,20 @@ export default function UploadPage() {
           ))}
         </div>
 
-        <div className="mt-10 rounded-3xl bg-ink p-8 text-cream">
-          <h3 className="font-display text-xl font-semibold">
-            📦 Prefer to mail in a shoebox?
-          </h3>
-          <p className="mt-2 text-sm text-cream/80">
-            Order a prepaid, trackable MemoryBox. Pack your photos, slides, tapes,
-            and reels, ship it with the included label, and follow every item
-            through our lab with photo check-ins. Everything comes home insured.
-          </p>
+        <div className="mt-10 rounded-3xl bg-ink p-8 text-cream sm:flex sm:items-center sm:justify-between sm:gap-8">
+          <div>
+            <h3 className="font-display text-xl font-semibold">
+              📦 Prefer to mail in a shoebox?
+            </h3>
+            <p className="mt-2 max-w-xl text-sm text-cream/80">
+              Order a prepaid, trackable MemoryBox. Pack your photos, slides, tapes,
+              and reels, ship it with the included label, and follow every item
+              through our lab with photo check-ins. Everything comes home insured.
+            </p>
+          </div>
+          <Button href="/memory-mail" variant="light" className="mt-5 shrink-0 sm:mt-0">
+            Order a MemoryBox →
+          </Button>
         </div>
       </div>
       </Section>

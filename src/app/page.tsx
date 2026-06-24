@@ -17,6 +17,7 @@ import { HeroCollage } from "@/components/home/HeroCollage";
 import { MemoryMarquee } from "@/components/home/MemoryMarquee";
 import { Benefits } from "@/components/home/Benefits";
 import { BentoFlagships } from "@/components/home/BentoFlagships";
+import { EventsTeaser } from "@/components/home/EventsTeaser";
 import { PrintShowcase } from "@/components/home/PrintShowcase";
 import { ArtStyleTeaser } from "@/components/home/ArtStyleTeaser";
 import { CreateGrid } from "@/components/home/CreateGrid";
@@ -138,6 +139,23 @@ export default function Home() {
         />
         <div className="mt-10">
           <BentoFlagships />
+        </div>
+      </Section>
+
+      {/* ----------------------------------------------- Aiken, SC events */}
+      <Section className="pt-0">
+        <SectionHeading
+          eyebrow="Now booking · Aiken, SC"
+          title="Weddings & family reunions, all over South Carolina"
+          intro="Full-service planning and photography run out of Aiken — then every photo hand-enhanced and printed on anything you like."
+        />
+        <Reveal className="mt-10">
+          <EventsTeaser />
+        </Reveal>
+        <div className="mt-8 text-center">
+          <Button href="/events" variant="ghost">
+            Explore AprilDawn Events →
+          </Button>
         </div>
       </Section>
 

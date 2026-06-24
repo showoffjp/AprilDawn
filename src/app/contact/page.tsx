@@ -2,7 +2,7 @@ import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { ContactForm } from "@/components/contact/ContactForm";
 import { Aurora } from "@/components/effects/Aurora";
-import { site } from "@/lib/site";
+import { site, studio, studioMapsUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -39,6 +39,33 @@ export default function ContactPage() {
                 <div>
                   <dt className="font-semibold text-ink">💬 Care team</dt>
                   <dd className="text-ink-soft">{site.supportEmail}</dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-ink">
+                    📍 {studio.name} · Aiken studio
+                  </dt>
+                  <dd className="text-ink-soft">
+                    {studio.street}, {studio.city}, {studio.state} {studio.zip}
+                    <br />
+                    <a href={studio.phoneHref} className="hover:text-ink">
+                      {studio.phone}
+                    </a>{" "}
+                    ·{" "}
+                    <a
+                      href={studioMapsUrl()}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="font-medium text-dawn-600 hover:underline"
+                    >
+                      Get directions →
+                    </a>
+                  </dd>
+                </div>
+                <div>
+                  <dt className="font-semibold text-ink">🕒 Studio hours</dt>
+                  <dd className="text-ink-soft">
+                    {studio.hours.map((h) => `${h.days}: ${h.time}`).join(" · ")}
+                  </dd>
                 </div>
               </dl>
             </div>

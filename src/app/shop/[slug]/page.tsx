@@ -7,10 +7,14 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ProductCard } from "@/components/cards/ProductCard";
 import { ProductDesigner } from "@/components/cart/ProductDesigner";
+import { ProductReviews } from "@/components/reviews/ProductReviews";
+import { ProductJsonLd } from "@/components/seo/ProductJsonLd";
+import { RatingInline } from "@/components/social/SocialProof";
 import {
   products,
   getProduct,
   productsByCategory,
+  pairsWith,
   amazonAffiliateUrl,
 } from "@/lib/products";
 import { fromPrice } from "@/lib/utils";
@@ -45,9 +49,12 @@ export default async function ProductPage({
   const related = productsByCategory(product.category)
     .filter((p) => p.slug !== product.slug)
     .slice(0, 4);
+  const pairs = pairsWith(product, 4);
 
   return (
     <>
+      <ProductJsonLd product={product} />
+
       <Container className="py-10">
         <Link href="/shop" className="text-sm font-medium text-ink-soft hover:text-ink">
           ← Back to the shop
@@ -65,6 +72,7 @@ export default async function ProductPage({
           <p className="mt-2 font-display text-2xl font-semibold text-ink">
             {fromPrice(product.priceFrom)}
           </p>
+          <RatingInline className="mt-3" />
           <p className="mt-3 leading-relaxed text-ink-soft">{product.blurb}</p>
         </div>
       </Container>
@@ -94,6 +102,24 @@ export default async function ProductPage({
           <ProductDesigner product={product} />
         )}
       </Container>
+
+      <Section className="pt-0">
+        <ProductReviews seed={product.slug} />
+      </Section>
+
+      {pairs.length > 0 ? (
+        <Section className="pt-0">
+          <h2 className="font-display text-2xl font-semibold">Pairs well with</h2>
+          <p className="mt-1 text-sm text-ink-soft">
+            Customers often turn one memory into a matching set.
+          </p>
+          <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+            {pairs.map((p) => (
+              <ProductCard key={p.slug} product={p} />
+            ))}
+          </div>
+        </Section>
+      ) : null}
 
       {related.length > 0 ? (
         <div className="bg-cream-deep">
