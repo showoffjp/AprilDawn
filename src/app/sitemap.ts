@@ -4,6 +4,7 @@ import { services } from "@/lib/services";
 import { products } from "@/lib/products";
 import { stories } from "@/lib/stories";
 import { collections } from "@/lib/collections";
+import { bundles } from "@/lib/bundles";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -23,6 +24,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/gallery",
     "/gift-finder",
     "/collections",
+    "/bundles",
     "/shop",
     "/upload",
     "/vault",
@@ -56,11 +58,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
+  const bundleRoutes = bundles.map((b) => ({
+    url: `${site.url}/bundles/${b.slug}`,
+    lastModified: new Date(),
+  }));
+
   return [
     ...routes,
     ...serviceRoutes,
     ...productRoutes,
     ...collectionRoutes,
+    ...bundleRoutes,
     ...storyRoutes,
   ];
 }

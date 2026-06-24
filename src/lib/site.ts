@@ -80,6 +80,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
       { label: "Occasions & auto-gifting", href: "/occasions" },
       { label: "The AprilDawn Shop", href: "/shop" },
       { label: "Gift Collections", href: "/collections" },
+      { label: "Gift Bundles", href: "/bundles" },
       { label: "Gallery", href: "/gallery" },
       { label: "Gift Finder", href: "/gift-finder" },
     ],
