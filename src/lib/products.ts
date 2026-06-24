@@ -76,6 +76,33 @@ export const products: Product[] = [
   { slug: "metalengraving", name: "Metal Photo Engraving", emoji: "🔩", category: "Everything Else", blurb: "Portraits laser-engraved into steel, brass, or aluminum.", priceFrom: 34, bestseller: true },
   { slug: "leatherstamp", name: "Stamped Leather Goods", emoji: "🪪", category: "Everything Else", blurb: "Embossed photos & monograms on wallets, journals, and keychains.", priceFrom: 29 },
   { slug: "woodengraving", name: "Engraved Wood & Slate", emoji: "🪵", category: "Everything Else", blurb: "Laser-etched photos on walnut, maple, or slate.", priceFrom: 26 },
+
+  // Apparel (more)
+  { slug: "onesie", name: "Baby Onesie", emoji: "👶", category: "Apparel", blurb: "Snap-bottom cotton — the grandbaby's face, for Grandma.", priceFrom: 19 },
+  { slug: "apron", name: "Photo Apron", emoji: "🧑‍🍳", category: "Apparel", blurb: "Kitchen-ready canvas apron, full-color print.", priceFrom: 27, affiliate: true },
+  { slug: "beanie", name: "Knit Beanie", emoji: "🧢", category: "Apparel", blurb: "Cuffed beanie, embroidered or all-over print.", priceFrom: 21, affiliate: true },
+
+  // Wall Art (more)
+  { slug: "poster", name: "Matte Poster", emoji: "📜", category: "Wall Art", blurb: "Museum-matte poster prints in every size.", priceFrom: 18 },
+  { slug: "triptych", name: "Framed Triptych", emoji: "🌅", category: "Wall Art", blurb: "One photo split across three framed panels.", priceFrom: 89, bestseller: true },
+
+  // Home (more)
+  { slug: "coasters", name: "Photo Coaster Set", emoji: "🧉", category: "Home", blurb: "Set of four cork-backed ceramic coasters.", priceFrom: 24 },
+  { slug: "cuttingboard", name: "Engraved Cutting Board", emoji: "🔪", category: "Home", blurb: "Bamboo board, laser-engraved with your photo.", priceFrom: 32, affiliate: true },
+  { slug: "nightlight", name: "Photo Night Light", emoji: "🌙", category: "Home", blurb: "A soft LED panel that glows with their face.", priceFrom: 26, affiliate: true },
+
+  // Drinkware (more)
+  { slug: "waterbottle", name: "Insulated Water Bottle", emoji: "🚰", category: "Drinkware", blurb: "Stainless bottle with a wrap-around photo print.", priceFrom: 29, affiliate: true },
+  { slug: "shotglass", name: "Photo Shot Glasses", emoji: "🥃", category: "Drinkware", blurb: "Set of four — for the milestone toast.", priceFrom: 22, affiliate: true },
+
+  // Accessories (more)
+  { slug: "luggagetag", name: "Luggage Tag", emoji: "🧳", category: "Accessories", blurb: "Their face on your bag, every trip.", priceFrom: 14, affiliate: true },
+  { slug: "mousepad", name: "Photo Mouse Pad", emoji: "🖱️", category: "Accessories", blurb: "A desk-sized memory for the home office.", priceFrom: 16 },
+
+  // Everything Else (more)
+  { slug: "stickers", name: "Sticker Sheet", emoji: "✨", category: "Everything Else", blurb: "Die-cut photo stickers — their face, everywhere.", priceFrom: 8, bestseller: true },
+  { slug: "playingcards", name: "Custom Playing Cards", emoji: "🃏", category: "Everything Else", blurb: "A full deck featuring 54 of your photos.", priceFrom: 19 },
+  { slug: "calendar", name: "Wall Calendar", emoji: "📅", category: "Everything Else", blurb: "Twelve months, twelve memories — dated and personal.", priceFrom: 24, bestseller: true },
 ];
 
 export const bestsellers = products.filter((p) => p.bestseller);

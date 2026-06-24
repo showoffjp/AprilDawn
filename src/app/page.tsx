@@ -29,6 +29,8 @@ import { featuredServices } from "@/lib/services";
 import { heroBundle } from "@/lib/occasions";
 import { trustStats, site } from "@/lib/site";
 import { fromPrice } from "@/lib/utils";
+import { CollectionCard } from "@/components/collections/CollectionCard";
+import { collections } from "@/lib/collections";
 
 export default function Home() {
   return (
@@ -342,6 +344,28 @@ export default function Home() {
             <Button href="/shop">Browse the full shop →</Button>
           </div>
         </Section>
+
+      {/* ---------------------------------------------------- Gift collections */}
+      <Section className="pt-0" backdrop="candy">
+        <SectionHeading
+          center
+          eyebrow="Shop by collection"
+          title="Gift guides for everyone on your list"
+          intro="Not sure where to start? We've hand-picked the catalog into edits for grandparents, pet lovers, reunions, memorials, and more."
+        />
+        <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+          {collections.slice(0, 3).map((collection, i) => (
+            <Reveal key={collection.slug} delay={i * 60} className="h-full">
+              <CollectionCard collection={collection} />
+            </Reveal>
+          ))}
+        </div>
+        <div className="mt-8 text-center">
+          <Button href="/collections" variant="ghost">
+            See all gift collections →
+          </Button>
+        </div>
+      </Section>
 
       {/* ------------------------------------------------------- Troll Grandma */}
       <Section backdrop="rose">
