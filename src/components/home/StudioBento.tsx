@@ -26,7 +26,7 @@ export function StudioBento() {
             "linear-gradient(150deg,#6a3fad,#7e54c0 35%,#3aa0d6 72%,#46e6a8)",
         }}
       >
-        <h3 className="font-display text-2xl font-semibold leading-tight sm:text-3xl">
+        <h3 className="font-display text-2xl font-semibold leading-tight text-balance sm:text-3xl">
           Your whole memory studio, in one place
         </h3>
         <p className="mt-3 max-w-md text-white/85">
@@ -58,7 +58,7 @@ export function StudioBento() {
           background: "linear-gradient(150deg,#ffd9a8,#ffb3c1 55%,#f7a8d0)",
         }}
       >
-        <h3 className="font-display text-2xl font-semibold leading-tight text-ink sm:text-3xl">
+        <h3 className="font-display text-2xl font-semibold leading-tight text-balance text-ink sm:text-3xl">
           Never miss a birthday again
         </h3>
         <p className="mt-3 max-w-md text-ink/75">

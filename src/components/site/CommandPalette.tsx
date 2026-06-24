@@ -43,6 +43,7 @@ export function CommandPalette() {
   const [active, setActive] = useState(0);
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
+  const lastFocused = useRef<HTMLElement | null>(null);
 
   function close() {
     setOpen(false);
@@ -71,9 +72,13 @@ export function CommandPalette() {
   }, []);
 
   useEffect(() => {
-    if (!open) return;
-    const t = setTimeout(() => inputRef.current?.focus(), 0);
-    return () => clearTimeout(t);
+    if (open) {
+      // Remember what was focused so we can restore it when the palette closes.
+      lastFocused.current = document.activeElement as HTMLElement | null;
+      const t = setTimeout(() => inputRef.current?.focus(), 0);
+      return () => clearTimeout(t);
+    }
+    lastFocused.current?.focus?.();
   }, [open]);
 
   const results = useMemo(() => {
@@ -97,12 +102,19 @@ export function CommandPalette() {
       onClick={close}
     >
       <div
+        role="dialog"
+        aria-modal="true"
+        aria-label="Search AprilDawn"
         className="w-full max-w-lg overflow-hidden rounded-2xl bg-white shadow-2xl ring-1 ring-ink/10"
         onClick={(e) => e.stopPropagation()}
       >
         <input
           ref={inputRef}
           value={q}
+          role="combobox"
+          aria-expanded="true"
+          aria-controls="cmdk-list"
+          aria-activedescendant={results[active] ? `cmdk-opt-${active}` : undefined}
           onChange={(e) => {
             setQ(e.target.value);
             setActive(0);
@@ -118,12 +130,20 @@ export function CommandPalette() {
               e.preventDefault();
               const r = results[active];
               if (r) go(r.href);
+            } else if (e.key === "Tab") {
+              // Keep focus inside the dialog (nothing else is tabbable here).
+              e.preventDefault();
             }
           }}
           placeholder="Search AprilDawn — services, products, pages…"
           className="w-full border-b border-ink/10 px-5 py-4 text-sm focus:outline-none"
         />
-        <ul className="max-h-80 overflow-y-auto p-2">
+        <ul
+          id="cmdk-list"
+          role="listbox"
+          aria-label="Search results"
+          className="max-h-80 overflow-y-auto p-2"
+        >
           {results.length === 0 ? (
             <li className="px-3 py-6 text-center text-sm text-ink-soft">
               No matches
@@ -133,6 +153,10 @@ export function CommandPalette() {
               <li key={`${r.href}-${r.label}`}>
                 <button
                   type="button"
+                  id={`cmdk-opt-${i}`}
+                  role="option"
+                  aria-selected={i === active}
+                  tabIndex={-1}
                   onMouseEnter={() => setActive(i)}
                   onClick={() => go(r.href)}
                   className={cn(
