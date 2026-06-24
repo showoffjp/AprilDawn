@@ -38,7 +38,7 @@ export default function Home() {
         <Container className="relative grid items-center gap-12 py-20 sm:py-24 lg:grid-cols-2 lg:py-28">
           <div className="text-center lg:text-left">
             <Badge>✨ The everything store for memories</Badge>
-            <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.03] tracking-tight text-balance sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-7xl">
               Keep your reveries{" "}
               <span className="text-gradient text-gradient-animated">forever.</span>
             </h1>

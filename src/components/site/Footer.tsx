@@ -14,12 +14,12 @@ export function Footer() {
             <p className="mt-4 text-sm leading-relaxed text-ink-soft">
               {site.longTagline}
             </p>
-            <div className="mt-5 flex flex-wrap gap-3 text-sm">
-              <a className="text-ink-soft hover:text-ink" href={site.social.instagram}>Instagram</a>
-              <a className="text-ink-soft hover:text-ink" href={site.social.facebook}>Facebook</a>
-              <a className="text-ink-soft hover:text-ink" href={site.social.tiktok}>TikTok</a>
-              <a className="text-ink-soft hover:text-ink" href={site.social.youtube}>YouTube</a>
-              <a className="text-ink-soft hover:text-ink" href={site.social.pinterest}>Pinterest</a>
+            <div className="mt-5 flex flex-wrap gap-x-4 gap-y-1 text-sm">
+              <a className="inline-flex min-h-[44px] items-center text-ink-soft hover:text-ink" href={site.social.instagram}>Instagram</a>
+              <a className="inline-flex min-h-[44px] items-center text-ink-soft hover:text-ink" href={site.social.facebook}>Facebook</a>
+              <a className="inline-flex min-h-[44px] items-center text-ink-soft hover:text-ink" href={site.social.tiktok}>TikTok</a>
+              <a className="inline-flex min-h-[44px] items-center text-ink-soft hover:text-ink" href={site.social.youtube}>YouTube</a>
+              <a className="inline-flex min-h-[44px] items-center text-ink-soft hover:text-ink" href={site.social.pinterest}>Pinterest</a>
             </div>
             <div className="mt-6">
               <p className="text-sm font-semibold text-ink">
@@ -65,10 +65,10 @@ export function Footer() {
               memories that matter.
             </p>
             <div className="flex flex-wrap gap-4 text-xs text-ink-soft">
-              <Link href="/legal/privacy" className="hover:text-ink">Privacy</Link>
-              <Link href="/legal/terms" className="hover:text-ink">Terms</Link>
-              <Link href="/legal/content" className="hover:text-ink">Content &amp; rights</Link>
-              <Link href="/contact" className="hover:text-ink">Contact</Link>
+              <Link href="/legal/privacy" className="inline-flex min-h-[44px] items-center hover:text-ink">Privacy</Link>
+              <Link href="/legal/terms" className="inline-flex min-h-[44px] items-center hover:text-ink">Terms</Link>
+              <Link href="/legal/content" className="inline-flex min-h-[44px] items-center hover:text-ink">Content &amp; rights</Link>
+              <Link href="/contact" className="inline-flex min-h-[44px] items-center hover:text-ink">Contact</Link>
             </div>
           </div>
         </div>

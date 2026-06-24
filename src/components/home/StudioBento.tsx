@@ -36,7 +36,7 @@ export function StudioBento() {
         <Button href="/services" variant="light" className="mt-6">
           Explore the studio
         </Button>
-        <div className="mt-8 grid grid-cols-3 gap-3">
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3">
           {CHIPS.map((c) => (
             <div
               key={c.l}

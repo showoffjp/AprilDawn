@@ -128,13 +128,13 @@ export default function PricingPage() {
             eyebrow="Starting prices by service"
             title="A quick reference"
           />
-          <div className="mt-10 overflow-hidden rounded-3xl ring-1 ring-ink/10">
+          <div className="mt-10 overflow-x-auto rounded-3xl ring-1 ring-ink/10">
             <table className="w-full text-left text-sm">
               <thead className="bg-white">
                 <tr className="text-ink">
-                  <th className="px-6 py-4 font-semibold">Service</th>
-                  <th className="px-6 py-4 font-semibold">Starting at</th>
-                  <th className="hidden px-6 py-4 font-semibold sm:table-cell">
+                  <th className="px-4 py-3 sm:px-6 sm:py-4 font-semibold">Service</th>
+                  <th className="px-4 py-3 sm:px-6 sm:py-4 font-semibold">Starting at</th>
+                  <th className="hidden px-4 py-3 sm:px-6 sm:py-4 font-semibold sm:table-cell">
                     Turnaround
                   </th>
                 </tr>
@@ -145,20 +145,20 @@ export default function PricingPage() {
                     key={s.slug}
                     className={i % 2 ? "bg-white" : "bg-cream"}
                   >
-                    <td className="px-6 py-4">
+                    <td className="px-4 py-3 sm:px-6 sm:py-4">
                       <span className="mr-2" aria-hidden="true">
                         {s.emoji}
                       </span>
                       {s.name}
                     </td>
-                    <td className="px-6 py-4 font-medium text-ink">
+                    <td className="px-4 py-3 sm:px-6 sm:py-4 font-medium text-ink">
                       {typeof s.startingPrice === "number"
                         ? s.startingPrice === 0
                           ? "Free"
                           : fromPrice(s.startingPrice)
                         : "Custom"}
                     </td>
-                    <td className="hidden px-6 py-4 text-ink-soft sm:table-cell">
+                    <td className="hidden px-4 py-3 sm:px-6 sm:py-4 text-ink-soft sm:table-cell">
                       {s.turnaround ?? "—"}
                     </td>
                   </tr>

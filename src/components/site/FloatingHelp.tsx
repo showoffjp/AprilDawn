@@ -10,7 +10,7 @@ export function FloatingHelp() {
   return (
     <div className="fixed bottom-5 right-5 z-40 print:hidden">
       {open ? (
-        <div className="mb-3 w-72 rounded-2xl bg-white p-5 shadow-soft-lg ring-1 ring-ink/10">
+        <div className="mb-3 w-[calc(100vw-2.5rem)] max-w-72 rounded-2xl bg-white p-5 shadow-soft-lg ring-1 ring-ink/10">
           <p className="font-display text-lg font-semibold">Need a hand?</p>
           <p className="mt-1 text-sm text-ink-soft">
             We&apos;re 100% remote and happy to help you plan any project.
