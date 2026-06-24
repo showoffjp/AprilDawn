@@ -1,19 +1,25 @@
 /**
  * Cinematic intro splash. Styles are inlined in a <style> tag so they always
  * ship with the markup (never out of sync with a cached stylesheet), then it
- * fades itself out and reveals the site. Pure CSS — no JS, no layout shift.
+ * fades itself out and reveals the site. Pure CSS — no JS for the animation.
+ *
+ * A tiny inline gate runs before the splash paints: it shows the splash only
+ * once per browser session, and skips it entirely for visitors who prefer
+ * reduced motion — so it's a first-impression moment, not a tax on every load.
  */
 const CSS = `
-.ad-splash{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(60% 60% at 50% 82%,rgba(236,60,114,.38),transparent 70%),radial-gradient(50% 50% at 18% 20%,rgba(244,133,60,.32),transparent 70%),linear-gradient(160deg,#241433,#3a1c43 55%,#5a1f48);animation:adsplashout 2.9s ease forwards}
+.ad-splash-skip .ad-splash{display:none}
+@media (prefers-reduced-motion:reduce){.ad-splash{display:none}}
+.ad-splash{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;overflow:hidden;background:radial-gradient(60% 60% at 50% 82%,rgba(236,60,114,.38),transparent 70%),radial-gradient(50% 50% at 18% 20%,rgba(244,133,60,.32),transparent 70%),linear-gradient(160deg,#241433,#3a1c43 55%,#5a1f48);animation:adsplashout 2s ease forwards}
 .ad-splash-stage{position:relative;z-index:1;text-align:center;padding:0 24px}
 .ad-splash-blob{position:absolute;border-radius:9999px;filter:blur(60px)}
 .ad-splash-b1{animation:adblobA 8s ease-in-out infinite}
 .ad-splash-b2{animation:adblobB 9s ease-in-out infinite}
-.ad-splash-sun{margin:0 auto;height:96px;width:96px;filter:drop-shadow(0 0 28px rgba(236,60,114,.6));animation:adsunrise 1.7s cubic-bezier(.2,.8,.2,1) both}
-.ad-splash-horizon{margin:14px auto 0;height:2px;width:220px;max-width:60vw;border-radius:2px;background:linear-gradient(90deg,transparent,#f4853c,#ec3c72,#7e54c0,transparent);transform:scaleX(0);animation:adhorizon 1s ease .5s forwards}
-.ad-splash-word{margin:26px 0 0;font-family:var(--font-display),Georgia,serif;font-weight:600;font-size:clamp(2.5rem,9vw,5rem);line-height:1;letter-spacing:.18em;opacity:0;background:linear-gradient(100deg,#ffd0a6,#ec3c72 45%,#b07aff);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:adwordin 1s ease .85s both,adwordsheen 1.6s ease 1.7s both}
-.ad-splash-tag{margin:14px 0 0;color:rgba(255,255,255,.72);font-size:.95rem;letter-spacing:.05em;opacity:0;animation:adsplashfade .9s ease 1.4s both}
-@keyframes adsplashout{0%,68%{opacity:1}100%{opacity:0;visibility:hidden;pointer-events:none}}
+.ad-splash-sun{margin:0 auto;height:96px;width:96px;filter:drop-shadow(0 0 28px rgba(236,60,114,.6));animation:adsunrise 1.15s cubic-bezier(.2,.8,.2,1) both}
+.ad-splash-horizon{margin:14px auto 0;height:2px;width:220px;max-width:60vw;border-radius:2px;background:linear-gradient(90deg,transparent,#f4853c,#ec3c72,#7e54c0,transparent);transform:scaleX(0);animation:adhorizon .7s ease .3s forwards}
+.ad-splash-word{margin:26px 0 0;font-family:var(--font-display),Georgia,serif;font-weight:600;font-size:clamp(2.5rem,9vw,5rem);line-height:1;letter-spacing:.18em;opacity:0;background:linear-gradient(100deg,#ffd0a6,#ec3c72 45%,#b07aff);background-size:220% 100%;-webkit-background-clip:text;background-clip:text;color:transparent;animation:adwordin .7s ease .5s both,adwordsheen 1s ease .9s both}
+.ad-splash-tag{margin:14px 0 0;color:rgba(255,255,255,.78);font-size:.95rem;letter-spacing:.05em;opacity:0;animation:adsplashfade .6s ease .9s both}
+@keyframes adsplashout{0%,62%{opacity:1}100%{opacity:0;visibility:hidden;pointer-events:none}}
 @keyframes adsunrise{0%{transform:translateY(150px) scale(.5);opacity:0}60%{opacity:1}100%{transform:translateY(0) scale(1);opacity:1}}
 @keyframes adhorizon{to{transform:scaleX(1)}}
 @keyframes adwordin{from{opacity:0;transform:translateY(16px);letter-spacing:.34em}to{opacity:1;transform:none;letter-spacing:.18em}}
@@ -23,10 +29,15 @@ const CSS = `
 @keyframes adblobB{0%,100%{transform:translate(0,0) scale(1)}50%{transform:translate(-6%,5%) scale(1.08)}}
 `;
 
+// Runs before the splash paints: add a skip class (so the CSS hides it) on
+// repeat visits within the session, otherwise mark this session as seen.
+const GATE = `try{var s=window.sessionStorage;if(s.getItem('ad-splash-seen')){document.documentElement.classList.add('ad-splash-skip')}else{s.setItem('ad-splash-seen','1')}}catch(e){}`;
+
 export function Splash() {
   return (
     <>
       <style dangerouslySetInnerHTML={{ __html: CSS }} />
+      <script dangerouslySetInnerHTML={{ __html: GATE }} />
       <div className="ad-splash" aria-hidden="true">
         <div
           className="ad-splash-blob ad-splash-b1"

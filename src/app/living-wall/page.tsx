@@ -60,7 +60,7 @@ export default function LivingWallPage() {
             </div>
           </div>
 
-          <div className="mt-14 grid grid-cols-6 gap-2 rounded-3xl bg-white/10 p-4 ring-1 ring-white/20 sm:gap-3">
+          <div className="mt-14 grid grid-cols-4 gap-2 rounded-3xl bg-white/10 p-4 ring-1 ring-white/20 sm:grid-cols-6 sm:gap-3">
             {Array.from({ length: 30 }).map((_, i) => {
               const live = [13, 14, 15, 19, 20, 21].includes(i);
               return (

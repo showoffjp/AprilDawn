@@ -58,9 +58,7 @@ export function Uploader() {
         </h2>
         <p className="mx-auto mt-3 max-w-md text-ink-soft">
           We&apos;ll review your upload and send free proofs and a quote to your
-          email. No charge until you approve. (This is a demo —
-          wire <code className="rounded bg-cream-deep px-1">/api/upload</code> to
-          your storage to go live.)
+          email — no charge until you approve.
         </p>
         <div className="mt-6 flex justify-center gap-3">
           <Button href="/services" variant="ghost">
@@ -81,7 +79,7 @@ export function Uploader() {
 
   return (
     <div>
-      <div
+      <label
         onDragOver={(e) => {
           e.preventDefault();
           setDragging(true);
@@ -92,33 +90,32 @@ export function Uploader() {
           setDragging(false);
           addFiles(e.dataTransfer.files);
         }}
-        onClick={() => inputRef.current?.click()}
         className={cn(
-          "flex cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed px-6 py-16 text-center transition",
+          "flex cursor-pointer flex-col items-center justify-center rounded-3xl border-2 border-dashed px-6 py-16 text-center transition focus-within:border-dawn-400 focus-within:ring-2 focus-within:ring-dawn-400 focus-within:ring-offset-2",
           dragging
             ? "border-dawn-400 bg-dawn-50"
             : "border-ink/20 bg-white hover:border-dawn-300 hover:bg-dawn-50/40",
         )}
       >
-        <div className="text-5xl">🖼️</div>
+        <div className="text-5xl" aria-hidden="true">🖼️</div>
         <p className="mt-4 font-display text-xl font-semibold">
           Drag &amp; drop your photos, videos, or audio
         </p>
         <p className="mt-1 text-sm text-ink-soft">
           or click to browse — JPG, PNG, HEIC, MP4, MOV, MP3, and more
         </p>
-        <Button className="mt-6" type="button">
+        <span className="mt-6 inline-flex h-12 items-center justify-center rounded-full bg-dawn-500 px-8 text-base font-medium text-white">
           Choose files
-        </Button>
+        </span>
         <input
           ref={inputRef}
           type="file"
           multiple
           accept="image/*,video/*,audio/*"
-          className="hidden"
+          className="sr-only"
           onChange={(e) => addFiles(e.target.files)}
         />
-      </div>
+      </label>
 
       {items.length > 0 ? (
         <div className="mt-8">
@@ -150,7 +147,7 @@ export function Uploader() {
                     // eslint-disable-next-line @next/next/no-img-element
                     <img
                       src={item.preview}
-                      alt={item.name}
+                      alt=""
                       className="h-full w-full object-cover"
                     />
                   ) : item.kind === "video" ? (

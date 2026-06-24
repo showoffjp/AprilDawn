@@ -23,12 +23,16 @@ export function SiteBackground() {
   const colorRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
+    const reduce =
+      typeof window.matchMedia === "function" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     let hueRaf = 0;
     let scrollRaf = 0;
     let hue = 0;
     let last = performance.now();
 
-    // (1) Guaranteed JS-driven hue cycle — ~18°/sec, a full loop every ~20s.
+    // (1) JS-driven hue cycle — ~18°/sec, a full loop every ~20s.
     const tick = (now: number) => {
       const dt = Math.min(now - last, 64);
       last = now;
@@ -38,10 +42,28 @@ export function SiteBackground() {
       }
       hueRaf = requestAnimationFrame(tick);
     };
-    hueRaf = requestAnimationFrame(tick);
+
+    const startHue = () => {
+      if (reduce || hueRaf) return;
+      last = performance.now();
+      hueRaf = requestAnimationFrame(tick);
+    };
+    const stopHue = () => {
+      if (hueRaf) {
+        cancelAnimationFrame(hueRaf);
+        hueRaf = 0;
+      }
+    };
+
+    startHue();
+
+    // Pause the loop when the tab is hidden — no point compositing offscreen.
+    const onVisibility = () => (document.hidden ? stopHue() : startHue());
+    document.addEventListener("visibilitychange", onVisibility);
 
     // Gentle parallax: content glides over the field as you scroll.
     const onScroll = () => {
+      if (reduce) return;
       cancelAnimationFrame(scrollRaf);
       scrollRaf = requestAnimationFrame(() => {
         const y = Math.min(window.scrollY * 0.05, 360);
@@ -53,9 +75,10 @@ export function SiteBackground() {
     window.addEventListener("scroll", onScroll, { passive: true });
 
     return () => {
-      cancelAnimationFrame(hueRaf);
+      stopHue();
       cancelAnimationFrame(scrollRaf);
       window.removeEventListener("scroll", onScroll);
+      document.removeEventListener("visibilitychange", onVisibility);
     };
   }, []);
 
@@ -98,6 +121,7 @@ export function SiteBackground() {
 @keyframes adbg-d1{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(28%,20%) scale(1.28)}50%{transform:translate(-18%,30%) scale(.82)}75%{transform:translate(22%,-20%) scale(1.14)}}
 @keyframes adbg-d2{0%,100%{transform:translate(0,0) scale(1)}25%{transform:translate(-28%,18%) scale(1.2)}50%{transform:translate(22%,-24%) scale(.85)}75%{transform:translate(-22%,-14%) scale(1.16)}}
 @keyframes adbg-d3{0%,100%{transform:translate(0,0) scale(1)}33%{transform:translate(26%,-26%) scale(1.24)}66%{transform:translate(-26%,20%) scale(.8)}}
+@media (prefers-reduced-motion:reduce){.adbg-wash,.adbg-blob,.adbg-s1>i,.adbg-s2>i,.adbg-spot{animation:none!important}}
 `,
         }}
       />

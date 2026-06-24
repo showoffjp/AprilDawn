@@ -26,13 +26,16 @@ export function BeforeAfterSlider({ className }: { className?: string }) {
       aria-valuenow={Math.round(pos)}
       aria-valuemin={0}
       aria-valuemax={100}
+      aria-valuetext={`${Math.round(pos)}% restored`}
       tabIndex={0}
       onKeyDown={(e) => {
         if (e.key === "ArrowLeft") setPos((p) => Math.max(0, p - 4));
         if (e.key === "ArrowRight") setPos((p) => Math.min(100, p + 4));
+        if (e.key === "Home") setPos(0);
+        if (e.key === "End") setPos(100);
       }}
       className={cn(
-        "relative aspect-[3/2] w-full cursor-ew-resize select-none overflow-hidden rounded-3xl ring-1 ring-ink/10",
+        "relative aspect-[3/2] w-full cursor-ew-resize select-none overflow-hidden rounded-3xl ring-1 ring-ink/10 focus:outline-none focus-visible:ring-2 focus-visible:ring-dawn-400 focus-visible:ring-offset-2",
         className,
       )}
       onPointerDown={(e) => {

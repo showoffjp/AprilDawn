@@ -39,7 +39,7 @@ export default function Home() {
         <Container className="relative grid items-center gap-12 py-20 sm:py-24 lg:grid-cols-2 lg:py-28">
           <div className="text-center lg:text-left">
             <Badge>✨ The everything store for memories</Badge>
-            <h1 className="mt-6 font-display text-5xl font-semibold leading-[1.03] tracking-tight text-balance sm:text-6xl lg:text-7xl">
+            <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-7xl">
               Keep your reveries{" "}
               <span className="text-gradient text-gradient-animated">forever.</span>
             </h1>
@@ -69,7 +69,7 @@ export default function Home() {
               href="/reviews"
               className="mt-5 inline-flex items-center gap-2 text-sm text-ink-soft transition hover:text-ink"
             >
-              <span className="text-dawn-400">★★★★★</span>
+              <span aria-hidden="true" className="text-dawn-500">★★★★★</span>
               <span>
                 <strong className="text-ink">{aggregate.rating}/5</strong> · loved
                 by {aggregate.count.toLocaleString()}+ families
@@ -232,7 +232,7 @@ export default function Home() {
                 key={step.n}
                 className="rounded-3xl bg-white p-8 shadow-soft ring-1 ring-ink/10"
               >
-                <div className="font-display text-4xl font-semibold text-dawn-300">
+                <div className="font-display text-4xl font-semibold text-dawn-500">
                   {step.n}
                 </div>
                 <h3 className="mt-4 font-display text-xl font-semibold">
@@ -320,7 +320,7 @@ export default function Home() {
                   />
                 ))}
               </div>
-              <p className="mt-3 text-center text-xs text-white/60">
+              <p className="mt-3 text-center text-xs text-white/80">
                 The four bright tiles are the live LED center — always changing.
               </p>
             </div>
@@ -403,8 +403,9 @@ export default function Home() {
                 key={r.name}
                 className="flex flex-col rounded-3xl bg-white p-7 shadow-soft ring-1 ring-ink/10"
               >
-                <div className="text-dawn-400" aria-hidden="true">
-                  {"★".repeat(r.rating)}
+                <div className="text-dawn-500">
+                  <span className="sr-only">Rated {r.rating} out of 5</span>
+                  <span aria-hidden="true">{"★".repeat(r.rating)}</span>
                 </div>
                 <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-ink">
                   “{r.quote}”
@@ -481,7 +482,7 @@ export default function Home() {
       <Section backdrop="meadow">
         <div className="text-center">
           <Eyebrow>Powered by a world of partners</Eyebrow>
-          <h2 className="mt-3 font-display text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
             The best printers, makers &amp; platforms — under one dawn
           </h2>
         </div>
