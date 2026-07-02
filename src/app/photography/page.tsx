@@ -7,7 +7,13 @@ import { Badge } from "@/components/ui/Badge";
 import { MemoryScene, type SceneVariant } from "@/components/art/MemoryScene";
 import { EventInquiryForm } from "@/components/events/EventInquiryForm";
 import { EventsJsonLd } from "@/components/events/EventsJsonLd";
-import { photoSessions, photoPackages, photoLocations } from "@/lib/photography";
+import {
+  photoSessions,
+  photoPackages,
+  photoLocations,
+  serviceAreas,
+  photoFaqs,
+} from "@/lib/photography";
 import { eventOfferings } from "@/lib/events";
 import { studio } from "@/lib/site";
 import { fromPrice } from "@/lib/utils";
@@ -21,8 +27,29 @@ export const metadata: Metadata = {
 const JSONLD_DESC =
   "AprilDawn Photography — an Aiken, SC studio for family, senior, newborn, couples, branding, and event portraits, serving the greater CSRA and South Carolina.";
 
+const PORTFOLIO: { scene: SceneVariant; label: string }[] = [
+  { scene: "garden", label: "Family · Hitchcock Woods" },
+  { scene: "sunset", label: "Couples · Hopelands" },
+  { scene: "sunrise", label: "Newborn · in-studio" },
+  { scene: "beach", label: "Seniors · downtown Aiken" },
+  { scene: "picnic", label: "Family · backyard" },
+  { scene: "winter", label: "Branding · on-site" },
+  { scene: "birthday", label: "Events · celebration" },
+  { scene: "sunset", label: "Engagement · The Willcox" },
+];
+
 export default function PhotographyPage() {
   const testimonials = eventOfferings.weddings.testimonials.slice(0, 3);
+
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: photoFaqs.map((f) => ({
+      "@type": "Question",
+      name: f.q,
+      acceptedAnswer: { "@type": "Answer", text: f.a },
+    })),
+  };
 
   return (
     <>
@@ -30,6 +57,10 @@ export default function PhotographyPage() {
         path="/photography"
         name="AprilDawn Photography — Aiken, SC"
         description={JSONLD_DESC}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
       />
 
       {/* Hero */}
@@ -111,6 +142,35 @@ export default function PhotographyPage() {
                 </ul>
               </div>
             </div>
+          ))}
+        </div>
+      </Section>
+
+      {/* Portfolio */}
+      <Section className="pt-0">
+        <SectionHeading
+          eyebrow="Recent work"
+          title="A look at our sessions"
+          intro="A little of everything we shoot around Aiken and the CSRA."
+        />
+        <div className="mt-8 grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-4">
+          {PORTFOLIO.map((p, i) => (
+            <figure
+              key={`${p.label}-${i}`}
+              className="group relative overflow-hidden rounded-2xl shadow-soft ring-1 ring-ink/10"
+            >
+              <div className="aspect-[4/5]">
+                <MemoryScene
+                  variant={p.scene}
+                  uid={`pf-${i}`}
+                  className="transition-transform duration-500 group-hover:scale-105"
+                />
+              </div>
+              <div className="absolute inset-0 bg-gradient-to-t from-ink/45 to-transparent" />
+              <figcaption className="absolute bottom-2 left-3 right-3 text-xs font-semibold text-white">
+                {p.label}
+              </figcaption>
+            </figure>
           ))}
         </div>
       </Section>
@@ -278,6 +338,17 @@ export default function PhotographyPage() {
             — Augusta, North Augusta, and the Lakelands — is included with every
             session; destination sessions across the Carolinas are welcome.
           </p>
+          <p className="mt-8 text-sm font-semibold text-ink">Proudly serving</p>
+          <div className="mt-3 flex flex-wrap gap-2">
+            {serviceAreas.map((area) => (
+              <span
+                key={area}
+                className="rounded-full bg-white/70 px-3 py-1 text-xs font-medium text-ink-soft ring-1 ring-ink/10"
+              >
+                {area}
+              </span>
+            ))}
+          </div>
         </div>
       </Section>
 
@@ -299,6 +370,24 @@ export default function PhotographyPage() {
                 <span className="block text-xs text-ink-soft">{t.location}</span>
               </figcaption>
             </figure>
+          ))}
+        </div>
+      </Section>
+
+      {/* FAQ */}
+      <Section className="pt-0">
+        <SectionHeading center eyebrow="Good to know" title="Photography FAQ" />
+        <div className="mx-auto mt-10 max-w-3xl divide-y divide-ink/10 overflow-hidden rounded-3xl bg-white ring-1 ring-ink/10">
+          {photoFaqs.map((f) => (
+            <details key={f.q} className="group px-6 py-5">
+              <summary className="flex cursor-pointer list-none items-center justify-between gap-4 text-left font-semibold text-ink [&::-webkit-details-marker]:hidden">
+                {f.q}
+                <span className="shrink-0 text-xl leading-none text-dawn-500 transition group-open:rotate-45">
+                  +
+                </span>
+              </summary>
+              <p className="mt-3 text-sm leading-relaxed text-ink-soft">{f.a}</p>
+            </details>
           ))}
         </div>
       </Section>
