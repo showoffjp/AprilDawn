@@ -17,6 +17,7 @@ import { MemoryMarquee } from "@/components/home/MemoryMarquee";
 import { Benefits } from "@/components/home/Benefits";
 import { BentoFlagships } from "@/components/home/BentoFlagships";
 import { EventsTeaser } from "@/components/home/EventsTeaser";
+import { MemoryScene } from "@/components/art/MemoryScene";
 import { PrintShowcase } from "@/components/home/PrintShowcase";
 import { ArtStyleTeaser } from "@/components/home/ArtStyleTeaser";
 import { CreateGrid } from "@/components/home/CreateGrid";
@@ -125,6 +126,59 @@ export default function Home() {
         />
         <div className="mt-10">
           <BentoFlagships />
+        </div>
+      </Section>
+
+      {/* --------------------------------------------- Aiken, SC photography */}
+      <Section backdrop="rose">
+        <div className="grid items-center gap-10 lg:grid-cols-2">
+          <div>
+            <Eyebrow>Aiken, SC · Photography studio</Eyebrow>
+            <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+              A photographer in Aiken who does what no one else can
+            </h2>
+            <p className="mt-4 leading-relaxed text-ink-soft">
+              Families, seniors, newborns, couples, and events all across the
+              CSRA — shot with heart, then hand-enhanced frame by frame and
+              printable on anything from canvas to a living LED wall. Your gallery
+              is only the beginning.
+            </p>
+            <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-ink-soft sm:max-w-md">
+              {[
+                "Family & portraits",
+                "Senior portraits",
+                "Newborn & maternity",
+                "Couples & engagement",
+                "Branding & headshots",
+                "Events & parties",
+              ].map((s) => (
+                <li key={s} className="flex items-start gap-2">
+                  <span className="mt-0.5 text-dawn-500">✦</span>
+                  {s}
+                </li>
+              ))}
+            </ul>
+            <div className="mt-7 flex flex-wrap gap-3">
+              <Button href="/photography">Explore Aiken photography →</Button>
+              <Button href="/photography#inquire" variant="ghost">
+                Book a session
+              </Button>
+            </div>
+          </div>
+          <div className="grid grid-cols-2 gap-3">
+            {(["garden", "sunset", "sunrise", "beach"] as const).map((v, i) => (
+              <div
+                key={v}
+                className={`overflow-hidden rounded-3xl shadow-soft ring-1 ring-ink/10 ${
+                  i % 2 ? "translate-y-5" : ""
+                }`}
+              >
+                <div className="aspect-[4/5]">
+                  <MemoryScene variant={v} uid={`home-photo-${v}`} />
+                </div>
+              </div>
+            ))}
+          </div>
         </div>
       </Section>
 
