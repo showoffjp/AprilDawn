@@ -52,6 +52,7 @@ export type NavItem = { label: string; href: string };
 
 export const mainNav: NavItem[] = [
   { label: "Services", href: "/services" },
+  { label: "Photography", href: "/photography" },
   { label: "Weddings", href: "/weddings" },
   { label: "Reunions", href: "/family-reunions" },
   { label: "The Living Wall", href: "/living-wall" },
@@ -72,6 +73,7 @@ export const footerNav: { title: string; items: NavItem[] }[] = [
   {
     title: "Flagship experiences",
     items: [
+      { label: "Photography — Aiken, SC", href: "/photography" },
       { label: "Events — Aiken, SC", href: "/events" },
       { label: "SC Weddings", href: "/weddings" },
       { label: "SC Family Reunions", href: "/family-reunions" },
