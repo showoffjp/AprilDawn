@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Magnetic } from "@/components/effects/Magnetic";
 import { Container } from "@/components/ui/Container";
 import { CartIndicator } from "@/components/cart/CartIndicator";
+import { SearchIcon, MenuIcon, CloseIcon } from "@/components/ui/icons";
 import { Logo } from "./Logo";
 
 export function Header() {
@@ -33,10 +34,10 @@ export function Header() {
           <button
             type="button"
             onClick={() => window.dispatchEvent(new Event("open-command"))}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-lg ring-1 ring-inset ring-ink/15 transition hover:bg-ink/5"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink-soft ring-1 ring-inset ring-ink/15 transition hover:bg-ink/5 hover:text-ink"
             aria-label="Search (⌘K)"
           >
-            🔍
+            <SearchIcon className="h-[18px] w-[18px]" />
           </button>
           <CartIndicator />
           <Link
@@ -57,11 +58,11 @@ export function Header() {
           <button
             type="button"
             onClick={() => setOpen((v) => !v)}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full ring-1 ring-inset ring-ink/15"
+            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink ring-1 ring-inset ring-ink/15"
             aria-label="Toggle menu"
             aria-expanded={open}
           >
-            <span className="text-lg">{open ? "✕" : "☰"}</span>
+            {open ? <CloseIcon className="h-5 w-5" /> : <MenuIcon className="h-5 w-5" />}
           </button>
         </div>
       </Container>
@@ -92,9 +93,10 @@ export function Header() {
                 setOpen(false);
                 window.dispatchEvent(new Event("open-command"));
               }}
-              className="rounded-xl px-3 py-2.5 text-left text-base font-medium text-ink hover:bg-ink/5"
+              className="flex items-center gap-2.5 rounded-xl px-3 py-2.5 text-left text-base font-medium text-ink hover:bg-ink/5"
             >
-              🔍 Search
+              <SearchIcon className="h-5 w-5 text-ink-soft" />
+              Search
             </button>
             <Button href="/upload" className="mt-3" onClick={() => setOpen(false)}>
               Start a project
