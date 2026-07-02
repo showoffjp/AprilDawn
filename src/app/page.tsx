@@ -12,7 +12,6 @@ import { Reveal } from "@/components/ui/Reveal";
 import { PartnerMarquee } from "@/components/site/PartnerMarquee";
 import { StatsBand } from "@/components/effects/StatsBand";
 import { BeforeAfterSlider } from "@/components/effects/BeforeAfterSlider";
-import { Aurora } from "@/components/effects/Aurora";
 import { HeroCollage } from "@/components/home/HeroCollage";
 import { MemoryMarquee } from "@/components/home/MemoryMarquee";
 import { Benefits } from "@/components/home/Benefits";
@@ -22,8 +21,6 @@ import { PrintShowcase } from "@/components/home/PrintShowcase";
 import { ArtStyleTeaser } from "@/components/home/ArtStyleTeaser";
 import { CreateGrid } from "@/components/home/CreateGrid";
 import { HeroSearch } from "@/components/home/HeroSearch";
-import { StudioBento } from "@/components/home/StudioBento";
-import { MagicLayers } from "@/components/home/MagicLayers";
 import { ProductMockup } from "@/components/cart/ProductMockup";
 import { featuredServices } from "@/lib/services";
 import { heroBundle } from "@/lib/occasions";
@@ -37,13 +34,12 @@ export default function Home() {
     <>
       {/* ---------------------------------------------------------------- Hero */}
       <section className="bg-sunrise bg-grain relative overflow-hidden">
-        <Aurora />
         <Container className="relative grid items-center gap-12 py-20 sm:py-24 lg:grid-cols-2 lg:py-28">
           <div className="text-center lg:text-left">
-            <Badge>✨ The everything store for memories</Badge>
+            <Badge>The everything store for memories</Badge>
             <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-7xl">
               Keep your reveries{" "}
-              <span className="text-gradient text-gradient-animated">forever.</span>
+              <span className="text-gradient">forever.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-soft lg:mx-0">
               Upload a photo — or mail us the whole shoebox. AprilDawn digitizes,
@@ -101,18 +97,6 @@ export default function Home() {
           <StatsBand stats={trustStats} />
         </Container>
       </div>
-
-      {/* ----------------------------------------------- Everything, one place */}
-      <Section>
-        <SectionHeading
-          center
-          title="Everything to keep a memory — in one place"
-          intro="From a single photo to a lifetime of media, every tool lives under one warm roof."
-        />
-        <Reveal className="mt-10">
-          <StudioBento />
-        </Reveal>
-      </Section>
 
       {/* ------------------------------------------------------ Featured grid */}
       <Section backdrop="rose">
@@ -174,21 +158,8 @@ export default function Home() {
         </div>
       </Section>
 
-      {/* ----------------------------------------------------- Magic showcase */}
-      <Section>
-        <SectionHeading
-          center
-          eyebrow="The AprilDawn magic"
-          title="Watch a flat photo come alive"
-          intro="Hover over it: we lift your memory into layers, restore the color, and make it pop right off the page."
-        />
-        <div className="mt-14 pb-6">
-          <MagicLayers />
-        </div>
-      </Section>
-
       {/* ----------------------------------------------- Masterpiece portraits */}
-      <Section className="pt-0">
+      <Section>
         <SectionHeading
           center
           eyebrow="Masterpiece portraits"
