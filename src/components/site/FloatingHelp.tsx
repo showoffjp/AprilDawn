@@ -3,6 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { site } from "@/lib/site";
+import { ChatIcon, CloseIcon } from "@/components/ui/icons";
 
 export function FloatingHelp() {
   const [open, setOpen] = useState(false);
@@ -49,10 +50,10 @@ export function FloatingHelp() {
       <button
         type="button"
         onClick={() => setOpen((o) => !o)}
-        className="ml-auto flex h-14 w-14 items-center justify-center rounded-full bg-ink text-2xl text-cream shadow-soft-lg transition hover:scale-105"
+        className="ml-auto flex h-14 w-14 items-center justify-center rounded-full bg-ink text-cream shadow-soft-lg transition hover:scale-105"
         aria-label={open ? "Close help" : "Open help"}
       >
-        {open ? "✕" : "💬"}
+        {open ? <CloseIcon className="h-6 w-6" /> : <ChatIcon className="h-6 w-6" />}
       </button>
     </div>
   );
