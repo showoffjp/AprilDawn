@@ -108,12 +108,17 @@ export default function PhotographyPage() {
         />
         <div className="mt-10 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {photoSessions.map((s) => (
-            <div
+            <Link
               key={s.slug}
-              className="flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-ink/10"
+              href={`/photography/${s.slug}`}
+              className="group flex h-full flex-col overflow-hidden rounded-3xl bg-white shadow-soft ring-1 ring-ink/10 transition hover:-translate-y-1 hover:shadow-soft-lg"
             >
               <div className="relative h-32 overflow-hidden">
-                <MemoryScene variant={s.scene} uid={`ps-${s.slug}`} />
+                <MemoryScene
+                  variant={s.scene}
+                  uid={`ps-${s.slug}`}
+                  className="transition-transform duration-500 group-hover:scale-105"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-ink/35 to-transparent" />
                 <span
                   aria-hidden="true"
@@ -140,8 +145,11 @@ export default function PhotographyPage() {
                     </li>
                   ))}
                 </ul>
+                <span className="mt-4 text-sm font-semibold text-dawn-600 transition group-hover:translate-x-0.5">
+                  View {s.name} →
+                </span>
               </div>
-            </div>
+            </Link>
           ))}
         </div>
       </Section>

@@ -14,6 +14,10 @@ export type PhotoSession = {
   priceFrom: number;
   blurb: string;
   includes: string[];
+  /** SEO-oriented page title (e.g. "Aiken Family Photographer"). */
+  searchTitle: string;
+  /** Lead paragraph for the session's landing page. */
+  lead: string;
 };
 
 export const photoSessions: PhotoSession[] = [
@@ -25,6 +29,8 @@ export const photoSessions: PhotoSession[] = [
     priceFrom: 275,
     blurb: "Golden-hour sessions in Hitchcock Woods, Hopelands Gardens, or your own backyard.",
     includes: ["45–60 min session", "1 location", "35+ hand-edited images", "Print & Living Wall credit"],
+    searchTitle: "Aiken Family Photographer",
+    lead: "Looking for a family photographer in Aiken? We shoot relaxed, golden-hour family sessions in Hitchcock Woods, Hopelands Gardens, and backyards across the CSRA — playful, natural, and never stiff. Then we hand-finish every frame and can print your favorites on anything from canvas to a Living Wall.",
   },
   {
     slug: "newborn-maternity",
@@ -34,6 +40,8 @@ export const photoSessions: PhotoSession[] = [
     priceFrom: 325,
     blurb: "Studio-soft newborn sessions and glowing maternity portraits, gently posed.",
     includes: ["In-studio or at-home", "Props & wraps provided", "Retouched gallery", "Grandparent print sets"],
+    searchTitle: "Aiken Newborn & Maternity Photographer",
+    lead: "Welcome the newest face on the wall. Our Aiken newborn and maternity sessions are soft, safe, and unhurried — in our studio or in your own nursery. Every image is gently retouched by hand, and grandparents can order print sets straight from your gallery.",
   },
   {
     slug: "seniors",
@@ -43,6 +51,8 @@ export const photoSessions: PhotoSession[] = [
     priceFrom: 250,
     blurb: "Class-of sessions around downtown Aiken, the Woods, and your campus of choice.",
     includes: ["Multiple outfits", "2 locations", "40+ edited images", "Grad announcement cards"],
+    searchTitle: "Aiken Senior Portrait Photographer",
+    lead: "Class-of senior portraits with real personality, shot around downtown Aiken, Hitchcock Woods, and the campus that means the most to you. Multiple outfits, two locations, and matching graduation announcement cards ready to send.",
   },
   {
     slug: "couples",
@@ -52,6 +62,8 @@ export const photoSessions: PhotoSession[] = [
     priceFrom: 295,
     blurb: "Engagements, anniversaries, and just-because sessions — styled and unhurried.",
     includes: ["60 min session", "Outfit & location guidance", "40+ edited images", "Save-the-date ready"],
+    searchTitle: "Aiken Couples & Engagement Photographer",
+    lead: "Engagements, anniversaries, and just-because date-night sessions across Aiken and the CSRA. We help with outfits and locations, keep it easy and unhurried, and deliver save-the-date-ready images — plus the option to print the day's best shot as art.",
   },
   {
     slug: "branding",
@@ -61,6 +73,8 @@ export const photoSessions: PhotoSession[] = [
     priceFrom: 225,
     blurb: "Polished headshots and personal-brand sessions for Aiken professionals and teams.",
     includes: ["Studio or on-site", "Team rates available", "Retouched selects", "Web & print crops"],
+    searchTitle: "Aiken Headshot & Branding Photographer",
+    lead: "Polished headshots and personal-brand photography for Aiken professionals, realtors, and teams. Shot in our studio or on-site at your office, retouched by hand, and delivered in web and print crops ready for LinkedIn, your site, and the press kit.",
   },
   {
     slug: "events",
@@ -70,8 +84,14 @@ export const photoSessions: PhotoSession[] = [
     priceFrom: 400,
     blurb: "Birthdays, showers, and corporate gatherings — candid coverage that actually pops.",
     includes: ["Hourly coverage", "Fast sneak-peek gallery", "Full edited set", "On-site print add-ons"],
+    searchTitle: "Aiken Event Photographer",
+    lead: "Birthdays, showers, galas, and corporate gatherings across Aiken and the CSRA — candid, energetic coverage that actually captures the room. Fast sneak-peek galleries, a full hand-edited set, and on-site prints your guests can take home.",
   },
 ];
+
+export function getPhotoSession(slug: string): PhotoSession | undefined {
+  return photoSessions.find((s) => s.slug === slug);
+}
 
 export type PhotoPackage = {
   name: string;

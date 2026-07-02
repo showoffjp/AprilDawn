@@ -6,6 +6,7 @@ import { stories } from "@/lib/stories";
 import { collections } from "@/lib/collections";
 import { bundles } from "@/lib/bundles";
 import { giftGuides } from "@/lib/giftGuides";
+import { photoSessions } from "@/lib/photography";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const routes = [
@@ -71,6 +72,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
     lastModified: new Date(),
   }));
 
+  const photoSessionRoutes = photoSessions.map((s) => ({
+    url: `${site.url}/photography/${s.slug}`,
+    lastModified: new Date(),
+  }));
+
   return [
     ...routes,
     ...serviceRoutes,
@@ -78,6 +84,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ...collectionRoutes,
     ...bundleRoutes,
     ...guideRoutes,
+    ...photoSessionRoutes,
     ...storyRoutes,
   ];
 }
