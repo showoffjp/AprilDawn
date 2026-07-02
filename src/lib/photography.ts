@@ -116,3 +116,49 @@ export const photoLocations = [
   "The Willcox",
   "Your home or venue",
 ];
+
+/** Towns & neighborhoods we regularly serve (CSRA + Lakelands) — local SEO. */
+export const serviceAreas = [
+  "Aiken",
+  "North Augusta",
+  "Augusta, GA",
+  "Graniteville",
+  "Warrenville",
+  "Beech Island",
+  "New Ellenton",
+  "Wagener",
+  "Barnwell",
+  "Edgefield",
+  "Batesburg-Leesville",
+  "Lexington",
+  "Columbia",
+];
+
+export type PhotoFaq = { q: string; a: string };
+
+export const photoFaqs: PhotoFaq[] = [
+  {
+    q: "Where are you based, and do you travel?",
+    a: "We're based in Aiken, SC. Travel across the greater CSRA — Augusta, North Augusta, and the Lakelands — is included with every session. Destination sessions elsewhere in the Carolinas and Georgia are welcome for a small travel fee.",
+  },
+  {
+    q: "How soon will I see my photos?",
+    a: "You'll get a sneak-peek gallery within 48 hours of most sessions, and your full hand-edited gallery within about two weeks. Weddings and large events run a little longer.",
+  },
+  {
+    q: "What should we wear?",
+    a: "Once you book, we send a simple style guide with palettes and outfit ideas for your location and season. Coordinate rather than match, and bring a second look if your package allows it.",
+  },
+  {
+    q: "Do I get printing rights?",
+    a: "Yes — every gallery includes a personal print release. But most families let us print for them, because we hand-finish each image and can put it on anything from canvas to a Living Wall.",
+  },
+  {
+    q: "What do you actually do differently?",
+    a: "Every delivered image is individually retouched and color-graded by our studio — never a batch filter. And we're the only Aiken studio that will also digitize and restore your older family photos in the same visit.",
+  },
+  {
+    q: "How do we book, and is there a deposit?",
+    a: "Send an inquiry below with your date and session type. We'll reply within one business day with availability and pricing. A 25% retainer holds your date; the balance is due the day of the session, after you've seen a proof.",
+  },
+];
