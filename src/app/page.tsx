@@ -386,8 +386,8 @@ export default function Home() {
           ))}
         </div>
         <div className="mt-8 text-center">
-          <Button href="/collections" variant="ghost">
-            See all gift collections →
+          <Button href="/gifts" variant="ghost">
+            Explore all the ways to gift →
           </Button>
         </div>
       </Section>

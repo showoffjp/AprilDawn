@@ -26,6 +26,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/reviews",
     "/gallery",
     "/gift-finder",
+    "/gifts",
     "/collections",
     "/bundles",
     "/gift-guides",
