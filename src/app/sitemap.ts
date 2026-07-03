@@ -20,6 +20,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/memory-mail",
     "/occasions",
     "/how-it-works",
+    "/track",
     "/pricing",
     "/partners",
     "/stories",
