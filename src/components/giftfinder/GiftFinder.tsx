@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { ProductCard } from "@/components/cards/ProductCard";
+import { type Product, products, getProduct } from "@/lib/products";
 import { cn } from "@/lib/utils";
 
 type Result = {
@@ -52,6 +54,53 @@ function recommend(occasion: string, vibe: string, budget: string): Result {
   return R.canvas;
 }
 
+const VIBE_SLUGS: Record<string, string[]> = {
+  Heartfelt: ["framed", "blanket", "canvas", "ornament", "metalengraving", "pillow"],
+  Funny: ["socks", "caketopper", "petbandana", "wrappingpaper", "mug", "pillow"],
+  Fancy: ["canvas", "acrylic", "metal", "metalengraving", "woodengraving", "triptych"],
+  Practical: ["mug", "totebag", "blanket", "calendar", "coasters", "mousepad"],
+};
+
+const OCCASION_SLUGS: Record<string, string[]> = {
+  Holiday: ["ornament", "pajamas", "calendar", "stickers"],
+  Anniversary: ["canvas", "vinyl", "metalengraving", "framed"],
+  Birthday: ["socks", "caketopper", "mug", "magnet"],
+  Remembrance: ["candle", "metalengraving", "framed", "woodengraving"],
+  "Just because": ["mug", "canvas", "blanket", "keychain"],
+};
+
+/** Three real, shoppable product picks that fit the answers and the budget. */
+function recommendProducts(occasion: string, vibe: string, budget: string): Product[] {
+  const maxPrice = budget === "Under $30" ? 30 : budget === "$30–$100" ? 100 : Infinity;
+  const pool = [...(VIBE_SLUGS[vibe] ?? []), ...(OCCASION_SLUGS[occasion] ?? [])];
+  const seen = new Set<string>();
+  const out: Product[] = [];
+  const add = (p: Product | undefined) => {
+    if (p && !seen.has(p.slug) && p.priceFrom <= maxPrice && out.length < 3) {
+      seen.add(p.slug);
+      out.push(p);
+    }
+  };
+  pool.forEach((slug) => add(getProduct(slug)));
+  // Top up with anything else in budget if the curated pool was thin.
+  if (out.length < 3) products.forEach(add);
+  return out;
+}
+
+/** The best curated edit to send them to next. */
+function recommendEdit(
+  occasion: string,
+  vibe: string,
+  budget: string,
+): { href: string; label: string } {
+  if (budget === "Under $30") return { href: "/collections/under-25", label: "Shop gifts under $25" };
+  if (vibe === "Funny") return { href: "/collections/gag-gifts", label: "Shop the gag gifts" };
+  if (occasion === "Holiday") return { href: "/gift-guides/christmas", label: "Shop the holiday guide" };
+  if (occasion === "Anniversary") return { href: "/gift-guides/anniversary", label: "Shop anniversary gifts" };
+  if (occasion === "Remembrance") return { href: "/gift-guides/memorial", label: "Shop memorial gifts" };
+  return { href: "/collections", label: "Browse all collections" };
+}
+
 export function GiftFinder() {
   const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<string[]>([]);
@@ -60,6 +109,10 @@ export function GiftFinder() {
     answers.length === QUESTIONS.length
       ? recommend(answers[0], answers[1], answers[2])
       : null;
+  const productPicks = result
+    ? recommendProducts(answers[0], answers[1], answers[2])
+    : [];
+  const edit = result ? recommendEdit(answers[0], answers[1], answers[2]) : null;
 
   function pick(option: string) {
     const next = [...answers.slice(0, step), option];
@@ -74,21 +127,46 @@ export function GiftFinder() {
 
   if (result) {
     return (
-      <div className="mx-auto max-w-xl rounded-3xl bg-white p-8 text-center ring-1 ring-ink/10 sm:p-10">
-        <div className="text-6xl">{result.emoji}</div>
-        <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-dawn-600">
-          Our pick for you
-        </p>
-        <h3 className="mt-2 font-display text-2xl font-semibold">
-          {result.title}
-        </h3>
-        <p className="mt-3 text-ink-soft">{result.blurb}</p>
-        <div className="mt-6 flex flex-wrap justify-center gap-3">
-          <Button href={result.href}>{result.cta}</Button>
-          <Button variant="ghost" onClick={reset}>
-            Start over
-          </Button>
+      <div className="mx-auto max-w-3xl rounded-3xl bg-white p-8 ring-1 ring-ink/10 sm:p-10">
+        <div className="text-center">
+          <div className="text-6xl">{result.emoji}</div>
+          <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-dawn-600">
+            Our pick for you
+          </p>
+          <h3 className="mt-2 font-display text-2xl font-semibold">
+            {result.title}
+          </h3>
+          <p className="mx-auto mt-3 max-w-xl text-ink-soft">{result.blurb}</p>
+          <div className="mt-6 flex flex-wrap justify-center gap-3">
+            <Button href={result.href}>{result.cta}</Button>
+            <Button variant="ghost" onClick={reset}>
+              Start over
+            </Button>
+          </div>
         </div>
+
+        {productPicks.length > 0 ? (
+          <div className="mt-8 border-t border-ink/10 pt-8">
+            <div className="flex items-center justify-between gap-4">
+              <p className="font-display text-lg font-semibold">
+                Ready-to-gift picks
+              </p>
+              {edit ? (
+                <a
+                  href={edit.href}
+                  className="shrink-0 text-sm font-semibold text-dawn-600 hover:underline"
+                >
+                  {edit.label} →
+                </a>
+              ) : null}
+            </div>
+            <div className="mt-4 grid gap-4 sm:grid-cols-3">
+              {productPicks.map((p) => (
+                <ProductCard key={p.slug} product={p} />
+              ))}
+            </div>
+          </div>
+        ) : null}
       </div>
     );
   }
