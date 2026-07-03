@@ -10,7 +10,7 @@ Upload a photo, or mail us the whole shoebox. AprilDawn **digitizes**, **restore
 
 <br/>
 
-![Status](https://img.shields.io/badge/status-MVP%20scaffold-ec3c72)
+![Status](https://img.shields.io/badge/status-live%20on%20Vercel-ec3c72)
 ![Next.js](https://img.shields.io/badge/Next.js-16-271c2c?logo=next.js)
 ![React](https://img.shields.io/badge/React-19-58c4dc?logo=react)
 ![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript)
@@ -18,7 +18,7 @@ Upload a photo, or mail us the whole shoebox. AprilDawn **digitizes**, **restore
 ![License](https://img.shields.io/badge/license-GPLv3-7e54c0)
 ![PRs](https://img.shields.io/badge/PRs-welcome-f4853c)
 
-🖼️ Digitize · ✨ Restore · 👕 Print on anything · 🎨 Hand-painted masterpieces · 🧱 The Living Wall · 💌 Memory Mail · 🎂 Occasions & auto-gifting
+🖼️ Digitize · ✨ Restore · 👕 Print on anything · 🎨 Hand-painted masterpieces · 🧱 The Living Wall · 💌 Memory Mail · 🎂 Occasions & auto-gifting · 📷 Aiken, SC photography · 💍 SC weddings & reunions · 🎁 Gifts, collections & bundles
 
 </div>
 
@@ -36,6 +36,8 @@ Upload a photo, or mail us the whole shoebox. AprilDawn **digitizes**, **restore
   - [🧱 The Living Wall](#-the-living-wall-flagship)
   - [💌 Memory Mail](#-memory-mail-flagship)
   - [🎂 Occasions & Auto-Gifting](#-occasions--auto-gifting-flagship)
+  - [📷 AprilDawn Photography — Aiken, SC](#-aprildawn-photography--aiken-sc-flagship)
+  - [🎁 Gifts, Collections & Bundles](#-gifts-collections--bundles)
 - [🛍️ Print-on-anything catalog](#️-print-on-anything-catalog)
 - [💰 How AprilDawn makes money](#-how-aprildawn-makes-money)
 - [🏗️ Tech stack](#️-tech-stack)
@@ -151,6 +153,24 @@ T-shirts and sweaters are just the **start**. See the [full catalog](#️-print-
 - 👆 **One-tap gifting** from your AprilDawn vault of photos
 - 👵 The legendary **"Troll Grandma" bundle**: her face on every shirt, mug, cake, vinyl, pillow, and pair of socks at the party — _maximum love, maximum chaos_
 
+### 📷 AprilDawn Photography — Aiken, SC _(flagship)_
+> _An Aiken studio with a difference no one else offers._
+
+- 🏠 Based in **Aiken, SC**, serving the greater CSRA & South Carolina (travel included)
+- 👨‍👩‍👧 Six session types: **family · newborn & maternity · seniors · couples · branding · events** — each with its own bookable landing page (`/photography/*`)
+- 💍 Full **SC weddings** (`/weddings`) and **family reunions** (`/family-reunions`) verticals: planning + photography packages, venues, add-ons
+- ✨ The differentiator: every frame **hand-enhanced**, printable on _anything_ — and we digitize & restore the family's old photos in the same visit
+- 🔍 `LocalBusiness` / `Photographer` / `Service` / `FAQPage` structured data for local search
+
+### 🎁 Gifts, Collections & Bundles
+> _However you like to shop, the perfect gift is one photo away._
+
+- 🚪 **`/gifts`** — one hub over every gifting surface
+- 🗂️ **Gift Collections** (`/collections`) — curated cross-category edits (grandparents, pet lovers, under $25, memorial, gag gifts…)
+- 📦 **Gift Bundles** (`/bundles`) — ready-made sets with **one-tap add-all-to-cart**
+- 🗓️ **Occasion Gift Guides** (`/gift-guides`) — Mother's/Father's Day, Christmas, anniversary, new baby, memorial
+- 🧭 **Gift Finder quiz** — three questions → a pick + three shoppable, budget-matched products
+
 ### ➕ More ways to remember
 | Service | What it does |
 | :-- | :-- |
@@ -166,14 +186,16 @@ T-shirts and sweaters are just the **start**. See the [full catalog](#️-print-
 
 > 🟢 = first-party studio printing · 🛒 = fulfilled via maker network / Amazon Associates
 
+> **45 products** across six categories — a taste:
+
 | Category | Products |
 | :-- | :-- |
-| 👕 **Apparel** | T-shirts 🟢 · Hoodies 🟢 · Crew sweatshirts 🟢 · Face socks 🟢 · Family pajamas 🟢 |
-| 🖼️ **Wall Art** | Gallery canvas 🟢 · Framed prints 🟢 · Metal prints 🟢 · Acrylic prints 🟢 · Tapestries 🟢 |
-| 🛋️ **Home** | Photo blankets 🟢 · Throw pillows 🟢 · Jigsaw puzzles 🟢 · Ornaments 🟢 · Photo candles 🛒 |
-| ☕ **Drinkware** | Photo mugs 🟢 · Insulated tumblers 🛒 · Stemless wine cups 🛒 |
-| 🎒 **Accessories** | Phone cases 🟢 · Tote bags 🟢 · Keychains 🟢 · Fridge magnets 🟢 |
-| 🎁 **Everything Else** | 🎂 Edible cake prints · 🎵 Custom vinyl records · 🛹 Skate decks · 🚩 Garden flags 🛒 · 🐾 Pet bandanas 🛒 · Photo wrapping paper 🛒 |
+| 👕 **Apparel** | T-shirts 🟢 · Hoodies 🟢 · Crew sweatshirts 🟢 · Face socks 🟢 · Family pajamas 🟢 · Baby onesies 🟢 · Aprons 🛒 · Beanies 🛒 |
+| 🖼️ **Wall Art** | Gallery canvas 🟢 · Framed prints 🟢 · Metal prints 🟢 · Acrylic prints 🟢 · Tapestries 🟢 · Matte posters 🟢 · Framed triptychs 🟢 |
+| 🛋️ **Home** | Photo blankets 🟢 · Throw pillows 🟢 · Jigsaw puzzles 🟢 · Ornaments 🟢 · Coaster sets 🟢 · Cutting boards 🛒 · Night lights 🛒 · Photo candles 🛒 |
+| ☕ **Drinkware** | Photo mugs 🟢 · Insulated tumblers 🛒 · Water bottles 🛒 · Shot glasses 🛒 · Stemless wine cups 🛒 |
+| 🎒 **Accessories** | Phone cases 🟢 · Tote bags 🟢 · Keychains 🟢 · Fridge magnets 🟢 · Mouse pads 🟢 · Luggage tags 🛒 |
+| 🎁 **Everything Else** | 🎂 Edible cake prints · 🎵 Custom vinyl records · 🃏 Playing cards · 📅 Wall calendars · ✨ Sticker sheets · 🔩 Metal engravings · 🪵 Wood & slate · 🪪 Stamped leather · 🛹 Skate decks · 🚩 Garden flags 🛒 · 🐾 Pet bandanas 🛒 · Photo wrapping paper 🛒 |
 
 > 🤔 **Don't see it? Ask anyway.** If it has a surface, we'll find a way to put your memory on it.
 
@@ -273,21 +295,18 @@ AprilDawn/
 ### 💻 Bash / terminal
 
 ```bash
-# 1) Clone your repo (or pull the branch if already cloned)
+# 1) Clone your repo (or pull if already cloned)
 git clone https://github.com/showoffjp/aprildawn.git
 cd aprildawn
+# Everything lives on `main` — no special branch needed.
 
-# 2) Get the branch with the website
-git fetch origin
-git checkout claude/hopeful-heisenberg-9pefyc
-
-# 3) Install dependencies
+# 2) Install dependencies
 npm install
 
-# 4) (optional) set up env vars
+# 3) (optional) set up env vars
 cp .env.example .env.local   # then fill in keys as needed
 
-# 5) Run the dev server
+# 4) Run the dev server
 npm run dev
 #  ▲ Next.js dev server → http://localhost:3000
 ```
@@ -297,7 +316,7 @@ Open **http://localhost:3000** in your browser. Edit any file in `src/` and the 
 ### 🖥️ GitHub Desktop
 
 1. **File → Clone repository → showoffjp/aprildawn** (or **Fetch origin** if already cloned).
-2. In the **Current Branch** dropdown, choose **`claude/hopeful-heisenberg-9pefyc`**.
+2. Stay on **`main`** — the full site lives there.
 3. Click **"Open in Visual Studio Code"** (top-right), or **Repository → Open in Terminal** to run `npm install && npm run dev`.
 
 ### 🧩 Visual Studio Code
@@ -377,7 +396,7 @@ npm run start   # serves the optimized production build
 
 > ✅ shipped in this scaffold · 🟡 next up · 🔭 later
 
-### ✅ Now (in this repo) — a deep, working MVP (80+ pages)
+### ✅ Now (in this repo) — a deep, working product (130+ pages)
 - ✅ Cinematic **intro splash** animation · **⌘K command palette** search · floating help widget
 - ✅ Full site: home, **12 services**, flagship pages (Living Wall, Memory Mail, Occasions), shop, pricing, how-it-works, about, FAQ, contact, partners, **stories** (6 articles), **reviews**, **gift finder**, **member vault** preview, legal
 - ✅ **Interactive builders** (all client-side, no backend required):
@@ -391,6 +410,12 @@ npm run start   # serves the optimized production build
 - ✅ SEO: metadata, OpenGraph, dynamic OG image, **Organization / Article / AggregateRating JSON-LD**, `sitemap.xml`, `robots.txt`, branded favicon
 - ✅ Legal templates (privacy, terms, content & rights) · **fully remote-first** + free-consultation flow
 - ✅ "April Dawn" design system — responsive, reduced-motion friendly, clean `lint` + `typecheck` + `build`
+- ✅ **📷 Aiken, SC photography studio** — `/photography` hub + six bookable per-session landing pages, portfolio, FAQ (+`FAQPage` schema), packages, service areas, `LocalBusiness`/`Photographer`/`Service` JSON-LD
+- ✅ **💍 SC events verticals** — `/events`, `/weddings`, `/family-reunions` with packages, venues, add-ons, testimonials, inquiry intake
+- ✅ **🎁 Gifting surfaces** — `/gifts` hub · 6 curated collections · 4 one-tap bundles · 6 occasion gift guides · shoppable Gift Finder results
+- ✅ **🛒 Commerce hardening** — server-authoritative checkout totals + catalog price-floor, validated upload intake, spam honeypots, shared form/validation library, order tracking (`/track`), shop search & filters, PDP reviews + `Product`/`Offer` schema
+- ✅ **♿⚡ Quality passes** — WCAG contrast/dialog/focus fixes, skip-link, session-gated splash, code-split command palette, mobile grid/tap-target fixes, line-icon chrome
+- ✅ **📰 Journal** — 9 articles including Aiken photography guides ("Best Photo Spots in Aiken, SC")
 
 ### 🟡 Next (v1 — wire up the live services)
 - 🟡 **Accounts & auth** + real encrypted **Memory Vault** storage

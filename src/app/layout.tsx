@@ -48,17 +48,17 @@ export const metadata: Metadata = {
     "LED photo wall",
     "memory preservation",
   ],
+  // No og/twitter title/description here on purpose: openGraph is inherited
+  // whole from the layout (it is NOT derived from a page's `title`), so a
+  // static og:title would override every deep page's social preview. Omitting
+  // them makes scrapers fall back to each page's own <title> + description.
   openGraph: {
     type: "website",
-    title: `${site.name} — ${site.tagline}`,
-    description: site.description,
     url: site.url,
     siteName: site.name,
   },
   twitter: {
     card: "summary_large_image",
-    title: `${site.name} — ${site.tagline}`,
-    description: site.description,
   },
 };
 
