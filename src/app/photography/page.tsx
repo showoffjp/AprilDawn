@@ -71,7 +71,10 @@ export default function PhotographyPage() {
         </div>
         <Container className="relative py-20 sm:py-28">
           <div className="max-w-2xl">
-            <Badge tone="dawn">📷 Aiken, SC · portraits, families &amp; events</Badge>
+            <Badge tone="dawn">
+              <span aria-hidden="true">📷</span> Aiken, SC · portraits, families
+              &amp; events
+            </Badge>
             <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl">
               Aiken photography, with a difference no one else offers
             </h1>
@@ -140,7 +143,7 @@ export default function PhotographyPage() {
                 <ul className="mt-4 space-y-1.5 text-sm text-ink-soft">
                   {s.includes.map((inc) => (
                     <li key={inc} className="flex items-start gap-2">
-                      <span className="mt-0.5 text-dawn-500">✓</span>
+                      <span className="mt-0.5 text-dawn-500" aria-hidden="true">✓</span>
                       {inc}
                     </li>
                   ))}
@@ -254,7 +257,7 @@ export default function PhotographyPage() {
                 <ul className="mt-6 flex-1 space-y-2.5 text-sm text-ink-soft">
                   {p.features.map((f) => (
                     <li key={f} className="flex items-start gap-2">
-                      <span className="mt-0.5 text-dawn-500">✓</span>
+                      <span className="mt-0.5 text-dawn-500" aria-hidden="true">✓</span>
                       {f}
                     </li>
                   ))}
@@ -293,7 +296,7 @@ export default function PhotographyPage() {
                 "We digitize and restore your older family photos in the same visit.",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-2.5">
-                  <span className="mt-0.5 text-dawn-500">✦</span>
+                  <span className="mt-0.5 text-dawn-500" aria-hidden="true">✦</span>
                   {t}
                 </li>
               ))}
@@ -337,7 +340,7 @@ export default function PhotographyPage() {
                 key={loc}
                 className="rounded-full bg-white px-4 py-2 text-sm font-medium text-ink ring-1 ring-ink/10"
               >
-                📍 {loc}
+                <span aria-hidden="true">📍</span> {loc}
               </span>
             ))}
           </div>
@@ -369,7 +372,10 @@ export default function PhotographyPage() {
               key={t.name}
               className="flex flex-col rounded-3xl bg-white p-7 shadow-soft ring-1 ring-ink/10"
             >
-              <div className="text-dawn-500" aria-hidden="true">★★★★★</div>
+              <div className="text-dawn-500">
+                <span className="sr-only">Rated 5 out of 5 stars</span>
+                <span aria-hidden="true">★★★★★</span>
+              </div>
               <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-ink">
                 &ldquo;{t.quote}&rdquo;
               </blockquote>

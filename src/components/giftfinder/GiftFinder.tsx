@@ -1,6 +1,7 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import { Button } from "@/components/ui/Button";
 import { ProductCard } from "@/components/cards/ProductCard";
 import { type Product, products, getProduct } from "@/lib/products";
@@ -114,6 +115,13 @@ export function GiftFinder() {
     : [];
   const edit = result ? recommendEdit(answers[0], answers[1], answers[2]) : null;
 
+  // When the result replaces the quiz, the focused button unmounts — move
+  // focus to the result heading so keyboard/SR users aren't dropped on <body>.
+  const resultHeadingRef = useRef<HTMLHeadingElement>(null);
+  useEffect(() => {
+    if (result) resultHeadingRef.current?.focus();
+  }, [result]);
+
   function pick(option: string) {
     const next = [...answers.slice(0, step), option];
     setAnswers(next);
@@ -127,13 +135,20 @@ export function GiftFinder() {
 
   if (result) {
     return (
-      <div className="mx-auto max-w-3xl rounded-3xl bg-white p-8 ring-1 ring-ink/10 sm:p-10">
+      <div
+        role="status"
+        className="mx-auto max-w-3xl rounded-3xl bg-white p-8 ring-1 ring-ink/10 sm:p-10"
+      >
         <div className="text-center">
-          <div className="text-6xl">{result.emoji}</div>
+          <div className="text-6xl" aria-hidden="true">{result.emoji}</div>
           <p className="mt-2 text-sm font-semibold uppercase tracking-wide text-dawn-600">
             Our pick for you
           </p>
-          <h3 className="mt-2 font-display text-2xl font-semibold">
+          <h3
+            ref={resultHeadingRef}
+            tabIndex={-1}
+            className="mt-2 font-display text-2xl font-semibold focus:outline-none"
+          >
             {result.title}
           </h3>
           <p className="mx-auto mt-3 max-w-xl text-ink-soft">{result.blurb}</p>
@@ -147,17 +162,17 @@ export function GiftFinder() {
 
         {productPicks.length > 0 ? (
           <div className="mt-8 border-t border-ink/10 pt-8">
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-wrap items-baseline justify-between gap-x-4 gap-y-1">
               <p className="font-display text-lg font-semibold">
                 Ready-to-gift picks
               </p>
               {edit ? (
-                <a
+                <Link
                   href={edit.href}
                   className="shrink-0 text-sm font-semibold text-dawn-600 hover:underline"
                 >
                   {edit.label} →
-                </a>
+                </Link>
               ) : null}
             </div>
             <div className="mt-4 grid gap-4 sm:grid-cols-3">
@@ -183,7 +198,7 @@ export function GiftFinder() {
           <button
             type="button"
             onClick={() => setStep((s) => s - 1)}
-            className="hover:text-ink"
+            className="-m-2 p-2 hover:text-ink"
           >
             ← Back
           </button>

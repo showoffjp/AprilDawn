@@ -18,6 +18,7 @@ export default function GiftFinderPage() {
       <Container className="relative">
         <Section>
           <SectionHeading
+            as="h1"
             center
             eyebrow="Gift Finder"
             title="Not sure what to make? We'll help."

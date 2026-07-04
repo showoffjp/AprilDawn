@@ -125,7 +125,7 @@ export default async function PhotoSessionPage({
             <ul className="mt-5 space-y-2.5 text-sm text-ink-soft">
               {session.includes.map((inc) => (
                 <li key={inc} className="flex items-start gap-2.5">
-                  <span className="mt-0.5 text-dawn-500">✓</span>
+                  <span className="mt-0.5 text-dawn-500" aria-hidden="true">✓</span>
                   {inc}
                 </li>
               ))}
@@ -145,7 +145,7 @@ export default async function PhotoSessionPage({
                 "We digitize & restore your older family photos in the same visit.",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-2.5">
-                  <span className="mt-0.5 text-dawn-500">✦</span>
+                  <span className="mt-0.5 text-dawn-500" aria-hidden="true">✦</span>
                   {t}
                 </li>
               ))}

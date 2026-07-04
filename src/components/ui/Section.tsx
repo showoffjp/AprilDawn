@@ -37,18 +37,21 @@ export function SectionHeading({
   title,
   intro,
   center,
+  as: Tag = "h2",
 }: {
   eyebrow?: string;
   title: React.ReactNode;
   intro?: React.ReactNode;
   center?: boolean;
+  /** Heading level — pass "h1" when this is the page's hero heading. */
+  as?: "h1" | "h2";
 }) {
   return (
     <div className={cn("max-w-2xl", center && "mx-auto text-center")}>
       {eyebrow ? <Eyebrow>{eyebrow}</Eyebrow> : null}
-      <h2 className="mt-3 font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
+      <Tag className="mt-3 font-display text-3xl font-semibold tracking-tight text-balance sm:text-4xl">
         {title}
-      </h2>
+      </Tag>
       {intro ? (
         <p className="mt-4 text-lg leading-relaxed text-ink-soft">{intro}</p>
       ) : null}

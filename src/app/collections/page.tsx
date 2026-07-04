@@ -19,12 +19,13 @@ export default function CollectionsPage() {
         <div className="relative">
           <Section>
             <SectionHeading
+              as="h1"
               center
               eyebrow="Gift Collections"
               title="Curated for the people you love"
               intro="Not sure where to start? We've hand-picked the catalog into gift guides for every person and every occasion — each one built from your own photos."
             />
-            <div className="mt-8 flex justify-center gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Button href="/gift-finder" size="lg">
                 Try the Gift Finder
               </Button>
