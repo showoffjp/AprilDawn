@@ -20,6 +20,32 @@ export type Story = {
 
 export const stories: Story[] = [
   {
+    slug: "aiken-wedding-venues-we-love",
+    title: "Aiken Wedding Venues We Love to Photograph",
+    excerpt:
+      "From The Willcox's storied verandas to the oaks at Rose Hill, a photographer's guide to Aiken's most beautiful places to say 'I do.'",
+    category: "Local",
+    author: "AprilDawn Photography",
+    date: "2026-07-01",
+    readMins: 5,
+    emoji: "💍",
+    gradient: "from-violet-200 via-rose-200 to-amber-200",
+    body: [
+      { type: "p", text: "We've photographed weddings all over South Carolina, but there's a reason couples keep choosing Aiken: it photographs like a storybook. Historic verandas, cathedral oaks, garden light that turns everything gold. Here are the local venues we love shooting most — and what makes each one sing on camera." },
+      { type: "h2", text: "The Willcox" },
+      { type: "p", text: "Aiken's grand dame. The white-columned porch, the firelit lobby, the linen-soft light in the suites — The Willcox gives a wedding gallery instant heritage. We love first looks on the veranda and portraits in the garden just before dinner." },
+      { type: "h2", text: "Rose Hill Estate" },
+      { type: "p", text: "A walled garden estate in the heart of town. The live oaks and brick paths frame ceremonies beautifully, and the estate house gives rainy-day plans real charm. Golden hour behind the chapel lawn is quietly spectacular." },
+      { type: "h2", text: "Green Boundary Club" },
+      { type: "p", text: "Classic, clubby, and timeless — all white trim and deep porches. It photographs crisp and editorial, especially in spring when the azaleas go off. Ask us about portraits along the drive at dusk." },
+      { type: "h2", text: "The Carriage House at Hopelands" },
+      { type: "p", text: "Bordering the most photographed gardens in Aiken, the Carriage House pairs rustic brick with dripping Spanish moss two minutes' walk away. Couples get two completely different looks in one venue." },
+      { type: "h2", text: "A note on light" },
+      { type: "ul", items: ["Spring and fall ceremonies at 5–6pm catch Aiken's best golden hour", "Summer? Plan portraits for the last 45 minutes before sunset", "Winter weddings glow indoors — The Willcox's lobby fire is a gift"] },
+      { type: "p", text: "Planning an Aiken or greater-South-Carolina wedding? We plan and photograph them end to end — and then do what no other studio can: hand-enhance every frame, restore the family photos for the welcome table, and print your favorites on anything from canvas to a Living Wall." },
+    ],
+  },
+  {
     slug: "prepare-for-your-aiken-photo-session",
     title: "How to Prepare for Your Family Photo Session in Aiken",
     excerpt:
