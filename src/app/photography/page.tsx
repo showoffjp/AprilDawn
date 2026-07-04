@@ -15,6 +15,8 @@ import {
   photoFaqs,
 } from "@/lib/photography";
 import { eventOfferings } from "@/lib/events";
+import { getStory, type Story } from "@/lib/stories";
+import { StoryCard } from "@/components/cards/StoryCard";
 import { studio } from "@/lib/site";
 import { fromPrice } from "@/lib/utils";
 
@@ -40,6 +42,10 @@ const PORTFOLIO: { scene: SceneVariant; label: string }[] = [
 
 export default function PhotographyPage() {
   const testimonials = eventOfferings.weddings.testimonials.slice(0, 3);
+  const guides = [
+    getStory("prepare-for-your-aiken-photo-session"),
+    getStory("best-photo-spots-in-aiken-sc"),
+  ].filter((s): s is Story => Boolean(s));
 
   const faqJsonLd = {
     "@context": "https://schema.org",
@@ -387,6 +393,29 @@ export default function PhotographyPage() {
           ))}
         </div>
       </Section>
+
+      {/* Journal guides */}
+      {guides.length > 0 ? (
+        <Section className="pt-0">
+          <div className="flex items-end justify-between gap-4">
+            <SectionHeading
+              eyebrow="From the journal"
+              title="Plan your session like a local"
+            />
+            <Link
+              href="/stories"
+              className="hidden shrink-0 text-sm font-semibold text-dawn-600 hover:underline sm:block"
+            >
+              All stories →
+            </Link>
+          </div>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2">
+            {guides.map((story) => (
+              <StoryCard key={story.slug} story={story} />
+            ))}
+          </div>
+        </Section>
+      ) : null}
 
       {/* FAQ */}
       <Section className="pt-0">
