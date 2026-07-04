@@ -24,6 +24,7 @@ export default function GiftsPage() {
         <div className="relative">
           <Section>
             <SectionHeading
+              as="h1"
               center
               eyebrow="Gifts"
               title="The perfect gift starts with one photo"

@@ -102,7 +102,8 @@ export default async function BundlePage({
               <AddBundleToCart products={items} />
             </div>
             <p className="mt-4 text-xs text-ink-soft">
-              🆓 Free proofs on every piece · no charge until you approve
+              <span aria-hidden="true">🆓</span> Free proofs on every piece · no
+              charge until you approve
             </p>
           </div>
         </Container>

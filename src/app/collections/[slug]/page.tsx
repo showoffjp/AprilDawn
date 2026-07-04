@@ -102,7 +102,8 @@ export default async function CollectionPage({
       </section>
 
       <Section className="pt-10">
-        <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <h2 className="font-display text-2xl font-semibold">The picks</h2>
+        <div className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {items.map((product) => (
             <ProductCard key={product.slug} product={product} />
           ))}

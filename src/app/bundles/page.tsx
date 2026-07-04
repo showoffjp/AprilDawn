@@ -19,12 +19,13 @@ export default function BundlesPage() {
         <div className="relative">
           <Section>
             <SectionHeading
+              as="h1"
               center
               eyebrow="Gift Bundles"
               title="The whole set, in one tap"
               intro="We've boxed up the perfect combinations — a portrait, a keepsake, the everyday piece — so you can give the complete gift without overthinking it."
             />
-            <div className="mt-8 flex justify-center gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Button href="/collections" size="lg" variant="ghost">
                 Or browse collections
               </Button>

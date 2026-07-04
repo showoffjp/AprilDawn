@@ -19,12 +19,13 @@ export default function GiftGuidesPage() {
         <div className="relative">
           <Section>
             <SectionHeading
+              as="h1"
               center
               eyebrow="Gift Guides"
               title="The right gift for every occasion"
               intro="Stuck on what to give? Start with the moment — we'll show you the photo gifts that land for it, from one perfect photo."
             />
-            <div className="mt-8 flex justify-center gap-3">
+            <div className="mt-8 flex flex-wrap justify-center gap-3">
               <Button href="/gift-finder" size="lg">
                 Take the Gift Finder quiz
               </Button>
