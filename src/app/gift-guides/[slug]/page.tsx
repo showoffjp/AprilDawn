@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
@@ -71,6 +72,12 @@ export default async function GiftGuidePage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BreadcrumbJsonLd
+        trail={[
+          { name: "Gift Guides", path: "/gift-guides" },
+          { name: guide.title, path: `/gift-guides/${guide.slug}` },
+        ]}
       />
 
       <section className="relative overflow-hidden">

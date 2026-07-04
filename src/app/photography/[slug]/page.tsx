@@ -7,6 +7,7 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { MemoryScene } from "@/components/art/MemoryScene";
 import { EventInquiryForm } from "@/components/events/EventInquiryForm";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { photoSessions, getPhotoSession } from "@/lib/photography";
 import { studio, site } from "@/lib/site";
 import { fromPrice } from "@/lib/utils";
@@ -72,6 +73,12 @@ export default async function PhotoSessionPage({
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+      <BreadcrumbJsonLd
+        trail={[
+          { name: "Photography", path: "/photography" },
+          { name: session.name, path: `/photography/${session.slug}` },
+        ]}
       />
 
       {/* Hero */}

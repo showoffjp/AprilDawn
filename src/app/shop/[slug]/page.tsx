@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
@@ -54,6 +55,12 @@ export default async function ProductPage({
   return (
     <>
       <ProductJsonLd product={product} />
+      <BreadcrumbJsonLd
+        trail={[
+          { name: "Shop", path: "/shop" },
+          { name: product.name, path: `/shop/${product.slug}` },
+        ]}
+      />
 
       <Container className="py-10">
         <Link href="/shop" className="text-sm font-medium text-ink-soft hover:text-ink">
