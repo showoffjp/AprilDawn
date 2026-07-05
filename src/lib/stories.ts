@@ -20,6 +20,36 @@ export type Story = {
 
 export const stories: Story[] = [
   {
+    slug: "what-to-do-with-inherited-photos",
+    title: "What to Do With a Box of Inherited Photos",
+    excerpt:
+      "Someone handed you a lifetime in a shoebox. Here's a calm, step-by-step way to protect it, name it, and bring it back to life — without losing a single face.",
+    category: "Guides",
+    author: "The AprilDawn Lab",
+    date: "2026-07-05",
+    readMins: 6,
+    emoji: "📦",
+    gradient: "from-amber-200 via-rose-200 to-orange-200",
+    body: [
+      { type: "p", text: "It usually arrives all at once: a box, a bin, a drawer emptied into a grocery bag. Decades of a family, loose and unlabeled, suddenly your responsibility. It's a lot — and it's precious, which is exactly why people freeze and let it sit in a closet for another ten years. Don't. Here's the calm, unhurried way to handle inherited photos, one step at a time." },
+      { type: "h2", text: "First, don't do anything drastic" },
+      { type: "p", text: "Before you sort, tape, or 'organize,' pause. The most common ways people accidentally destroy old photos are well-meaning: peeling prints out of a magnetic album (the adhesive tears the emulsion), laminating something to 'protect' it (heat and glue are permanent), or writing on the back with a ballpoint pen (it embosses through to the image). Handle by the edges, keep them out of direct sun, and resist the urge to fix anything yet." },
+      { type: "h2", text: "Sort into three simple piles" },
+      { type: "p", text: "You don't need a system. You need three shoeboxes and an afternoon." },
+      { type: "ul", items: ["Keep forever — the faces, the milestones, the ones that stop you", "Needs help — anything faded, torn, water-stained, or stuck together", "Duplicates & unknowns — set aside; you'll ID these later with family"] },
+      { type: "h2", text: "Digitize before you do anything else" },
+      { type: "p", text: "This is the single most important step, and it comes early for a reason: a digital master is your safety net. Once every photo is scanned at archival quality, no fire, flood, or faded chemical can take the memory again — and you can share, print, and restore freely without ever risking the fragile original. Send us the box (we inventory, photograph, and track every item, and insure it both ways) or scan at home if you're patient. Either way, digitize first, decide later." },
+      { type: "h2", text: "Rescue the ones that are fading" },
+      { type: "p", text: "That's what the 'needs help' pile is for. Cracks, tears, water damage, the orange-pink shift that swallows 1970s color prints — all of it is reversible now. Our restoration pairs AI-assisted repair with a real artist's finishing pass, so a photo you thought was lost comes back looking like the day it was taken. It's the closest thing to time travel we sell, and it's most people's favorite surprise in the whole box." },
+      { type: "h2", text: "Name the faces while you still can" },
+      { type: "p", text: "This is the step nobody thinks of until it's too late. Somewhere in your family is the last person who knows who's in these pictures. Call them. Sit down with the 'unknowns' pile — or better, record the conversation — and write names, places, and years lightly in soft pencil on the back, or attach them to the digital files. A photo with a name is a story; a photo without one is a stranger. Do this now." },
+      { type: "h2", text: "Then let them live somewhere" },
+      { type: "p", text: "The whole point of rescuing memories is to enjoy them, not to re-bury them in a nicer box. Once they're safe and named, set them free:" },
+      { type: "ul", items: ["Print the best ones — canvas, framed archival paper, a whole gallery wall", "Build a Living Wall that mixes eras and quietly grows as family adds more", "Turn a favorite into a talking Memory Mail card for the relative who gave you the box", "Share a private gallery link so cousins can tag names and add their own"] },
+      { type: "p", text: "A box of inherited photos isn't a chore — it's the most generous thing anyone ever handed you. Protect it, name it, and put it back into the light. We'll help with every step: send us the box and we'll digitize, restore, and print it all, then ship your originals safely home." },
+    ],
+  },
+  {
     slug: "aiken-wedding-venues-we-love",
     title: "Aiken Wedding Venues We Love to Photograph",
     excerpt:

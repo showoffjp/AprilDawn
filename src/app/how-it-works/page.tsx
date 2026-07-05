@@ -36,6 +36,20 @@ const steps = [
   },
 ];
 
+const howToJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  name: "How AprilDawn works",
+  description:
+    "How AprilDawn turns your shoebox of photos, film, and video into an archival vault, restored keepsakes, and prints on anything — with free proofs at every step.",
+  step: steps.map((s, i) => ({
+    "@type": "HowToStep",
+    position: i + 1,
+    name: s.t,
+    text: s.d,
+  })),
+};
+
 export default function HowItWorksPage() {
   return (
     <>
@@ -87,6 +101,11 @@ export default function HowItWorksPage() {
           </Button>
         </div>
       </Section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+      />
     </>
   );
 }
