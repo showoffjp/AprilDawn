@@ -1,4 +1,4 @@
-import { site, studio } from "@/lib/site";
+import { site, studio, studioMapsUrl } from "@/lib/site";
 import { aggregate } from "@/lib/reviews";
 
 /**
@@ -21,6 +21,7 @@ export function EventsJsonLd({
     name,
     description,
     url: `${site.url}${path}`,
+    image: `${site.url}/opengraph-image`,
     telephone: studio.phone,
     email: studio.email,
     priceRange: "$$–$$$",
@@ -37,7 +38,14 @@ export function EventsJsonLd({
       latitude: studio.geo.lat,
       longitude: studio.geo.lng,
     },
-    areaServed: { "@type": "AdministrativeArea", name: "South Carolina" },
+    hasMap: studioMapsUrl(),
+    sameAs: Object.values(site.social),
+    areaServed: [
+      { "@type": "AdministrativeArea", name: "South Carolina" },
+      { "@type": "City", name: "Aiken, SC" },
+      { "@type": "City", name: "North Augusta, SC" },
+      { "@type": "City", name: "Augusta, GA" },
+    ],
     openingHoursSpecification: [
       {
         "@type": "OpeningHoursSpecification",
