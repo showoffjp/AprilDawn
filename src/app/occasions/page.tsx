@@ -1,11 +1,14 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ReminderForm } from "@/components/occasions/ReminderForm";
 import { BundleBuilder } from "@/components/occasions/BundleBuilder";
+import { GuideCard } from "@/components/giftguides/GuideCard";
 import { integrations, giftBundles } from "@/lib/occasions";
+import { giftGuides } from "@/lib/giftGuides";
 import { fromPrice } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -197,6 +200,29 @@ export default function OccasionsPage() {
           </div>
         </div>
       </Section>
+
+      {/* Occasion gift guides */}
+      <div className="bg-cream-deep">
+        <Section>
+          <div className="flex items-end justify-between gap-4">
+            <SectionHeading
+              eyebrow="Know the occasion?"
+              title="Shop the gift guide for the moment"
+            />
+            <Link
+              href="/gift-guides"
+              className="hidden shrink-0 text-sm font-semibold text-dawn-600 hover:underline sm:block"
+            >
+              All gift guides →
+            </Link>
+          </div>
+          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {giftGuides.slice(0, 3).map((g) => (
+              <GuideCard key={g.slug} guide={g} />
+            ))}
+          </div>
+        </Section>
+      </div>
     </>
   );
 }
