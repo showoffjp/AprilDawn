@@ -16,6 +16,11 @@ export function generateStaticParams() {
   return services.filter((s) => !s.href).map((s) => ({ slug: s.slug }));
 }
 
+// Slugs not returned above (including flagship services with a bespoke
+// top-level page, e.g. living-wall) must 404 here rather than render a
+// duplicate on-demand — matching every other detail route.
+export const dynamicParams = false;
+
 export async function generateMetadata({
   params,
 }: {

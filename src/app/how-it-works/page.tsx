@@ -58,6 +58,7 @@ export default function HowItWorksPage() {
         <div className="relative">
           <Section>
             <SectionHeading
+              as="h1"
               center
               eyebrow="How it works"
               title="From a dusty drawer to a lifetime of keepsakes"

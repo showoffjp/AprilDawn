@@ -193,9 +193,9 @@ export default function OccasionsPage() {
             </div>
             <p className="mt-4 text-xs text-ink-soft">
               See the whole{" "}
-              <a href="/partners" className="font-medium text-dawn-600">
+              <Link href="/partners" className="font-medium text-dawn-600">
                 partner network →
-              </a>
+              </Link>
             </p>
           </div>
         </div>

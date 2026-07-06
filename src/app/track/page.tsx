@@ -21,6 +21,7 @@ export default async function TrackPage({
       <Section>
         <div className="mx-auto max-w-xl">
           <SectionHeading
+            as="h1"
             eyebrow="Order status"
             title="Track your order"
             intro="Enter your order number to see where your keepsakes are — from free proofs to your doorstep."

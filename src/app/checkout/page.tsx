@@ -16,6 +16,8 @@ type Status = "idle" | "submitting" | "done" | "error";
 type PlacedOrder = {
   orderId: string;
   items: CartItem[];
+  subtotal: number;
+  shipping: number;
   total: number;
   isGift: boolean;
   giftMessage: string;
@@ -44,6 +46,8 @@ export default function CheckoutPage() {
       setPlaced({
         orderId: json.orderId,
         items,
+        subtotal,
+        shipping,
         total,
         isGift: gift,
         giftMessage:
@@ -88,10 +92,22 @@ export default function CheckoutPage() {
                 </li>
               ))}
             </ul>
-            <div className="mt-3 flex justify-between border-t border-ink/10 pt-3 text-sm">
-              <span className="font-semibold text-ink">Total</span>
-              <span className="font-semibold text-ink">{usd(placed.total)}</span>
-            </div>
+            <dl className="mt-3 space-y-2 border-t border-ink/10 pt-3 text-sm">
+              <div className="flex justify-between">
+                <dt className="text-ink-soft">Subtotal</dt>
+                <dd className="font-medium text-ink">{usd(placed.subtotal)}</dd>
+              </div>
+              <div className="flex justify-between">
+                <dt className="text-ink-soft">Shipping</dt>
+                <dd className="font-medium text-ink">
+                  {placed.shipping === 0 ? "Free" : usd(placed.shipping)}
+                </dd>
+              </div>
+              <div className="flex justify-between border-t border-ink/10 pt-2">
+                <dt className="font-semibold text-ink">Total</dt>
+                <dd className="font-semibold text-ink">{usd(placed.total)}</dd>
+              </div>
+            </dl>
           </div>
 
           {/* Gift card preview */}

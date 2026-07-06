@@ -18,6 +18,7 @@ export default function PartnersPage() {
       <section className="bg-sunrise animate-gradient">
         <Container className="py-16 text-center sm:py-20">
           <SectionHeading
+            as="h1"
             center
             eyebrow="The AprilDawn network"
             title="It takes a village to keep a memory"

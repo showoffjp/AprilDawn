@@ -21,6 +21,7 @@ export default function ShopPage() {
         <div className="relative">
           <Section>
             <SectionHeading
+              as="h1"
               center
               eyebrow="The AprilDawn Shop"
               title="Your memory belongs on everything"

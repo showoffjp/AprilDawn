@@ -18,6 +18,7 @@ export default function UploadPage() {
         <div className="relative">
           <Section>
             <SectionHeading
+              as="h1"
               center
               eyebrow="Start a project"
               title="Upload a memory — we&apos;ll take it from here"
