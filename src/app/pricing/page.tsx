@@ -65,6 +65,7 @@ export default function PricingPage() {
         <div className="relative">
           <Section>
             <SectionHeading
+              as="h1"
               center
               eyebrow="Pricing"
               title="Honest pricing. Free proofs. No surprises."

@@ -94,6 +94,7 @@ export default function FaqPage() {
         <div className="relative">
           <Section>
             <SectionHeading
+              as="h1"
               center
               eyebrow="FAQ"
               title="Questions, answered"

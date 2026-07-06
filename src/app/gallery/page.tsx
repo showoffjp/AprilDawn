@@ -37,6 +37,7 @@ export default function GalleryPage() {
         <Container className="relative">
           <Section>
             <SectionHeading
+              as="h1"
               center
               eyebrow="The Gallery"
               title="One memory, a thousand ways to keep it"

@@ -30,6 +30,7 @@ export default function StoriesPage() {
         <Container className="relative">
           <Section>
             <SectionHeading
+              as="h1"
               center
               eyebrow="Stories"
               title="On memory, craft, and keeping what matters"

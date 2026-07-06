@@ -19,6 +19,7 @@ export default function ContactPage() {
           <div className="grid gap-12 lg:grid-cols-2">
             <div>
               <SectionHeading
+                as="h1"
                 eyebrow="Contact"
                 title="Talk to a real person"
                 intro="Tell us what you've got — a single photo or a lifetime of boxes — and we'll map out the perfect plan with free proofs. Want us to design or restore it for you? Just ask and we'll pair you with a specialist."

@@ -53,8 +53,10 @@ export const metadata: Metadata = {
   // static og:title would override every deep page's social preview. Omitting
   // them makes scrapers fall back to each page's own <title> + description.
   openGraph: {
+    // No `url` here on purpose: openGraph is inherited whole by every page,
+    // so a static url would stamp the homepage URL onto every deep page's
+    // social preview. Omitting it lets scrapers use each page's own URL.
     type: "website",
-    url: site.url,
     siteName: site.name,
   },
   twitter: {
