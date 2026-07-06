@@ -1,15 +1,18 @@
 "use client";
 
-import { useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { type Product } from "@/lib/products";
 import {
   mockupKind,
+  cropAspectFor,
   sizeOptionsFor,
   premiumAddons,
 } from "@/lib/designer";
 import { presetFor, previewableStyles } from "@/lib/artStyles";
 import { useCart } from "./CartProvider";
 import { ProductMockup } from "./ProductMockup";
+import { PhotoCropper } from "./PhotoCropper";
+import { type CroppedImage } from "@/lib/cropImage";
 import { Button } from "@/components/ui/Button";
 import { usd, cn } from "@/lib/utils";
 
@@ -21,6 +24,8 @@ export function ProductDesigner({ product }: { product: Product }) {
 
   const [imageSrc, setImageSrc] = useState<string>("");
   const [photoName, setPhotoName] = useState<string>("");
+  const [cropSrc, setCropSrc] = useState<string>("");
+  const [cropOpen, setCropOpen] = useState(false);
   const [styleName, setStyleName] = useState<string>("None");
   const [scale, setScale] = useState(1);
   const [brightness, setBrightness] = useState(1);
@@ -33,6 +38,8 @@ export function ProductDesigner({ product }: { product: Product }) {
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
+  const cropSrcRef = useRef<string>("");
+  const croppedRef = useRef<string>("");
 
   const { addItem } = useCart();
 
@@ -51,10 +58,36 @@ export function ProductDesigner({ product }: { product: Product }) {
   const unitPrice = Math.round((product.priceFrom + sizeDelta + addonsTotal) * 100) / 100;
 
   function onPhoto(file?: File) {
-    if (!file) return;
+    if (!file || !file.type.startsWith("image/")) return;
+    // Replacing the photo: release the previous original + cropped blob URLs.
+    if (cropSrcRef.current) URL.revokeObjectURL(cropSrcRef.current);
+    if (croppedRef.current) {
+      URL.revokeObjectURL(croppedRef.current);
+      croppedRef.current = "";
+    }
+    const url = URL.createObjectURL(file);
+    cropSrcRef.current = url;
+    setCropSrc(url);
     setPhotoName(file.name);
-    if (file.type.startsWith("image/")) setImageSrc(URL.createObjectURL(file));
+    setImageSrc("");
+    setCropOpen(true);
   }
+
+  function applyCrop(result: CroppedImage) {
+    if (croppedRef.current) URL.revokeObjectURL(croppedRef.current);
+    croppedRef.current = result.url;
+    setImageSrc(result.url);
+    setCropOpen(false);
+  }
+
+  // Release any outstanding blob URLs when the designer unmounts.
+  useEffect(
+    () => () => {
+      if (cropSrcRef.current) URL.revokeObjectURL(cropSrcRef.current);
+      if (croppedRef.current) URL.revokeObjectURL(croppedRef.current);
+    },
+    [],
+  );
 
   function toggleAddon(key: string) {
     setAddons((prev) => {
@@ -110,6 +143,15 @@ export function ProductDesigner({ product }: { product: Product }) {
         >
           📷 {photoName ? `${photoName} — change` : "Upload your photo to preview it"}
         </button>
+        {cropSrc ? (
+          <button
+            type="button"
+            onClick={() => setCropOpen(true)}
+            className="mt-2 flex w-full items-center justify-center gap-2 rounded-2xl bg-cream-deep py-2.5 text-sm font-medium text-ink ring-1 ring-ink/10 transition hover:ring-dawn-300"
+          >
+            ✂️ {imageSrc ? "Recrop photo" : "Crop photo"}
+          </button>
+        ) : null}
         <input
           ref={inputRef}
           type="file"
@@ -214,6 +256,15 @@ export function ProductDesigner({ product }: { product: Product }) {
           </Button>
         )}
       </div>
+
+      {cropOpen && cropSrc ? (
+        <PhotoCropper
+          src={cropSrc}
+          aspect={cropAspectFor(kind)}
+          onApply={applyCrop}
+          onCancel={() => setCropOpen(false)}
+        />
+      ) : null}
     </div>
   );
 }

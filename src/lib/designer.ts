@@ -10,6 +10,14 @@ export function mockupKind(category: ProductCategory): MockupKind {
   return "default";
 }
 
+/**
+ * Aspect ratio (width / height) of the photo cutout in each mockup, so the
+ * cropper frames the photo to exactly what the live preview will show.
+ */
+export function cropAspectFor(kind: MockupKind): number {
+  return kind === "apparel" ? 4 / 5 : 1;
+}
+
 export type SizeOption = { label: string; delta: number };
 
 export function sizeOptionsFor(product: Product): SizeOption[] {
