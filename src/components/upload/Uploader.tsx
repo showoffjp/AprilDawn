@@ -2,6 +2,7 @@
 
 import { useCallback, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
+import { postJson } from "@/lib/postJson";
 import { cn } from "@/lib/utils";
 
 type Item = {
@@ -9,6 +10,7 @@ type Item = {
   name: string;
   size: number;
   kind: "image" | "video" | "audio" | "other";
+  type: string;
   preview?: string;
 };
 
@@ -29,6 +31,8 @@ export function Uploader() {
   const [items, setItems] = useState<Item[]>([]);
   const [dragging, setDragging] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
+  const [error, setError] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
 
   const addFiles = useCallback((files: FileList | null) => {
@@ -40,6 +44,7 @@ export function Uploader() {
         name: file.name,
         size: file.size,
         kind,
+        type: file.type,
         preview: kind === "image" ? URL.createObjectURL(file) : undefined,
       };
     });
@@ -47,7 +52,44 @@ export function Uploader() {
   }, []);
 
   const remove = (id: string) =>
-    setItems((prev) => prev.filter((i) => i.id !== id));
+    setItems((prev) => {
+      const target = prev.find((i) => i.id === id);
+      if (target?.preview) URL.revokeObjectURL(target.preview);
+      return prev.filter((i) => i.id !== id);
+    });
+
+  const clearAll = () => {
+    items.forEach((i) => i.preview && URL.revokeObjectURL(i.preview));
+    setItems([]);
+    setStatus("idle");
+    setError("");
+  };
+
+  // Register each file with the intake endpoint (the demo returns a signed
+  // upload URL + asset id per file — the production pattern). Any single
+  // rejection surfaces the server's message and lets the visitor retry.
+  async function submit() {
+    if (items.length === 0 || status === "sending") return;
+    setStatus("sending");
+    setError("");
+    const results = await Promise.all(
+      items.map((it) =>
+        postJson<{ assetId: string }>("/api/upload", {
+          filename: it.name,
+          contentType: it.type,
+          size: it.size,
+        }),
+      ),
+    );
+    const failure = results.find((r) => !r.ok);
+    if (failure && !failure.ok) {
+      setStatus("error");
+      setError(failure.error);
+      return;
+    }
+    setStatus("idle");
+    setSubmitted(true);
+  }
 
   if (submitted) {
     return (
@@ -66,7 +108,7 @@ export function Uploader() {
           </Button>
           <Button
             onClick={() => {
-              setItems([]);
+              clearAll();
               setSubmitted(false);
             }}
           >
@@ -129,7 +171,7 @@ export function Uploader() {
             </h3>
             <button
               type="button"
-              onClick={() => setItems([])}
+              onClick={clearAll}
               className="text-sm text-ink-soft hover:text-ink"
             >
               Clear all
@@ -176,14 +218,23 @@ export function Uploader() {
             ))}
           </ul>
 
-          <div className="mt-8 flex flex-col items-center gap-3 rounded-3xl bg-cream-deep p-6 sm:flex-row sm:justify-between">
-            <p className="text-sm text-ink-soft">
-              Next: we&apos;ll send free proofs and a quote. No charge until you
-              approve.
-            </p>
-            <Button onClick={() => setSubmitted(true)}>
-              Send my {items.length} {items.length === 1 ? "memory" : "memories"} →
-            </Button>
+          <div className="mt-8 rounded-3xl bg-cream-deep p-6">
+            <div className="flex flex-col items-center gap-3 sm:flex-row sm:justify-between">
+              <p className="text-sm text-ink-soft">
+                Next: we&apos;ll send free proofs and a quote. No charge until
+                you approve.
+              </p>
+              <Button onClick={submit} disabled={status === "sending"}>
+                {status === "sending"
+                  ? "Sending…"
+                  : `Send my ${items.length} ${items.length === 1 ? "memory" : "memories"} →`}
+              </Button>
+            </div>
+            {status === "error" ? (
+              <p className="mt-3 text-sm text-dawn-600" role="alert">
+                {error}
+              </p>
+            ) : null}
           </div>
         </div>
       ) : null}
