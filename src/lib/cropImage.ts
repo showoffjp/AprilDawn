@@ -16,11 +16,7 @@ export type CroppedImage = {
   url: string;
   width: number;
   height: number;
-  /** Small data-URL version, safe to persist in the cart (localStorage). */
-  thumb: string;
 };
-
-const THUMB_MAX = 160;
 
 export async function cropToObjectUrl(
   image: HTMLImageElement,
@@ -52,21 +48,5 @@ export async function cropToObjectUrl(
   );
   if (!blob) throw new Error("Failed to export cropped image");
 
-  // A tiny data-URL thumbnail so the cart/checkout can show the actual photo
-  // and survive a reload (blob: URLs do not persist in localStorage).
-  const tScale = Math.min(1, THUMB_MAX / Math.max(outW, outH));
-  const tW = Math.max(1, Math.round(outW * tScale));
-  const tH = Math.max(1, Math.round(outH * tScale));
-  const tCanvas = document.createElement("canvas");
-  tCanvas.width = tW;
-  tCanvas.height = tH;
-  const tctx = tCanvas.getContext("2d");
-  let thumb = "";
-  if (tctx) {
-    tctx.imageSmoothingQuality = "high";
-    tctx.drawImage(canvas, 0, 0, tW, tH);
-    thumb = tCanvas.toDataURL("image/jpeg", 0.6);
-  }
-
-  return { url: URL.createObjectURL(blob), width: outW, height: outH, thumb };
+  return { url: URL.createObjectURL(blob), width: outW, height: outH };
 }

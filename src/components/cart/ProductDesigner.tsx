@@ -13,6 +13,7 @@ import { useCart } from "./CartProvider";
 import { ProductMockup } from "./ProductMockup";
 import { PhotoCropper } from "./PhotoCropper";
 import { type CroppedImage } from "@/lib/cropImage";
+import { renderStyledThumb } from "@/lib/styledThumb";
 import { Button } from "@/components/ui/Button";
 import { usd, cn } from "@/lib/utils";
 
@@ -26,7 +27,6 @@ export function ProductDesigner({ product }: { product: Product }) {
   const [photoName, setPhotoName] = useState<string>("");
   const [cropSrc, setCropSrc] = useState<string>("");
   const [cropOpen, setCropOpen] = useState(false);
-  const [photoThumb, setPhotoThumb] = useState<string>("");
   const [styleName, setStyleName] = useState<string>("None");
   const [scale, setScale] = useState(1);
   const [brightness, setBrightness] = useState(1);
@@ -71,7 +71,6 @@ export function ProductDesigner({ product }: { product: Product }) {
     setCropSrc(url);
     setPhotoName(file.name);
     setImageSrc("");
-    setPhotoThumb("");
     setCropOpen(true);
   }
 
@@ -79,7 +78,6 @@ export function ProductDesigner({ product }: { product: Product }) {
     if (croppedRef.current) URL.revokeObjectURL(croppedRef.current);
     croppedRef.current = result.url;
     setImageSrc(result.url);
-    setPhotoThumb(result.thumb);
     setCropOpen(false);
   }
 
@@ -101,7 +99,7 @@ export function ProductDesigner({ product }: { product: Product }) {
     });
   }
 
-  function add() {
+  async function add() {
     const parts: string[] = [];
     if (styleName !== "None") parts.push(`${styleName} style`);
     const edited =
@@ -111,6 +109,23 @@ export function ProductDesigner({ product }: { product: Product }) {
       .filter((a) => addons.has(a.key))
       .forEach((a) => parts.push(a.label));
 
+    // Bake the current crop + colour adjustments + art-style into a small
+    // thumbnail so the cart shows the look the customer designed.
+    let thumb: string | undefined;
+    if (imageSrc) {
+      try {
+        thumb = await renderStyledThumb(
+          imageSrc,
+          filter,
+          preset?.overlay
+            ? { css: preset.overlay, blend: preset.blend, opacity: preset.overlayOpacity }
+            : undefined,
+        );
+      } catch {
+        thumb = undefined;
+      }
+    }
+
     addItem({
       slug: product.slug,
       name: product.name,
@@ -119,7 +134,7 @@ export function ProductDesigner({ product }: { product: Product }) {
       quantity,
       size: sizes[sizeIdx]?.label,
       photoName: photoName || undefined,
-      photoThumb: photoThumb || undefined,
+      photoThumb: thumb || undefined,
       notes: parts.join(" · ") || undefined,
     });
     setAdded(true);
