@@ -63,7 +63,13 @@ export function addItem(item: Omit<CartItem, "id">): void {
   if (match) {
     commit(
       items.map((i) =>
-        i.id === match.id ? { ...i, quantity: i.quantity + item.quantity } : i,
+        i.id === match.id
+          ? {
+              ...i,
+              quantity: i.quantity + item.quantity,
+              photoThumb: item.photoThumb ?? i.photoThumb,
+            }
+          : i,
       ),
     );
   } else {

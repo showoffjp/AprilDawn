@@ -10,6 +10,8 @@ export type CartItem = {
   quantity: number;
   size?: string;
   photoName?: string;
+  /** Small data-URL thumbnail of the designed photo, for cart/checkout display. */
+  photoThumb?: string;
   notes?: string;
 };
 

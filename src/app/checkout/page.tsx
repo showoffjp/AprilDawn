@@ -82,7 +82,16 @@ export default function CheckoutPage() {
             <ul className="mt-3 space-y-2">
               {placed.items.map((i) => (
                 <li key={i.id} className="flex items-center gap-2 text-sm">
-                  <span aria-hidden="true">{i.emoji}</span>
+                  {i.photoThumb ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={i.photoThumb}
+                      alt=""
+                      className="h-6 w-6 shrink-0 rounded object-cover"
+                    />
+                  ) : (
+                    <span aria-hidden="true">{i.emoji}</span>
+                  )}
                   <span className="min-w-0 flex-1 truncate text-ink-soft">
                     {i.name} × {i.quantity}
                   </span>
@@ -288,9 +297,18 @@ export default function CheckoutPage() {
           <ul className="mt-5 space-y-3">
             {items.map((item) => (
               <li key={item.id} className="flex items-center gap-3 text-sm">
-                <span className="text-2xl" aria-hidden="true">
-                  {item.emoji}
-                </span>
+                {item.photoThumb ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    src={item.photoThumb}
+                    alt=""
+                    className="h-9 w-9 shrink-0 rounded-lg object-cover"
+                  />
+                ) : (
+                  <span className="text-2xl" aria-hidden="true">
+                    {item.emoji}
+                  </span>
+                )}
                 <span className="min-w-0 flex-1">
                   <span className="font-medium text-ink">{item.name}</span>
                   <span className="text-ink-soft">

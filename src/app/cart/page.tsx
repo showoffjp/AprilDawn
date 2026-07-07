@@ -70,8 +70,17 @@ export default function CartPage() {
                 key={item.id}
                 className="flex gap-4 rounded-3xl bg-white p-5 ring-1 ring-ink/10"
               >
-                <div className="flex h-20 w-20 shrink-0 items-center justify-center rounded-2xl bg-cream-deep text-4xl">
-                  <span aria-hidden="true">{item.emoji}</span>
+                <div className="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-2xl bg-cream-deep text-4xl">
+                  {item.photoThumb ? (
+                    // eslint-disable-next-line @next/next/no-img-element
+                    <img
+                      src={item.photoThumb}
+                      alt=""
+                      className="h-full w-full object-cover"
+                    />
+                  ) : (
+                    <span aria-hidden="true">{item.emoji}</span>
+                  )}
                 </div>
                 <div className="min-w-0 flex-1">
                   <div className="flex items-start justify-between gap-3">
