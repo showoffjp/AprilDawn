@@ -15,6 +15,7 @@ type Faq = { q: string; a: string; cat: string };
 const CATEGORIES = [
   "Sending & returns",
   "Proofs, printing & pricing",
+  "Turnaround, quality & restoration",
   "Flagship experiences",
   "Privacy & rights",
 ] as const;
@@ -69,6 +70,66 @@ const faqs: Faq[] = [
     cat: "Privacy & rights",
     q: "Is my data private and secure?",
     a: "Yes. Files are stored encrypted, access is controlled, and we never sell your memories. Integrations are read-limited and you can disconnect them whenever you like.",
+  },
+  {
+    cat: "Sending & returns",
+    q: "Is there a minimum order?",
+    a: "None. Send a single treasured photo or a whole basement of boxes — we scope every project to what you actually have, and the MemoryBox comes in sizes to match.",
+  },
+  {
+    cat: "Sending & returns",
+    q: "I have a whole estate or a lifetime archive — can you handle that?",
+    a: "Yes — large family archives and estates are some of our favorite work. Big collections get a dedicated project manager, a full catalog of everything received, and a plan so nothing is lost, duplicated, or missed.",
+  },
+  {
+    cat: "Proofs, printing & pricing",
+    q: "How much does a project cost?",
+    a: "It depends on what you send and what you'd like made. Digitizing is priced per item, with a lower rate per piece at volume; restorations, prints, and flagship pieces are quoted up front. Tell us what you have and we'll send a clear estimate before you commit to anything.",
+  },
+  {
+    cat: "Proofs, printing & pricing",
+    q: "Can I turn one photo into several different gifts?",
+    a: "Absolutely — that's the whole idea. One good photo can become a canvas, a mug, a blanket, an ornament, and a stack of prints. Upload it once, then pick as many products as you like; you approve a proof of each before it ships.",
+  },
+  {
+    cat: "Turnaround, quality & restoration",
+    q: "How long will my project take?",
+    a: "Most digitizing projects wrap in about two to three weeks from when your box arrives. Restorations and custom pieces move to production once you approve your free proof. In a hurry? Ask about rush service when you book.",
+  },
+  {
+    cat: "Turnaround, quality & restoration",
+    q: "What resolution do you scan at?",
+    a: "Archival grade — up to 4K and 48-bit color for photos and film, with clean digital masters for video and audio. That's plenty of detail to reprint large or restore further down the road without losing quality.",
+  },
+  {
+    cat: "Turnaround, quality & restoration",
+    q: "Can you fix a torn, faded, or water-damaged photo?",
+    a: "Usually, yes. We repair tears, cracks, water and mold damage, fading, and even missing pieces — finished by a real artist rather than a one-click filter. You'll see a free proof of exactly what's possible before you decide.",
+  },
+  {
+    cat: "Turnaround, quality & restoration",
+    q: "Can you colorize black-and-white photos?",
+    a: "Yes — and you don't have to choose. We deliver both the restored black-and-white master and a researched, believable color version, so you can frame one, tuck the other away, or hang them side by side.",
+  },
+  {
+    cat: "Turnaround, quality & restoration",
+    q: "My only copy is a screenshot or a low-res phone photo. Can you still help?",
+    a: "Often. We can up-res, sharpen, and enhance low-quality sources; how far we can take it depends on the original, so we'll give you an honest assessment — and a free proof — before you commit.",
+  },
+  {
+    cat: "Flagship experiences",
+    q: "Can I customize the Living Wall's size and layout?",
+    a: "Completely. Set the grid to fit your exact wall — up to 12 by 12 — and arrange the tiles yourself: tap to place, drag to fill a region, or drop a specific photo right where you want it. We proof the whole design before anything is printed.",
+  },
+  {
+    cat: "Flagship experiences",
+    q: "Do you photograph weddings and events around Aiken?",
+    a: "We do — AprilDawn is an Aiken, South Carolina studio shooting weddings, families, seniors, and events across the CSRA. Then we do what no other photographer can: hand-enhance every frame and print your favorites on anything, from canvas to a living LED wall.",
+  },
+  {
+    cat: "Privacy & rights",
+    q: "Do you use my photos to train AI?",
+    a: "Never. We don't sell your memories and we don't train models on them. Any AI-assisted feature — like a 'Living Portrait' — is opt-in per photo, with your explicit, informed consent.",
   },
 ];
 
