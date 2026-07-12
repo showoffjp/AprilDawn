@@ -6,9 +6,10 @@ import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { ReminderForm } from "@/components/occasions/ReminderForm";
 import { BundleBuilder } from "@/components/occasions/BundleBuilder";
-import { GuideCard } from "@/components/giftguides/GuideCard";
+import { SeasonalGuides } from "@/components/occasions/SeasonalGuides";
+import { occasionsByProximity } from "@/lib/occasionDates";
 import { integrations, giftBundles } from "@/lib/occasions";
-import { giftGuides } from "@/lib/giftGuides";
+import { giftGuides, guideProducts } from "@/lib/giftGuides";
 import { fromPrice } from "@/lib/utils";
 
 export const metadata: Metadata = {
@@ -216,11 +217,19 @@ export default function OccasionsPage() {
               All gift guides →
             </Link>
           </div>
-          <div className="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-            {giftGuides.slice(0, 3).map((g) => (
-              <GuideCard key={g.slug} guide={g} />
-            ))}
-          </div>
+          <SeasonalGuides
+            guides={occasionsByProximity()
+              .map((slug) => giftGuides.find((g) => g.slug === slug))
+              .filter((g): g is (typeof giftGuides)[number] => Boolean(g))
+              .map((g) => ({
+                slug: g.slug,
+                title: g.title,
+                emoji: g.emoji,
+                scene: g.scene,
+                tagline: g.tagline,
+                count: guideProducts(g).length,
+              }))}
+          />
         </Section>
       </div>
     </>
