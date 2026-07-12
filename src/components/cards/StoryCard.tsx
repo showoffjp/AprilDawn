@@ -2,7 +2,16 @@ import Link from "next/link";
 import { type Story } from "@/lib/stories";
 import { MemoryScene, sceneVariants } from "@/components/art/MemoryScene";
 
-export function StoryCard({ story }: { story: Story }) {
+/**
+ * Just the fields the card renders — lets list pages pass trimmed data to
+ * client components without shipping full article bodies in the payload.
+ */
+export type StoryCardData = Pick<
+  Story,
+  "slug" | "title" | "excerpt" | "category" | "emoji" | "readMins"
+>;
+
+export function StoryCard({ story }: { story: StoryCardData }) {
   const variant =
     sceneVariants[
       story.slug.split("").reduce((a, c) => a + c.charCodeAt(0), 0) %
