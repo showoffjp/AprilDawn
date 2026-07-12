@@ -87,6 +87,37 @@ export const giftGuides: GiftGuide[] = [
     collectionSlug: "memorial-and-tribute",
     bundleSlug: "memorial-keepsake-set",
   },
+  {
+    slug: "graduation",
+    title: "Graduation Gifts",
+    emoji: "🎓",
+    scene: "sunrise",
+    tagline: "First-day photo, meet cap and gown.",
+    lead: "Every graduation is really eighteen years of photos coming due. Put the kindergarten first-day shot beside the cap-and-gown portrait — then-and-now framing gets the whole room every time — and print the years in between on things a dorm can actually hold: a blanket from home, a mug, a keychain for the new set of keys.",
+    productSlugs: ["framed", "canvas", "poster", "blanket", "calendar", "puzzle", "mug", "keychain"],
+    collectionSlug: "under-25",
+    bundleSlug: "gallery-wall-trio",
+  },
+  {
+    slug: "wedding",
+    title: "Wedding Gifts",
+    emoji: "💍",
+    scene: "garden",
+    tagline: "The gift the registry forgot.",
+    lead: "Registries are fine, but the wedding gifts couples actually keep start with their own photos — the proposal shot on gallery acrylic, the engagement session as a three-panel wall, 'their song' pressed onto a playable record. And the sleeper hit: have their parents' or grandparents' wedding photos restored for the head table, and watch the whole room go quiet.",
+    productSlugs: ["framed", "acrylic", "canvas", "triptych", "vinyl", "cuttingboard", "coasters", "winetumbler"],
+    bundleSlug: "gallery-wall-trio",
+  },
+  {
+    slug: "valentines-day",
+    title: "Valentine's Day Gifts",
+    emoji: "💝",
+    scene: "picnic",
+    tagline: "Roses wilt. Your faces on socks don't.",
+    lead: "Skip the wilting roses this Valentine's Day and put the two of you on things you'll actually use. From matching photo socks and a puzzle of your goofiest selfie to a candle, a mug, and a frame-worthy print of the good one, these gifts outlast the chocolates — and get sweeter (or funnier) every February.",
+    productSlugs: ["framed", "socks", "puzzle", "candle", "mug", "pillow", "playingcards", "blanket"],
+    collectionSlug: "under-25",
+  },
 ];
 
 export function guideProducts(guide: GiftGuide): Product[] {
