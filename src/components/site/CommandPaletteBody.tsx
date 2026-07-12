@@ -2,9 +2,6 @@
 
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useRouter } from "next/navigation";
-import { services, serviceHref } from "@/lib/services";
-import { products } from "@/lib/products";
-import { stories } from "@/lib/stories";
 import { cn } from "@/lib/utils";
 
 type Item = { label: string; href: string; group: string; keywords?: string };
@@ -30,12 +27,10 @@ const PAGES: Item[] = [
   { label: "Cart", href: "/cart", group: "Actions" },
 ];
 
-const ITEMS: Item[] = [
-  ...PAGES,
-  ...services.map((s) => ({ label: s.name, href: serviceHref(s), group: "Services", keywords: s.tagline })),
-  ...products.map((p) => ({ label: p.name, href: `/shop/${p.slug}`, group: "Products", keywords: p.category })),
-  ...stories.map((s) => ({ label: s.title, href: `/stories/${s.slug}`, group: "Stories", keywords: s.category })),
-];
+// The full catalog (services, products, stories, gift guides, collections,
+// bundles) is fetched from a prebuilt JSON index so its source modules never
+// enter the client bundle. PAGES keeps search useful while it loads.
+let catalogCache: Item[] | null = null;
 
 /**
  * The heavy part of the command palette — the catalog data and the dialog UI.
@@ -45,9 +40,25 @@ const ITEMS: Item[] = [
 export function CommandPaletteBody({ onClose }: { onClose: () => void }) {
   const [q, setQ] = useState("");
   const [active, setActive] = useState(0);
+  const [catalog, setCatalog] = useState<Item[]>(catalogCache ?? []);
   const router = useRouter();
   const inputRef = useRef<HTMLInputElement>(null);
   const lastFocused = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (catalogCache) return;
+    let cancelled = false;
+    fetch("/api/search-index")
+      .then((r) => (r.ok ? r.json() : []))
+      .then((items: Item[]) => {
+        catalogCache = items;
+        if (!cancelled) setCatalog(items);
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
 
   useEffect(() => {
     // Remember what was focused so we can restore it when the palette closes.
@@ -71,12 +82,13 @@ export function CommandPaletteBody({ onClose }: { onClose: () => void }) {
   }, [onClose]);
 
   const results = useMemo(() => {
+    const items = [...PAGES, ...catalog];
     const query = q.trim().toLowerCase();
-    if (!query) return ITEMS.slice(0, 8);
-    return ITEMS.filter((i) =>
+    if (!query) return items.slice(0, 8);
+    return items.filter((i) =>
       `${i.label} ${i.keywords ?? ""} ${i.group}`.toLowerCase().includes(query),
     ).slice(0, 12);
-  }, [q]);
+  }, [q, catalog]);
 
   function go(href: string) {
     onClose();
