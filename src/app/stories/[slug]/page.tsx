@@ -39,7 +39,12 @@ export default async function StoryPage({
   const story = getStory(slug);
   if (!story) notFound();
 
-  const more = stories.filter((s) => s.slug !== story.slug).slice(0, 3);
+  // Related reading: same category first, newest elsewhere as filler.
+  const others = stories.filter((s) => s.slug !== story.slug);
+  const more = [
+    ...others.filter((s) => s.category === story.category),
+    ...others.filter((s) => s.category !== story.category),
+  ].slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",

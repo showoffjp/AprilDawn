@@ -1,11 +1,11 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Section, SectionHeading } from "@/components/ui/Section";
-import { StoryCard } from "@/components/cards/StoryCard";
 import { Reveal } from "@/components/ui/Reveal";
 import { Aurora } from "@/components/effects/Aurora";
 import { Container } from "@/components/ui/Container";
 import { MemoryScene, sceneVariants } from "@/components/art/MemoryScene";
+import { StoriesBrowser } from "@/components/stories/StoriesBrowser";
 import { stories } from "@/lib/stories";
 
 export const metadata: Metadata = {
@@ -76,13 +76,16 @@ export default function StoriesPage() {
       </Section>
 
       <Section>
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {rest.map((s, i) => (
-            <Reveal key={s.slug} delay={i * 60} className="h-full">
-              <StoryCard story={s} />
-            </Reveal>
-          ))}
-        </div>
+        <StoriesBrowser
+          stories={rest.map((s) => ({
+            slug: s.slug,
+            title: s.title,
+            excerpt: s.excerpt,
+            category: s.category,
+            emoji: s.emoji,
+            readMins: s.readMins,
+          }))}
+        />
       </Section>
     </>
   );
