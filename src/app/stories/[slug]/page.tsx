@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/Button";
 import { StoryCard } from "@/components/cards/StoryCard";
 import { MemoryScene, sceneVariants } from "@/components/art/MemoryScene";
 import { stories, getStory } from "@/lib/stories";
+import { site } from "@/lib/site";
 
 function sceneFor(slug: string) {
   return sceneVariants[
@@ -46,14 +47,35 @@ export default async function StoryPage({
     ...others.filter((s) => s.category !== story.category),
   ].slice(0, 3);
 
+  const url = `${site.url}/stories/${story.slug}`;
+  const imageUrl = `${site.url}/opengraph-image`;
+  const wordCount = story.body.reduce(
+    (n, b) =>
+      n +
+      (b.type === "ul" ? b.items.join(" ") : b.text)
+        .split(/\s+/)
+        .filter(Boolean).length,
+    0,
+  );
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
+    mainEntityOfPage: { "@type": "WebPage", "@id": url },
+    url,
     headline: story.title,
     description: story.excerpt,
+    image: imageUrl,
+    articleSection: story.category,
+    wordCount,
     datePublished: story.date,
-    author: { "@type": "Organization", name: story.author },
-    publisher: { "@type": "Organization", name: "AprilDawn" },
+    dateModified: story.date,
+    author: { "@type": "Organization", name: story.author, url: site.url },
+    publisher: {
+      "@type": "Organization",
+      name: "AprilDawn",
+      logo: { "@type": "ImageObject", url: imageUrl },
+    },
   };
 
   return (
