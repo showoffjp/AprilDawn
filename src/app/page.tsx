@@ -29,6 +29,7 @@ import { trustStats, site } from "@/lib/site";
 import { fromPrice } from "@/lib/utils";
 import { CollectionCard } from "@/components/collections/CollectionCard";
 import { collections } from "@/lib/collections";
+import { giftGuides } from "@/lib/giftGuides";
 
 export default function Home() {
   return (
@@ -385,6 +386,24 @@ export default function Home() {
             </Reveal>
           ))}
         </div>
+
+        {/* Shop the moment — every occasion guide, one tap away */}
+        <p className="mt-10 text-center text-sm font-semibold text-ink">
+          Shopping for a moment?
+        </p>
+        <div className="mt-3 flex flex-wrap justify-center gap-2.5">
+          {giftGuides.map((g) => (
+            <Link
+              key={g.slug}
+              href={`/gift-guides/${g.slug}`}
+              className="inline-flex h-10 items-center gap-2 rounded-full bg-white px-4 text-sm font-medium text-ink ring-1 ring-ink/10 transition hover:-translate-y-0.5 hover:ring-dawn-300"
+            >
+              <span aria-hidden="true">{g.emoji}</span>
+              {g.title}
+            </Link>
+          ))}
+        </div>
+
         <div className="mt-8 text-center">
           <Button href="/gifts" variant="ghost">
             Explore all the ways to gift →
