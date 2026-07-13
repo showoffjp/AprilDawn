@@ -22,6 +22,7 @@ import { PrintShowcase } from "@/components/home/PrintShowcase";
 import { ArtStyleTeaser } from "@/components/home/ArtStyleTeaser";
 import { CreateGrid } from "@/components/home/CreateGrid";
 import { HeroSearch } from "@/components/home/HeroSearch";
+import { SeasonBanner } from "@/components/home/SeasonBanner";
 import { ProductMockup } from "@/components/cart/ProductMockup";
 import { featuredServices } from "@/lib/services";
 import { heroBundle } from "@/lib/occasions";
@@ -79,6 +80,9 @@ export default function Home() {
           <HeroCollage />
         </Container>
       </section>
+
+      {/* --------------------------------------------- What's in season nudge */}
+      <SeasonBanner />
 
       {/* ------------------------------------------------ Start anywhere tiles */}
       <Section>
