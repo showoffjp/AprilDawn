@@ -44,6 +44,32 @@ const DATED: { slug: string; next: (from: Date) => Date }[] = [
 /** Season-less guides, in display preference order. */
 const EVERGREEN = ["wedding", "new-baby", "anniversary", "memorial"];
 
+/** Human labels for the dated occasions (for the homepage nudge). */
+const LABELS: Record<string, string> = {
+  "valentines-day": "Valentine's Day",
+  "mothers-day": "Mother's Day",
+  graduation: "graduation season",
+  "fathers-day": "Father's Day",
+  christmas: "the holidays",
+};
+
+export type UpcomingOccasion = { slug: string; label: string; days: number };
+
+/**
+ * The nearest dated occasion that's within the ordering window, with days-until
+ * and a display label — or null if nothing dated is currently in season.
+ */
+export function upcomingOccasion(from: Date = new Date()): UpcomingOccasion | null {
+  const nearest = DATED.map((o) => ({
+    slug: o.slug,
+    days: Math.max(0, Math.ceil((o.next(from).getTime() - from.getTime()) / DAY)),
+  }))
+    .filter((o) => o.days <= LEAD_DAYS)
+    .sort((a, b) => a.days - b.days)[0];
+  if (!nearest) return null;
+  return { slug: nearest.slug, label: LABELS[nearest.slug] ?? nearest.slug, days: nearest.days };
+}
+
 /** All guide slugs, most seasonally relevant first. */
 export function occasionsByProximity(from: Date = new Date()): string[] {
   const dated = DATED.map((o) => ({
