@@ -38,6 +38,7 @@ export function ProductDesigner({ product }: { product: Product }) {
   const [addons, setAddons] = useState<Set<string>>(new Set());
   const [quantity, setQuantity] = useState(1);
   const [added, setAdded] = useState(false);
+  const [adding, setAdding] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const cropSrcRef = useRef<string>("");
   const croppedRef = useRef<string>("");
@@ -100,6 +101,17 @@ export function ProductDesigner({ product }: { product: Product }) {
   }
 
   async function add() {
+    // Rendering the thumb is async — guard so a double-click can't add twice.
+    if (adding) return;
+    setAdding(true);
+    try {
+      await addOnce();
+    } finally {
+      setAdding(false);
+    }
+  }
+
+  async function addOnce() {
     const parts: string[] = [];
     if (styleName !== "None") parts.push(`${styleName} style`);
     const edited =
@@ -270,8 +282,8 @@ export function ProductDesigner({ product }: { product: Product }) {
             </div>
           </div>
         ) : (
-          <Button className="mt-6 w-full" size="lg" onClick={add}>
-            Add to cart · {usd(unitPrice * quantity)}
+          <Button className="mt-6 w-full" size="lg" onClick={add} disabled={adding}>
+            {adding ? "Adding…" : `Add to cart · ${usd(unitPrice * quantity)}`}
           </Button>
         )}
       </div>

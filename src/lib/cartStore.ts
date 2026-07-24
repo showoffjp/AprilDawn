@@ -30,7 +30,9 @@ function commit(next: CartItem[]): void {
       window.localStorage.setItem(KEY, JSON.stringify(items));
     }
   } catch {
-    // ignore quota errors
+    // Storage full or unavailable: in-memory cart still works for this visit,
+    // but it won't survive a reload — say so instead of failing silently.
+    console.warn("AprilDawn: cart changes could not be saved to storage.");
   }
   listeners.forEach((l) => l());
 }
@@ -53,23 +55,20 @@ export function getServerSnapshot(): CartItem[] {
 }
 
 export function addItem(item: Omit<CartItem, "id">): void {
+  // Two lines merge only when they are the same design — including the baked
+  // preview thumb, so two different crops of one photo stay separate lines.
   const match = items.find(
     (i) =>
       i.slug === item.slug &&
       i.size === item.size &&
       i.notes === item.notes &&
-      i.photoName === item.photoName,
+      i.photoName === item.photoName &&
+      i.photoThumb === item.photoThumb,
   );
   if (match) {
     commit(
       items.map((i) =>
-        i.id === match.id
-          ? {
-              ...i,
-              quantity: i.quantity + item.quantity,
-              photoThumb: item.photoThumb ?? i.photoThumb,
-            }
-          : i,
+        i.id === match.id ? { ...i, quantity: i.quantity + item.quantity } : i,
       ),
     );
   } else {

@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { Button } from "@/components/ui/Button";
 import { postJson } from "@/lib/postJson";
 import { cn } from "@/lib/utils";
@@ -34,6 +34,24 @@ export function Uploader() {
   const [status, setStatus] = useState<"idle" | "sending" | "error">("idle");
   const [error, setError] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+  const successRef = useRef<HTMLHeadingElement>(null);
+
+  // Revoke any outstanding preview URLs if the visitor navigates away.
+  const itemsRef = useRef<Item[]>([]);
+  useEffect(() => {
+    itemsRef.current = items;
+  }, [items]);
+  useEffect(
+    () => () => {
+      itemsRef.current.forEach((i) => i.preview && URL.revokeObjectURL(i.preview));
+    },
+    [],
+  );
+
+  // Move focus to the confirmation so screen readers announce the outcome.
+  useEffect(() => {
+    if (submitted) successRef.current?.focus();
+  }, [submitted]);
 
   const addFiles = useCallback((files: FileList | null) => {
     if (!files) return;
@@ -95,7 +113,11 @@ export function Uploader() {
     return (
       <div className="rounded-3xl bg-white p-10 text-center ring-1 ring-ink/10">
         <div className="text-6xl">📨</div>
-        <h2 className="mt-4 font-display text-2xl font-semibold">
+        <h2
+          ref={successRef}
+          tabIndex={-1}
+          className="mt-4 font-display text-2xl font-semibold outline-none"
+        >
           {items.length} {items.length === 1 ? "memory" : "memories"} received!
         </h2>
         <p className="mx-auto mt-3 max-w-md text-ink-soft">

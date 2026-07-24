@@ -28,14 +28,21 @@ export function isBot(body: Record<string, unknown>): boolean {
 }
 
 /**
- * Safely read a JSON object body. Returns `null` on malformed JSON so callers
- * can respond with a 400; always returns an object (never an array/primitive).
+ * Safely read a JSON object body. Returns `null` on malformed JSON or an
+ * oversized body so callers can respond with a 400; always returns an object
+ * (never an array/primitive). The cap keeps form endpoints from buffering
+ * unbounded request bodies.
  */
 export async function readJson(
   request: Request,
+  maxBytes = 100_000,
 ): Promise<Record<string, unknown> | null> {
   try {
-    const data: unknown = await request.json();
+    const declared = Number(request.headers.get("content-length") ?? 0);
+    if (declared > maxBytes) return null;
+    const text = await request.text();
+    if (text.length > maxBytes) return null;
+    const data: unknown = JSON.parse(text);
     return data && typeof data === "object" && !Array.isArray(data)
       ? (data as Record<string, unknown>)
       : {};

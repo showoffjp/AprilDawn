@@ -49,8 +49,11 @@ export function CommandPaletteBody({ onClose }: { onClose: () => void }) {
     if (catalogCache) return;
     let cancelled = false;
     fetch("/api/search-index")
-      .then((r) => (r.ok ? r.json() : []))
+      .then((r) => (r.ok ? r.json() : Promise.reject(new Error(`${r.status}`))))
       .then((items: Item[]) => {
+        // Cache only a real catalog — a failed or empty response must not
+        // stick, so the next open retries instead of searching pages only.
+        if (!Array.isArray(items) || items.length === 0) return;
         catalogCache = items;
         if (!cancelled) setCatalog(items);
       })
@@ -149,7 +152,9 @@ export function CommandPaletteBody({ onClose }: { onClose: () => void }) {
             </li>
           ) : (
             results.map((r, i) => (
-              <li key={`${r.href}-${r.label}`}>
+              // presentation: the listbox's exposed children must be the
+              // role="option" buttons, not intermediate listitems.
+              <li key={`${r.href}-${r.label}`} role="presentation">
                 <button
                   type="button"
                   id={`cmdk-opt-${i}`}
