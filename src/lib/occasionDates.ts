@@ -12,10 +12,23 @@ const DAY = 86_400_000;
 const LEAD_DAYS = 70;
 const GRACE_DAYS = 3;
 
-/** This year's occurrence, or next year's once GRACE_DAYS past. */
+/**
+ * Calendar-day arithmetic via UTC day numbers: immune to DST transitions
+ * (a fall-back 25-hour day would otherwise make wall-clock ms division count
+ * one day too many) and gives whole-day "days until" semantics.
+ */
+function dayNumber(d: Date): number {
+  return Math.round(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()) / DAY);
+}
+
+function daysBetween(from: Date, to: Date): number {
+  return dayNumber(to) - dayNumber(from);
+}
+
+/** This year's occurrence, or next year's once GRACE_DAYS fully past. */
 function fixedDate(from: Date, month: number, day: number): Date {
   const candidate = new Date(from.getFullYear(), month, day);
-  return candidate.getTime() < from.getTime() - GRACE_DAYS * DAY
+  return daysBetween(from, candidate) < -GRACE_DAYS
     ? new Date(from.getFullYear() + 1, month, day)
     : candidate;
 }
@@ -28,7 +41,7 @@ function nthWeekday(year: number, month: number, weekday: number, n: number): Da
 
 function nthWeekdayDate(from: Date, month: number, weekday: number, n: number): Date {
   const candidate = nthWeekday(from.getFullYear(), month, weekday, n);
-  return candidate.getTime() < from.getTime() - GRACE_DAYS * DAY
+  return daysBetween(from, candidate) < -GRACE_DAYS
     ? nthWeekday(from.getFullYear() + 1, month, weekday, n)
     : candidate;
 }
@@ -62,7 +75,7 @@ export type UpcomingOccasion = { slug: string; label: string; days: number };
 export function upcomingOccasion(from: Date = new Date()): UpcomingOccasion | null {
   const nearest = DATED.map((o) => ({
     slug: o.slug,
-    days: Math.max(0, Math.ceil((o.next(from).getTime() - from.getTime()) / DAY)),
+    days: Math.max(0, daysBetween(from, o.next(from))),
   }))
     .filter((o) => o.days <= LEAD_DAYS)
     .sort((a, b) => a.days - b.days)[0];
@@ -74,7 +87,7 @@ export function upcomingOccasion(from: Date = new Date()): UpcomingOccasion | nu
 export function occasionsByProximity(from: Date = new Date()): string[] {
   const dated = DATED.map((o) => ({
     slug: o.slug,
-    days: Math.max(0, Math.ceil((o.next(from).getTime() - from.getTime()) / DAY)),
+    days: Math.max(0, daysBetween(from, o.next(from))),
   })).sort((a, b) => a.days - b.days);
 
   const inSeason = dated.filter((o) => o.days <= LEAD_DAYS).map((o) => o.slug);

@@ -51,6 +51,19 @@ export function PhotoCropper({
   const pointers = useRef<Map<number, Point>>(new Map());
   const panStart = useRef<{ x: number; y: number; ox: number; oy: number } | null>(null);
   const pinchStart = useRef<{ dist: number; zoom: number } | null>(null);
+  // Once cancelled/closed, an in-flight crop must not apply (and must not leak).
+  const cancelledRef = useRef(false);
+
+  // Restore focus to the opener when the dialog closes, however it closes.
+  // (Resetting the flag on mount keeps StrictMode's dev double-mount honest.)
+  useEffect(() => {
+    cancelledRef.current = false;
+    const opener = document.activeElement as HTMLElement | null;
+    return () => {
+      cancelledRef.current = true;
+      opener?.focus?.();
+    };
+  }, []);
 
   // Constrain an offset so the scaled image can never reveal an edge gap.
   const clampOffset = useCallback(
@@ -100,7 +113,10 @@ export function PhotoCropper({
   // Escape cancels; lock body scroll while the modal is open; focus Apply.
   useEffect(() => {
     const onKey = (e: KeyboardEvent) => {
-      if (e.key === "Escape") onCancel();
+      if (e.key === "Escape") {
+        cancelledRef.current = true;
+        onCancel();
+      }
     };
     window.addEventListener("keydown", onKey);
     const prevOverflow = document.body.style.overflow;
@@ -137,7 +153,7 @@ export function PhotoCropper({
 
     if (p.size >= 2 && pinchStart.current) {
       const dist = twoPointerDist();
-      if (dist > 0) {
+      if (dist > 0 && pinchStart.current.dist > 0) {
         setZoomAndClamp(pinchStart.current.zoom * (dist / pinchStart.current.dist));
       }
     } else if (panStart.current) {
@@ -187,9 +203,59 @@ export function PhotoCropper({
         sWidth: vp.w / geo.eff,
         sHeight: vp.h / geo.eff,
       });
+      // The user cancelled (or the dialog unmounted) while cropping — the
+      // result must neither apply nor leak its object URL.
+      if (cancelledRef.current) {
+        URL.revokeObjectURL(result.url);
+        return;
+      }
       onApply(result);
     } catch {
       setBusy(false);
+    }
+  }
+
+  // Keyboard alternative to drag-panning: arrows reposition (Shift = fine),
+  // +/- zoom. The frame is focusable so keyboard-only users can frame too.
+  function onFrameKeyDown(e: React.KeyboardEvent<HTMLDivElement>) {
+    const step = e.shiftKey ? 1 : 10;
+    let dx = 0;
+    let dy = 0;
+    if (e.key === "ArrowLeft") dx = -step;
+    else if (e.key === "ArrowRight") dx = step;
+    else if (e.key === "ArrowUp") dy = -step;
+    else if (e.key === "ArrowDown") dy = step;
+    else if (e.key === "+" || e.key === "=") {
+      e.preventDefault();
+      setZoomAndClamp(zoom + 0.1);
+      return;
+    } else if (e.key === "-" || e.key === "_") {
+      e.preventDefault();
+      setZoomAndClamp(zoom - 0.1);
+      return;
+    } else return;
+    e.preventDefault();
+    setOffset((o) => clampOffset({ x: o.x + dx, y: o.y + dy }, zoom));
+  }
+
+  // Minimal focus trap: Tab cycles inside the dialog panel.
+  function trapTab(e: React.KeyboardEvent<HTMLDivElement>) {
+    if (e.key !== "Tab") return;
+    const panel = panelRef.current;
+    if (!panel) return;
+    const focusables = panel.querySelectorAll<HTMLElement>(
+      'button, input, [tabindex="0"]',
+    );
+    if (focusables.length === 0) return;
+    const first = focusables[0];
+    const last = focusables[focusables.length - 1];
+    const active = document.activeElement;
+    if (e.shiftKey && (active === first || active === panel)) {
+      e.preventDefault();
+      last.focus();
+    } else if (!e.shiftKey && active === last) {
+      e.preventDefault();
+      first.focus();
     }
   }
 
@@ -203,6 +269,7 @@ export function PhotoCropper({
       <div
         ref={panelRef}
         tabIndex={-1}
+        onKeyDown={trapTab}
         className="w-full max-w-md rounded-3xl bg-white p-5 shadow-soft-lg outline-none sm:p-6"
       >
         <h2 className="font-display text-xl font-semibold text-ink">{title}</h2>
@@ -213,11 +280,15 @@ export function PhotoCropper({
 
         <div
           ref={frameRef}
+          role="application"
+          tabIndex={0}
+          aria-label="Photo position. Use the arrow keys to reposition (hold Shift for fine steps) and plus or minus to zoom."
+          onKeyDown={onFrameKeyDown}
           onPointerDown={onPointerDown}
           onPointerMove={onPointerMove}
           onPointerUp={endPointer}
           onPointerCancel={endPointer}
-          className="relative mt-4 w-full touch-none overflow-hidden rounded-2xl bg-ink/90 cursor-grab select-none active:cursor-grabbing"
+          className="relative mt-4 w-full touch-none overflow-hidden rounded-2xl bg-ink/90 cursor-grab select-none active:cursor-grabbing focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-dawn-400 focus-visible:ring-offset-2"
           style={{ aspectRatio: String(aspect) }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -280,7 +351,14 @@ export function PhotoCropper({
             Reset
           </button>
           <div className="flex gap-3">
-            <Button variant="ghost" size="sm" onClick={onCancel}>
+            <Button
+              variant="ghost"
+              size="sm"
+              onClick={() => {
+                cancelledRef.current = true;
+                onCancel();
+              }}
+            >
               Cancel
             </Button>
             <Button size="sm" onClick={apply} disabled={busy || !geo}>

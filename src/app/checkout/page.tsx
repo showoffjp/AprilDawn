@@ -39,7 +39,17 @@ export default function CheckoutPage() {
       const res = await fetch("/api/checkout", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ ...data, items, total }),
+        // The server whitelists fields and never uses the preview thumbs —
+        // strip them so the money-path payload stays small.
+        body: JSON.stringify({
+          ...data,
+          items: items.map((i) => {
+            const copy = { ...i };
+            delete copy.photoThumb;
+            return copy;
+          }),
+          total,
+        }),
       });
       if (!res.ok) throw new Error();
       const json = (await res.json()) as { orderId: string };
