@@ -2,14 +2,19 @@
  * Seasonal ranking for the occasion gift guides — pure date math, safe to run
  * on either side of the wire.
  *
- * Rule: dated occasions coming up within LEAD_DAYS (long enough to order and
- * ship) lead, nearest first; evergreen guides fill the remaining slots; dated
- * occasions that are out of season trail. An occasion stays "current" through
- * GRACE_DAYS after the day itself (belated gifts are still gifts).
+ * Rule: dated occasions coming up within their lead window (long enough to
+ * order, proof, produce and ship) lead, nearest first; evergreen guides fill
+ * the remaining slots; dated occasions that are out of season trail. An
+ * occasion stays "current" through GRACE_DAYS after the day itself (belated
+ * gifts are still gifts).
+ *
+ * Lead windows are per-occasion because shopping runways differ: people buy
+ * holiday photo gifts from early autumn (and December capacity fills up),
+ * while nobody shops for Valentine's in November.
  */
 
 const DAY = 86_400_000;
-const LEAD_DAYS = 70;
+const DEFAULT_LEAD_DAYS = 70;
 const GRACE_DAYS = 3;
 
 /**
@@ -46,13 +51,21 @@ function nthWeekdayDate(from: Date, month: number, weekday: number, n: number): 
     : candidate;
 }
 
-const DATED: { slug: string; next: (from: Date) => Date }[] = [
+const DATED: { slug: string; next: (from: Date) => Date; lead?: number }[] = [
   { slug: "valentines-day", next: (d) => fixedDate(d, 1, 14) },
-  { slug: "mothers-day", next: (d) => nthWeekdayDate(d, 4, 0, 2) },
-  { slug: "graduation", next: (d) => fixedDate(d, 4, 20) },
+  // Mother's Day and graduation overlap in May; both get a little extra runway
+  // so they surface before the May rush rather than during it.
+  { slug: "mothers-day", next: (d) => nthWeekdayDate(d, 4, 0, 2), lead: 80 },
+  { slug: "graduation", next: (d) => fixedDate(d, 4, 20), lead: 80 },
   { slug: "fathers-day", next: (d) => nthWeekdayDate(d, 5, 0, 3) },
-  { slug: "christmas", next: (d) => fixedDate(d, 11, 25) },
+  // Holiday gifting runs from early autumn — and December proofing, production
+  // and shipping fill up, so this is the one people must start earliest.
+  { slug: "christmas", next: (d) => fixedDate(d, 11, 25), lead: 110 },
 ];
+
+function leadFor(o: { lead?: number }): number {
+  return o.lead ?? DEFAULT_LEAD_DAYS;
+}
 
 /** Season-less guides, in display preference order. */
 const EVERGREEN = ["wedding", "new-baby", "anniversary", "memorial"];
@@ -76,8 +89,9 @@ export function upcomingOccasion(from: Date = new Date()): UpcomingOccasion | nu
   const nearest = DATED.map((o) => ({
     slug: o.slug,
     days: Math.max(0, daysBetween(from, o.next(from))),
+    lead: leadFor(o),
   }))
-    .filter((o) => o.days <= LEAD_DAYS)
+    .filter((o) => o.days <= o.lead)
     .sort((a, b) => a.days - b.days)[0];
   if (!nearest) return null;
   return { slug: nearest.slug, label: LABELS[nearest.slug] ?? nearest.slug, days: nearest.days };
@@ -88,9 +102,10 @@ export function occasionsByProximity(from: Date = new Date()): string[] {
   const dated = DATED.map((o) => ({
     slug: o.slug,
     days: Math.max(0, daysBetween(from, o.next(from))),
+    lead: leadFor(o),
   })).sort((a, b) => a.days - b.days);
 
-  const inSeason = dated.filter((o) => o.days <= LEAD_DAYS).map((o) => o.slug);
-  const outOfSeason = dated.filter((o) => o.days > LEAD_DAYS).map((o) => o.slug);
+  const inSeason = dated.filter((o) => o.days <= o.lead).map((o) => o.slug);
+  const outOfSeason = dated.filter((o) => o.days > o.lead).map((o) => o.slug);
   return [...inSeason, ...EVERGREEN, ...outOfSeason];
 }
