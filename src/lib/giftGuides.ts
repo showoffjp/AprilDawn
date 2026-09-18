@@ -88,6 +88,17 @@ export const giftGuides: GiftGuide[] = [
     bundleSlug: "memorial-keepsake-set",
   },
   {
+    slug: "thanksgiving",
+    title: "Thanksgiving Gifts & Gatherings",
+    emoji: "\ud83e\udd83",
+    scene: "sunset",
+    tagline: "Everyone's in one room. Use it.",
+    lead: "Thanksgiving puts the whole family in one room, which makes it the year's best photo opportunity and its easiest gift delivery. Bring a hosting gift printed with the faces around the table \u2014 a cutting board, an apron, coasters that start an argument about 1987 \u2014 and get the group photo before anyone changes out of the good shirt.",
+    productSlugs: ["cuttingboard", "apron", "coasters", "framed", "mug", "blanket", "winetumbler", "puzzle"],
+    collectionSlug: "reunion-crowd-pleasers",
+    bundleSlug: "reunion-starter-pack",
+  },
+  {
     slug: "graduation",
     title: "Graduation Gifts",
     emoji: "🎓",

@@ -58,6 +58,10 @@ const DATED: { slug: string; next: (from: Date) => Date; lead?: number }[] = [
   { slug: "mothers-day", next: (d) => nthWeekdayDate(d, 4, 0, 2), lead: 80 },
   { slug: "graduation", next: (d) => fixedDate(d, 4, 20), lead: 80 },
   { slug: "fathers-day", next: (d) => nthWeekdayDate(d, 5, 0, 3) },
+  // Fourth Thursday of November. A shorter runway than Christmas on purpose:
+  // hosting gifts and gathering plans are an October decision, and surfacing
+  // it earlier would take the nudge away from the holiday that needs the lead.
+  { slug: "thanksgiving", next: (d) => nthWeekdayDate(d, 10, 4, 4), lead: 50 },
   // Holiday gifting runs from early autumn — and December proofing, production
   // and shipping fill up, so this is the one people must start earliest.
   { slug: "christmas", next: (d) => fixedDate(d, 11, 25), lead: 110 },
@@ -76,6 +80,7 @@ const LABELS: Record<string, string> = {
   "mothers-day": "Mother's Day",
   graduation: "graduation season",
   "fathers-day": "Father's Day",
+  thanksgiving: "Thanksgiving",
   christmas: "the holidays",
 };
 
