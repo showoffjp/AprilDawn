@@ -301,3 +301,61 @@
 @keyframes ad-spin {
   to { transform: rotate(360deg); }
 }
+
+/* ---- Glossy primary CTA ----
+   A brand-gradient button with a top-half gloss highlight and a sheen that
+   sweeps across on hover. The gradient itself drifts continuously so the
+   button has life at rest; both are stilled under reduced motion. */
+@layer utilities {
+  .btn-gloss {
+    background-image: linear-gradient(
+      100deg,
+      var(--color-dawn-600) 0%,
+      var(--color-dawn-500) 22%,
+      var(--color-dawn-400) 42%,
+      var(--color-dusk-500) 68%,
+      var(--color-dawn-500) 100%
+    );
+    background-size: 155% 100%;
+    animation: ad-pan 8s ease-in-out infinite;
+  }
+  /* Gloss: a highlight across the upper half, like light on a curved surface. */
+  .btn-gloss::before {
+    content: "";
+    position: absolute;
+    inset: 0 0 52% 0;
+    border-radius: inherit;
+    background: linear-gradient(to bottom, rgb(255 255 255 / 0.34), transparent);
+    pointer-events: none;
+  }
+  /* Sheen: parked off-frame, sweeps through on hover/focus. */
+  .btn-gloss::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    background: linear-gradient(
+      100deg,
+      transparent 20%,
+      rgb(255 255 255 / 0.42) 50%,
+      transparent 80%
+    );
+    transform: translateX(-130%);
+    pointer-events: none;
+  }
+  .btn-gloss:hover::after,
+  .btn-gloss:focus-visible::after {
+    transform: translateX(130%);
+    transition: transform 0.75s ease;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn-gloss {
+    animation: none !important;
+    background-position: 0% 50%;
+  }
+  .btn-gloss::after {
+    display: none;
+  }
+}
