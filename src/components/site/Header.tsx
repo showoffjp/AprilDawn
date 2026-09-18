@@ -15,26 +15,28 @@ export function Header() {
 
   return (
     <header className="sticky top-0 z-50 border-b border-ink/10 bg-cream/95 backdrop-blur-md">
-      <Container className="flex h-16 items-center justify-between gap-4">
-        <Logo />
+      <Container className="flex h-16 flex-nowrap items-center justify-between gap-3 lg:px-6 xl:gap-4 xl:px-8">
+        <span className="shrink-0">
+          <Logo />
+        </span>
 
-        <nav className="hidden items-center gap-7 lg:flex">
+        <nav className="hidden items-center gap-3 lg:flex xl:gap-5">
           {mainNav.map((item) => (
             <Link
               key={item.href}
               href={item.href}
-              className="text-sm font-medium text-ink-soft transition-colors hover:text-ink"
+              className="whitespace-nowrap text-[13px] font-medium text-ink-soft transition-colors hover:text-ink xl:text-sm"
             >
               {item.label}
             </Link>
           ))}
         </nav>
 
-        <div className="hidden items-center gap-2.5 lg:flex">
+        <div className="hidden shrink-0 items-center gap-1.5 lg:flex xl:gap-2.5">
           <button
             type="button"
             onClick={() => window.dispatchEvent(new Event("open-command"))}
-            className="inline-flex h-10 w-10 items-center justify-center rounded-full text-ink-soft ring-1 ring-inset ring-ink/15 transition hover:bg-ink/5 hover:text-ink"
+            className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-full text-ink-soft ring-1 ring-inset ring-ink/15 transition hover:bg-ink/5 hover:text-ink"
             aria-label="Search (⌘K)"
           >
             <SearchIcon className="h-[18px] w-[18px]" />
@@ -42,12 +44,12 @@ export function Header() {
           <CartIndicator />
           <Link
             href="/vault"
-            className="px-2 text-sm font-medium text-ink-soft transition hover:text-ink"
+            className="whitespace-nowrap px-1 text-[13px] font-medium text-ink-soft transition hover:text-ink xl:px-2 xl:text-sm"
           >
             Sign in
           </Link>
           <Magnetic>
-            <Button href="/upload" size="sm">
+            <Button href="/upload" size="sm" variant="gloss">
               Start a project
             </Button>
           </Magnetic>
@@ -75,7 +77,7 @@ export function Header() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className="rounded-xl px-3 py-2.5 text-base font-medium text-ink hover:bg-ink/5"
+                className="whitespace-nowrap rounded-xl px-3 py-2.5 text-base font-medium text-ink hover:bg-ink/5"
               >
                 {item.label}
               </Link>
@@ -83,7 +85,7 @@ export function Header() {
             <Link
               href="/vault"
               onClick={() => setOpen(false)}
-              className="rounded-xl px-3 py-2.5 text-base font-medium text-ink hover:bg-ink/5"
+              className="whitespace-nowrap rounded-xl px-3 py-2.5 text-base font-medium text-ink hover:bg-ink/5"
             >
               Sign in
             </Link>
@@ -98,7 +100,7 @@ export function Header() {
               <SearchIcon className="h-5 w-5 text-ink-soft" />
               Search
             </button>
-            <Button href="/upload" className="mt-3" onClick={() => setOpen(false)}>
+            <Button href="/upload" variant="gloss" className="mt-3" onClick={() => setOpen(false)}>
               Start a project
             </Button>
           </Container>
