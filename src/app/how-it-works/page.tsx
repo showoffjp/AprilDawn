@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Aurora } from "@/components/effects/Aurora";
+import { jsonLdScript } from "@/lib/jsonLd";
 
 export const metadata: Metadata = {
   title: "How it works",
@@ -105,7 +106,7 @@ export default function HowItWorksPage() {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(howToJsonLd) }}
       />
     </>
   );

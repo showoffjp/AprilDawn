@@ -1,5 +1,6 @@
 import { site, studio, studioMapsUrl } from "@/lib/site";
 import { aggregate } from "@/lib/reviews";
+import { jsonLdScript } from "@/lib/jsonLd";
 
 /**
  * LocalBusiness / Photographer structured data for the Aiken-based event
@@ -64,7 +65,7 @@ export function EventsJsonLd({
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdScript(data) }}
     />
   );
 }

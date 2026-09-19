@@ -11,6 +11,8 @@ import { occasionsByProximity } from "@/lib/occasionDates";
 import { integrations, giftBundles } from "@/lib/occasions";
 import { giftGuides, guideProducts } from "@/lib/giftGuides";
 import { fromPrice } from "@/lib/utils";
+import { ServiceFaqs } from "@/components/services/ServiceFaqs";
+import { getService } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "Occasions & Auto-Gifting",
@@ -232,6 +234,14 @@ export default function OccasionsPage() {
           />
         </Section>
       </div>
+      <div className="bg-cream-deep">
+        <Section>
+          <div className="mx-auto max-w-2xl">
+            <ServiceFaqs faqs={getService("occasions")?.faqs} />
+          </div>
+        </Section>
+      </div>
+
     </>
   );
 }

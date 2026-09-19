@@ -16,6 +16,7 @@ import {
 } from "@/lib/bundles";
 import { fromPrice } from "@/lib/utils";
 import { site } from "@/lib/site";
+import { jsonLdScript } from "@/lib/jsonLd";
 
 export function generateStaticParams() {
   return bundles.map((b) => ({ slug: b.slug }));
@@ -68,7 +69,7 @@ export default async function BundlePage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <BreadcrumbJsonLd
         trail={[

@@ -1,3 +1,5 @@
+import { jsonLdScript } from "@/lib/jsonLd";
+
 /** Emits FAQPage structured data so FAQs can earn rich results in search. */
 export function FaqJsonLd({ faqs }: { faqs: { q: string; a: string }[] }) {
   const data = {
@@ -12,7 +14,7 @@ export function FaqJsonLd({ faqs }: { faqs: { q: string; a: string }[] }) {
   return (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: jsonLdScript(data) }}
     />
   );
 }
