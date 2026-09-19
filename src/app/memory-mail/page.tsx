@@ -4,6 +4,8 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { HandwritingUpload } from "@/components/memory/HandwritingUpload";
+import { ServiceFaqs } from "@/components/services/ServiceFaqs";
+import { getService } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "Memory Mail",
@@ -137,6 +139,14 @@ export default function MemoryMailPage() {
           </Button>
         </div>
       </Section>
+      <div className="bg-cream-deep">
+        <Section>
+          <div className="mx-auto max-w-2xl">
+            <ServiceFaqs faqs={getService("memory-mail")?.faqs} />
+          </div>
+        </Section>
+      </div>
+
     </>
   );
 }

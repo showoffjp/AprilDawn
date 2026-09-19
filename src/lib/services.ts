@@ -83,6 +83,14 @@ export const services: Service[] = [
     ],
     faqs: [
       {
+        q: "What can you digitize?",
+        a: "Prints, slides, negatives, albums, home movies, videotapes, audio cassettes, and the formats nobody owns a player for any more. If you're unsure, send it — odd formats are routine here.",
+      },
+      {
+        q: "How long does it take?",
+        a: "Most projects are about two to three weeks once your box reaches the lab. Rush handling is available when a date is involved.",
+      },
+      {
         q: "Will you really return my originals?",
         a: "Always. Originals are inventoried, photographed, and shipped back insured. We never discard a memory.",
       },
@@ -135,6 +143,18 @@ export const services: Service[] = [
     ],
     faqs: [
       {
+        q: "What kinds of damage can you actually fix?",
+        a: "Tears, cracks, creases, water and mold damage, fading, colour casts, and missing corners or faces. AI does the heavy lifting and a human artist finishes the work, which is the part that decides whether it looks repaired or looks real.",
+      },
+      {
+        q: "Do you need the original print?",
+        a: "No — a good scan or a clear phone photo of the print is often enough. If you'd rather send originals, they're inventoried, tracked through the lab, and returned to you insured.",
+      },
+      {
+        q: "Can you put colour into a black-and-white photo?",
+        a: "Yes, and you keep both versions: the restored black-and-white master and the colourised one. We never hand back only the colour version of something that was never in colour.",
+      },
+      {
         q: "Do I approve the result first?",
         a: "Yes — you see proofs and request changes before anything is finalized, printed, or delivered.",
       },
@@ -177,6 +197,12 @@ export const services: Service[] = [
     ],
     startingPrice: 12,
     turnaround: "3–7 business days production",
+    faqs: [
+      { q: "What can you actually print on?", a: "More than 4,000 products — gallery canvas, metal, and acrylic for the wall; blankets, mugs, apparel, and puzzles for the house; plus the odd ones people love us for, like playable vinyl records and edible cake prints. If it has a surface, ask us." },
+      { q: "Is my phone photo good enough?", a: "Usually, yes — phone photos print beautifully at everyday sizes. Big wall pieces ask more of a file, so we check every image before production and tell you if it won't hold up at the size you picked. Older scans can be enhanced first." },
+      { q: "Can I see it before you print it?", a: "Always. Every order gets a free proof, and you aren't charged until you approve it." },
+      { q: "How long does it take?", a: "Most items are produced in 3–7 business days, plus shipping. December fills up fast, so order holiday gifts early." },
+    ],
     examples: [
       "Matching reunion hoodies for 40 cousins",
       "An edible cake topper of the birthday kid's face",
@@ -241,6 +267,10 @@ export const services: Service[] = [
     ],
     faqs: [
       {
+        q: "Will it look like a filter?",
+        a: "No — that's the distinction we care about. The style is applied and then a human artist finishes the piece, which is what keeps faces recognisable instead of smeared.",
+      },
+      {
         q: "Which artists and styles can I choose?",
         a: "Effectively any famous artist or art genre — from Van Gogh and Monet to Warhol and comic-book pop. If you can name the look, we can compose your portrait in it. Ask for a custom style and we'll create it.",
       },
@@ -287,6 +317,12 @@ export const services: Service[] = [
     ],
     startingPrice: 1499,
     turnaround: "Ships flat in 3–5 weeks · easy DIY mount + free video setup",
+    faqs: [
+      { q: "How big is it, and will it fit my wall?", a: "The grid is custom, up to 12x12. We design the layout around your wall's actual dimensions and send it to you as a proof before anything is produced." },
+      { q: "What is the glowing part, exactly?", a: "A slim LED frame embedded in the collage that cycles through your photos and videos. Family can add new memories from their phones, and the wall updates itself." },
+      { q: "Is it hard to install?", a: "No. It ships flat with a straightforward DIY mount, and we include a free video setup walkthrough." },
+      { q: "How long from order to hanging?", a: "It ships flat 3–5 weeks after you approve the layout proof." },
+    ],
   },
   {
     slug: "memory-mail",
@@ -321,6 +357,12 @@ export const services: Service[] = [
     ],
     startingPrice: 7,
     turnaround: "Mailed within 3–5 business days",
+    faqs: [
+      { q: "How does the recording play?", a: "Three ways, whichever suits the recipient: scan the QR code, tap the card with NFC, or use AR playback. There's no app to install." },
+      { q: "Can I record it myself?", a: "Yes — record the audio or video on your phone and we attach it to the card before it's printed." },
+      { q: "What if the person isn't good with technology?", a: "Tapping the card or pointing a phone camera at it is the whole interaction. It opens the message the same way a QR menu opens at a restaurant." },
+      { q: "How fast does it go out?", a: "Cards are mailed within 3–5 business days." },
+    ],
   },
   {
     slug: "occasions",
@@ -355,6 +397,12 @@ export const services: Service[] = [
     ],
     startingPrice: 0,
     turnaround: "Reminders are free · gifts ship per product",
+    faqs: [
+      { q: "What does this cost?", a: "The reminders and calendar syncing are free. You only ever pay for a gift you've approved, at that product's price." },
+      { q: "Which calendars can it read?", a: "Google, Outlook, Apple, and Facebook. Birthdays and anniversaries come across automatically." },
+      { q: "Will it send something without asking me?", a: "Never. You get a reminder with enough lead time to ship, and nothing goes out until you approve it — one tap." },
+      { q: "What if I haven't uploaded photos yet?", a: "Gifts are built from your AprilDawn vault, so anything you've digitized or uploaded is ready to use. If the vault is empty, that's the moment to mail us the shoebox." },
+    ],
   },
   {
     slug: "voice-keeper",
@@ -378,6 +426,12 @@ export const services: Service[] = [
     ],
     startingPrice: 29,
     turnaround: "Transcripts in 3–5 days",
+    faqs: [
+      { q: "What kinds of recordings can you rescue?", a: "Voicemails, cassettes, microcassettes, and answering-machine tapes — plus new recordings you make yourself using our guided interview prompts." },
+      { q: "Are the transcripts automated?", a: "They're human-reviewed, which matters most exactly where machines fail: names, places, and family in-jokes. You get a transcript you can search, keep, and print." },
+      { q: "The audio is rough. Is it worth sending?", a: "Usually. We clean up what the recording will allow, and you hear a proof before you're charged anything." },
+      { q: "How long does it take?", a: "Transcripts come back in 3–5 days." },
+    ],
     examples: [
       "A grandmother's life story, recorded and bound into a book",
       "Twenty years of saved voicemails, preserved on a keepsake chip",
@@ -406,6 +460,12 @@ export const services: Service[] = [
     ],
     startingPrice: 149,
     turnaround: "2–4 weeks",
+    faqs: [
+      { q: "Do I need to know who everyone is first?", a: "No — that's the point. Face-grouping sorts decades of photos by person, so you identify someone once and every photo of them follows." },
+      { q: "What do I actually receive?", a: "A designed visual family tree, ready to frame or print, and optionally a heritage book that gathers the whole story in one place." },
+      { q: "Can relatives see it too?", a: "Yes. It's built to be shared with family near and far, which is usually how the missing names finally get filled in." },
+      { q: "How long does it take?", a: "Most heritage projects run 2–4 weeks." },
+    ],
     examples: [
       "A four-generation photo tree over the stairwell",
       "A heritage book made for a family reunion",
@@ -434,6 +494,12 @@ export const services: Service[] = [
     ],
     startingPrice: 99,
     turnaround: "Rush available · we work to your date",
+    faqs: [
+      { q: "Can you make it in time for the service?", a: "Usually, yes. Rush handling is available and we work backward from your date — tell us the date first and we'll build the schedule around it." },
+      { q: "What can you make?", a: "Memorial slideshows and tribute films set to music, celebration-of-life photo boards and programs, and restored portraits for the service itself." },
+      { q: "The only photo we have is damaged.", a: "That's the one we're best at. Tears, fading, water damage, and missing pieces are all repairable, and you see a free proof before anything is charged." },
+      { q: "Can every family member have a copy?", a: "Yes — keepsake copies for everyone who wants one, so nobody leaves with nothing." },
+    ],
     examples: [
       "A celebration-of-life slideshow set to her favorite song",
       "A restored portrait and program for the service",
@@ -462,6 +528,12 @@ export const services: Service[] = [
     ],
     startingPrice: 24,
     turnaround: "Digital in 3–5 days",
+    faqs: [
+      { q: "Our dog has passed and the only photo is faded.", a: "Send it. Restoration handles fading, creases, and damage, and we'll keep the process gentle — a proof first, no charge until you're happy with it." },
+      { q: "What do the painterly portraits look like?", a: "Your photo reimagined in a chosen artist's style and finished by a human artist, so the result looks painted rather than filtered." },
+      { q: "What can I put my pet on?", a: "Mugs, blankets, bandanas, ornaments, canvas — the whole catalogue is open to them, which is only fair given how much of your camera roll they occupy." },
+      { q: "How fast is it?", a: "Digital pieces come back in 3–5 days." },
+    ],
     examples: [
       "The golden retriever as a Van Gogh, on a mug and a hoodie",
       "A memorial canvas with a framed paw print",
@@ -490,6 +562,12 @@ export const services: Service[] = [
     ],
     startingPrice: 79,
     turnaround: "1–2 weeks after your event",
+    faqs: [
+      { q: "How do guests share their photos?", a: "They scan a simple QR code at the event. No app, no account, no chasing people in the group chat afterward." },
+      { q: "What do we end up with?", a: "A curated highlight film, a lay-flat photobook, and a shared private gallery for everyone who came — plus matching prints, signs, and favors if you want them." },
+      { q: "When do we get it?", a: "1–2 weeks after your event." },
+      { q: "Can you include photos from the photographer too?", a: "Yes. Guest photos and professional galleries end up in the same place, which is usually the first time a couple sees the whole day at once." },
+    ],
     examples: [
       "A wedding guest-photo book with 600 candid shots",
       "A reunion highlight film set to music",

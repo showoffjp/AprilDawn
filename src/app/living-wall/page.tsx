@@ -4,6 +4,8 @@ import { Section, SectionHeading, Eyebrow } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { LivingWallDesigner } from "@/components/livingwall/LivingWallDesigner";
+import { ServiceFaqs } from "@/components/services/ServiceFaqs";
+import { getService } from "@/lib/services";
 
 export const metadata: Metadata = {
   title: "The Living Wall",
@@ -165,6 +167,14 @@ export default function LivingWallPage() {
           </Button>
         </div>
       </Section>
+      <div className="bg-cream-deep">
+        <Section>
+          <div className="mx-auto max-w-2xl">
+            <ServiceFaqs faqs={getService("living-wall")?.faqs} />
+          </div>
+        </Section>
+      </div>
+
     </>
   );
 }

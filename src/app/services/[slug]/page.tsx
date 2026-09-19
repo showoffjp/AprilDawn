@@ -6,6 +6,10 @@ import { Section } from "@/components/ui/Section";
 import { Button } from "@/components/ui/Button";
 import { Badge } from "@/components/ui/Badge";
 import { services, getService } from "@/lib/services";
+import { site } from "@/lib/site";
+import { jsonLdScript } from "@/lib/jsonLd";
+import { ServiceFaqs } from "@/components/services/ServiceFaqs";
+import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { StyleGallery } from "@/components/art/StyleGallery";
 import { MemoryScene, sceneVariants } from "@/components/art/MemoryScene";
 import { BeforeAfterSlider } from "@/components/effects/BeforeAfterSlider";
@@ -43,6 +47,37 @@ export default async function ServiceDetailPage({
   const { slug } = await params;
   const service = getService(slug);
   if (!service) notFound();
+
+  const url = `${site.url}/services/${service.slug}`;
+  const serviceJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    name: service.name,
+    serviceType: service.name,
+    description: service.summary,
+    url,
+    provider: {
+      "@type": "Organization",
+      name: site.name,
+      url: site.url,
+    },
+    areaServed: { "@type": "Country", name: "United States" },
+    ...(service.startingPrice
+      ? {
+          offers: {
+            "@type": "Offer",
+            priceCurrency: "USD",
+            price: service.startingPrice,
+            priceSpecification: {
+              "@type": "PriceSpecification",
+              priceCurrency: "USD",
+              minPrice: service.startingPrice,
+            },
+            url,
+          },
+        }
+      : {}),
+  };
 
   const variant =
     sceneVariants[
@@ -148,21 +183,7 @@ export default async function ServiceDetailPage({
               </div>
             ) : null}
 
-            {service.faqs && service.faqs.length > 0 ? (
-              <div className="mt-12">
-                <h2 className="font-display text-2xl font-semibold">
-                  Good to know
-                </h2>
-                <dl className="mt-6 space-y-5">
-                  {service.faqs.map((f) => (
-                    <div key={f.q}>
-                      <dt className="font-medium text-ink">{f.q}</dt>
-                      <dd className="mt-1 text-ink-soft">{f.a}</dd>
-                    </div>
-                  ))}
-                </dl>
-              </div>
-            ) : null}
+            <ServiceFaqs faqs={service.faqs} className="mt-12" />
           </div>
 
           <aside className="space-y-6">
@@ -207,6 +228,17 @@ export default async function ServiceDetailPage({
           </aside>
         </div>
       </Section>
+
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(serviceJsonLd) }}
+      />
+      <BreadcrumbJsonLd
+        trail={[
+          { name: "Services", path: "/services" },
+          { name: service.name, path: `/services/${service.slug}` },
+        ]}
+      />
     </>
   );
 }

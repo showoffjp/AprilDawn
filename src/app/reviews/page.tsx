@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/Button";
 import { Reveal } from "@/components/ui/Reveal";
 import { Aurora } from "@/components/effects/Aurora";
 import { reviews, aggregate } from "@/lib/reviews";
+import { jsonLdScript } from "@/lib/jsonLd";
 
 export const metadata: Metadata = {
   title: "Reviews",
@@ -101,7 +102,7 @@ export default function ReviewsPage() {
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
     </>
   );

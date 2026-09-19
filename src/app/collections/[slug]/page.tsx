@@ -14,6 +14,7 @@ import {
   collectionProducts,
 } from "@/lib/collections";
 import { site } from "@/lib/site";
+import { jsonLdScript } from "@/lib/jsonLd";
 
 export function generateStaticParams() {
   return collections.map((c) => ({ slug: c.slug }));
@@ -66,7 +67,7 @@ export default async function CollectionPage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <BreadcrumbJsonLd
         trail={[

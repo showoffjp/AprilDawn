@@ -19,6 +19,7 @@ import { getStory, type Story } from "@/lib/stories";
 import { StoryCard } from "@/components/cards/StoryCard";
 import { studio } from "@/lib/site";
 import { fromPrice } from "@/lib/utils";
+import { jsonLdScript } from "@/lib/jsonLd";
 
 export const metadata: Metadata = {
   title: "Aiken, SC Photography — Portraits, Families & Events",
@@ -66,7 +67,7 @@ export default function PhotographyPage() {
       />
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(faqJsonLd) }}
       />
 
       {/* Hero */}

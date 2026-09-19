@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { jsonLdScript } from "@/lib/jsonLd";
 import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -175,7 +176,7 @@ export default async function StoryPage({
 
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <BreadcrumbJsonLd
         trail={[

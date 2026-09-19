@@ -12,6 +12,7 @@ import { FloatingHelp } from "@/components/site/FloatingHelp";
 import { CartProvider } from "@/components/cart/CartProvider";
 import { CartSaveBanner } from "@/components/cart/CartSaveBanner";
 import { ScrollProgress } from "@/components/effects/ScrollProgress";
+import { jsonLdScript } from "@/lib/jsonLd";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -86,7 +87,7 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+            __html: jsonLdScript({
               "@context": "https://schema.org",
               "@type": "Organization",
               name: site.name,

@@ -18,6 +18,7 @@ import {
   guideBundle,
 } from "@/lib/giftGuides";
 import { site } from "@/lib/site";
+import { jsonLdScript } from "@/lib/jsonLd";
 
 export function generateStaticParams() {
   return giftGuides.map((g) => ({ slug: g.slug }));
@@ -71,7 +72,7 @@ export default async function GiftGuidePage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <BreadcrumbJsonLd
         trail={[

@@ -11,6 +11,7 @@ import { BreadcrumbJsonLd } from "@/components/seo/BreadcrumbJsonLd";
 import { photoSessions, getPhotoSession } from "@/lib/photography";
 import { studio, site } from "@/lib/site";
 import { fromPrice } from "@/lib/utils";
+import { jsonLdScript } from "@/lib/jsonLd";
 
 export function generateStaticParams() {
   return photoSessions.map((s) => ({ slug: s.slug }));
@@ -72,7 +73,7 @@ export default async function PhotoSessionPage({
     <>
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        dangerouslySetInnerHTML={{ __html: jsonLdScript(jsonLd) }}
       />
       <BreadcrumbJsonLd
         trail={[
