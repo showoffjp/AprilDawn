@@ -1,6 +1,9 @@
 {
   "name": "aprildawn",
   "version": "0.1.0",
+  "engines": {
+    "node": "22.x"
+  },
   "private": true,
   "description": "AprilDawn — the everything store for memories. Digitize, restore, print on anything, and preserve your photos, film, and video forever.",
   "scripts": {
