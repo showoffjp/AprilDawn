@@ -154,7 +154,7 @@ export default async function StoryPage({
           <p className="font-display text-xl font-semibold">
             Ready to rescue your own memories?
           </p>
-          <div className="mt-5 flex justify-center gap-3">
+          <div className="mt-5 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/upload">Start a project</Button>
             <Button href="/services" variant="ghost">
               Explore services

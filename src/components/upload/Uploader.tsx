@@ -124,7 +124,7 @@ export function Uploader() {
           We&apos;ll review your upload and send free proofs and a quote to your
           email — no charge until you approve.
         </p>
-        <div className="mt-6 flex justify-center gap-3">
+        <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
           <Button href="/services" variant="ghost">
             Browse services
           </Button>

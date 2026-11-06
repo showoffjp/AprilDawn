@@ -89,7 +89,7 @@ export default function ReviewsPage() {
             center
             title="Your memory could be the next one they cry over"
           />
-          <div className="mt-6 flex justify-center gap-3">
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/upload" size="lg">
               Start a project
             </Button>

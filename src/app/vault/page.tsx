@@ -145,7 +145,7 @@ export default function VaultPage() {
             Preview shown with sample data. Join the Family Vault to make it
             yours.
           </p>
-          <div className="mt-6 flex justify-center gap-3">
+          <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/pricing">See Family Vault plans</Button>
             <Button href="/upload" variant="ghost">
               Start uploading

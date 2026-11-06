@@ -54,7 +54,7 @@ export default function AboutPage() {
             rescue them, reimagine them, and keep them — beautifully, permanently —
             for the rest of your life.
           </p>
-          <div className="mt-8 flex justify-center gap-3">
+          <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/upload" size="lg">
               Start with one photo
             </Button>

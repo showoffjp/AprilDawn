@@ -5,7 +5,7 @@ type Variant = "primary" | "secondary" | "ghost" | "light" | "gloss";
 type Size = "sm" | "md" | "lg";
 
 const base =
-  "relative inline-flex items-center justify-center gap-2 whitespace-nowrap rounded-full font-medium transition duration-200 will-change-transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-dawn-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none disabled:hover:scale-100";
+  "relative inline-flex items-center justify-center gap-2 rounded-full font-medium transition duration-200 will-change-transform hover:scale-[1.02] active:scale-[0.98] focus:outline-none focus-visible:ring-2 focus-visible:ring-dawn-400 focus-visible:ring-offset-2 disabled:opacity-50 disabled:pointer-events-none disabled:hover:scale-100";
 
 const variants: Record<Variant, string> = {
   primary:
@@ -31,6 +31,16 @@ type CommonProps = {
   variant?: Variant;
   size?: Size;
   className?: string;
+  /**
+   * Buttons hold a single line by default. Set this for a long label in a
+   * narrow container, where clipping is worse than wrapping — the text still
+   * stays on one line wherever it fits.
+   *
+   * It's a prop rather than a className because `cn` concatenates (it is not
+   * tailwind-merge), so a conflicting utility passed in className would lose
+   * to the base class on CSS source order.
+   */
+  wrap?: boolean;
   children: React.ReactNode;
 };
 
@@ -39,12 +49,19 @@ export function Button({
   variant = "primary",
   size = "md",
   className,
+  wrap = false,
   children,
   ...rest
 }: CommonProps & {
   href?: string;
 } & React.ButtonHTMLAttributes<HTMLButtonElement>) {
-  const classes = cn(base, variants[variant], sizes[size], className);
+  const classes = cn(
+    base,
+    wrap ? "whitespace-normal" : "whitespace-nowrap",
+    variants[variant],
+    sizes[size],
+    className,
+  );
   // The gloss variant paints pseudo-element layers over the surface; lift the
   // label above them so it stays fully legible as the sheen passes.
   const content =
