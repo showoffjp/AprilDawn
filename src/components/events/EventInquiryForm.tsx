@@ -105,7 +105,15 @@ export function EventInquiryForm({
         />
       </div>
       <Honeypot />
-      <Button className="mt-5 w-full" size="lg" type="submit" disabled={status === "submitting"}>
+      <Button
+        // Long label in a padded card — wrap rather than clip on the narrowest
+        // phones; it still sits on one line at every normal width.
+        className="mt-5 w-full"
+        wrap
+        size="lg"
+        type="submit"
+        disabled={status === "submitting"}
+      >
         {status === "submitting" ? "Sending…" : "Request availability & pricing"}
       </Button>
       {status === "error" ? (
