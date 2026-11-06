@@ -6,6 +6,7 @@ import { Aurora } from "@/components/effects/Aurora";
 import { GiftFinder } from "@/components/giftfinder/GiftFinder";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/gift-finder" },
   title: "Gift Finder",
   description:
     "Answer three quick questions and we'll recommend the perfect personalized memory gift — from restored portraits to the legendary Troll Grandma bundle.",

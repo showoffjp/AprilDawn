@@ -34,6 +34,7 @@ export async function generateMetadata({
   return {
     title: `${collection.title} — Gift Collection`,
     description: collection.intro,
+    alternates: { canonical: `/collections/${slug}` },
   };
 }
 
@@ -47,7 +48,9 @@ export default async function CollectionPage({
   if (!collection) notFound();
 
   const items = collectionProducts(collection);
-  const others = collections.filter((c) => c.slug !== collection.slug).slice(0, 3);
+  const others = collections
+    .filter((c) => c.slug !== collection.slug)
+    .slice(0, 3);
 
   const jsonLd = {
     "@context": "https://schema.org",

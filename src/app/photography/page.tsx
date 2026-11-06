@@ -22,6 +22,7 @@ import { fromPrice } from "@/lib/utils";
 import { jsonLdScript } from "@/lib/jsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/photography" },
   title: "Aiken, SC Photography — Portraits, Families & Events",
   description:
     "AprilDawn is an Aiken, South Carolina photography studio — family, senior, newborn, couples, branding, and event sessions across the CSRA. Every image hand-enhanced, and printable on anything. Free proofs.",
@@ -90,8 +91,8 @@ export default function PhotographyPage() {
               {studio.state}, shooting families, seniors, newborns, couples, and
               events across the CSRA. Then AprilDawn does what no other
               photographer can: hand-enhance every single frame and print your
-              favorites on <em>literally anything</em> — canvas, blankets, even a
-              living LED wall.
+              favorites on <em>literally anything</em> — canvas, blankets, even
+              a living LED wall.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="#inquire" size="lg">
@@ -102,8 +103,8 @@ export default function PhotographyPage() {
               </Button>
             </div>
             <p className="mt-6 text-sm font-medium text-ink-soft">
-              Based in {studio.city}, {studio.state} · serving the greater CSRA &amp;
-              South Carolina · travel included
+              Based in {studio.city}, {studio.state} · serving the greater CSRA
+              &amp; South Carolina · travel included
             </p>
           </div>
         </Container>
@@ -139,7 +140,9 @@ export default function PhotographyPage() {
               </div>
               <div className="flex flex-1 flex-col p-6">
                 <div className="flex items-baseline justify-between gap-2">
-                  <h3 className="font-display text-lg font-semibold">{s.name}</h3>
+                  <h3 className="font-display text-lg font-semibold">
+                    {s.name}
+                  </h3>
                   <span className="text-sm font-semibold text-ink">
                     {fromPrice(s.priceFrom)}
                   </span>
@@ -150,7 +153,9 @@ export default function PhotographyPage() {
                 <ul className="mt-4 space-y-1.5 text-sm text-ink-soft">
                   {s.includes.map((inc) => (
                     <li key={inc} className="flex items-start gap-2">
-                      <span className="mt-0.5 text-dawn-500" aria-hidden="true">✓</span>
+                      <span className="mt-0.5 text-dawn-500" aria-hidden="true">
+                        ✓
+                      </span>
                       {inc}
                     </li>
                   ))}
@@ -201,7 +206,9 @@ export default function PhotographyPage() {
             className="group flex items-center justify-between gap-4 rounded-3xl bg-dusk p-8 text-white ring-1 ring-white/10"
           >
             <div>
-              <p className="text-2xl" aria-hidden="true">💍</p>
+              <p className="text-2xl" aria-hidden="true">
+                💍
+              </p>
               <h3 className="mt-2 font-display text-xl font-semibold">
                 Weddings in South Carolina
               </h3>
@@ -218,7 +225,9 @@ export default function PhotographyPage() {
             className="group flex items-center justify-between gap-4 rounded-3xl bg-white p-8 ring-1 ring-ink/10"
           >
             <div>
-              <p className="text-2xl" aria-hidden="true">🎪</p>
+              <p className="text-2xl" aria-hidden="true">
+                🎪
+              </p>
               <h3 className="mt-2 font-display text-xl font-semibold">
                 Family reunions
               </h3>
@@ -264,7 +273,9 @@ export default function PhotographyPage() {
                 <ul className="mt-6 flex-1 space-y-2.5 text-sm text-ink-soft">
                   {p.features.map((f) => (
                     <li key={f} className="flex items-start gap-2">
-                      <span className="mt-0.5 text-dawn-500" aria-hidden="true">✓</span>
+                      <span className="mt-0.5 text-dawn-500" aria-hidden="true">
+                        ✓
+                      </span>
                       {f}
                     </li>
                   ))}
@@ -292,8 +303,8 @@ export default function PhotographyPage() {
             </h2>
             <p className="mt-4 leading-relaxed text-ink-soft">
               Any other studio hands you a folder of files. We hand-finish every
-              image, then turn your favorites into things you&apos;ll live
-              with — and while we&apos;re at it, we&apos;ll restore the
+              image, then turn your favorites into things you&apos;ll live with
+              — and while we&apos;re at it, we&apos;ll restore the
               grandparents&apos; old photos for the mantel too.
             </p>
             <ul className="mt-6 space-y-3 text-sm text-ink-soft">
@@ -303,7 +314,9 @@ export default function PhotographyPage() {
                 "We digitize and restore your older family photos in the same visit.",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-2.5">
-                  <span className="mt-0.5 text-dawn-500" aria-hidden="true">✦</span>
+                  <span className="mt-0.5 text-dawn-500" aria-hidden="true">
+                    ✦
+                  </span>
                   {t}
                 </li>
               ))}
@@ -352,9 +365,10 @@ export default function PhotographyPage() {
             ))}
           </div>
           <p className="mt-6 max-w-xl text-sm text-ink-soft">
-            Based in {studio.city}, {studio.state}. Travel across the greater CSRA
-            — Augusta, North Augusta, and the Lakelands — is included with every
-            session; destination sessions across the Carolinas are welcome.
+            Based in {studio.city}, {studio.state}. Travel across the greater
+            CSRA — Augusta, North Augusta, and the Lakelands — is included with
+            every session; destination sessions across the Carolinas are
+            welcome.
           </p>
           <p className="mt-8 text-sm font-semibold text-ink">Proudly serving</p>
           <div className="mt-3 flex flex-wrap gap-2">
@@ -372,7 +386,11 @@ export default function PhotographyPage() {
 
       {/* Testimonials */}
       <Section className="pt-0">
-        <SectionHeading center eyebrow="Loved by Carolina families" title="Kind words" />
+        <SectionHeading
+          center
+          eyebrow="Loved by Carolina families"
+          title="Kind words"
+        />
         <div className="mt-10 grid gap-6 md:grid-cols-3">
           {testimonials.map((t) => (
             <figure
@@ -388,7 +406,9 @@ export default function PhotographyPage() {
               </blockquote>
               <figcaption className="mt-5 text-sm">
                 <span className="block font-semibold text-ink">{t.name}</span>
-                <span className="block text-xs text-ink-soft">{t.location}</span>
+                <span className="block text-xs text-ink-soft">
+                  {t.location}
+                </span>
               </figcaption>
             </figure>
           ))}
@@ -430,7 +450,9 @@ export default function PhotographyPage() {
                   +
                 </span>
               </summary>
-              <p className="mt-3 text-sm leading-relaxed text-ink-soft">{f.a}</p>
+              <p className="mt-3 text-sm leading-relaxed text-ink-soft">
+                {f.a}
+              </p>
             </details>
           ))}
         </div>
@@ -447,8 +469,8 @@ export default function PhotographyPage() {
               </h2>
               <p className="mt-4 leading-relaxed text-ink-soft">
                 Tell us what you have in mind and roughly when. A {studio.city}{" "}
-                photographer will reply within one business day with availability
-                and a full pricing guide.
+                photographer will reply within one business day with
+                availability and a full pricing guide.
               </p>
               <p className="mt-6 text-sm text-ink-soft">
                 Prefer to talk? Email{" "}
@@ -461,7 +483,10 @@ export default function PhotographyPage() {
                 .
               </p>
             </div>
-            <EventInquiryForm eventType="Photography session" region="Aiken, SC" />
+            <EventInquiryForm
+              eventType="Photography session"
+              region="Aiken, SC"
+            />
           </div>
         </Section>
       </div>

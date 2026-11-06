@@ -86,7 +86,9 @@ export default function CartPage() {
                   <div className="flex items-start justify-between gap-3">
                     <div>
                       {isAddon(item.slug) ? (
-                        <span className="font-medium text-ink">{item.name}</span>
+                        <span className="font-medium text-ink">
+                          {item.name}
+                        </span>
                       ) : (
                         <Link
                           href={`/shop/${item.slug}`}
@@ -156,7 +158,9 @@ export default function CartPage() {
 
           {/* Summary */}
           <aside className="h-fit rounded-3xl bg-white p-6 ring-1 ring-ink/10">
-            <h2 className="font-display text-xl font-semibold">Order summary</h2>
+            <h2 className="font-display text-xl font-semibold">
+              Order summary
+            </h2>
             <div className="mt-5">
               <FreeShipProgress subtotal={subtotal} />
             </div>

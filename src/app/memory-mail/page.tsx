@@ -8,6 +8,7 @@ import { ServiceFaqs } from "@/components/services/ServiceFaqs";
 import { getService } from "@/lib/services";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/memory-mail" },
   title: "Memory Mail",
   description:
     "The greeting card and photobook, reborn. Real cards mailed to real doorsteps — with embedded audio and video you scan, tap, or watch in AR.",
@@ -49,10 +50,10 @@ export default function MemoryMailPage() {
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-ink/80">
               We&apos;re bringing back the mail card business — and giving it a
-              voice. Custom photo cards and photobooks, professionally printed and
-              mailed to real doorsteps, each one carrying embedded audio and video.
-              Scan the QR, tap the NFC chip, or point a phone at the photo and watch
-              a video hug play right on top of the print.
+              voice. Custom photo cards and photobooks, professionally printed
+              and mailed to real doorsteps, each one carrying embedded audio and
+              video. Scan the QR, tap the NFC chip, or point a phone at the
+              photo and watch a video hug play right on top of the print.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/upload" size="lg">
@@ -101,13 +102,27 @@ export default function MemoryMailPage() {
           />
           <div className="mt-12 grid gap-8 md:grid-cols-3">
             {[
-              { t: "📷 Scan", d: "A discreet QR code opens your video or audio message instantly — works on any phone, no app required." },
-              { t: "👆 Tap", d: "An embedded NFC chip plays the message the moment a phone touches the card. Pure magic for kids and grandparents." },
-              { t: "🪄 AR", d: "Point the AprilDawn app at the printed photo and the video plays right on top of it, like the picture came to life." },
+              {
+                t: "📷 Scan",
+                d: "A discreet QR code opens your video or audio message instantly — works on any phone, no app required.",
+              },
+              {
+                t: "👆 Tap",
+                d: "An embedded NFC chip plays the message the moment a phone touches the card. Pure magic for kids and grandparents.",
+              },
+              {
+                t: "🪄 AR",
+                d: "Point the AprilDawn app at the printed photo and the video plays right on top of it, like the picture came to life.",
+              },
             ].map((s) => (
-              <div key={s.t} className="rounded-3xl bg-white p-8 ring-1 ring-ink/10">
+              <div
+                key={s.t}
+                className="rounded-3xl bg-white p-8 ring-1 ring-ink/10"
+              >
                 <h3 className="font-display text-lg font-semibold">{s.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.d}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                  {s.d}
+                </p>
               </div>
             ))}
           </div>
@@ -146,7 +161,6 @@ export default function MemoryMailPage() {
           </div>
         </Section>
       </div>
-
     </>
   );
 }

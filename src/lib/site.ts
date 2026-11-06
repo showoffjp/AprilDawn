@@ -10,7 +10,14 @@ export const site = {
     "Why lose your reveries forever when you can keep them — beautifully, permanently — for the rest of your life?",
   description:
     "AprilDawn digitizes, restores, and reimagines your photos, film, and video — then prints them on literally anything, from t-shirts to gallery walls. Plus living LED memory walls, audio/video greeting cards, and automatic occasion gifting.",
-  url: "https://aprildawn.com",
+  /**
+   * Canonical origin — feeds metadataBase, the sitemap, robots.txt and every
+   * JSON-LD url/@id. It must be a host that actually serves this site:
+   * aprildawn.com is not pointed at this deployment, so every sitemap entry
+   * and structured-data URL built from it led crawlers to a 404. Change this
+   * the moment a custom domain is attached in Vercel.
+   */
+  url: "https://april-dawn.vercel.app",
   email: "hello@aprildawn.com",
   supportEmail: "care@aprildawn.com",
   phone: "1-800-REVERIE",

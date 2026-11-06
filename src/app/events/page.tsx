@@ -11,6 +11,7 @@ import { EventsJsonLd } from "@/components/events/EventsJsonLd";
 import { eventOfferings } from "@/lib/events";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/events" },
   title: "AprilDawn Events — Aiken, SC Weddings & Family Reunions",
   description:
     "Full-service event planning and photography based in Aiken, SC, serving the greater South Carolina area. Weddings and family reunions, with every photo hand-enhanced and printed on anything.",
@@ -143,7 +144,10 @@ export default function EventsPage() {
             title="Tell us about your event"
             intro="Wedding or reunion, we'll send availability, package pricing, and a few South Carolina venues we love. Based in Aiken, happy to travel statewide."
           />
-          <EventInquiryForm eventType="Events" region="the greater South Carolina area" />
+          <EventInquiryForm
+            eventType="Events"
+            region="the greater South Carolina area"
+          />
         </div>
       </Section>
     </>

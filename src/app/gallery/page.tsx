@@ -9,24 +9,61 @@ import { PrintShowcase } from "@/components/home/PrintShowcase";
 import { BeforeAfterSlider } from "@/components/effects/BeforeAfterSlider";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/gallery" },
   title: "Gallery",
   description:
     "See what AprilDawn makes: a single memory reimagined in the style of the masters, composited onto real products, and brought back to life with restoration.",
 };
 
 const artStyles = [
-  { name: "Van Gogh", emoji: "🌻", blurb: "Swirling impasto brushwork and electric blues." },
-  { name: "Monet", emoji: "🌸", blurb: "Soft impressionist light and dappled color." },
-  { name: "Da Vinci", emoji: "📜", blurb: "Old-master sfumato and warm varnish." },
-  { name: "Rembrandt", emoji: "🕯️", blurb: "Dramatic chiaroscuro from candlelit shadow." },
-  { name: "Klimt", emoji: "✨", blurb: "Golden, ornamental Art Nouveau shimmer." },
-  { name: "Frida Kahlo", emoji: "🌺", blurb: "Bold folk color, vivid and alive." },
-  { name: "Picasso", emoji: "🔷", blurb: "Cubist planes and a daring palette." },
+  {
+    name: "Van Gogh",
+    emoji: "🌻",
+    blurb: "Swirling impasto brushwork and electric blues.",
+  },
+  {
+    name: "Monet",
+    emoji: "🌸",
+    blurb: "Soft impressionist light and dappled color.",
+  },
+  {
+    name: "Da Vinci",
+    emoji: "📜",
+    blurb: "Old-master sfumato and warm varnish.",
+  },
+  {
+    name: "Rembrandt",
+    emoji: "🕯️",
+    blurb: "Dramatic chiaroscuro from candlelit shadow.",
+  },
+  {
+    name: "Klimt",
+    emoji: "✨",
+    blurb: "Golden, ornamental Art Nouveau shimmer.",
+  },
+  {
+    name: "Frida Kahlo",
+    emoji: "🌺",
+    blurb: "Bold folk color, vivid and alive.",
+  },
+  {
+    name: "Picasso",
+    emoji: "🔷",
+    blurb: "Cubist planes and a daring palette.",
+  },
   { name: "Warhol", emoji: "🎨", blurb: "Pop-art neon and silkscreen punch." },
   { name: "Hokusai", emoji: "🌊", blurb: "Ukiyo-e line and woodblock blues." },
   { name: "Rockwell", emoji: "🖼️", blurb: "Warm, storytelling Americana." },
-  { name: "Comic / Pop", emoji: "💥", blurb: "Halftone pop and comic-panel energy." },
-  { name: "Art Deco", emoji: "🏛️", blurb: "Gilded geometry and 1920s glamour." },
+  {
+    name: "Comic / Pop",
+    emoji: "💥",
+    blurb: "Halftone pop and comic-panel energy.",
+  },
+  {
+    name: "Art Deco",
+    emoji: "🏛️",
+    blurb: "Gilded geometry and 1920s glamour.",
+  },
 ];
 
 export default function GalleryPage() {
@@ -58,7 +95,9 @@ export default function GalleryPage() {
           <StyleGallery styles={artStyles} />
         </Reveal>
         <div className="mt-10">
-          <Button href="/services/masterpieces">Turn your photo into art →</Button>
+          <Button href="/services/masterpieces">
+            Turn your photo into art →
+          </Button>
         </div>
       </Section>
 
@@ -86,9 +125,10 @@ export default function GalleryPage() {
               Faded, torn, water-stained? We bring it back.
             </h2>
             <p className="mt-4 leading-relaxed text-ink-soft">
-              Drag the slider to see what our restoration studio does — repairing
-              damage, lifting color, and sharpening detail until it looks like the
-              day it was taken. Every restoration ships with a free proof first.
+              Drag the slider to see what our restoration studio does —
+              repairing damage, lifting color, and sharpening detail until it
+              looks like the day it was taken. Every restoration ships with a
+              free proof first.
             </p>
             <div className="mt-7 flex flex-wrap gap-3">
               <Button href="/services/restore">Restore a photo</Button>

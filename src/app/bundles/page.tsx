@@ -6,6 +6,7 @@ import { BundleCard } from "@/components/bundles/BundleCard";
 import { bundles } from "@/lib/bundles";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/bundles" },
   title: "Gift Bundles",
   description:
     "Curated gift sets from AprilDawn — the Grandparent Box, Reunion Starter Pack, Memorial Keepsake Set, and Gallery Wall Trio. The whole set, from your photos, in one tap.",

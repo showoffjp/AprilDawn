@@ -6,6 +6,7 @@ import { CollectionCard } from "@/components/collections/CollectionCard";
 import { collections } from "@/lib/collections";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/collections" },
   title: "Gift Collections",
   description:
     "Curated, shoppable gift guides from AprilDawn — for grandparents, pet lovers, reunions, memorials, gag gifts, and everything under $25. Their favorite photos, on the things they'll keep.",

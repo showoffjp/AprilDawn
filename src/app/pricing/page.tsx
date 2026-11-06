@@ -8,6 +8,7 @@ import { services } from "@/lib/services";
 import { fromPrice } from "@/lib/utils";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/pricing" },
   title: "Pricing",
   description:
     "Transparent AprilDawn pricing: per-scan digitizing, restoration, print-on-anything, the Living Wall, Memory Mail, and free occasion reminders.",
@@ -133,8 +134,12 @@ export default function PricingPage() {
             <table className="w-full text-left text-sm">
               <thead className="bg-white">
                 <tr className="text-ink">
-                  <th className="px-4 py-3 sm:px-6 sm:py-4 font-semibold">Service</th>
-                  <th className="px-4 py-3 sm:px-6 sm:py-4 font-semibold">Starting at</th>
+                  <th className="px-4 py-3 sm:px-6 sm:py-4 font-semibold">
+                    Service
+                  </th>
+                  <th className="px-4 py-3 sm:px-6 sm:py-4 font-semibold">
+                    Starting at
+                  </th>
                   <th className="hidden px-4 py-3 sm:px-6 sm:py-4 font-semibold sm:table-cell">
                     Turnaround
                   </th>
@@ -142,10 +147,7 @@ export default function PricingPage() {
               </thead>
               <tbody>
                 {services.map((s, i) => (
-                  <tr
-                    key={s.slug}
-                    className={i % 2 ? "bg-white" : "bg-cream"}
-                  >
+                  <tr key={s.slug} className={i % 2 ? "bg-white" : "bg-cream"}>
                     <td className="px-4 py-3 sm:px-6 sm:py-4">
                       <span className="mr-2" aria-hidden="true">
                         {s.emoji}

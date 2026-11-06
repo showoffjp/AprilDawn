@@ -22,9 +22,16 @@ export default function TermsPage() {
       </p>
       <h2>Proofs, orders & guarantee</h2>
       <ul>
-        <li>Custom work includes free proofs; you approve before we finalize.</li>
-        <li>We back orders with a 100% happiness guarantee — talk to us if anything is wrong.</li>
-        <li>Personalized and edible items may be non-returnable once produced.</li>
+        <li>
+          Custom work includes free proofs; you approve before we finalize.
+        </li>
+        <li>
+          We back orders with a 100% happiness guarantee — talk to us if
+          anything is wrong.
+        </li>
+        <li>
+          Personalized and edible items may be non-returnable once produced.
+        </li>
       </ul>
       <h2>Affiliate links</h2>
       <p>
@@ -34,8 +41,8 @@ export default function TermsPage() {
       <h2>Acceptable use</h2>
       <p>
         Don&apos;t upload content you don&apos;t have rights to, or that is
-        unlawful. We may decline or remove orders that violate these terms or our
-        content policy.
+        unlawful. We may decline or remove orders that violate these terms or
+        our content policy.
       </p>
     </LegalPage>
   );

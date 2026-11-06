@@ -6,6 +6,7 @@ import { Aurora } from "@/components/effects/Aurora";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/faq" },
   title: "FAQ",
   description:
     "Answers about AprilDawn: formats we digitize, restoration, printing, the Living Wall, Memory Mail, privacy, copyright, and our happiness guarantee.",
@@ -179,7 +180,10 @@ export default function FaqPage() {
                   {faqs
                     .filter((f) => f.cat === cat)
                     .map((f) => (
-                      <details key={f.q} className="group p-6 open:bg-cream-deep/40">
+                      <details
+                        key={f.q}
+                        className="group p-6 open:bg-cream-deep/40"
+                      >
                         <summary className="flex cursor-pointer list-none items-center justify-between gap-4 font-medium text-ink">
                           {f.q}
                           <span className="text-dawn-500 transition group-open:rotate-45">
@@ -203,9 +207,9 @@ export default function FaqPage() {
                 Still have a question?
               </p>
               <p className="mt-3 text-sm leading-relaxed text-white/80">
-                Talk to a real memory specialist — most replies land the same day.
-                We&apos;ll help you plan a project, pick a format, or rescue
-                something fragile.
+                Talk to a real memory specialist — most replies land the same
+                day. We&apos;ll help you plan a project, pick a format, or
+                rescue something fragile.
               </p>
               <div className="mt-6 flex flex-col gap-3">
                 <Button href="/contact" variant="light">
