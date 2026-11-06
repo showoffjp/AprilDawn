@@ -180,8 +180,8 @@ export default function CheckoutPage() {
           </div>
 
           <p className="mt-6 text-center text-xs text-ink-soft">
-            Demo checkout — wire <code>/api/checkout</code> to Stripe to take real
-            payments.
+            Demo checkout — wire <code>/api/checkout</code> to Stripe to take
+            real payments.
           </p>
         </div>
       </Container>
@@ -210,11 +210,21 @@ export default function CheckoutPage() {
       </h1>
       <div className="mt-10 grid gap-8 lg:grid-cols-[1.6fr_1fr]">
         {/* Form */}
-        <form onSubmit={onSubmit} className="rounded-3xl bg-white p-6 ring-1 ring-ink/10 sm:p-8">
-          <h2 className="font-display text-xl font-semibold">Shipping details</h2>
+        <form
+          onSubmit={onSubmit}
+          className="rounded-3xl bg-white p-6 ring-1 ring-ink/10 sm:p-8"
+        >
+          <h2 className="font-display text-xl font-semibold">
+            Shipping details
+          </h2>
           <div className="mt-5 grid gap-4 sm:grid-cols-2">
             <Field label="Full name" name="name" autoComplete="name" />
-            <Field label="Email" name="email" type="email" autoComplete="email" />
+            <Field
+              label="Email"
+              name="email"
+              type="email"
+              autoComplete="email"
+            />
             <Field
               label="Address"
               name="address"
@@ -222,8 +232,16 @@ export default function CheckoutPage() {
               className="sm:col-span-2"
             />
             <Field label="City" name="city" autoComplete="address-level2" />
-            <Field label="State / Region" name="region" autoComplete="address-level1" />
-            <Field label="ZIP / Postal code" name="postal" autoComplete="postal-code" />
+            <Field
+              label="State / Region"
+              name="region"
+              autoComplete="address-level1"
+            />
+            <Field
+              label="ZIP / Postal code"
+              name="postal"
+              autoComplete="postal-code"
+            />
             <Field
               label="Country"
               name="country"
@@ -263,8 +281,8 @@ export default function CheckoutPage() {
                   className="mt-1.5 w-full rounded-xl border border-ink/15 bg-white px-3 py-2 text-sm focus:border-dawn-400 focus:outline-none"
                 />
                 <p className="mt-1.5 text-xs text-ink-soft">
-                  We&rsquo;ll hand-letter this on a card tucked inside — and leave
-                  all prices off the packing slip.
+                  We&rsquo;ll hand-letter this on a card tucked inside — and
+                  leave all prices off the packing slip.
                 </p>
               </div>
             ) : null}
@@ -272,8 +290,9 @@ export default function CheckoutPage() {
 
           <h2 className="mt-8 font-display text-xl font-semibold">Payment</h2>
           <div className="mt-3 rounded-2xl border border-dashed border-ink/20 bg-cream p-5 text-sm text-ink-soft">
-            💳 Payment is collected securely at production time, after you approve
-            your free proofs. (Demo build — connect Stripe to charge here.)
+            💳 Payment is collected securely at production time, after you
+            approve your free proofs. (Demo build — connect Stripe to charge
+            here.)
           </div>
 
           <Button

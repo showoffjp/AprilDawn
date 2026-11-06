@@ -36,6 +36,7 @@ export async function generateMetadata({
   return {
     title: service.name,
     description: service.summary,
+    alternates: { canonical: `/services/${slug}` },
   };
 }
 
@@ -114,18 +115,18 @@ export default async function ServiceDetailPage({
                 {service.summary}
               </p>
               <div className="mt-7 flex flex-wrap items-center gap-3">
-            <Button href="/upload">Start this project</Button>
-            <Button href="/pricing" variant="ghost">
-              See pricing
-            </Button>
-            {service.turnaround ? (
-              <Badge tone="ink">⏱ {service.turnaround}</Badge>
-            ) : null}
-            {typeof service.startingPrice === "number" &&
-            service.startingPrice > 0 ? (
-              <Badge>💎 {fromPrice(service.startingPrice)}</Badge>
-            ) : null}
-          </div>
+                <Button href="/upload">Start this project</Button>
+                <Button href="/pricing" variant="ghost">
+                  See pricing
+                </Button>
+                {service.turnaround ? (
+                  <Badge tone="ink">⏱ {service.turnaround}</Badge>
+                ) : null}
+                {typeof service.startingPrice === "number" &&
+                service.startingPrice > 0 ? (
+                  <Badge>💎 {fromPrice(service.startingPrice)}</Badge>
+                ) : null}
+              </div>
             </div>
             <div className="hidden lg:block">
               <div className="overflow-hidden rounded-3xl shadow-soft-lg ring-1 ring-white/40">

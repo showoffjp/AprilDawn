@@ -15,6 +15,7 @@ import { ServiceFaqs } from "@/components/services/ServiceFaqs";
 import { getService } from "@/lib/services";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/occasions" },
   title: "Occasions & Auto-Gifting",
   description:
     "Connect Google, Outlook, Apple, and Facebook. AprilDawn reminds you before every birthday and anniversary — then sends the perfect gift in one tap.",
@@ -72,7 +73,12 @@ export default function OccasionsPage() {
               </div>
               <p className="mt-3 flex-1 text-sm text-ink-soft">{i.what}</p>
               <p className="mt-4 text-xs text-ink-soft">🔒 {i.scope}</p>
-              <Button href="/contact" variant="ghost" size="sm" className="mt-4">
+              <Button
+                href="/contact"
+                variant="ghost"
+                size="sm"
+                className="mt-4"
+              >
                 Connect
               </Button>
             </div>
@@ -122,7 +128,11 @@ export default function OccasionsPage() {
                   <span className="font-semibold text-ink">
                     {fromPrice(b.priceFrom)}
                   </span>
-                  <Button href="/upload" size="sm" variant={b.hero ? "primary" : "ghost"}>
+                  <Button
+                    href="/upload"
+                    size="sm"
+                    variant={b.hero ? "primary" : "ghost"}
+                  >
                     Build this
                   </Button>
                 </div>
@@ -179,8 +189,16 @@ export default function OccasionsPage() {
               {[
                 { e: "📦", n: "BoxFox", d: "Curated gift boxes" },
                 { e: "🎀", n: "Knack", d: "Build-a-gift kits" },
-                { e: "🚚", n: "USPS · UPS · FedEx", d: "Tracked, on-time shipping" },
-                { e: "🎁", n: "AprilDawn Box", d: "Our signature keepsake box" },
+                {
+                  e: "🚚",
+                  n: "USPS · UPS · FedEx",
+                  d: "Tracked, on-time shipping",
+                },
+                {
+                  e: "🎁",
+                  n: "AprilDawn Box",
+                  d: "Our signature keepsake box",
+                },
               ].map((p) => (
                 <div
                   key={p.n}
@@ -241,7 +259,6 @@ export default function OccasionsPage() {
           </div>
         </Section>
       </div>
-
     </>
   );
 }

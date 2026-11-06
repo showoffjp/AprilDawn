@@ -8,12 +8,7 @@ import { ProductCard } from "@/components/cards/ProductCard";
 import { BundleCard } from "@/components/bundles/BundleCard";
 import { AddBundleToCart } from "@/components/bundles/AddBundleToCart";
 import { MemoryScene } from "@/components/art/MemoryScene";
-import {
-  bundles,
-  getBundle,
-  bundleProducts,
-  bundlePrice,
-} from "@/lib/bundles";
+import { bundles, getBundle, bundleProducts, bundlePrice } from "@/lib/bundles";
 import { fromPrice } from "@/lib/utils";
 import { site } from "@/lib/site";
 import { jsonLdScript } from "@/lib/jsonLd";
@@ -35,6 +30,7 @@ export async function generateMetadata({
   return {
     title: `${bundle.title} — Gift Bundle`,
     description: bundle.intro,
+    alternates: { canonical: `/bundles/${slug}` },
   };
 }
 

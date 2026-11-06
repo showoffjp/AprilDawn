@@ -11,6 +11,7 @@ import { bundles } from "@/lib/bundles";
 import { giftGuides } from "@/lib/giftGuides";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/gifts" },
   title: "Gifts — Find the Perfect Photo Gift",
   description:
     "The AprilDawn gift shop, all in one place: take the Gift Finder quiz, shop curated collections and ready-made bundles, or browse gift guides for every occasion. All from your favorite photo.",
@@ -68,7 +69,10 @@ export default function GiftsPage() {
       {/* Collections */}
       <Section className="pt-0">
         <div className="flex items-end justify-between gap-4">
-          <SectionHeading eyebrow="By who it's for" title="Shop by collection" />
+          <SectionHeading
+            eyebrow="By who it's for"
+            title="Shop by collection"
+          />
           <Link
             href="/collections"
             className="hidden shrink-0 text-sm font-semibold text-dawn-600 hover:underline sm:block"
@@ -104,7 +108,10 @@ export default function GiftsPage() {
       {/* Occasion guides */}
       <Section className="pt-0">
         <div className="flex items-end justify-between gap-4">
-          <SectionHeading eyebrow="By the moment" title="Gift guides by occasion" />
+          <SectionHeading
+            eyebrow="By the moment"
+            title="Gift guides by occasion"
+          />
           <Link
             href="/gift-guides"
             className="hidden shrink-0 text-sm font-semibold text-dawn-600 hover:underline sm:block"
@@ -126,8 +133,8 @@ export default function GiftsPage() {
             Have the photo? You&apos;re basically done.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-ink-soft">
-            Upload a favorite and we&apos;ll proof it on anything before you pay a
-            cent.
+            Upload a favorite and we&apos;ll proof it on anything before you pay
+            a cent.
           </p>
           <Button href="/upload" size="lg" className="mt-8">
             Upload a photo to start

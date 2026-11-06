@@ -5,6 +5,7 @@ import { Aurora } from "@/components/effects/Aurora";
 import { site, studio, studioMapsUrl } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/contact" },
   title: "Contact",
   description:
     "Talk to a real person at AprilDawn about digitizing, restoration, printing, the Living Wall, Memory Mail, or occasion gifting. Fully remote, free consultations.",
@@ -65,7 +66,9 @@ export default function ContactPage() {
                 <div>
                   <dt className="font-semibold text-ink">🕒 Studio hours</dt>
                   <dd className="text-ink-soft">
-                    {studio.hours.map((h) => `${h.days}: ${h.time}`).join(" · ")}
+                    {studio.hours
+                      .map((h) => `${h.days}: ${h.time}`)
+                      .join(" · ")}
                   </dd>
                 </div>
               </dl>

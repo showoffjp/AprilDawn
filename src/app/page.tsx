@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Link from "next/link";
 import { Container } from "@/components/ui/Container";
 import { Section, SectionHeading, Eyebrow } from "@/components/ui/Section";
@@ -32,6 +33,11 @@ import { CollectionCard } from "@/components/collections/CollectionCard";
 import { collections } from "@/lib/collections";
 import { giftGuides } from "@/lib/giftGuides";
 
+// Canonical only: title and description are inherited from the root layout.
+export const metadata: Metadata = {
+  alternates: { canonical: "/" },
+};
+
 export default function Home() {
   return (
     <>
@@ -41,14 +47,14 @@ export default function Home() {
           <div className="text-center lg:text-left">
             <Badge>The everything store for memories</Badge>
             <h1 className="mt-6 font-display text-4xl font-semibold leading-[1.05] tracking-tight text-balance sm:text-6xl lg:text-7xl">
-              Keep your reveries{" "}
-              <span className="text-gradient">forever.</span>
+              Keep your reveries <span className="text-gradient">forever.</span>
             </h1>
             <p className="mx-auto mt-6 max-w-xl text-lg leading-relaxed text-ink-soft lg:mx-0">
-              Upload a photo — or mail us the whole shoebox. AprilDawn digitizes,
-              restores, and reimagines your photos, film, and video, then prints
-              them on <em>literally anything</em>: t-shirts, gallery walls,
-              cakes, vinyl, and the living LED memory wall in your hallway.
+              Upload a photo — or mail us the whole shoebox. AprilDawn
+              digitizes, restores, and reimagines your photos, film, and video,
+              then prints them on <em>literally anything</em>: t-shirts, gallery
+              walls, cakes, vinyl, and the living LED memory wall in your
+              hallway.
             </p>
             <div className="mt-9 flex flex-col gap-3 sm:flex-row sm:justify-center lg:justify-start">
               <Magnetic>
@@ -64,16 +70,19 @@ export default function Home() {
             </div>
             <HeroSearch />
             <p className="mt-5 text-sm text-ink-soft">
-              100% remote · mail it in or upload · free proofs · happiness guarantee
+              100% remote · mail it in or upload · free proofs · happiness
+              guarantee
             </p>
             <Link
               href="/reviews"
               className="mt-5 inline-flex items-center gap-2 text-sm text-ink-soft transition hover:text-ink"
             >
-              <span aria-hidden="true" className="text-dawn-500">★★★★★</span>
+              <span aria-hidden="true" className="text-dawn-500">
+                ★★★★★
+              </span>
               <span>
-                <strong className="text-ink">{aggregate.rating}/5</strong> · loved
-                by {aggregate.count.toLocaleString()}+ families
+                <strong className="text-ink">{aggregate.rating}/5</strong> ·
+                loved by {aggregate.count.toLocaleString()}+ families
               </span>
             </Link>
           </div>
@@ -145,8 +154,8 @@ export default function Home() {
             <p className="mt-4 leading-relaxed text-ink-soft">
               Families, seniors, newborns, couples, and events all across the
               CSRA — shot with heart, then hand-enhanced frame by frame and
-              printable on anything from canvas to a living LED wall. Your gallery
-              is only the beginning.
+              printable on anything from canvas to a living LED wall. Your
+              gallery is only the beginning.
             </p>
             <ul className="mt-6 grid grid-cols-2 gap-x-4 gap-y-2 text-sm text-ink-soft sm:max-w-md">
               {[
@@ -238,50 +247,50 @@ export default function Home() {
 
       {/* -------------------------------------------------------- How it works */}
       <Section backdrop="ocean">
-          <SectionHeading
-            eyebrow="How it works"
-            title="From shoebox to masterpiece in three steps"
-          />
-          <div className="mt-12 grid gap-8 md:grid-cols-3">
-            {[
-              {
-                n: "01",
-                t: "Send it in",
-                d: "Drag-and-drop your photos and videos, or order a prepaid MemoryBox and mail us the originals. We track every item with photo check-ins.",
-              },
-              {
-                n: "02",
-                t: "We work our magic",
-                d: "Archival scanning, AI-assisted restoration finished by real artists, transcription, and studio-grade printing — you approve every proof.",
-              },
-              {
-                n: "03",
-                t: "Keep it forever",
-                d: "Download your vault, receive your prints and gifts, and let your Living Wall and auto-gifting keep the memories alive for the rest of your life.",
-              },
-            ].map((step) => (
-              <div
-                key={step.n}
-                className="rounded-3xl bg-white p-8 shadow-soft ring-1 ring-ink/10"
-              >
-                <div className="font-display text-4xl font-semibold text-dawn-500">
-                  {step.n}
-                </div>
-                <h3 className="mt-4 font-display text-xl font-semibold">
-                  {step.t}
-                </h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
-                  {step.d}
-                </p>
+        <SectionHeading
+          eyebrow="How it works"
+          title="From shoebox to masterpiece in three steps"
+        />
+        <div className="mt-12 grid gap-8 md:grid-cols-3">
+          {[
+            {
+              n: "01",
+              t: "Send it in",
+              d: "Drag-and-drop your photos and videos, or order a prepaid MemoryBox and mail us the originals. We track every item with photo check-ins.",
+            },
+            {
+              n: "02",
+              t: "We work our magic",
+              d: "Archival scanning, AI-assisted restoration finished by real artists, transcription, and studio-grade printing — you approve every proof.",
+            },
+            {
+              n: "03",
+              t: "Keep it forever",
+              d: "Download your vault, receive your prints and gifts, and let your Living Wall and auto-gifting keep the memories alive for the rest of your life.",
+            },
+          ].map((step) => (
+            <div
+              key={step.n}
+              className="rounded-3xl bg-white p-8 shadow-soft ring-1 ring-ink/10"
+            >
+              <div className="font-display text-4xl font-semibold text-dawn-500">
+                {step.n}
               </div>
-            ))}
-          </div>
-          <div className="mt-10">
-            <Button href="/how-it-works" variant="ghost">
-              See the full process →
-            </Button>
-          </div>
-        </Section>
+              <h3 className="mt-4 font-display text-xl font-semibold">
+                {step.t}
+              </h3>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                {step.d}
+              </p>
+            </div>
+          ))}
+        </div>
+        <div className="mt-10">
+          <Button href="/how-it-works" variant="ghost">
+            See the full process →
+          </Button>
+        </div>
+      </Section>
 
       {/* ------------------------------------------------------- Before/After */}
       <Section backdrop="sunset">
@@ -325,10 +334,10 @@ export default function Home() {
                 The Living Wall: a 100-photo collage that glows and remembers.
               </h2>
               <p className="mt-4 max-w-lg leading-relaxed text-white/80">
-                A giant printed mosaic of your family, custom-laid for your wall —
-                with a slim embedded LED frame that cycles through every photo and
-                video, updating itself the moment someone adds a new memory from
-                their phone.
+                A giant printed mosaic of your family, custom-laid for your wall
+                — with a slim embedded LED frame that cycles through every photo
+                and video, updating itself the moment someone adds a new memory
+                from their phone.
               </p>
               <div className="mt-7 flex flex-wrap gap-3">
                 <Button href="/living-wall" variant="primary">
@@ -362,18 +371,18 @@ export default function Home() {
 
       {/* --------------------------------------------------- Print on anything */}
       <Section backdrop="amber">
-          <SectionHeading
-            eyebrow="Print on anything"
-            title="T-shirts are just the beginning"
-            intro="If it has a surface, your memory belongs on it. Browse a few favorites — there are thousands more in the shop."
-          />
-          <div className="mt-12">
-            <PrintShowcase />
-          </div>
-          <div className="mt-10">
-            <Button href="/shop">Browse the full shop →</Button>
-          </div>
-        </Section>
+        <SectionHeading
+          eyebrow="Print on anything"
+          title="T-shirts are just the beginning"
+          intro="If it has a surface, your memory belongs on it. Browse a few favorites — there are thousands more in the shop."
+        />
+        <div className="mt-12">
+          <PrintShowcase />
+        </div>
+        <div className="mt-10">
+          <Button href="/shop">Browse the full shop →</Button>
+        </div>
+      </Section>
 
       {/* ---------------------------------------------------- Gift collections */}
       <Section className="pt-0" backdrop="candy">
@@ -438,10 +447,10 @@ export default function Home() {
               Never miss a birthday — and troll Grandma with 1000% love.
             </h2>
             <p className="mt-4 leading-relaxed text-ink-soft">
-              Connect Google, Outlook, Apple, and Facebook, and AprilDawn reminds
-              you before every birthday and anniversary — then sends the perfect
-              gift in one tap. For her 90th? Put Grandma&apos;s face on every
-              shirt, mug, cake, and vinyl at the party.
+              Connect Google, Outlook, Apple, and Facebook, and AprilDawn
+              reminds you before every birthday and anniversary — then sends the
+              perfect gift in one tap. For her 90th? Put Grandma&apos;s face on
+              every shirt, mug, cake, and vinyl at the party.
             </p>
             <ul className="mt-6 space-y-2 text-sm text-ink-soft">
               {heroBundle.includes.slice(0, 4).map((item) => (
@@ -463,57 +472,60 @@ export default function Home() {
 
       {/* -------------------------------------------------------- Testimonials */}
       <Section backdrop="dusk">
-          <SectionHeading
-            center
-            eyebrow="Loved by families"
-            title="Memories, rescued and reborn"
-            intro={`Rated ${aggregate.rating}/5 by ${aggregate.count.toLocaleString()}+ families across all 50 states.`}
-          />
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {reviews.slice(0, 3).map((r) => (
-              <figure
-                key={r.name}
-                className="flex flex-col rounded-3xl bg-white p-7 shadow-soft ring-1 ring-ink/10"
-              >
-                <div className="text-dawn-500">
-                  <span className="sr-only">Rated {r.rating} out of 5</span>
-                  <span aria-hidden="true">{"★".repeat(r.rating)}</span>
-                </div>
-                <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-ink">
-                  “{r.quote}”
-                </blockquote>
-                <figcaption className="mt-5 flex items-center gap-3">
-                  <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-dawn-300 to-dusk-400 text-sm font-semibold text-white">
-                    {r.name
-                      .split(" ")
-                      .filter((w) => w[0] === w[0]?.toUpperCase())
-                      .slice(0, 2)
-                      .map((w) => w[0])
-                      .join("")}
+        <SectionHeading
+          center
+          eyebrow="Loved by families"
+          title="Memories, rescued and reborn"
+          intro={`Rated ${aggregate.rating}/5 by ${aggregate.count.toLocaleString()}+ families across all 50 states.`}
+        />
+        <div className="mt-12 grid gap-6 md:grid-cols-3">
+          {reviews.slice(0, 3).map((r) => (
+            <figure
+              key={r.name}
+              className="flex flex-col rounded-3xl bg-white p-7 shadow-soft ring-1 ring-ink/10"
+            >
+              <div className="text-dawn-500">
+                <span className="sr-only">Rated {r.rating} out of 5</span>
+                <span aria-hidden="true">{"★".repeat(r.rating)}</span>
+              </div>
+              <blockquote className="mt-3 flex-1 text-sm leading-relaxed text-ink">
+                “{r.quote}”
+              </blockquote>
+              <figcaption className="mt-5 flex items-center gap-3">
+                <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-dawn-300 to-dusk-400 text-sm font-semibold text-white">
+                  {r.name
+                    .split(" ")
+                    .filter((w) => w[0] === w[0]?.toUpperCase())
+                    .slice(0, 2)
+                    .map((w) => w[0])
+                    .join("")}
+                </span>
+                <span>
+                  <span className="block text-sm font-semibold text-ink">
+                    {r.name}
                   </span>
-                  <span>
-                    <span className="block text-sm font-semibold text-ink">
-                      {r.name}
-                    </span>
-                    <span className="block text-xs text-ink-soft">
-                      {r.location}
-                    </span>
+                  <span className="block text-xs text-ink-soft">
+                    {r.location}
                   </span>
-                </figcaption>
-              </figure>
-            ))}
-          </div>
-          <div className="mt-8 text-center">
-            <Button href="/reviews" variant="ghost">
-              Read all reviews →
-            </Button>
-          </div>
-        </Section>
+                </span>
+              </figcaption>
+            </figure>
+          ))}
+        </div>
+        <div className="mt-8 text-center">
+          <Button href="/reviews" variant="ghost">
+            Read all reviews →
+          </Button>
+        </div>
+      </Section>
 
       {/* ------------------------------------------------------------- Stories */}
       <Section backdrop="ocean">
         <div className="flex items-end justify-between gap-4">
-          <SectionHeading eyebrow="From the journal" title="Stories worth keeping" />
+          <SectionHeading
+            eyebrow="From the journal"
+            title="Stories worth keeping"
+          />
           <Link
             href="/stories"
             className="hidden shrink-0 text-sm font-semibold text-dawn-600 hover:underline sm:block"
@@ -540,9 +552,9 @@ export default function Home() {
             Want a human in your corner?
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-white/80">
-            Everything is done remotely — upload or mail it in, and it ships back
-            to your door. But if you&apos;d like a hand, book a free 15-minute
-            consultation and we&apos;ll plan your project together.
+            Everything is done remotely — upload or mail it in, and it ships
+            back to your door. But if you&apos;d like a hand, book a free
+            15-minute consultation and we&apos;ll plan your project together.
           </p>
           <Button href="/contact" size="lg" variant="light" className="mt-7">
             Book a free consultation
@@ -570,11 +582,15 @@ export default function Home() {
 
       {/* -------------------------------------------------------- Our promise */}
       <Section backdrop="candy">
-          <SectionHeading center eyebrow="Our promise" title="The AprilDawn guarantee" />
-          <div className="mt-10">
-            <Benefits />
-          </div>
-        </Section>
+        <SectionHeading
+          center
+          eyebrow="Our promise"
+          title="The AprilDawn guarantee"
+        />
+        <div className="mt-10">
+          <Benefits />
+        </div>
+      </Section>
 
       {/* ----------------------------------------------------------- Final CTA */}
       <Section backdrop="amber">
@@ -595,7 +611,10 @@ export default function Home() {
           </div>
           <p className="mt-6 text-sm text-ink-soft">
             Questions? Email{" "}
-            <Link href={`mailto:${site.email}`} className="font-medium text-dawn-600">
+            <Link
+              href={`mailto:${site.email}`}
+              className="font-medium text-dawn-600"
+            >
               {site.email}
             </Link>
           </p>

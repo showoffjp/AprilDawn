@@ -8,6 +8,7 @@ import { ServiceFaqs } from "@/components/services/ServiceFaqs";
 import { getService } from "@/lib/services";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/living-wall" },
   title: "The Living Wall",
   description:
     "A giant physical photo collage with an embedded LED frame that cycles every memory — and updates itself when you add new photos from your phone.",
@@ -16,20 +17,20 @@ export const metadata: Metadata = {
 const tiers = [
   {
     name: "Mantel",
-    size: 'Up to 4ft wide · ~60 photos',
+    size: "Up to 4ft wide · ~60 photos",
     price: "$1,499",
     blurb: "A statement piece for above the fireplace or sofa.",
   },
   {
     name: "Gallery",
-    size: '5–8ft wide · 100–180 photos',
+    size: "5–8ft wide · 100–180 photos",
     price: "$2,900",
     blurb: "Our signature size. The one that stops guests in the hallway.",
     featured: true,
   },
   {
     name: "Heirloom",
-    size: '9ft+ · 200+ photos · multi-panel',
+    size: "9ft+ · 200+ photos · multi-panel",
     price: "Custom",
     blurb: "Floor-to-ceiling. Multi-panel. A family legacy on the wall.",
   },
@@ -46,11 +47,11 @@ export default function LivingWallPage() {
               The Living Wall
             </h1>
             <p className="mt-5 max-w-2xl text-lg leading-relaxed text-white/80">
-              A breathtaking printed collage of your family — custom-laid for your
-              exact wall — with a slim embedded LED frame at its heart that cycles
-              through every photo and video. It looks like one more framed
-              picture, until it moves. Add a memory from your phone and the wall
-              updates itself by dessert.
+              A breathtaking printed collage of your family — custom-laid for
+              your exact wall — with a slim embedded LED frame at its heart that
+              cycles through every photo and video. It looks like one more
+              framed picture, until it moves. Add a memory from your phone and
+              the wall updates itself by dessert.
             </p>
             <div className="mt-8 flex flex-wrap gap-3">
               <Button href="/contact" size="lg">
@@ -78,8 +79,8 @@ export default function LivingWallPage() {
             })}
           </div>
           <p className="mt-3 text-center text-sm text-white/60">
-            The glowing tiles are the live LED center — always changing, never the
-            same wall twice.
+            The glowing tiles are the live LED center — always changing, never
+            the same wall twice.
           </p>
         </Container>
       </section>
@@ -120,7 +121,9 @@ export default function LivingWallPage() {
               className="rounded-3xl bg-cream-deep p-8 ring-1 ring-ink/10"
             >
               <h3 className="font-display text-lg font-semibold">{s.t}</h3>
-              <p className="mt-2 text-sm leading-relaxed text-ink-soft">{s.d}</p>
+              <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                {s.d}
+              </p>
             </div>
           ))}
         </div>
@@ -128,7 +131,11 @@ export default function LivingWallPage() {
 
       <div className="bg-cream-deep">
         <Section>
-          <SectionHeading center eyebrow="Sizes & pricing" title="Pick your wall" />
+          <SectionHeading
+            center
+            eyebrow="Sizes & pricing"
+            title="Pick your wall"
+          />
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {tiers.map((t) => (
               <div
@@ -146,7 +153,11 @@ export default function LivingWallPage() {
                   {t.price}
                 </p>
                 <p className="mt-3 flex-1 text-sm text-ink-soft">{t.blurb}</p>
-                <Button href="/contact" className="mt-6" variant={t.featured ? "primary" : "ghost"}>
+                <Button
+                  href="/contact"
+                  className="mt-6"
+                  variant={t.featured ? "primary" : "ghost"}
+                >
                   Get a quote
                 </Button>
               </div>
@@ -174,7 +185,6 @@ export default function LivingWallPage() {
           </div>
         </Section>
       </div>
-
     </>
   );
 }

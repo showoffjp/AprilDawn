@@ -9,6 +9,7 @@ import { StoriesBrowser } from "@/components/stories/StoriesBrowser";
 import { stories } from "@/lib/stories";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/stories" },
   title: "Stories",
   description:
     "Guides, craft, and ideas from AprilDawn — how to digitize a lifetime of photos, the art of restoration, and wonderfully weird ways to keep a memory.",
@@ -16,7 +17,8 @@ export const metadata: Metadata = {
 
 function sceneFor(slug: string) {
   return sceneVariants[
-    slug.split("").reduce((a, c) => a + c.charCodeAt(0), 0) % sceneVariants.length
+    slug.split("").reduce((a, c) => a + c.charCodeAt(0), 0) %
+      sceneVariants.length
   ];
 }
 
@@ -65,7 +67,9 @@ export default function StoriesPage() {
                 {feature.excerpt}
               </p>
               <div className="mt-6 flex items-center gap-3 text-sm">
-                <span className="text-ink-soft">{feature.readMins} min read</span>
+                <span className="text-ink-soft">
+                  {feature.readMins} min read
+                </span>
                 <span className="font-semibold text-dawn-600 transition group-hover:translate-x-0.5">
                   Read the story →
                 </span>

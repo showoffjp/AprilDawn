@@ -35,6 +35,7 @@ export async function generateMetadata({
   return {
     title: `${product.name} — custom photo ${product.category.toLowerCase()}`,
     description: product.blurb,
+    alternates: { canonical: `/shop/${slug}` },
   };
 }
 
@@ -63,7 +64,10 @@ export default async function ProductPage({
       />
 
       <Container className="py-10">
-        <Link href="/shop" className="text-sm font-medium text-ink-soft hover:text-ink">
+        <Link
+          href="/shop"
+          className="text-sm font-medium text-ink-soft hover:text-ink"
+        >
           ← Back to the shop
         </Link>
 
@@ -116,7 +120,9 @@ export default async function ProductPage({
 
       {pairs.length > 0 ? (
         <Section className="pt-0">
-          <h2 className="font-display text-2xl font-semibold">Pairs well with</h2>
+          <h2 className="font-display text-2xl font-semibold">
+            Pairs well with
+          </h2>
           <p className="mt-1 text-sm text-ink-soft">
             Customers often turn one memory into a matching set.
           </p>

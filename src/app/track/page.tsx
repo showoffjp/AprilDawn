@@ -4,6 +4,7 @@ import { Section, SectionHeading } from "@/components/ui/Section";
 import { OrderTracker } from "@/components/track/OrderTracker";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/track" },
   title: "Track your order",
   description:
     "Check the status of your AprilDawn order — from free proofs to production to delivery.",

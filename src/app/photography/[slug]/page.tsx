@@ -30,6 +30,7 @@ export async function generateMetadata({
   return {
     title: session.searchTitle,
     description: session.lead,
+    alternates: { canonical: `/photography/${slug}` },
   };
 }
 
@@ -133,7 +134,9 @@ export default async function PhotoSessionPage({
             <ul className="mt-5 space-y-2.5 text-sm text-ink-soft">
               {session.includes.map((inc) => (
                 <li key={inc} className="flex items-start gap-2.5">
-                  <span className="mt-0.5 text-dawn-500" aria-hidden="true">✓</span>
+                  <span className="mt-0.5 text-dawn-500" aria-hidden="true">
+                    ✓
+                  </span>
                   {inc}
                 </li>
               ))}
@@ -153,7 +156,9 @@ export default async function PhotoSessionPage({
                 "We digitize & restore your older family photos in the same visit.",
               ].map((t) => (
                 <li key={t} className="flex items-start gap-2.5">
-                  <span className="mt-0.5 text-dawn-500" aria-hidden="true">✦</span>
+                  <span className="mt-0.5 text-dawn-500" aria-hidden="true">
+                    ✦
+                  </span>
                   {t}
                 </li>
               ))}
@@ -188,9 +193,9 @@ export default async function PhotoSessionPage({
                 Book your {session.name.toLowerCase()} session
               </h2>
               <p className="mt-4 leading-relaxed text-ink-soft">
-                Tell us your date and a few details. A {studio.city} photographer
-                will reply within one business day with availability and a full
-                pricing guide.
+                Tell us your date and a few details. A {studio.city}{" "}
+                photographer will reply within one business day with
+                availability and a full pricing guide.
               </p>
             </div>
             <EventInquiryForm

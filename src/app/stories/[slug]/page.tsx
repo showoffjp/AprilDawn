@@ -13,7 +13,8 @@ import { site } from "@/lib/site";
 
 function sceneFor(slug: string) {
   return sceneVariants[
-    slug.split("").reduce((a, c) => a + c.charCodeAt(0), 0) % sceneVariants.length
+    slug.split("").reduce((a, c) => a + c.charCodeAt(0), 0) %
+      sceneVariants.length
   ];
 }
 
@@ -29,7 +30,11 @@ export async function generateMetadata({
   const { slug } = await params;
   const story = getStory(slug);
   if (!story) return { title: "Story not found" };
-  return { title: story.title, description: story.excerpt };
+  return {
+    title: story.title,
+    description: story.excerpt,
+    alternates: { canonical: `/stories/${slug}` },
+  };
 }
 
 export default async function StoryPage({

@@ -5,6 +5,7 @@ import { Aurora } from "@/components/effects/Aurora";
 import { jsonLdScript } from "@/lib/jsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/how-it-works" },
   title: "How it works",
   description:
     "From shoebox to masterpiece: how AprilDawn digitizes, restores, prints, and preserves your memories — with free proofs and a happiness guarantee.",
@@ -15,25 +16,41 @@ const steps = [
     n: "01",
     t: "Send it in — your way",
     d: "Drag-and-drop digital files, or order a prepaid MemoryBox and mail us the originals. Every physical item is inventoried, photographed, and tracked through our lab so you always know where your memories are.",
-    points: ["Instant uploads or prepaid mail-in", "Photo check-ins at each step", "Originals insured both ways"],
+    points: [
+      "Instant uploads or prepaid mail-in",
+      "Photo check-ins at each step",
+      "Originals insured both ways",
+    ],
   },
   {
     n: "02",
     t: "We digitize & transcribe",
     d: "Archival-grade scanning up to 4K/48-bit for photos and film; clean digital masters for video and audio, plus human-reviewed transcripts and captions so spoken memories become searchable text.",
-    points: ["Up to 4K archival scans", "Video & audio transcription", "Auto date & face organization"],
+    points: [
+      "Up to 4K archival scans",
+      "Video & audio transcription",
+      "Auto date & face organization",
+    ],
   },
   {
     n: "03",
     t: "We restore & reimagine",
     d: "AI-assisted, artist-finished restoration repairs damage, colorizes, and up-resses. Then turn any memory into prints, apparel, hand-painted masterpieces, a Living Wall, or a talking Memory Mail card.",
-    points: ["Damage repair & colorization", "Print on 4,000+ products", "You approve every proof"],
+    points: [
+      "Damage repair & colorization",
+      "Print on 4,000+ products",
+      "You approve every proof",
+    ],
   },
   {
     n: "04",
     t: "Keep them forever",
     d: "Download your archival vault, receive your prints and gifts, and let auto-gifting and the Living Wall keep your memories alive and growing for the rest of your life.",
-    points: ["Lifetime cloud vault", "Auto-gifting & reminders", "100% happiness guarantee"],
+    points: [
+      "Lifetime cloud vault",
+      "Auto-gifting & reminders",
+      "100% happiness guarantee",
+    ],
   },
 ];
 

@@ -6,6 +6,7 @@ import { GuideCard } from "@/components/giftguides/GuideCard";
 import { giftGuides } from "@/lib/giftGuides";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/gift-guides" },
   title: "Gift Guides for Every Occasion",
   description:
     "Photo gift ideas for Mother's Day, Father's Day, Christmas, anniversaries, new babies, and memorials — made from your own photos, with free proofs before you pay.",

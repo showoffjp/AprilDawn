@@ -8,6 +8,7 @@ import { products, productCategories } from "@/lib/products";
 import { collections } from "@/lib/collections";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/shop" },
   title: "The Shop — Print on anything",
   description:
     "Put your photos on t-shirts, canvas, mugs, blankets, cakes, vinyl, and thousands more. First-party printing plus Amazon-fulfilled favorites.",
@@ -65,10 +66,10 @@ export default function ShopPage() {
               Don&apos;t see what you want? Ask anyway.
             </h2>
             <p className="mt-3 max-w-2xl text-ink-soft">
-              If it has a surface, we&apos;ll find a way to put your memory on it —
-              edible cake prints, etched vinyl, custom puzzles, garden flags, pet
-              bandanas, and the genuinely absurd. Some items ship through our maker
-              network and trusted Amazon partners.
+              If it has a surface, we&apos;ll find a way to put your memory on
+              it — edible cake prints, etched vinyl, custom puzzles, garden
+              flags, pet bandanas, and the genuinely absurd. Some items ship
+              through our maker network and trusted Amazon partners.
             </p>
             <div className="mt-6 flex flex-wrap gap-3">
               <Button href="/upload">Start a custom request</Button>

@@ -7,16 +7,33 @@ import { StatsBand } from "@/components/effects/StatsBand";
 import { trustStats } from "@/lib/site";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/about" },
   title: "About",
   description:
     "AprilDawn exists so no memory is ever lost again. Our mission, our promise, and the values behind the everything store for memories.",
 };
 
 const values = [
-  { e: "🤲", t: "Memories are sacred", d: "We treat every photo, tape, and voicemail like it's the only copy — because often, it is." },
-  { e: "🪞", t: "Honest by default", d: "Free proofs, clear pricing, real disclosures. You always know what you're getting and what it costs." },
-  { e: "🌅", t: "Joy, not just utility", d: "We're here for the happy tears and the gag gifts alike. Preserving the past should feel wonderful." },
-  { e: "🔐", t: "Your data is yours", d: "You own your files, control your integrations, and can export or delete anytime." },
+  {
+    e: "🤲",
+    t: "Memories are sacred",
+    d: "We treat every photo, tape, and voicemail like it's the only copy — because often, it is.",
+  },
+  {
+    e: "🪞",
+    t: "Honest by default",
+    d: "Free proofs, clear pricing, real disclosures. You always know what you're getting and what it costs.",
+  },
+  {
+    e: "🌅",
+    t: "Joy, not just utility",
+    d: "We're here for the happy tears and the gag gifts alike. Preserving the past should feel wonderful.",
+  },
+  {
+    e: "🔐",
+    t: "Your data is yours",
+    d: "You own your files, control your integrations, and can export or delete anytime.",
+  },
 ];
 
 const differences = [
@@ -49,10 +66,10 @@ export default function AboutPage() {
           </h1>
           <p className="mx-auto mt-6 max-w-2xl text-lg leading-relaxed text-ink-soft">
             AprilDawn began with a shoebox in an attic and a simple, aching
-            question: why do we let our most precious moments fade in drawers and
-            on dying tapes? We built the everything store for memories so you can
-            rescue them, reimagine them, and keep them — beautifully, permanently —
-            for the rest of your life.
+            question: why do we let our most precious moments fade in drawers
+            and on dying tapes? We built the everything store for memories so
+            you can rescue them, reimagine them, and keep them — beautifully,
+            permanently — for the rest of your life.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/upload" size="lg">
@@ -74,33 +91,37 @@ export default function AboutPage() {
       {/* Origin story */}
       <Section className="pt-0">
         <div className="mx-auto max-w-3xl">
-          <SectionHeading eyebrow="Our story" title="It started with a shoebox" />
+          <SectionHeading
+            eyebrow="Our story"
+            title="It started with a shoebox"
+          />
           <div className="mt-6 space-y-5 text-lg leading-relaxed text-ink-soft">
             <p>
-              AprilDawn began the way these things usually do — with a box nobody
-              wanted to open. After a grandparent passed, there was a shoebox in
-              the attic: curling Polaroids, a wedding gone orange with age, a strip
-              of negatives no one owned a machine to read anymore. A whole life,
-              quietly dissolving in the dark. The question that started the company
-              was simple and a little furious: why do we let this happen?
+              AprilDawn began the way these things usually do — with a box
+              nobody wanted to open. After a grandparent passed, there was a
+              shoebox in the attic: curling Polaroids, a wedding gone orange
+              with age, a strip of negatives no one owned a machine to read
+              anymore. A whole life, quietly dissolving in the dark. The
+              question that started the company was simple and a little furious:
+              why do we let this happen?
             </p>
             <p>
               The answer, it turned out, was that saving memories had become a
               chore. One shop scanned photos, another printed them, a third made
               albums — and none of them talked to each other, while the fragile
-              originals had to survive the trip between all of them. So we built the
-              opposite: one place for the whole journey. Digitize the shoebox,
-              restore what time damaged, and turn any of it into something
-              you&rsquo;ll actually live with — a canvas, a blanket, a card that
-              plays a voice,
-              a wall that glows and never stops updating.
+              originals had to survive the trip between all of them. So we built
+              the opposite: one place for the whole journey. Digitize the
+              shoebox, restore what time damaged, and turn any of it into
+              something you&rsquo;ll actually live with — a canvas, a blanket, a
+              card that plays a voice, a wall that glows and never stops
+              updating.
             </p>
             <p>
               Today AprilDawn is a photography studio rooted in Aiken, South
-              Carolina and a memory lab that works entirely by mail and upload, so
-              a family in any state can send us a lifetime and get it back better
-              than they remembered. Same mission as that first shoebox: so that no
-              memory is ever lost again.
+              Carolina and a memory lab that works entirely by mail and upload,
+              so a family in any state can send us a lifetime and get it back
+              better than they remembered. Same mission as that first shoebox:
+              so that no memory is ever lost again.
             </p>
           </div>
         </div>
@@ -125,7 +146,9 @@ export default function AboutPage() {
               </span>
               <div>
                 <h3 className="font-display text-lg font-semibold">{d.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{d.d}</p>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                  {d.d}
+                </p>
               </div>
             </div>
           ))}
@@ -137,10 +160,17 @@ export default function AboutPage() {
           <SectionHeading eyebrow="What we believe" title="Our values" />
           <div className="mt-10 grid gap-6 sm:grid-cols-2">
             {values.map((v) => (
-              <div key={v.t} className="rounded-3xl bg-white p-7 ring-1 ring-ink/10">
+              <div
+                key={v.t}
+                className="rounded-3xl bg-white p-7 ring-1 ring-ink/10"
+              >
                 <div className="text-3xl">{v.e}</div>
-                <h3 className="mt-3 font-display text-lg font-semibold">{v.t}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-soft">{v.d}</p>
+                <h3 className="mt-3 font-display text-lg font-semibold">
+                  {v.t}
+                </h3>
+                <p className="mt-2 text-sm leading-relaxed text-ink-soft">
+                  {v.d}
+                </p>
               </div>
             ))}
           </div>
@@ -154,8 +184,8 @@ export default function AboutPage() {
             Bring us your shoebox.
           </h2>
           <p className="mx-auto mt-4 max-w-xl text-lg text-ink-soft">
-            Start with one photo, or mail us a lifetime. Either way, nothing fades
-            on our watch.
+            Start with one photo, or mail us a lifetime. Either way, nothing
+            fades on our watch.
           </p>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 sm:flex-row">
             <Button href="/upload" size="lg">

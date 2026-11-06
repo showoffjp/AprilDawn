@@ -8,6 +8,7 @@ import { reviews, aggregate } from "@/lib/reviews";
 import { jsonLdScript } from "@/lib/jsonLd";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/reviews" },
   title: "Reviews",
   description:
     "Real reviews from families who rescued, restored, and reimagined their memories with AprilDawn. Rated 4.9 out of 5.",

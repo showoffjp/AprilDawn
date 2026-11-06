@@ -5,6 +5,7 @@ import { ServiceCard } from "@/components/cards/ServiceCard";
 import { services } from "@/lib/services";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/services" },
   title: "Services",
   description:
     "Digitize, restore, print, and reimagine your memories. Explore every AprilDawn service — from archival scanning to the Living Wall.",

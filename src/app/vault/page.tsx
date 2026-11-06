@@ -6,6 +6,7 @@ import { Badge } from "@/components/ui/Badge";
 import { MemoryScene, sceneVariants } from "@/components/art/MemoryScene";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/vault" },
   title: "Your Memory Vault",
   description:
     "A preview of the AprilDawn member experience — your lifetime vault of albums, restorations, and a Living Wall that syncs from everyone's phones.",
@@ -21,7 +22,12 @@ const albums: {
   { title: "Summer '24", count: 540, variant: "beach" },
   { title: "The Wedding", count: 1280, variant: "sunset", badge: "Restored" },
   { title: "Baby's First Year", count: 866, variant: "garden" },
-  { title: "Attic Slides", count: 2100, variant: "sunrise", badge: "Digitized" },
+  {
+    title: "Attic Slides",
+    count: 2100,
+    variant: "sunrise",
+    badge: "Digitized",
+  },
   { title: "Holidays", count: 430, variant: "winter" },
 ];
 
@@ -105,7 +111,9 @@ export default function VaultPage() {
 
       <div className="bg-cream-deep">
         <Section>
-          <h2 className="font-display text-2xl font-semibold">Recently added</h2>
+          <h2 className="font-display text-2xl font-semibold">
+            Recently added
+          </h2>
           <div className="mt-6 grid grid-cols-3 gap-3 sm:grid-cols-6">
             {sceneVariants.slice(0, 6).map((v, i) => (
               <div

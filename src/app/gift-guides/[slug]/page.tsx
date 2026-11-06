@@ -37,6 +37,7 @@ export async function generateMetadata({
   return {
     title: guide.title,
     description: guide.lead,
+    alternates: { canonical: `/gift-guides/${slug}` },
   };
 }
 
@@ -142,7 +143,9 @@ export default async function GiftGuidePage({
       ) : null}
 
       <Section>
-        <h2 className="font-display text-2xl font-semibold">More gift guides</h2>
+        <h2 className="font-display text-2xl font-semibold">
+          More gift guides
+        </h2>
         <div className="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {others.map((g) => (
             <GuideCard key={g.slug} guide={g} />

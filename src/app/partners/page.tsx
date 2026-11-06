@@ -7,6 +7,7 @@ import { Reveal } from "@/components/ui/Reveal";
 import { partnerGroups } from "@/lib/partners";
 
 export const metadata: Metadata = {
+  alternates: { canonical: "/partners" },
   title: "Partners",
   description:
     "AprilDawn stitches together best-in-class partners for printing, specialty making, gifting & delivery, payments, integrations, and AI.",
